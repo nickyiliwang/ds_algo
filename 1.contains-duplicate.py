@@ -19,12 +19,12 @@
 # -109 <= nums[i] <= 109
 
 def containsDuplicate(nums):
-    hashset = set()
+    hashSet = set()
     for n in nums:
-        if n in hashset:
+        if n in hashSet:
             return True
         else:
-            hashset.add(n)
+            hashSet.add(n)
     return False
 
 test = [0,4,5,0,3,6]
@@ -49,18 +49,18 @@ print(containsDuplicate(test))
 # Answer:
 # class Solution:
 #     def containsDuplicate(self, nums: List[int]) -> bool:
-#         hashset = set()
+#         hashSet = set()
 
 #         for n in nums:
-#             if n in hashset:
+#             if n in hashSet:
 #                 return True
-#             hashset.add(n)
+#             hashSet.add(n)
 #         return False
 
 # hashmap/hashtable/dictionary/js object
 # key/pair value uses more space/memory but helps with time complexity
 
-# hashset/set()
+# hashSet/set()
 # hash set is different than hashtable
 # var = {"Geeks", "for", "Geeks"}
 # type(var) OUTPUT: set
