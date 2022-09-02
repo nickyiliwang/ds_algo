@@ -49,7 +49,9 @@ def topKFrequent(nums, k):
     #     bucket[hashMap[x]] = bucket[hashMap[x]] + [x]
 
     # neet code solution
+    # hashMap.items() => [(1, 3), (2, 3), (3, 1), (4, 3]
     for n, c in hashMap.items():
+        # we are appending
         freq[c].append(n)
 
     # for i in reversed(freq):
