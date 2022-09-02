@@ -20,24 +20,78 @@
 
 # Follow up: Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
 
-# My solution
+# Time: O(n) Memory: O(n)
+# Bucket sort
+# problem with bucket sort is that we need our input array to be bounded
+
+#  Bucket sorting when the new array we are gonna create is the exact size of the input array plus one (leading idx 0)
+# ie. [1, 1, 1, 2, 2, 3] => [0, 1, 2, 3, 4, 5, 6] => [[], [3], [2], [1],[],[],[]]
+# we do this because the most the new array should have is the amount of numbers the array can have
+# once we scan for the most occurrences, from right to left
 def topKFrequent(nums, k):
-    hashMap = {}
-    # build a hashMap with:
-    # value:
+    # hashMap = {}
+    # bucket = [[]] * (len(nums) + 1)
+
+    # res = []
+
+    # for n in nums:
+    #     hashMap[n] = hashMap.get(n, 0) + 1
+
+    # # my original solution
+    # # for x in hashMap:
+    # #     # for every key in map
+    # #     # the bucket tuple will keep the hash value (number of times a number repeated)
+    # #     # the bucket index value will be keeping the numbers with the same repeating times + if the key (number) has the same repeated times
+    # #     bucket[hashMap[x]] = bucket[hashMap[x]] + [x]
+
+    # # neet code solution
+    # for n, c in hashMap.items():
+    #     bucket[c].append(n)
+    count = {}
+    freq = [[] for i in range(len(nums) + 1)]
+    hey = [[]] * (len(nums) + 1)
+
+    res = []
+
     for n in nums:
-        hashMap[n] = hashMap.get(n, 0) + 1
+        count[n] = 1 + count.get(n, 0)
 
-    # gets the (key, val) pair in a tuple
-    items = hashMap.items()
+    for n, c in count.items():
+        freq[c].append(n)
+        hey[c].append(n)
+        # print(freq[c])
+        print(hey[c])
 
-    # sorting by the second tuple which was the times repeated, in reverse order
-    sortedItems = sorted(items, key=lambda tup: tup[1], reverse=True)
+    # print(freq)
+    for i in range(len(freq) - 1, 0, -1):
+        for n in freq[i]:
+            res.append(n)
+            if (len(res)) == k:
+                return res
 
-    # only take the first index in the tuple, the key, in the sortedItems tuple list, only go up to k index
-    return [s[0] for s in sortedItems[:k]]
 
-
-nums = [1, 1, 1, 2, 2, 3]
-k = 2
+nums = [1, 1, 1, 2, 2, 2, 3, 4, 4, 4]
+k = 3
 print(topKFrequent(nums, k))
+
+
+# # My solution
+# # O(n log m) n is the nums, m is the hashMap item
+# def topKFrequent(nums, k):
+#     hashMap = {}
+#     # build a hashMap with:
+#     # value:
+#     for n in nums:
+#         hashMap[n] = hashMap.get(n, 0) + 1
+
+#     # gets the (key, val) pair in a tuple
+#     items = hashMap.items()
+
+#     # sorting by the second tuple which was the times repeated, in reverse order
+#     sortedItems = sorted(items, key=lambda tup: tup[1], reverse=True)
+
+#     # only take the first index in the tuple, the key, in the sortedItems tuple list, only go up to k index
+#     return [s[0] for s in sortedItems[:k]]
+
+
+# Heap
