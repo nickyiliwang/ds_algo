@@ -29,43 +29,37 @@
 # we do this because the most the new array should have is the amount of numbers the array can have
 # once we scan for the most occurrences, from right to left
 def topKFrequent(nums, k):
-    # hashMap = {}
-    # bucket = [[]] * (len(nums) + 1)
-
-    # res = []
-
-    # for n in nums:
-    #     hashMap[n] = hashMap.get(n, 0) + 1
-
-    # # my original solution
-    # # for x in hashMap:
-    # #     # for every key in map
-    # #     # the bucket tuple will keep the hash value (number of times a number repeated)
-    # #     # the bucket index value will be keeping the numbers with the same repeating times + if the key (number) has the same repeated times
-    # #     bucket[hashMap[x]] = bucket[hashMap[x]] + [x]
-
-    # # neet code solution
-    # for n, c in hashMap.items():
-    #     bucket[c].append(n)
-    count = {}
+    hashMap = {}
     freq = [[] for i in range(len(nums) + 1)]
-    hey = [[]] * (len(nums) + 1)
+
+    # https://stackoverflow.com/a/2785963
+    # Be careful this create N copies of the same item
+    # do not do this
+    # same = [[]] * (len(nums) + 1)
 
     res = []
-
     for n in nums:
-        count[n] = 1 + count.get(n, 0)
+        hashMap[n] = hashMap.get(n, 0) + 1
 
-    for n, c in count.items():
+    # my original solution
+    # for x in hashMap:
+    #     # for every key in map
+    #     # the bucket tuple will keep the hash value (number of times a number repeated)
+    #     # the bucket index value will be keeping the numbers with the same repeating times + if the key (number) has the same repeated times
+    #     bucket[hashMap[x]] = bucket[hashMap[x]] + [x]
+
+    # neet code solution
+    for n, c in hashMap.items():
         freq[c].append(n)
-        hey[c].append(n)
-        # print(freq[c])
-        print(hey[c])
 
-    # print(freq)
+    # for i in reversed(freq):
+    # uses the value instead of index
+
+    # range(starting len - 1, to index 0, -1 steps)
     for i in range(len(freq) - 1, 0, -1):
         for n in freq[i]:
             res.append(n)
+            # return once we reach k
             if (len(res)) == k:
                 return res
 
