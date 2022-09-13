@@ -10,35 +10,62 @@
 
 # Input: [“we”, “say”, “:”, “yes”] Output: [“we”, “say”, “:”, “yes”] Explanation: One possible encode method is: “we:;say:;:::;yes”
 
+# Space: O(n) Time: O(n)
+
 def encode(strs):
     res = ''
     for word in strs:
-        res = res + str(len(word)) + "#" + word
-    # print(res)
+        res = res + str(len(word)) + "#" + word  # "#" is the delimiter
     return res
+
+# neetcode
 
 
 def decode(str):
+    # i variable is the character index
     res, i = [], 0
-    print(str)
-    while i < len(str):
-        print(str[i])
-        # empty string edge case
-        if str[i] == "0":
-            print("zero")
-            i += 2
-            res.append('')
 
-        else:
-            start = i
-            stop = start + int(str[i])
-            word = str[start + 2:stop]
-            print("word", word)
-            res.append(word)
-            i += stop
-    print(i)
+    # before we reach the length of the string
+    while i < len(str):
+        # start at the position of i
+        j = i
+        # before we reach the delimiter "#"
+        while str[j] != "#":
+            j += 1
+        # length variable can get double or triple digit word lengths
+        length = int(str[i:j])
+        print("length", length)
+        # we do j + 1 becasue we are skipping the "#" delimiter
+        # the word is start: j + 1, and end: j + 1 + length
+        res.append(str[j + 1: j + 1 + length])
+        # like my own solution, char index will restart at last end
+        i = j + 1 + length
     print(res)
     return res
+
+# # Space: O(n) Time: O(n)
+# # My solution with while loop
+# # THIS DOES NOT WORK WHEN we have over 10 letters
+# # ie. 10#asdfghjkli4#code4#love3#you
+
+
+# def decode(str):
+#     res, i = [], 0
+#     print(str)
+#     while i < len(str):
+#         # empty string edge case
+#         if str[i] == "0":
+#             i += 2
+#             res.append('')
+
+#         else:
+#             start = i + 2  # 2 is the number + #
+#             stop = start + int(str[i])  # int(str[i]) is
+#             word = str[start:stop]  # get the word with start and stop
+#             res.append(word)
+#             i = stop  # get to the next index with a number indicating next word length
+#     print(res)
+#     return res
 
 # my solution before checking solution, while loop if preferred with explicit index value
 # def decode(str):
@@ -58,7 +85,7 @@ def decode(str):
 #     return res
 
 
-strs = ["", "we", "#say", ":", "yes"]
+strs = ["asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4", "code", "love", "you"]
 str = encode(strs)
 # OUTPUT single string
 decode(str)
