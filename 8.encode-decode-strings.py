@@ -90,3 +90,5 @@ str = encode(strs)
 # OUTPUT single string
 decode(str)
 # OUTPUT ["", "we", "#say", ":", "yes"]
+
+# watching event horizon while trying to debug my code is not the best way to focus 
