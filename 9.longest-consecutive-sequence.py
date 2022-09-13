@@ -19,58 +19,61 @@
 # 0 <= nums.length <= 105
 # -109 <= nums[i] <= 109
 
-
-# from counting the max number in the array
-# maybe there was some way to do one pass to the largest number range
-# have a sequential counter that increments
-# need a hashmap then
-
-#  this does not take into account
-# this solution does not take into account of negative numbers
-# during the loop, we are checking each number against the dictionary
-# starting from 0 we are looking for continuous sequences
-# if we find a sequence + 1 to seq var, the result var will take the value of seq
-# if j and i are 0's, we use the dictionary to look for how many times the j is repeated
-
-# this solution keeps failing tests haha
-
 def longestConsecutive(nums):
-    res = 0
-    map = {}
-    max = int()
 
-    # *in* seems like an O(n)
-    # if 1 in nums:
-    #     print('found 1')
 
-    for n in nums:
-        if n > max:
-            max = n
-        map[n] = 1
 
-    print(map)
+# # from counting the max number in the array
+# # maybe there was some way to do one pass to the largest number range
+# # have a sequential counter that increments
+# # need a hashmap then
 
-    seq = 0
-    j = 0
-    for i in range(max + 1):  # + 1 to get the full range, ie. 0 - 199 + 1 = 200
-        if (map.get(i) != None):
-            if (j + i == 0):
-                seq += map[j]
+# #  this does not take into account
+# # this solution does not take into account of negative numbers
+# # during the loop, we are checking each number against the dictionary
+# # starting from 0 we are looking for continuous sequences
+# # if we find a sequence + 1 to seq var, the result var will take the value of seq
+# # if j and i are 0's, we use the dictionary to look for how many times the j is repeated
 
-            elif (j + 1 == i):
-                seq += map[i]
+# # this solution keeps failing tests haha
 
-        else:
-            if (seq >= res):
-                res = seq
-            seq = 0
+# def longestConsecutive(nums):
+#     res = 0
+#     map = {}
+#     max = int()
 
-        if (seq >= res):
-            res = seq
-        j = i
+#     # *in* seems like an O(n)
+#     # if 1 in nums:
+#     #     print('found 1')
 
-    print(res)
-    return res
+#     for n in nums:
+#         if n > max:
+#             max = n
+#         map[n] = 1
+
+#     print(map)
+
+#     seq = 0
+#     j = 0
+#     for i in range(max + 1):  # + 1 to get the full range, ie. 0 - 199 + 1 = 200
+#         if (map.get(i) != None):
+#             if (j + i == 0):
+#                 seq += map[j]
+
+#             elif (j + 1 == i):
+#                 seq += map[i]
+
+#         else:
+#             if (seq >= res):
+#                 res = seq
+#             seq = 0
+
+#         if (seq >= res):
+#             res = seq
+#         j = i
+
+#     print(res)
+#     return res
 
 
 # nums = [0, 3, 7, 2, 5, 8, 4, 6, 0, 1]
