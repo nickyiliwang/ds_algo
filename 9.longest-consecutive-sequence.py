@@ -19,9 +19,42 @@
 # 0 <= nums.length <= 105
 # -109 <= nums[i] <= 109
 
+# neetcode
+
 def longestConsecutive(nums):
+    numSet = set(nums)
+    longest = 0
+
+    for n in nums:
+        # check if its the start of a sequence
+        if (n - 1) not in numSet:
+            length = 0
+            # while the sequence is alive keep adding to it and validating
+            while (n + length) in numSet:
+                length += 1
+            # at the end we want the longest sequence
+            longest = max(length, longest)
+    return longest
 
 
+# # my solution after seeing left and right neighbors trick
+# # the trick here is checking left and right neighbors
+# # while loop adds O(n^2) time complexity ? A: no, it's still linear
+# def longestConsecutive(nums):
+#     res = 0
+#     validator = set(nums)
+#     for n in nums:
+#         seq = 0
+#         if (n - 1) not in validator:
+#             o = n
+#             while o in validator:
+#                 seq += 1
+#                 o += 1
+#                 if (seq > res):
+#                     res = seq
+
+#     print(res)
+#     return res
 
 # # from counting the max number in the array
 # # maybe there was some way to do one pass to the largest number range
