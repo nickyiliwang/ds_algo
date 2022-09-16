@@ -31,10 +31,28 @@
 # -1000 <= target <= 1000
 # The tests are generated such that there is exactly one solution.
 
+# using pointers
+# because of sorted array we can do this
+# if current sum is bigger than target, move the right pointer to the left to decrease the sum
+# else if current sum is smaller than target, move left point to the right to increase the sum
+# return index of correct number combo
 def twoSum(numbers, target):
-    print(numbers, target)
+    l, r = 0, len(numbers) - 1
+
+    while l < r:
+        curSum = numbers[l] + numbers[r]
+
+        if curSum > target:
+            r -= 1
+
+        elif curSum < target:
+            l += 1
+
+        else:
+            return [l, r]
 
 
 numbers = [2, 7, 11, 15]
 target = 9
-twoSum()
+
+print(twoSum(numbers, target))
