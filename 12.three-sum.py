@@ -50,7 +50,8 @@ def threeSum(nums):
 
         # using pointers
         # moving left and right pointers like two sum
-        # but we calculate
+        # but we calculate the sum of 3 numbers
+        # left pointer will always be current index + 1
         l, r = i + 1, len(nums) - 1
         while l < r:
             threeSum = n + nums[l] + nums[r]
@@ -60,12 +61,21 @@ def threeSum(nums):
                 l += 1
 
             else:
+                # found pair, appending to res
                 res.append([n, nums[l], nums[r]])
+                # Remember to increment by one after the result is appended
                 l += 1
+
+                # while current left pointer is the same as the previous left pointer value
+                # left index does not meet right index
+                # increment it
+                # ** Why do we not do the same for the right pointer ?
+                # Because we only need to check left, if the right point is two large twice, our previous if statement will adjust it, ie. [1,2,3,5,5], it's just gonna move right pointer left twice if sum is bigger than 0
                 while nums[l] == nums[l - 1] and l < r:
                     l += 1
                 # [-2, -2, 0, 0, 2, 2]
     print(res)
+    # don't forget to return the result instead of an empty array. ;)
     return res
 
 
