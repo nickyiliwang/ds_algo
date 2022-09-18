@@ -27,7 +27,7 @@
 # Only one valid answer exists.
 
 
-# Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?
+# Follow-up: Can you come up with an algorithm that is less than O(n^2) time complexity?
 
 def twoSum(nums, target):
     # we can do this in one pass
@@ -36,8 +36,9 @@ def twoSum(nums, target):
     for i, n in enumerate(nums):
         diff = target - n
         # x in dict
-        # meaning we got a difference, return the index of the diff and the current index of the loop
+        # meaning we got a difference
         if diff in prevMap:
+            # return the index of the diff and the current index of the loop
             return [prevMap[diff], i]
 
         # number val: index
