@@ -33,8 +33,10 @@
 
 # Space: O(1), O(n) depends on sorting implementation
 
+
 def threeSum(nums):
     res = []
+
     # with a sorted array we can then use pointers
     nums.sort()
     print(nums)
