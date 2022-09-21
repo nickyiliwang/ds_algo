@@ -5,3 +5,12 @@
 
 Good for:
 keeping track of a subset of data in an array/string
+
+function maxSubArraySum(arr, num) {
+    let maxSum = 0;
+    let tempSum = 0;
+    if (arr.length < num) return null;
+    
+    for (let i=0;)
+
+}
