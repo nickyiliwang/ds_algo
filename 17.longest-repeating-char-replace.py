@@ -21,27 +21,65 @@
 # s consists of only uppercase English letters.
 # 0 <= k <= s.length
 
+
 # we want the len of the window - max repeating number <= k
+# during any window we want to
+# Shit day for learning, gonna just study the answer
 
 def characterReplacement(s, k):
     # to count the repeating numbers
     counter = {}
-    left, right = 0, 0
-    counter[s[left]] = 1
+    # window
+    left = 0
+    res = 0
+    for right in range(len(s)):
+        counter[s[right]] = 1 + counter.get(s[right], 0)
 
-    for i, c in enumerate(s):
-        while right < len(s):
-            right += 1
-            
+        while (right - left + 1) - max(counter.values()) > k:
+            counter[s[left]] -= 1
+            left += 1
 
-    print(counter)
+        res = max(res, right - left + 1)
 
-    # if (right - left) -
+    return res
 
 
-s = "AABBBBA"
+s = "AABABBA"
 k = 1
 characterReplacement(s, k)
+
+# # we want the len of the window - max repeating number <= k
+# # during any window we want to
+# # WIP my solution
+
+# def characterReplacement(s, k):
+#     # to count the repeating numbers
+#     counter = {}
+#     # window
+#     left, right = 0, 0
+#     res = 0
+
+#     counter[s[left]] = counter.get(s[0], 1)
+
+#     # while right window is less than string length, and left pointer is not over right pointer
+#     while right < len(s) - 1:
+#         maxCurrentChar = max(counter.values())
+#         windowLen = right - left
+#         res = max(res, windowLen)
+#         if windowLen - maxCurrentChar <= k:
+#             right += 1
+#             counter[s[right]] = counter.get(s[right], 0) + 1
+#         else:
+#             left += 1
+#             counter[s[left]] = counter.get(s[left], 0) + 1
+
+#     print(res)
+#     return res
+
+
+# s = "AABABBA"
+# k = 1
+# characterReplacement(s, k)
 
 # for right in range(len(s)):
 
