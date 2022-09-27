@@ -10,26 +10,26 @@ class linked_list:
 
     def append(self, data):
         new_node = node(data)
-        current = self.head
-        while current.next != None:
-            current = current.next
-        current.next = new_node
+        curr_node = self.head
+        while curr_node.next != None:
+            curr_node = curr_node.next
+        curr_node.next = new_node
 
     def length(self):
-        current = self.head
+        curr_node = self.head
         total = 0
-        while current.next != None:
+        while curr_node.next != None:
             total += 1
-            current = current.next
+            curr_node = curr_node.next
         return total
 
-    # display current contents
+    # display curr_node contents
     def display(self):
         elements = []
-        cur_node = self.head
-        while cur_node.next != None:
-            cur_node = cur_node.next
-            elements.append(cur_node.data)
+        curr_node = self.head
+        while curr_node.next != None:
+            curr_node = curr_node.next
+            elements.append(curr_node.data)
         print(elements)
 
     def get(self, index):
@@ -37,27 +37,27 @@ class linked_list:
             print("ERROR: 'Get' Index out of range")
             return None
         cur_index = 0
-        cur_node = self.head
+        curr_node = self.head
         while True:
-            cur_node = cur_node.next
+            curr_node = curr_node.next
             if cur_index == index:
-                print(cur_node.data)
-                return cur_node.data
-            cur_node += 1
+                print(curr_node.data)
+                return curr_node.data
+            curr_node += 1
 
     def erase(self, index):
         if index >= self.length():
             print("ERROR: 'Get' Index out of range")
             return
         cur_index = 0
-        cur_node = self.head
+        curr_node = self.head
 
         while True:
-            last_node = cur_node
-            cur_node = cur_node.next
+            last_node = curr_node
+            curr_node = curr_node.next
             if cur_index == index:
                 # instead of erasing the element, we are just dropping it from the link
-                last_node.next = cur_node.next
+                last_node.next = curr_node.next
                 return
             cur_index += 1
 
