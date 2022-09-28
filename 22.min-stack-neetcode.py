@@ -34,43 +34,45 @@
 # Methods pop, top and getMin operations will always be called on non-empty stacks.
 # At most 3 * 104 calls will be made to push, pop, top, and getMin.
 
-class Node:
-    def __init__(self, data=None):
-        self.data = data
-        self.next = None
-
-
 class MinStack:
 
     def __init__(self):
-        self.head = Node()
+        # we need 2 stacks, one to keep track of the stack
+        # the other for the minimum value in this stack for O(1) lookup
+        self.stack = []
+        self.minStack = []
 
     def push(self, val: int) -> None:
-        # new node has data of val on instantiation
-        new_node = Node(val)
-
-        curr_node = self.head
-        # traverse to the end of the list
-        # check if the linked list has items
-        while curr_node.next != None:
-            curr_node = curr_node.next
-        # else next node is set to the new node
-        curr_node.next = new_node
+        self.stack.append(val)
+        if self.minStack:
+            # non empty
+            val = min(val, self.minStack[-1])
+        else:
+            # empty
+            val = min(val, val)
+        self.minStack.append(val)
 
     def pop(self) -> None:
-        curr_node = self.head
-        if not curr_node.data:
-            return 
-        
-        
+        self.stack.pop()
+        self.minStack.pop()
 
     def top(self) -> int:
+        return self.stack[-1]
 
     def getMin(self) -> int:
+        return self.minStack[-1]
 
-        # Your MinStack object will be instantiated and called as such:
-        # obj = MinStack()
-        # obj.push(val)
-        # obj.pop()
-        # param_3 = obj.top()
-        # param_4 = obj.getMin()
+
+my_stack = MinStack()
+my_stack.push(4)
+my_stack.push(2)
+my_stack.push(3)
+my_stack.push(-1)
+my_stack.push(-2)
+
+# my_stack.pop()
+# my_stack.pop()
+# my_stack.pop()
+
+
+my_stack.getMin()
