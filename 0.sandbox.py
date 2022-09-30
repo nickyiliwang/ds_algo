@@ -1,1 +1,1 @@
-print("hello")
+stack = [4, 5, 6]

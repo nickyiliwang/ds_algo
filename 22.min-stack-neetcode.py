@@ -47,9 +47,6 @@ class MinStack:
         if self.minStack:
             # non empty
             val = min(val, self.minStack[-1])
-        else:
-            # empty
-            val = min(val, val)
         self.minStack.append(val)
 
     def pop(self) -> None:
