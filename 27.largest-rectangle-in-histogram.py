@@ -22,27 +22,50 @@
 # 1 <= heights.length <= 105
 # 0 <= heights[i] <= 104
 
-# 
+
+# Stack solution
+# monotonic increasing
 def largestRectangleArea(heights):
-    res = []
-    for i, n in enumerate(heights):
-        temp = []
-        temp.append(n)
-        whileIndex = i + 1
-        while whileIndex < len(heights):
-            minHeight = min(heights[i:whileIndex])
-            length = whileIndex - i + 1
-            
-            area = minHeight * length
-            temp.append(area)
-            whileIndex += 1
-        res.append(temp)
-    print(res)
-    return res
 
 
 heights = [2, 1, 5, 6, 2, 3]
+# Output: 10
 largestRectangleArea(heights)
+
+
+# # Brute force
+# def largestRectangleArea(heights):
+#     res = []
+#     for i, n in enumerate(heights):
+#         # get all the possible areas for each number in the heights
+#         temp = []
+#         # append itself first
+#         temp.append(n)
+#         # ignoring itself
+#         whileIndex = i + 1
+#         # Loop over the rest of the numbers
+#         while whileIndex < len(heights):
+#             # the min height
+#             # i:whileIndex + 1 fixes the off by one error
+#             minHeight = min(heights[i:whileIndex + 1])
+#             length = whileIndex - i + 1
+
+#             area = minHeight * length
+#             temp.append(area)
+#             whileIndex += 1
+#         res.append(temp)
+
+#     finalRes = []
+#     for n in res:
+#         finalRes.append(max(n))
+
+#     print(max(finalRes))
+#     return max(finalRes)
+
+
+# heights = [2, 1, 5, 6, 2, 3]
+# # Output: 10
+# largestRectangleArea(heights)
 
 # # two pointer attempt
 # # This did not work because we can't use the areas, the small numbers in between two pointer is the real gating number to calculate area, instead of water container
