@@ -26,9 +26,37 @@
 # Stack solution
 # monotonic increasing
 def largestRectangleArea(heights):
+    res = 0
+    stack = []
+
+    for i, h in enumerate(heights):
+        # what is this start index ?
+        # we don't know we can extend backwards yet
+        start = i
+
+        while stack and h < stack[-1][1]:
+            stackIndex, height = stack.pop()
+            
+            length = i - stackIndex
+            res = max(res, height * length)
+
+            # this height is greater than the current height we are visiting
+            # extend the start index backwards to the index we just popped
+            # I still don't get it
+            start = stackIndex
+        # adding the start index that we pushed all the way backwards
+        stack.append((start, h))
+
+    # might be entries in the stack, extended all the way to the end of the histogram, still need to compute the height
+
+    for i, h in stack:
+        res = max(res, h * (len(heights) - i))
+
+    # print(res)
+    return res
 
 
-heights = [2, 1, 5, 6, 2, 3]
+heights = [2, 4]
 # Output: 10
 largestRectangleArea(heights)
 
