@@ -33,24 +33,25 @@ def search(nums, target):
     # or if they are equal, meaning either the number of items are 1
     while left <= right:
         # get the mid pointer
-        middle = int((left + right) / 2)
+        # (l + r) // 2 can lead to overflow
+        middle = left + ((right - left) // 2)
         # return the index of correct number
         if (nums[middle] == target):
             res = middle
         # if the number is smaller than the target
         # we ove left pointer up
         if (nums[middle] < target):
-            left += 1
+            left = middle + 1
         # number is too large
         # move the right pointer down
         else:
-            right -= 1
+            right = middle - 1
 
     print(res)
     return res
 
 
-nums = [5]
+nums = [1,2,3,4,5]
 target = 5
 
 search(nums, target)
