@@ -51,8 +51,8 @@ def search(nums: List[int], target: int) -> int:
     while nums[left] > nums[right]:
         right = right - 1
     leftPart = binarySearch(left, right, target)
-    print(leftPart)
 
+    # reset pointers
     left, right = 0, len(nums) - 1
 
     # right quadrant, we can ignore left
@@ -69,3 +69,68 @@ nums = [4, 5, 6, 7, 0, 1, 2]
 target = 0
 
 search(nums, target)
+
+# neetcode altered solution
+
+# def search(nums: List[int], target: int) -> int:
+#     left, right = 0, len(nums) - 1
+
+#     while left <= right:
+#         mid = (left + right) // 2
+#         if target == nums[mid]:
+#             return mid
+
+#         # left sorted portion
+#         if nums[left] <= nums[mid]:
+#             # if the target value is greater than or equal to the left most value but smaller than mid
+#             if nums[left] <= target < nums[mid]:
+#                 right = mid - 1
+#             else:
+#                 left = mid + 1
+
+#         # right sorted portion
+#         else:
+#             if nums[mid] < target <= nums[right]:
+#                 left = mid + 1
+#             else:
+#                 right = mid - 1
+#     return -1
+
+
+# nums = [4, 5, 6, 7, 0, 1, 2]
+# target = 0
+
+# print(search(nums, target))
+
+# # using pivots
+# # DOES NOT WORK, BUGS WHEN RUNNING [1,3]
+# def search(nums: List[int], target: int) -> int:
+#     left, right = 0, len(nums) - 1
+#     pivotPoint = (left + right) // 2
+
+#     def binarySearch(l, r, t):
+#         while l <= r:
+#             m = (l+r)//2
+#             if (nums[m] == t):
+#                 return m
+#             elif (nums[m] < t):
+#                 l = m + 1
+#             else:
+#                 r = m - 1
+#         return -1
+
+#     while nums[left] > nums[pivotPoint]:
+#         pivotPoint = pivotPoint - 1
+
+#     if target == nums[pivotPoint]:
+#         return pivotPoint
+#     elif target > nums[left]:
+#         return binarySearch(left, pivotPoint, target)
+#     else:
+#         return binarySearch(pivotPoint, right, target)
+
+
+# nums = [1]
+# target = 1
+
+# print(search(nums, target))
