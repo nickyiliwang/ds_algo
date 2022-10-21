@@ -27,48 +27,64 @@
 
 from typing import List
 
-
 # did not know that both sorted arrays can be unsorted when combined
 # [1,3]
 # [2]
+
+
 def findMedianSortedArrays(nums1: List[int], nums2: List[int]) -> float:
     merged = []
 
     def addSecondList(list, n):
         left, right = 0, len(list) - 1
-
         while left <= right:
             middle = (left + right) // 2
             if list[middle] <= n:
-                list.insert(middle + 1, n)
-                left = middle + 1
+                if (middle + 1) < (len(list) - 1) and list[middle + 1] < n:
+                    left = middle + 1
+                elif (middle + 1) < (len(list) - 1) and list[middle + 1] > n:
+                    list.insert(middle + 1, n)
+                    left = middle + 1
+                else:
+                    left = middle + 1
             else:
                 right = middle - 1
 
-    if (nums1[0] < nums2[0]):
+    # compare initial list
+
+    if (len(nums1) == 0 or len(nums2) == 0):
+        merged = nums1 + nums2
+    elif (nums1[0] <= nums2[0]):
         merged = nums1
         for n in nums2:
+            # print(n)
+
             addSecondList(merged, n)
+            # print(merged)
+
     else:
         merged = nums2
         for n in nums1:
             addSecondList(merged, n)
 
-    left, right = 0, len(merged) - 1
-
     print("merged", merged)
+    # get median
     if (len(merged) % 2 == 0):
+
+        left, right = 0, len(merged) - 1
+
         leftPart = (left + right) // 2
         rightPart = leftPart + 1
 
-        return (leftPart + rightPart) / 2
+        return (merged[leftPart] + merged[rightPart]) / 2
     else:
+        left, right = 0, len(merged) - 1
         middle = (left + right) // 2
-        return round(merged[middle], 5)
+        return merged[middle]
 
 
-nums1 = [1, 2]
-nums2 = [3, 4]
+nums1 = [2, 2, 4, 4]
+nums2 = [2, 2, 4, 4]
 
 print(
     findMedianSortedArrays(nums1, nums2)
