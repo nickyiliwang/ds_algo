@@ -32,7 +32,7 @@ from typing import List
 # [2]
 
 # BigO:
-# Time: O(log (m + n)) ?
+# Time: O(m log (m + n)) ?
 # Space: O(m + n)
 
 
@@ -117,10 +117,13 @@ def findMedianSortedArrays(nums1: List[int], nums2: List[int]) -> float:
         middleA = (left+right) // 2
         middleB = half - middleA - 2  # both A and B starts at index 0, this removes off by 1
 
-        Aleft = A[middleA] if middleA >= 0 else float("-infinity")  # middleA < than 0
-        Aright = A[middleA + 1] if (middleA+1) < len(A) else float("infinity") # out of bounds
+        Aleft = A[middleA] if middleA >= 0 else float(
+            "-infinity")  # middleA < than 0
+        # out of bounds
+        Aright = A[middleA + 1] if (middleA+1) < len(A) else float("infinity")
         Bleft = B[middleB] if middleB >= 0 else float("-infinity")
-        Bright = B[middleB + 1] if (middleB+1) < len(B) else float("infinity") # out of bounds
+        # out of bounds
+        Bright = B[middleB + 1] if (middleB+1) < len(B) else float("infinity")
 
         if Aleft <= Bright and Bleft <= Aright:
             # even
@@ -132,6 +135,7 @@ def findMedianSortedArrays(nums1: List[int], nums2: List[int]) -> float:
             right = middleA - 1
         else:
             left = middleA + 1
+
 
 nums1 = [1, 2]
 nums2 = [3, 4]
