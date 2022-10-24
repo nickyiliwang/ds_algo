@@ -39,14 +39,22 @@ def findMedianSortedArrays(nums1: List[int], nums2: List[int]) -> float:
         left, right = 0, len(list) - 1
         while left <= right:
             middle = (left + right) // 2
-            if list[middle] <= n:
-                if (middle + 1) < (len(list) - 1) and list[middle + 1] < n:
-                    left = middle + 1
-                elif (middle + 1) < (len(list) - 1) and list[middle + 1] > n:
+            if list[middle] < n:
+                if (middle + 1) < len(list) and list[middle + 1] > n:
                     list.insert(middle + 1, n)
                     left = middle + 1
+                    return
+                elif (middle + 1) == len(list):
+                    list.insert(middle+1, n)
+                    left = middle + 1
+                    return
                 else:
                     left = middle + 1
+
+            elif list[middle] == n:
+                list.insert(middle + 1, n)
+                left = middle + 1
+                return
             else:
                 right = middle - 1
 
@@ -57,10 +65,7 @@ def findMedianSortedArrays(nums1: List[int], nums2: List[int]) -> float:
     elif (nums1[0] <= nums2[0]):
         merged = nums1
         for n in nums2:
-            # print(n)
-
             addSecondList(merged, n)
-            # print(merged)
 
     else:
         merged = nums2
@@ -83,8 +88,8 @@ def findMedianSortedArrays(nums1: List[int], nums2: List[int]) -> float:
         return merged[middle]
 
 
-nums1 = [2, 2, 4, 4]
-nums2 = [2, 2, 4, 4]
+nums1 = [1, 2]
+nums2 = [3, 4]
 
 print(
     findMedianSortedArrays(nums1, nums2)
