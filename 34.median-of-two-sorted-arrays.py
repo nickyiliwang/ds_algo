@@ -36,60 +36,57 @@ from typing import List
 # Space: O(m + n)
 
 
-# def findMedianSortedArrays(nums1: List[int], nums2: List[int]) -> float:
-#     merged = []
+def findMedianSortedArrays(nums1: List[int], nums2: List[int]) -> float:
+    merged = []
 
-#     def addSecondList(list, n):
-#         left, right = 0, len(list) - 1
-#         while left <= right:
-#             middle = (left + right) // 2
-#             if list[middle] < n:
-#                 if (middle + 1) < len(list) and list[middle + 1] > n:
-#                     list.insert(middle + 1, n)
-#                     left = middle + 1
-#                     return
-#                 elif (middle + 1) == len(list):
-#                     list.insert(middle+1, n)
-#                     left = middle + 1
-#                     return
-#                 else:
-#                     left = middle + 1
+    def addSecondList(list, n):
+        left, right = 0, len(list) - 1
+        while left <= right:
+            middle = (left + right) // 2
+            if list[middle] < n:
+                if (middle + 1) < len(list) and list[middle + 1] > n:
+                    list.insert(middle + 1, n)
+                    return
+                elif (middle + 1) == len(list):
+                    list.insert(middle+1, n)
+                    return
+                left = middle + 1
 
-#             elif list[middle] == n:
-#                 list.insert(middle + 1, n)
-#                 left = middle + 1
-#                 return
-#             else:
-#                 right = middle - 1
+            elif list[middle] == n:
+                list.insert(middle + 1, n)
+                left = middle + 1
+                return
+            else:
+                right = middle - 1
 
-#     # compare initial list
+    # compare initial list
 
-#     if (len(nums1) == 0 or len(nums2) == 0):
-#         merged = nums1 + nums2
-#     elif (nums1[0] <= nums2[0]):
-#         merged = nums1
-#         for n in nums2:
-#             addSecondList(merged, n)
+    if (len(nums1) == 0 or len(nums2) == 0):
+        merged = nums1 + nums2
+    elif (nums1[0] <= nums2[0]):
+        merged = nums1
+        for n in nums2:
+            addSecondList(merged, n)
 
-#     else:
-#         merged = nums2
-#         for n in nums1:
-#             addSecondList(merged, n)
+    else:
+        merged = nums2
+        for n in nums1:
+            addSecondList(merged, n)
 
-#     print("merged", merged)
-#     # get median
-#     if (len(merged) % 2 == 0):
+    print("merged", merged)
+    # get median
+    if (len(merged) % 2 == 0):
 
-#         left, right = 0, len(merged) - 1
+        left, right = 0, len(merged) - 1
 
-#         leftPart = (left + right) // 2
-#         rightPart = leftPart + 1
+        leftPart = (left + right) // 2
+        rightPart = leftPart + 1
 
-#         return (merged[leftPart] + merged[rightPart]) / 2
-#     else:
-#         left, right = 0, len(merged) - 1
-#         middle = (left + right) // 2
-#         return merged[middle]
+        return (merged[leftPart] + merged[rightPart]) / 2
+    else:
+        left, right = 0, len(merged) - 1
+        middle = (left + right) // 2
+        return merged[middle]
 
 
 # nums1 = [1, 2]
