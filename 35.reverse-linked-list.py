@@ -1,45 +1,25 @@
 from typing import Optional
 
-
-class node:
-    def __init__(self, data=None):
-        self.data = data
-        self.next = None
+# Definition for singly-linked list.
 
 
-class linked_list:
-    def __init__(self):
-        self.head = node()
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
-    def append(self, data):
-        new_node = node(data)
-        curr_node = self.head
-        while curr_node.next != None:
-            curr_node = curr_node.next
-        curr_node.next = new_node
-
-    # display curr_node contents
-    def display(self):
-        elements = []
-        curr_node = self.head
-        while curr_node.next != None:
-            curr_node = curr_node.next
-            elements.append(curr_node.data)
-        print(elements)
+# two pointers
 
 
-def reverseList(head: Optional[linked_list]) -> Optional[linked_list]:
-    print(head)
+def reverseList(head: Optional[ListNode]) -> Optional[ListNode]:
+    # prev node is Null
+    # curr to the first node / head
+    prev, curr = None, head
 
-# ListNode{val: 1, next: ListNode{val: 2, next: ListNode{val: 3, next: ListNode{val: 4, next: ListNode{val: 5, next: None}}}}}
+    while curr is not None:
+        nextPointer = curr.next
+        curr.next = prev
+        prev = curr
+        curr = nextPointer
 
-
-my_list = linked_list()
-my_list.append(1)
-my_list.append(2)
-my_list.append(3)
-my_list.append(4)
-my_list.append(5)
-my_list.display()
-
-reverseList(my_list.head)
+    return prev
