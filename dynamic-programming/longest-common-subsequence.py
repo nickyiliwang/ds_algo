@@ -22,32 +22,43 @@
 # Output: 0
 # Explanation: There is no such common subsequence, so the result is 0.
 
+
 def longestCommonSubsequence(text1: str, text2: str) -> int:
-    common = {}
-    res = 0
-
-    def addNonRepeating(word):
-        nonRepeating = set()
-        for c in word:
-            if c not in nonRepeating:
-                common[c] = common.get(c, 0) + 1
-            nonRepeating.add(c)
-
-    addNonRepeating(text1)
-    addNonRepeating(text2)
-
-    for n in common.values():
-        if n == 2:
-            res += 1
-
-    print(common)
-    return res
-
+    
 
 text1 = "ezupkr"
 text2 = "ubmrapg"
 
 print(longestCommonSubsequence(text1, text2))
+
+# same as below
+
+# def longestCommonSubsequence(text1: str, text2: str) -> int:
+#     common = {}
+#     res = 0
+
+#     def addNonRepeating(word):
+#         nonRepeating = set()
+#         for c in word:
+#             if c not in nonRepeating:
+#                 common[c] = common.get(c, 0) + 1
+#             nonRepeating.add(c)
+
+#     addNonRepeating(text1)
+#     addNonRepeating(text2)
+
+#     for n in common.values():
+#         if n == 2:
+#             res += 1
+
+#     print(common)
+#     return res
+
+
+# text1 = "ezupkr"
+# text2 = "ubmrapg"
+
+# print(longestCommonSubsequence(text1, text2))
 
 
 # # this doesn't work because the sequence might not start with the prefix
