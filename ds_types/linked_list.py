@@ -1,15 +1,14 @@
-class node:
-    def __init__(self, data=None):
-        self.data = data
-        self.next = None
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
-
-class linked_list:
+class LinkedList:
     def __init__(self):
-        self.head = node()
+        self.head = ListNode()
 
-    def append(self, data):
-        new_node = node(data)
+    def append(self, val):
+        new_node = ListNode(val)
         curr_node = self.head
         while curr_node.next != None:
             curr_node = curr_node.next
@@ -29,8 +28,8 @@ class linked_list:
         curr_node = self.head
         while curr_node.next != None:
             curr_node = curr_node.next
-            elements.append(curr_node.data)
-        print(elements)
+            elements.append(curr_node.val)
+        print("elements", elements)
 
     def get(self, index):
         if index >= self.length():
@@ -41,8 +40,8 @@ class linked_list:
         while True:
             curr_node = curr_node.next
             if cur_index == index:
-                print(curr_node.data)
-                return curr_node.data
+                print(curr_node.val)
+                return curr_node.val
             curr_node += 1
 
     def erase(self, index):
@@ -62,14 +61,14 @@ class linked_list:
             cur_index += 1
 
 
-my_list = linked_list()
-my_list.display()
-my_list.append(1)
-my_list.append(2)
-my_list.append(3)
-my_list.append(4)
-my_list.append(5)
-my_list.display()
-my_list.get(0)
-my_list.erase(3)
-my_list.display()
+# my_list = LinkedList()
+# my_list.display()
+# my_list.append(1)
+# my_list.append(2)
+# my_list.append(3)
+# my_list.append(4)
+# my_list.append(5)
+# my_list.display()
+# my_list.get(0)
+# my_list.erase(3)
+# my_list.display()
