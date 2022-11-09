@@ -1,10 +1,43 @@
-def tribonacci(signature, n):
-    res = signature
-    for i in range(n - len(signature)):
-        res = i + (res)
+def longest_consec(strarr, k):
+    for w in strarr:
+                
 
 
-tribonacci([1, 1, 1], 10)
+longest_consec(["zone", "abigail", "theta", "form", "libe", "zas"], 2)
+
+# def scramble(s1, s2):
+#     s1Hash, s2Hash = {}, {}
+#     res = True
+#     for n in s1:
+#         s1Hash[n] = s1Hash.get(n, 0) + 1
+#     for n in s2:
+#         s2Hash[n] = s2Hash.get(n, 0) + 1
+
+#     for p in s2Hash:
+#         if (p in s1Hash and s1Hash[p] >= s2Hash[p]):
+#             res = True
+#         else:
+#             res = False
+#             return res
+
+#     return res
+
+# scramble('rkqodlw', 'world')
+# ==> True
+# scramble('cedewaraaosscodewarsoqqyt', 'codewars')
+# ==> True
+# print(
+#     scramble('djkggcxapezrlc', 'elldcz')
+# )
+# ==> False
+
+# def tribonacci(signature, n):
+#     res = signature
+#     for i in range(n - len(signature)):
+#         res = i + (res)
+
+
+# tribonacci([1, 1, 1], 10)
 
 # # fib with memo in python
 # memo = {}
