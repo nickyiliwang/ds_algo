@@ -46,3 +46,22 @@ tribonacci([1, 1, 1], 10)
 #     return res
 
 # maskify("Nananananananananananananananana Batman!")
+
+# # reverse words
+
+# def reverse_words(text):
+#     res = ""
+#     textList = text.split(" ")
+#     for word in textList:
+#         for i in range(len(word)-1, -1, -1):
+#             temp = ""
+#             temp += text[i]
+#         word = temp
+#     print(textList)
+#     return (" ").join(textList)
+
+
+# text = "d c b a"
+# reverse_words(text)
+# # "This is an example!" ==> "sihT si na !elpmaxe"
+# # "double  spaces"      ==> "elbuod  secaps"
