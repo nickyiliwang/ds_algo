@@ -1,9 +1,124 @@
-def longest_consec(strarr, k):
-    for w in strarr:
-                
+# def first_non_repeating_letter(string):
+#     original = string
+
+#     string = string.lower()
+#     hash = {}
+#     for c in string:
+#         hash[c] = hash.get(c, 0) + 1
+
+#     nonRepeatIndexes = []
+#     for t in hash.items():
+#         if (t[1] == 1):
+#             nonRepeatIndexes.append(string.index(t[0]))
+
+#     if (nonRepeatIndexes):
+#         nonRepeatingIndex = min(nonRepeatIndexes)
+#         return original[nonRepeatingIndex]
+#     else:
+#         return ""
+
+# # test.it('should handle simple tests')
+# print(first_non_repeating_letter('a'), 'a')
+# print(first_non_repeating_letter('stress'), 't')
+# print(first_non_repeating_letter('moonmen'), 'e')
+
+# # test.it('should handle empty strings')
+# print(first_non_repeating_letter(''), '')
+
+# # test.it('should handle all repeating strings')
+# print(first_non_repeating_letter('abba'), '')
+# print(first_non_repeating_letter('aa'), '')
+
+# # test.it('should handle odd characters')
+# print(first_non_repeating_letter('~><#~><'), '#')
+# print(first_non_repeating_letter('hello world, eh?'), 'w')
+
+# # test.it('should handle letter cases')
+# print(first_non_repeating_letter('sTreSS'), 'T')
+# print(first_non_repeating_letter('Go hang a salami, I\'m a lasagna hog!'), ',')
+
+# def valid_parentheses(string):
+#     validHash = {
+#         ")": "("
+#     }
+#     stack = []
+#     for b in string:
+#         print(b)
+#         if b in validHash:
+#             if stack and stack[-1] == validHash[b]:
+#                 stack.pop()
+#             else:
+#                 return False
+#         elif b == "(":
+#             stack.append(b)
+
+#     return True if not stack else False
 
 
-longest_consec(["zone", "abigail", "theta", "form", "libe", "zas"], 2)
+# # print(valid_parentheses("()"))
+# # # =>  true
+# # print(valid_parentheses(")(()))"))
+# # # =>  false
+# # print(valid_parentheses("("))
+# # # =>  false
+# # print(valid_parentheses("(())((()())())"))
+# # # =>  true
+# # print(valid_parentheses('qlgxlqg(knz)b(dwrs)'))
+# # # =>  true
+
+# def rgb(r, g, b):
+#     res = ""
+#     rgb = [r, g, b]
+#     hexHash = {
+#         10: "A",
+#         11: "B",
+#         12: "C",
+#         13: "D",
+#         14: "E",
+#         15: "F"
+#     }
+
+#     for n in rgb:
+#         if (n > 255):
+#             n = 255
+#         elif (n < 0):
+#             n = 0
+
+#         quotient = n // 16
+#         remainder = n % 16
+
+#         if (quotient > 9):
+#             res = res + str(hexHash[quotient])
+#         else:
+#             res = res + str(quotient)
+
+#         if (remainder > 9):
+#             res = res + str(hexHash[remainder])
+#         else:
+#             res = res + str(remainder)
+
+#     print(res)
+#     return res
+
+# rgb(255, 255, 255)  # returns FFFFFF
+# rgb(255, 255, 300)  # returns FFFFFF
+# rgb(0, 0, 0)  # returns 000000
+# rgb(148, 0, 211)  # returns 9400D3
+
+# def longest_consec(strarr, k):
+#     res = ""
+
+#     if (k <= 0 or k > len(strarr)):
+#         return res
+
+#     for i in range(len(strarr)):
+#         curr_word = "".join(strarr[i:i+k])
+#         if (len(curr_word) > len(res)):
+#             res = curr_word
+#     return res
+
+
+# longest_consec(["it", "wkppv", "ixoyx", "3452", "zzzzzzzzzzzz"], 0)
 
 # def scramble(s1, s2):
 #     s1Hash, s2Hash = {}, {}
