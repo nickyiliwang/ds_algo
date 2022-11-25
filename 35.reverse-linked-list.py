@@ -22,8 +22,8 @@ def reverseList(head: Optional[ListNode]) -> Optional[ListNode]:
 
     # the point of this loop is to traverse the linked list and swap the previous node with the next node.
 
-    # we simulate our first pass:
-    while curr is not None:
+    # run through the list
+    while curr:
         nextNode = curr.next  # val = 1
         # swap the current node's next pointer to the previous Node, since reversing, we start at None
         curr.next = prev  # change the current Node to have a next Node of None
