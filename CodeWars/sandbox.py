@@ -1,3 +1,9 @@
+def strip_comments(strng, markers):
+    
+    return
+
+strip_comments("apples, pears # and bananas\ngrapes\nbananas !apples", ["#", "!"])
+
 # def create_phone_number(n):
 #     n = [str(i) for i in n]
 #     partOne = "(" + "".join(n[:3]) + ")"
@@ -64,7 +70,6 @@
 
 
 # print(tribonacci([300, 200, 100], 0))
-=======
 # def first_non_repeating_letter(string):
 #     original = string
 
@@ -220,7 +225,6 @@
 
 
 # tribonacci([1, 1, 1], 10)
->>>>>>> bf41999c9fa04f1531dc9276f61cf07d03ba3a0b
 
 # # fib with memo in python
 # memo = {}
