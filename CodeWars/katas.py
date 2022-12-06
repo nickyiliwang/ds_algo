@@ -1,8 +1,22 @@
 def strip_comments(strng, markers):
-    
-    return
+    # split by sentence
+    split_sentence = strng.split("\n")
+    for i, s in enumerate(split_sentence):
+        for marker in markers:
+            markerIndex = s.find(marker)
+            # if marker found
+            if markerIndex >= 0:
+                # strip to before the index and remove all trailing sapces
+                s = s[:markerIndex].rstrip()
+        split_sentence[i] = s
 
-strip_comments("apples, pears # and bananas\ngrapes\nbananas !apples", ["#", "!"])
+    res = "\n".join(split_sentence)
+    print(res)
+    return res
+
+
+strip_comments(
+    "apples, pears # and bananas\ngrapes\nbananas !apples", ["#", "!"])
 
 # def create_phone_number(n):
 #     n = [str(i) for i in n]
