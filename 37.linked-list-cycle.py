@@ -45,17 +45,19 @@ class ListNode:
         self.next = None
 
 # Time: O(1), Space: O(1)
-# Tortoise and Hare algo
+# Tortoise and Hare
+# Eventually the Tortoise will catch up to the Rabbit if there is a cycle
+
 
 def hasCycle(head: Optional[ListNode]) -> bool:
     slow, fast = head, head
-    
+
     while fast and fast.next:
         slow = slow.next
         fast = fast.next.next
         if slow == fast:
             return True
-        
+
     return False
 
 # # Time: O(n), Space: O(n)
