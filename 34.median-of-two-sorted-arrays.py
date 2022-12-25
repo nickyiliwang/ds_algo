@@ -63,6 +63,7 @@ def findMedianSortedArrays(nums1: List[int], nums2: List[int]) -> float:
 
     if (len(nums1) == 0 or len(nums2) == 0):
         merged = nums1 + nums2
+        
     elif (nums1[0] <= nums2[0]):
         merged = nums1
         for n in nums2:
