@@ -16,7 +16,7 @@ class ListNode:
 def reorderList(head: Optional[ListNode]) -> None:
     # phase 1
     # using Slow Fast Algo to divide the list into 2 parts
-    slow, fast = head, head.next
+    slow, fast = head, head
     while fast and fast.next:
         slow = slow.next
         fast = fast.next.next
@@ -51,9 +51,13 @@ def reorderList(head: Optional[ListNode]) -> None:
     # rearrange the 2 parts into desired linked list
     first, second = head, prev
     while second:
+        # [1,2,3,4], [8,7,6,5]
         tmp1, tmp2 = first.next, second.next
+        # head of first next is second's head
         first.next = second
+        # second's next is the first's next
         second.next = tmp1
+        # moving the pointer along
         first, second = tmp1, tmp2
 
 
@@ -64,6 +68,5 @@ linked_list.append(3)
 linked_list.append(4)
 linked_list.append(5)
 linked_list.append(6)
-linked_list.display()
 reorderList(linked_list.head)
 linked_list.display()
