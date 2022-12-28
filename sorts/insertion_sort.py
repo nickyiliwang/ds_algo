@@ -1,21 +1,21 @@
 def insertion(arr):
+    # start from total arr length
     for index in range(1, len(arr)):
-        # start from total arr length
         curr = arr[index]
         # prev index
-        j = index-1
+        prevIdx = index - 1
         # while pre index is bigger than 0
         # and the current value is smaller than previous
-        while j >= 0 and curr < arr[j]:
+        while prevIdx >= 0 and curr < arr[prevIdx]:
             # switch place with previous value
-            arr[j+1] = arr[j]
+            arr[prevIdx+1] = arr[prevIdx]
             # prev index goes down by one
-            j -= 1
+            prevIdx -= 1
 
         # end of while loop
-        # prev(j) will be idx 0
+        # prevIdx will be idx 0
         # the first element will be current value
-        arr[j+1] = curr
+        arr[prevIdx+1] = curr
     print(arr)
 
 

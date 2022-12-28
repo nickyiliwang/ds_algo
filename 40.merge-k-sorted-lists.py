@@ -47,8 +47,10 @@ class ListNode:
 
 
 def mergeKLists(lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-    print(lists[1].next.val)
-
+    # dummy.next is the head of the first list in lists
+    dummy = ListNode(0, lists[0])
+    
+    
 
 list = []
 linked_list_1 = LinkedList()
