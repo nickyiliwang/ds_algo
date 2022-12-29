@@ -17,11 +17,11 @@
 # Explanation: The answer is "wke", with the length of 3.
 # Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
 
-
 # Constraints:
 
 # 0 <= s.length <= 5 * 104
 # s consists of English letters, digits, symbols and spaces.
+
 
 # time: O(n), space: O(n)
 # sliding window approach
@@ -34,6 +34,9 @@ def lengthOfLongestSubstring(s):
     # right variable will constantly moving right
     for right in s:
         # if the right char is in validator set
+        # *** important ***
+        # say is the window is [a, b, c] and the next chat is b
+        # this while loop and left += 1 will keep running and remove "a" and "b" from our window
         while right in validator:
             # remove the very first element which is the repeating char
             validator.remove(s[left])
@@ -50,7 +53,6 @@ def lengthOfLongestSubstring(s):
 
 s = "dvdf"
 lengthOfLongestSubstring(s)
-
 
 # I had to do this to understand that sliding window is really the better solution
 # def lengthOfLongestSubstring(s):
@@ -73,7 +75,6 @@ lengthOfLongestSubstring(s)
 
 #     print(res)
 #     return res
-
 
 # s = "dvdf"
 # lengthOfLongestSubstring(s)
