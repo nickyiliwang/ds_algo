@@ -53,6 +53,7 @@ def removeNthFromEnd(head: Optional[ListNode], n: int) -> Optional[ListNode]:
 
     # actually removing a node
     left.next = left.next.next
+    
     return dummy.next
 
 

@@ -6,7 +6,6 @@ from ds_types.linked_list import LinkedList
 
 # Merge all the linked-lists into one sorted linked-list and return it.
 
-
 # Example 1:
 
 # Input: lists = [[1,4,5],[1,3,4],[2,6]]
@@ -28,7 +27,6 @@ from ds_types.linked_list import LinkedList
 # Input: lists = [[]]
 # Output: []
 
-
 # Constraints:
 
 # k == lists.length
@@ -40,17 +38,100 @@ from ds_types.linked_list import LinkedList
 
 # Definition for singly-linked list.
 
+
 class ListNode:
+
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
 
-def mergeKLists(lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-    # dummy.next is the head of the first list in lists
-    dummy = ListNode(0, lists[0])
-    
-    
+class Solution:
+
+    def mergeKLists(self,
+                    lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+
+        # checking for empty array edge cases
+        if not lists or len(lists) == 0:
+            return None
+
+        # phase 1
+        # merge sorted lists
+        while len(lists) > 1:
+            mergedLists = []
+            for i in range(0, len(lists), 2):
+                l1 = lists[i]
+                # ensure we only process and merge even lists
+                l2 = lists[i + 1] if len(lists) > (i + 1) else None
+
+                mergedLists.append(self.mergeList(l1, l2))
+            lists = mergedLists
+        return lists[0]
+
+    # mergeList only need to merge 2 lists and produce 1
+    def mergeList(self, l1, l2):
+        dummy = ListNode()
+        tail = dummy
+
+        while l1 and l2:
+            if l1.val < l2.val:
+                tail.next = l1
+                l1 = l1.next
+            else:
+                tail.next = l2
+                l2 = l2.next
+            tail = tail.next
+
+        if l1:
+            tail.next = l1
+
+        if l2:
+            tail.next = l2
+
+        return dummy.next
+
+
+# class Solution:
+
+#     def mergeKLists(self,
+#                     lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+#         # edge case
+#         if not lists or len(lists) == 0:
+#             return None
+
+#         #
+#         while len(lists) > 1:
+#             mergedLists = []
+
+#             # like merge sort
+#             # doing so will eliminate redundancy
+#             for i in range(0, len(lists), 2):
+#                 l1 = lists[i]
+#                 l2 = lists[i + 1] if (i + 1) < len(lists) else None
+
+#                 mergedLists.append(self.mergeList(l1, l2))
+#             lists = mergedLists
+#         return lists[0]
+
+#     def mergeList(self, l1, l2):
+#         dummy = ListNode()
+#         tail = dummy
+
+#         while l1 and l2:
+#             if l1.val < l2.val:
+#                 tail.next = l1
+#                 l1 = l1.next
+#             else:
+#                 tail.next = l2
+#                 l2 = l2.next
+#             tail = tail.next
+
+#         if l1:
+#             tail.next = l1
+#         if l2:
+#             tail.next = l2
+
+#         return dummy.next
 
 list = []
 linked_list_1 = LinkedList()
@@ -71,5 +152,10 @@ list.append(linked_list_1.head)
 list.append(linked_list_2.head)
 list.append(linked_list_3.head)
 
-mergeKLists(list)
-# linked_list.display()
+mergeKListsInstance = Solution()
+
+newList = mergeKListsInstance.mergeKLists(list)
+
+while newList:
+    print(newList.val)
+    newList = newList.next
