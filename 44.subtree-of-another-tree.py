@@ -30,27 +30,23 @@ class TreeNode:
         self.right = right
 
 
-
-# iterative DFS passes 167 / 182 testcases
-# falls short when encountering:
-# root: [1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,2], subRoot: [1,null,1,null,1,null,1,null,1,null,1,2] <- returns False when it's True
+# recursive
 
 def isSubtree(root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-    if root.val != subRoot.val:
+    # subRoot is None meaning it's a subtree
+    # this condition also confirms subRoot will not be empty
+    if not subRoot:
+        return True
+    #  but if root is None, subRoot cannot be the subtree
+    if not root:
         return False
 
-    res = False
+    if sameTree(root, subRoot):
+        return True
 
-    stack = [root]
-    while stack:
-        node = stack.pop()
-        if node:
-            if node.val == subRoot.val:
-                res = sameTree(node, subRoot)
-            stack.append(node.left)
-            stack.append(node.right)
+    # do check for both left and right node
+    return isSubtree(root.left, subRoot) or isSubtree(root.right, subRoot)
 
-    return res
 
 def sameTree(p: Optional[TreeNode], q: Optional[TreeNode]):
     if p is None and q is None:
@@ -60,6 +56,37 @@ def sameTree(p: Optional[TreeNode], q: Optional[TreeNode]):
         return False
 
     return sameTree(p.left, q.left) and sameTree(p.right, q.right)
+
+
+# # iterative DFS passes 167 / 182 testcases
+# # falls short when encountering:
+# # root: [1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,2], subRoot: [1,null,1,null,1,null,1,null,1,null,1,2] <- returns False when it's True
+
+# def isSubtree(root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+#     if root.val != subRoot.val:
+#         return False
+
+#     res = False
+
+#     stack = [root]
+#     while stack:
+#         node = stack.pop()
+#         if node:
+#             if node.val == subRoot.val:
+#                 res = sameTree(node, subRoot)
+#             stack.append(node.left)
+#             stack.append(node.right)
+
+#     return res
+
+# def sameTree(p: Optional[TreeNode], q: Optional[TreeNode]):
+#     if p is None and q is None:
+#         return True
+
+#     if p is None or q is None or p.val != q.val:
+#         return False
+
+#     return sameTree(p.left, q.left) and sameTree(p.right, q.right)
 
 
 tree1 = Tree()
