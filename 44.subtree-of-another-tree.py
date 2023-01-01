@@ -30,26 +30,27 @@ class TreeNode:
         self.right = right
 
 
-# iterative DFS passes 143 / 182 testcases
+
+# iterative DFS passes 167 / 182 testcases
 # falls short when encountering:
-# root: [0], subRoot: [1] <- returns True
+# root: [1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,2], subRoot: [1,null,1,null,1,null,1,null,1,null,1,2] <- returns False when it's True
 
 def isSubtree(root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
     if root.val != subRoot.val:
         return False
+
+    res = False
 
     stack = [root]
     while stack:
         node = stack.pop()
         if node:
             if node.val == subRoot.val:
-                return sameTree(node, subRoot)
-        if node:
+                res = sameTree(node, subRoot)
             stack.append(node.left)
             stack.append(node.right)
 
-    return True
-
+    return res
 
 def sameTree(p: Optional[TreeNode], q: Optional[TreeNode]):
     if p is None and q is None:
@@ -63,6 +64,7 @@ def sameTree(p: Optional[TreeNode], q: Optional[TreeNode]):
 
 tree1 = Tree()
 tree1.insert(1)
+tree1.insert(1)
 
 # tree1.printTree()
 #     3
@@ -70,6 +72,6 @@ tree1.insert(1)
 #    2      8
 #  1
 tree2 = Tree()
-tree2.insert(0)
+tree2.insert(1)
 
 print(isSubtree(tree1.root, tree2.root))
