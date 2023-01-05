@@ -38,7 +38,6 @@ class TreeNode:
 
 # Using deque and lower and upper bounds
 
-
 def isValidBST(root: Optional[TreeNode]) -> bool:
     if root is None:
         return True

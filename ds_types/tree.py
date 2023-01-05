@@ -1,5 +1,6 @@
 # Definition for a binary tree node.
 class TreeNode:
+
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
@@ -7,11 +8,11 @@ class TreeNode:
 
 
 class Tree:
+
     def __init__(self):
         self.root = None
 
     def getRoot(self):
-        print(self.root)
         return self.root
 
     def insert(self, val):
@@ -37,10 +38,24 @@ class Tree:
             self._printTree(self.root)
 
     def _printTree(self, node):
-        if node is not None:
+        # in order traversal
+
+        if not node:
+            return
+
+        if node:
             self._printTree(node.left)
             print(node.val)
             self._printTree(node.right)
+
+    # def printTree(self, node=None):
+    #     # in order traversal
+    #     if not node:
+    #         return
+    #     if node:
+    #         self.printTree(node.left)
+    #         print(node.val)
+    #         self.printTree(node.right)
 
 
 # tree = Tree()
