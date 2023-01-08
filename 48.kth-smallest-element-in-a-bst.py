@@ -20,42 +20,42 @@ from ds_types.tree import Tree, TreeNode
 
 # Follow up: If the BST is modified often (i.e., we can do insert and delete operations) and you need to find the kth smallest frequently, how would you optimize?
 
-# # recursive, most straight forward, bit more Memory used
-# def kthSmallest(root: Optional[TreeNode], k: int) -> int:
 
-#     def traverse(node, res):
-#         if node:
-#             traverse(node.left, res)
-#             res.append(node.val)
-#             traverse(node.right, res)
-
-#     result = []
-#     traverse(root, result)
-
-#     print(result)
-#     return result[k - 1]
-
-
-# Iterative
+# recursive, most straight forward, bit more Memory used
 def kthSmallest(root: Optional[TreeNode], k: int) -> int:
-    n = 0
-    stack = []
-    curr = root
 
-    while curr and stack:
-        while curr:
-            # keep going left will lead to the smallest value
-            stack.append(curr)
-            curr = curr.left
+    def traverse(node, res):
+        if node:
+            traverse(node.left, res)
+            res.append(node.val)
+            traverse(node.right, res)
 
-        stack.pop()  # LIFO
-        # Finding the answer
-        n += 1
-        if n == k:
-            return curr.val
+    result = []
+    traverse(root, result)
 
-        curr = curr.right
+    print(result)
+    return result[k - 1]
 
+
+# # Iterative, no real advantage it seems
+# def kthSmallest(root: Optional[TreeNode], k: int) -> int:
+#     n = 0
+#     stack = []
+#     curr = root
+
+#     while curr and stack:
+#         while curr:
+#             # keep going left will lead to the smallest value
+#             stack.append(curr)
+#             curr = curr.left
+
+#         stack.pop()  # LIFO
+#         # Finding the answer
+#         n += 1
+#         if n == k:
+#             return curr.val
+
+#         curr = curr.right
 
 tree = Tree()
 tree.insert(3)

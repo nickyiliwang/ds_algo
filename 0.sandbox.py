@@ -1,45 +1,47 @@
-def minWindow(s, t):
-    if len(t) > len(s):
-        return ""
+if (0 > -1):
+    print("0 is bigger than -1")
 
-    if t == "":
-        return ""
+# def minWindow(s, t):
+#     if len(t) > len(s):
+#         return ""
 
-    window, countT = {}, {}
+#     if t == "":
+#         return ""
 
-    for c in t:
-        countT[c] = countT.get(c, 0) + 1
+#     window, countT = {}, {}
 
-    have, need = 0, len(countT)
+#     for c in t:
+#         countT[c] = countT.get(c, 0) + 1
 
-    res, resLength = [-1, -1], float("inf")
-    left = 0
+#     have, need = 0, len(countT)
 
-    for right in range(len(s)):
-        c = s[right]
-        window[c] = window.get(c, 0) + 1
+#     res, resLength = [-1, -1], float("inf")
+#     left = 0
 
-        if c in countT and window[c] == countT[c]:
-            have += 1
+#     for right in range(len(s)):
+#         c = s[right]
+#         window[c] = window.get(c, 0) + 1
 
-        while have == need:
-            if (right - left + 1) < resLength:
-                res = [left, right]
-                resLength = (right - left + 1)
+#         if c in countT and window[c] == countT[c]:
+#             have += 1
 
-            window[s[left]] -= 1
-            if s[left] in counT and window[s[left]] < countT[s[left]]:
-                have -= 1
+#         while have == need:
+#             if (right - left + 1) < resLength:
+#                 res = [left, right]
+#                 resLength = (right - left + 1)
 
-            left += 1
+#             window[s[left]] -= 1
+#             if s[left] in counT and window[s[left]] < countT[s[left]]:
+#                 have -= 1
 
-    left, right = res
-    return s[left:right+1] if resLength != float("inf") else ""
+#             left += 1
 
+#     left, right = res
+#     return s[left:right+1] if resLength != float("inf") else ""
 
-s = "ADOBECODEBANC"
-t = "ABC"
-minWindow(s, t)
+# s = "ADOBECODEBANC"
+# t = "ABC"
+# minWindow(s, t)
 
 # def generateParenthesis(n):
 #     res = []
@@ -60,6 +62,5 @@ minWindow(s, t)
 
 #     print(res)
 #     return res
-
 
 # generateParenthesis(3)
