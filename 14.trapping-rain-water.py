@@ -1,20 +1,27 @@
-# Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.
+def trap(height):
+    if not height:
+        return 0
 
-# Example 1:
+    left, right = 0, len(height) - 1
+    leftMax, rightMax = height[left], height[right]
+    res = 0
 
-# Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
-# Output: 6
-# Explanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped.
-# Example 2:
+    while left < right:
+        if (leftMax <= rightMax):
+            left += 1
+            leftMax = max(leftMax, height[left])
 
-# Input: height = [4,2,0,3,2,5]
-# Output: 9
+            res += leftMax - height[left]
 
-# Constraints:
+        else:
+            right -= 1
+            if (rightMax - height[right]) > 0:
+                res += rightMax - height[right]
 
-# n == height.length
-# 1 <= n <= 2 * 104
-# 0 <= height[i] <= 105
+            rightMax = max(rightMax, height[right])
+
+    return res
+
 
 # for each position, we want the leftMax value and rightMax value and get the maximum rain water we can trap in the current position
 # we can also do one pass to get all the leftMax and rightMax for each rain water position
@@ -65,13 +72,7 @@ def trap(height):
 
             rightMax = max(rightMax, height[right])
 
-    print(res)
     return res
-
-
-height = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
-trap(height)
-
 
 # # Time Limit Exceeded Pointer Solution
 # # But the idea is correct with min value of (leftMax, rightMax) - height value will get you the amount of rain drop this container can hold
@@ -99,7 +100,6 @@ trap(height)
 #             res = res + (minOfLeftAndRight - height[i])
 
 #     return res
-
 
 # height = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
 # trap(height)

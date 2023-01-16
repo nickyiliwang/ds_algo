@@ -1,5 +1,18 @@
-if (0 > -1):
-    print("0 is bigger than -1")
+nums = [1, 2, 3, 4, 5]
+
+print(nums[len(nums) - 1])
+
+for i in range(len(nums) - 1, -1, -1):
+    print(nums[i])
+
+# for i in range(len(nums)):
+# print(nums[i])
+
+# count = [0] * 26
+# print(count)
+
+# if (0 > -1):
+#     print("0 is bigger than -1")
 
 # def minWindow(s, t):
 #     if len(t) > len(s):

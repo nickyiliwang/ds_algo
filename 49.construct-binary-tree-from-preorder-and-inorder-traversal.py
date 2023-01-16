@@ -64,6 +64,7 @@ def buildTree(preorder: List[int], inorder: List[int]) -> TreeNode:
 
         # build left and right subtree
         # excluding inorder_index_map[root_value] element because it's the root
+        # left to left, and right to right
         root.left = array_to_tree(left, inorder_index_map[root_value] - 1)
         root.right = array_to_tree(inorder_index_map[root_value] + 1, right)
 

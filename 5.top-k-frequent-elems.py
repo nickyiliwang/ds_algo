@@ -1,33 +1,3 @@
-# Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
-
-# Example 1:
-
-# Input: nums = [1,1,1,2,2,3], k = 2
-# Output: [1,2]
-# Example 2:
-
-# Input: nums = [1], k = 1
-# Output: [1]
-
-
-# Constraints:
-
-# 1 <= nums.length <= 105
-# -104 <= nums[i] <= 104
-# k is in the range [1, the number of unique elements in the array].
-# It is guaranteed that the answer is unique.
-
-
-# Follow up: Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
-
-# Time: O(n) Memory: O(n)
-# Bucket sort
-# problem with bucket sort is that we need our input array to be bounded
-
-#  Bucket sorting when the new array we are gonna create is the exact size of the input array plus one (leading idx 0)
-# ie. [1, 1, 1, 2, 2, 3] => [0, 1, 2, 3, 4, 5, 6] => [[], [3], [2], [1],[],[],[]]
-# we do this because the most the new array should have is the amount of numbers the array can have
-# once we scan for the most occurrences, from right to left
 def topKFrequent(nums, k):
     hashMap = {}
     freq = [[] for i in range(len(nums) + 1)]
@@ -73,21 +43,21 @@ print(topKFrequent(nums, k))
 
 # # My solution
 # # O(n log m) n is the nums, m is the hashMap item
-# def topKFrequent(nums, k):
-#     hashMap = {}
-#     # build a hashMap with:
-#     # value:
-#     for n in nums:
-#         hashMap[n] = hashMap.get(n, 0) + 1
+def topKFrequent(nums, k):
+    hashMap = {}
+    # build a hashMap with:
+    # value:
+    for n in nums:
+        hashMap[n] = hashMap.get(n, 0) + 1
 
-#     # gets the (key, val) pair in a tuple
-#     items = hashMap.items()
+    # gets the (key, val) pair in a tuple
+    items = hashMap.items()
 
-#     # sorting by the second tuple which was the times repeated, in reverse order
-#     sortedItems = sorted(items, key=lambda tup: tup[1], reverse=True)
+    # sorting by the second tuple which was the times repeated, in reverse order
+    sortedItems = sorted(items, key=lambda tup: tup[1], reverse=True)
 
-#     # only take the first index in the tuple, the key, in the sortedItems tuple list, only go up to k index
-#     return [s[0] for s in sortedItems[:k]]
+    # only take the first index in the tuple, the key, in the sortedItems tuple list, only go up to k index
+    return [s[0] for s in sortedItems[:k]]
 
 
 # Heap

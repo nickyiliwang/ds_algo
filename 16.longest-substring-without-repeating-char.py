@@ -1,30 +1,21 @@
-# Given a string s, find the length of the longest substring without repeating characters.
+# time: O(n), space: O(n)
+# sliding window
+def lengthOfLongestSubstring(s):
+    validator = set()
+    left = 0
+    res = 0
 
-# Example 1:
+    for right in s:
+        while right in validator:
+            validator.remove(s[left])
+            left += 1
+        validator.add(right)
+        res = max(res, len(validator))
 
-# Input: s = "abcabcbb"
-# Output: 3
-# Explanation: The answer is "abc", with the length of 3.
-# Example 2:
-
-# Input: s = "bbbbb"
-# Output: 1
-# Explanation: The answer is "b", with the length of 1.
-# Example 3:
-
-# Input: s = "pwwkew"
-# Output: 3
-# Explanation: The answer is "wke", with the length of 3.
-# Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
-
-# Constraints:
-
-# 0 <= s.length <= 5 * 104
-# s consists of English letters, digits, symbols and spaces.
-
+    return res
 
 # time: O(n), space: O(n)
-# sliding window approach
+# sliding window
 def lengthOfLongestSubstring(s):
     # validates unique strings
     validator = set()
@@ -47,7 +38,6 @@ def lengthOfLongestSubstring(s):
         validator.add(right)
         res = max(res, len(validator))
 
-    print(res)
     return res
 
 

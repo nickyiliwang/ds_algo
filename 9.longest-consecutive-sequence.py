@@ -1,40 +1,18 @@
-# Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
-
-# You must write an algorithm that runs in O(n) time.
-
-
-# Example 1:
-
-# Input: nums = [100,4,200,1,3,2]
-# Output: 4
-# Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
-# Example 2:
-
-# Input: nums = [0,3,7,2,5,8,4,6,0,1]
-# Output: 9
-
-
-# Constraints:
-
-# 0 <= nums.length <= 105
-# -109 <= nums[i] <= 109
-
-# neetcode
-
 def longestConsecutive(nums):
+    # a set of unique numbers
     numSet = set(nums)
-    longest = 0
+    res = 0
 
     for n in nums:
         # check if its the start of a sequence
         if (n - 1) not in numSet:
             length = 0
-            # while the sequence is alive keep adding to it and validating
+            # while the sequence is alive keep adding to length val and validating
             while (n + length) in numSet:
                 length += 1
-            # at the end we want the longest sequence
-            longest = max(length, longest)
-    return longest
+            # update res with length
+            res = max(res, length)
+    return res
 
 
 # # my solution after seeing left and right neighbors trick
@@ -61,7 +39,6 @@ def longestConsecutive(nums):
 # # have a sequential counter that increments
 # # need a hashmap then
 
-# #  this does not take into account
 # # this solution does not take into account of negative numbers
 # # during the loop, we are checking each number against the dictionary
 # # starting from 0 we are looking for continuous sequences
@@ -107,7 +84,6 @@ def longestConsecutive(nums):
 
 #     print(res)
 #     return res
-
 
 # nums = [0, 3, 7, 2, 5, 8, 4, 6, 0, 1]
 # 9

@@ -1,107 +1,134 @@
-# Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise.
+from collections import Counter
 
-# In other words, return true if one of s1's permutations is the substring of s2.
-
-
-# Example 1:
-
-# Input: s1 = "ab", s2 = "eidbaooo"
-# Output: true
-# Explanation: s2 contains one permutation of s1 ("ba").
-# Example 2:
-
-# Input: s1 = "ab", s2 = "eidboaoo"
-# Output: false
-
-
-# Constraints:
-
-# 1 <= s1.length, s2.length <= 104
-# s1 and s2 consist of lowercase English letters.
-
-
-# Attempt 3
-# sliding window pointers
-# Java solution is the same
-
+# c2 starts empty
 def checkInclusion(s1, s2):
-    # edge case
     if len(s1) > len(s2):
         return False
 
-    s1Count, s2Count = [0] * 26, [0] * 26
+    c1 = Counter(s1)
+    window = len(s1)
 
-    for i in range(len(s1)):
-        # print(ord(s1[i]), ord('a'))
-        # a = 97, a = 97
-        # b = 98, a = 97
-        # c = 99, a = 97
-        # the diff are the indexes, and we increment them by one
-        s1Count[ord(s1[i]) - ord('a')] += 1
-        s2Count[ord(s2[i]) - ord('a')] += 1
+    c2 = Counter()
 
-    # print(s1Count)
-    # print(s2Count)
+    for i in range(len(s2)):
+        if i < window:
+            c2[s2[i]] += 1
+        else:
+            c2[s2[i - window]] -= 1
+            c2[s2[i]] += 1
 
-    # instantiate matches for final result
-    # we only have perfect matches when all 26 alphabet matches
-    matches = 0
-    for i in range(26):
-        if s1Count[i] == s2Count[i]:
-            matches += 1
-    l = 0
-
-    for r in range(len(s1), len(s2)):
-        if (matches == 26):
+        if c1 == c2:
             return True
 
-        index = ord(s2[r]) - ord('a')
-        s2Count[index] += 1
-        if (s2Count[index] == s1Count[index]):
-            print("ran", s1Count, s2Count)
-            print("index", index)
-
-            matches += 1
-        # checking if the alphabets were equal and we made it too large
-        # maybe we do this because we are not counting repeating numbers
-        # ie. s1Count[0] = 1 and s2Count[0] = 2
-        # ie. s1Count[0] = 2 and s2Count[0] = 2 matches
-        # matches - 1 fix it
-        elif (s1Count[index] + 1 == s2Count[index]):
-            # print("ran", s1Count[index] + 1)
-            # print("ran", s2Count[index])
-            # print("ran", index)
-            print("ran", s1Count, s2Count)
-            print("index", index)
-
-            matches -= 1
-
-        index = ord(s2[l]) - ord('a')
-        s2Count[index] -= 1
-        if (s2Count[index] == s1Count[index]):
-            matches += 1
-        # under provisioned maybe
-        elif (s1Count[index] - 1 == s2Count[index]):
-            matches -= 1
-
-        l += 1
-
-    res = (matches == 26)
-    print('res')
-    return res
+    return False
 
 
-s1 = "abc"
-s2 = "ababcd"
+# alternative solution that doesn't require the initial loops
+# s2 will start with the length of s1, which is initial window
+def checkInclusion(s1, s2):
+    if len(s1) > len(s2):
+        return False
 
-checkInclusion(s1, s2)
+    c1 = Counter(s1)
+    window = len(s1)
+
+    c2 = Counter(s2[:window])
+
+    if c1 == c2:
+        return True
+
+    for i in range(len(s2)):
+        # Gets the left most val to - 1 to counter
+        c2[s2[i]] -= 1
+
+        if i < len(s2) - window:
+            # Then add a new char from s2
+            c2[s2[i + window]] += 1
+
+        if c1 == c2:
+            return True
+
+    return False
+
+s1 = "ba"
+s2 = "eidbaooo"
+
+print(checkInclusion(s1, s2))
+
+# def checkInclusion(s1, s2):
+#     # target(s1) cannot be longer than query(s2)
+#     if len(s1) > len(s2):
+#         return False
+
+#     s1Count, s2Count = [0] * 26, [0] * 26
+
+#     for i in range(len(s1)):
+#         # print(ord(s1[i]), ord('a'))
+#         # a = 97, a = 97
+#         # b = 98, a = 97
+#         # c = 99, a = 97
+#         # the diff are the indexes, and we increment them by one
+#         s1Count[ord(s1[i]) - ord('a')] += 1
+#         s2Count[ord(s2[i]) - ord('a')] += 1
+
+#     # instantiate matches for final result
+#     # we only have perfect matches when all 26 alphabet matches
+#     matches = 0
+#     for i in range(26):
+#         if s1Count[i] == s2Count[i]:
+#             matches += 1
+#     l = 0
+
+#     for r in range(len(s1), len(s2)):
+#         if (matches == 26):
+#             return True
+
+#         index = ord(s2[r]) - ord('a')
+#         s2Count[index] += 1
+#         if (s2Count[index] == s1Count[index]):
+#             matches += 1
+
+#         # checking if the alphabets were equal and we made it too large
+#         # maybe we do this because we are not counting repeating numbers
+#         # ie. s1Count[0] = 1 and s2Count[0] = 2
+#         # ie. s1Count[0] = 2 and s2Count[0] = 2 matches
+#         # matches - 1 fix it
+#         elif (s1Count[index] + 1 == s2Count[index]):
+#             matches -= 1
+
+#         index = ord(s2[l]) - ord('a')
+#         s2Count[index] -= 1
+#         if (s2Count[index] == s1Count[index]):
+#             matches += 1
+#         # under provisioned maybe
+#         elif (s1Count[index] - 1 == s2Count[index]):
+#             matches -= 1
+
+#         l += 1
+
+#     res = (matches == 26)
+
+#     return res
+
+# s1 = "abc"
+# s2 = "ababcd"
+
+# checkInclusion(s1, s2)
+
+# How is Counter different than a python hashtable ?
+# collections.Counter is a Python built-in class that is a subclass of dict. It is designed specifically for counting items in a collection, such as a list or a string.
+
+# One of the main differences between Counter and a regular Python dict is that Counter has a default value of zero for keys that do not exist in the dictionary. This means that if you try to access a key that is not in the Counter object, it will return zero instead of raising a KeyError. This can be useful when counting items in a collection, as it allows you to easily count items that may not exist in the collection.
+
+# Additionally, Counter has several convenient methods for counting items, such as most_common() which returns a list of the n most common elements and their counts.
+
+# dict is a general-purpose hashtable implementation in python, it is a key-value store that can be used for storing any kind of data, where keys have to be unique, and it returns an error when trying to access non existent keys, whereas Counter is mainly used for counting items in a collection and has a default value of zero, it is more efficient when doing counting operations.
 
 # # Attempt 2
 # # hashmap
 # # not a working solution.
 
 # import string
-
 
 # def checkInclusion(s1, s2):
 #     res = False
@@ -129,7 +156,6 @@ checkInclusion(s1, s2)
 #     print(res)
 #     return res
 
-
 # s1 = "a"
 # s2 = "ab"
 
@@ -154,7 +180,6 @@ checkInclusion(s1, s2)
 #                 res = True
 #     print(res)
 #     return res
-
 
 # s1 = "ab"
 # s2 = "eidbaooo"
