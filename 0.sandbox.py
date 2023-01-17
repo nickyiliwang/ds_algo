@@ -1,9 +1,13 @@
-nums = [1, 2, 3, 4, 5]
+# nums = [1, 2, 3, 4, 5]
+# cut = nums[0:3]
+# print(cut)
 
-print(nums[len(nums) - 1])
+# nums = [1, 2, 3, 4, 5]
 
-for i in range(len(nums) - 1, -1, -1):
-    print(nums[i])
+# print(nums[len(nums) - 1])
+
+# for i in range(len(nums) - 1, -1, -1):
+#     print(nums[i])
 
 # for i in range(len(nums)):
 # print(nums[i])
