@@ -1,43 +1,27 @@
-# Given an array of integers temperatures represents the daily temperatures, return an array answer such that answer[i] is the number of days you have to wait after the ith day to get a warmer temperature. If there is no future day for which this is possible, keep answer[i] == 0 instead.
+from collections import deque
 
-
-# Example 1:
-
-# Input: temperatures = [73,74,75,71,69,72,76,73]
-# Output: [1,1,4,2,1,1,0,0]
-# Example 2:
-
-# Input: temperatures = [30,40,50,60]
-# Output: [1,1,1,0]
-# Example 3:
-
-# Input: temperatures = [30,60,90]
-# Output: [1,1,0]
-
-# stack solution
 # monotonic decreasing stack: always decreasing or remaining constant, and never increasing
 # Time: O(n), Space: O(n)
 def solution(temperatures):
     # instantiate all position with default of 0 days
     # going to replace each position with days found
     res = [0] * len(temperatures)
-    stack = []
+    stack = deque()
 
     for i, t in enumerate(temperatures):
-        # while the stack isn't empty
-        # and our current day temperature is higher than previous days
-        # temperatures[stack[-1]] is getting value from the top of the stack and the temperature value
-        # we are only storing the index and because we can reference the value from the temperatures list 
-        while stack and t > temperatures[stack[-1]]:
-            stackIndex = stack.pop()
-            # ok we found the temperature
-            # i - the index to get the days difference
-            res[stackIndex] = i - stackIndex
-        # keep appending days index for the next loop
+        # Only when we find a higher temperature than the current highest temperature, then we can start popping every value in the stack and updating the position with the day difference
+        while stack and temperatures[stack[-1]] < t:
+            position = stack.pop()
+            # update each day's position with the day difference
+            res[position] = i - position
         stack.append(i)
 
-    print(res)
     return res
+
+
+temperatures = [73, 74, 75, 71, 69, 72, 76, 73]
+# Output: [1,1,4,2,1,1,0,0]
+solution(temperatures)
 
 # # blind brute force
 # def solution(temperatures):
@@ -62,8 +46,3 @@ def solution(temperatures):
 #             res.append(0)
 #     print(res)
 #     return res
-
-
-temperatures = [73, 74, 75, 71, 69, 72, 76, 73]
-# Output: [1,1,4,2,1,1,0,0]
-solution(temperatures)

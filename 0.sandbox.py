@@ -1,4 +1,26 @@
-# nums = [1, 2, 3, 4, 5]
+from collections import deque
+
+
+def dailyTemperatures(temperatures):
+    stack = deque()
+
+    res = [0] * len(temperatures)
+
+    for i, t in enumerate(temperatures):
+        while stack and temperatures[stack[-1]] < t:
+            position = stack.pop()
+            res[position] = i - position
+        stack.append(i)
+
+    return res
+
+
+dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73])
+
+# stack = deque([1, 2, 3, 4, 5])
+# item = stack[-1]
+# print(item)
+
 # cut = nums[0:3]
 # print(cut)
 
