@@ -1,37 +1,49 @@
-# Monotonic increasing
 def largestRectangleArea(heights):
+    heights.append(0)
+    stack = [-1]
     res = 0
-    stack = []
 
-    for i, h in enumerate(heights):
-        # what is this start index ?
-        # we don't know we can extend backwards yet
-        start = i
+    for i, curr in enumerate(heights):
+        while heights[stack[-1]] > curr:
+            h = heights[stack.pop()]
+            w = i - stack[-1] - 1
+            res = max(res, h * w)
 
-        while stack and h < stack[-1][1]:
-            stackIndex, height = stack.pop()
-
-            length = i - stackIndex
-            res = max(res, height * length)
-
-            # this height is greater than the current height we are visiting
-            # extend the start index backwards to the index we just popped
-            # I still don't get it
-            start = stackIndex
-        # adding the start index that we pushed all the way backwards
-        stack.append((start, h))
-
-    # might be entries in the stack, extended all the way to the end of the histogram, still need to compute the height
-
-    for i, h in stack:
-        res = max(res, h * (len(heights) - i))
+        stack.append(i)
 
     return res
 
 
-heights = [2, 4]
-# Output: 10
-largestRectangleArea(heights)
+# Monotonic Decreasing Stack
+def largestRectangleArea(heights):
+    # The heights of 0 is appended to the end of the heights list to handle the case where the stack is not empty after the iterations.
+    heights.append(0)
+    stack = [-1]
+    res = 0
+
+    for i, curr in enumerate(heights):
+        # At each iteration, it checks if the current heights is less than the heights at the top of the stack.
+        while heights[stack[-1]] > curr:
+            # If it is, it pops the heights at the top of the stack and calculates the area of the rectangle represented by that heights and the width of the rectangle (which is the difference between the current index and the index at the top of the stack).
+            h = heights[stack.pop()]
+
+            w = i - stack[-1] - 1
+            res = max(res, h * w)
+
+        stack.append(i)
+
+    return res
+
+# how come there's always one element left in the stack at the end of the function loop ?
+# The reason there is always one element left in the stack at the end of the function loop is because the code always appends the current index (i) to the stack, regardless of whether it is smaller or larger than the previous height. The stack will always have at least one element in it, which corresponds to the index of the last height in the list.
+
+# Additionally, the while loop continues to pop elements off the stack as long as the current height is smaller than the previous height on top of the stack. Even if the current height is larger than the previous height, it will still be appended to the stack, leaving one element left in the stack at the end of the function loop.
+
+# heights[stack[-1]]
+# in the first iteration, heights[stack[-1]] => heights[-1] => 0 because we appended the 0 to the end of the list
+
+# w = i - stack[-1] - 1
+# if there's no elements in the heights list, the loop runs and end, but if there is one+ element, like [1]. The index will run up to 1, and w = i - stack[-1] - 1 => w = 1 - (-1) - 1 => w = 2 - 1 => 1 for the width.
 
 # # Brute force
 # def largestRectangleArea(heights):

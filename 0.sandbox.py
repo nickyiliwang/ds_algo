@@ -1,21 +1,47 @@
-from collections import deque
+# def largestRectangleArea(heights):
+#     heights.append(0)
+#     stack = [-1]
+#     res = 0
+#     print(heights[-1])
 
+#     for i, curr in enumerate(heights):
+#         while heights[stack[-1]] > curr:
+#             h = heights[stack.pop()]
+#             w = i - stack[-1] - 1
+#             res = max(res, h * w)
 
-def dailyTemperatures(temperatures):
-    stack = deque()
+#         stack.append(i)
 
-    res = [0] * len(temperatures)
+#     return res
 
-    for i, t in enumerate(temperatures):
-        while stack and temperatures[stack[-1]] < t:
-            position = stack.pop()
-            res[position] = i - position
-        stack.append(i)
+# At each iteration, it checks if the current heights is less than the heights at the top of the stack.
 
-    return res
+# If it is, it pops the heights at the top of the stack and calculates the area of the rectangle represented by that heights and the width of the rectangle (which is the difference between the current index and the index at the top of the stack).
 
+# It then updates the maximum area if the calculated area is greater than the previous maximum.
 
-dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73])
+# Finally, it appends the current index to the stack and continues to the next iteration.
+
+# The heights of 0 is appended to the end of the heights list to handle the case where the stack is not empty after the iterations.
+
+# print(largestRectangleArea([1]))
+
+# from collections import deque
+
+# def dailyTemperatures(temperatures):
+#     stack = deque()
+
+#     res = [0] * len(temperatures)
+
+#     for i, t in enumerate(temperatures):
+#         while stack and temperatures[stack[-1]] < t:
+#             position = stack.pop()
+#             res[position] = i - position
+#         stack.append(i)
+
+#     return res
+
+# dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73])
 
 # stack = deque([1, 2, 3, 4, 5])
 # item = stack[-1]
