@@ -1,74 +1,56 @@
-# Koko loves to eat bananas. There are n piles of bananas, the ith pile has piles[i] bananas. The guards have gone and will come back in h hours.
+def minEatingSpeed(piles: List[int], h: int) -> int:
+    left, right = 1, max(piles)
+    res = max(piles)
 
-# Koko can decide her bananas-per-hour eating speed of k. Each hour, she chooses some pile of bananas and eats k bananas from that pile. If the pile has less than k bananas, she eats all of them instead and will not eat any more bananas during this hour.
+    while left <= right:
+        totalHours = 0
+        mid = (left + right) // 2
+        for b in piles:
+            totalHours = totalHours + math.ceil(b / mid)
+        if totalHours <= h:
+            res = min(res, mid)
+            right = mid - 1
+        else:
+            left = mid + 1
+    return res
 
-# Koko likes to eat slowly but still wants to finish eating all the bananas before the guards return.
-
-# Return the minimum integer k such that she can eat all the bananas within h hours.
-
-
-# Example 1:
-
-# Input: piles = [3,6,7,11], h = 8
-# Output: 4
-
-# Example 2:
-
-# Input: piles = [30,11,23,4,20], h = 5
-# Output: 30
-
-# Example 3:
-
-# Input: piles = [30,11,23,4,20], h = 6
-# Output: 23
-
-
-# Constraints:
-
-# 1 <= piles.length <= 104
-# piles.length <= h <= 109
-# 1 <= piles[i] <= 109
 
 import math
 from typing import List
 
 
+# O(n log n)
 def minEatingSpeed(piles: List[int], h: int) -> int:
-    # left could start at 0 or 1, doesn't really matter
-    # one is more efficient
     left, right = 1, max(piles)
     # rate of eating starts at max
     # because it will always work but not in h hour
     res = max(piles)
 
-    # important:
-    # you will get off by one error if you don't set left is less or equal to right here
-
     while left <= right:
-        # hours of eating
-        hours = 0
-        # mid point
-        k = (left + right) // 2
-        # eat the bananas and add on to the hours
+        # clears totalHours after each loop
+        totalHours = 0
+        mid = (left + right) // 2
+        # eat the bananas and add on to the totalHours
         for b in piles:
             # math.ceil rounds up the result
-            # math.ceil(5 / 5) = 1
-            hours = hours + math.ceil(b / k)
-        # if the the current rate of speed is less or equal to h(guard comes back)
-        # we have a valid k
-        # let's see if we can go lower by setting the right pointer to the mid point - 1
-        if hours <= h:
-            res = min(res, k)
-            right = k - 1
-        # too large
-        # set the left pointer to mid point + 1
+            # 3.24 rounded to 4.0
+            # rounding up here because anything over will take an extra turn
+            # 7 / 6 = 1.666... = 2 turns
+            totalHours = totalHours + math.ceil(b / mid)
+        # ***usually we use mid point to the a value in nums to compare
+        # ***here we use totalHours instead
+        # totalHours <= h means a rate within h hours, means we are eating fast
+        # right = mid - 1 to see if we can eat slower =>
+        if totalHours <= h:
+            res = min(res, mid)
+            right = mid - 1
         else:
-            left = k + 1
-    print(res)
+            # If the total number of hours is greater than h, it means that the current eating speed (mid) is not possible and the next iteration will check the right half of the remaining search space.
+            left = mid + 1
     return res
 
 
 piles = [3, 6, 7, 11]
 h = 8
 # Output: 4
-minEatingSpeed(piles, h)
+print(minEatingSpeed(piles, h))

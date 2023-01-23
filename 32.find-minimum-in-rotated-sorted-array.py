@@ -1,66 +1,26 @@
-# Suppose an array of length n sorted in ascending order is rotated between 1 and n times. For example, the array nums = [0,1,2,4,5,6,7] might become:
-
-# [4,5,6,7,0,1,2] if it was rotated 4 times.
-# [0,1,2,4,5,6,7] if it was rotated 7 times.
-# Notice that rotating an array [a[0], a[1], a[2], ..., a[n-1]] 1 time results in the array [a[n-1], a[0], a[1], a[2], ..., a[n-2]].
-
-# Given the sorted rotated array nums of unique elements, return the minimum element of this array.
-
-# You must write an algorithm that runs in O(log n) time.
+# Draw solution if confused
+# [3,4,5,1,2] => part A: [3,4,5] part B: [1,2]
+# if m = 5, left = 3, right = 2
+# mid > right means for sure the min number is right
+# O(log n)
 
 
-# Example 1:
-
-# Input: nums = [3,4,5,1,2]
-# Output: 1
-# Explanation: The original array was [1,2,3,4,5] rotated 3 times.
-# Example 2:
-
-# Input: nums = [4,5,6,7,0,1,2]
-# Output: 0
-# Explanation: The original array was [0,1,2,4,5,6,7] and it was rotated 4 times.
-# Example 3:
-
-# Input: nums = [11,13,15,17]
-# Output: 11
-# Explanation: The original array was [11,13,15,17] and it was rotated 4 times.
-
-
-# Constraints:
-
-# n == nums.length
-# 1 <= n <= 5000
-# -5000 <= nums[i] <= 5000
-# All the integers of nums are unique.
-# nums is sorted and rotated between 1 and n times.
-
-from typing import List
-
-# my solution
-
-
-def findMin(nums: List[int]) -> int:
+def findMin(nums):
     left, right = 0, len(nums) - 1
-    # no pivot
-    if nums[left] < nums[right]:
-        return nums[left]
-    # if there is pivot
-    # the left number will reach a point where
-    # it's not bigger than the right more number
-    # we don't touch right pointer
-    while nums[left] > nums[right]:
-        left = left + 1
-    return nums[left]
+    res = nums[0]
 
+    while left <= right:
+        mid = (left + right) // 2
+        res = min(res, nums[mid])
 
-nums = [3, 4, 5, 1, 2]
-# Output: 11
-findMin(nums)
+        if nums[mid] > nums[right]:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return res
 
-# Neetcode, also great
-
-# def findMin(nums: List[int]) -> int:
-#     # default result
+# # Solution 2
+# def findMin(nums):
 #     res = nums[0]
 #     left, right = 0, len(nums) - 1
 
@@ -82,3 +42,21 @@ findMin(nums)
 #         else:
 #             right = middle - 1
 #     return res
+
+# # O(n) solution
+# def findMin(nums: List[int]) -> int:
+#     left, right = 0, len(nums) - 1
+#     # no pivot
+#     if nums[left] < nums[right]:
+#         return nums[left]
+#     # if there is pivot
+#     # the left number will reach a point where
+#     # it's not bigger than the right more number
+#     # we don't touch right pointer
+#     while nums[left] > nums[right]:
+#         left = left + 1
+#     return nums[left]
+
+# nums = [3, 4, 5, 1, 2]
+# # Output: 11
+# findMin(nums)
