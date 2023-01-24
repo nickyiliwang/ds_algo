@@ -1,7 +1,39 @@
+# def search(nums, target):
+#     left, right = 0, len(nums) - 1
 
+#     def bs(left, right):
+#         while left <= right:
+#             mid = (left + right) // 2
+
+#             if nums[mid] == target:
+#                 return mid
+#             elif nums[mid] > target:
+#                 right = right - 1
+#             else:
+#                 left = left + 1
+
+#         return -1
+
+#     # no rotation
+#     if nums[left] < nums[right]:
+#         return bs(left, right)
+
+#     while left <= right:
+#         mid = (left + right) // 2
+
+#         if nums[mid] == target:
+#             return mid
+#         elif nums[mid] > nums[right]:
+#             left = mid + 1
+#             return bs(left, right)
+#         else:
+#             right = mid - 1
+#             return bs(left, right)
+
+
+# print(search([3, 5, 1], 3))
 
 # from typing import List
-
 
 # def searchMatrix(matrix: List[List[int]], target: int) -> bool:
 #     left, right = 0, len(matrix) - 1
@@ -19,7 +51,7 @@
 #             break
 
 #     left, right = 0, len(res) - 1
-    
+
 #     while left <= right:
 #         mid = (left + right) // 2
 
@@ -30,7 +62,6 @@
 #         else:
 #             return True
 #     return False
-
 
 # print(searchMatrix([[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], 3))
 
