@@ -9,6 +9,7 @@ class ListNode:
         self.val = val
         self.next = next
 
+
 # two pointers
 
 
@@ -38,7 +39,7 @@ def reverseList(head: Optional[ListNode]) -> Optional[ListNode]:
 
 
 linked_list = LinkedList()
-print('head val', linked_list.head.val)
+print("head val", linked_list.head.val)
 linked_list.append(1)
 linked_list.append(2)
 linked_list.append(3)
