@@ -1,3 +1,31 @@
+def threeSum(nums):
+    res = []
+    nums.sort()
+
+    if len(nums) < 3:
+        return []
+
+    for i, n in enumerate(nums):
+        if i > 0 and n == nums[i - 1]:
+            print("go next", i, n, nums[i - 1])
+            continue
+        l, r = i + 1, len(nums) - 1
+        while l < r:
+            threeSum = n + nums[l] + nums[r]
+            if threeSum > 0:
+                r -= 1
+            elif threeSum < 0:
+                l += 1
+
+            else:
+                res.append([n, nums[l], nums[r]])
+                l += 1
+
+                while nums[l] == nums[l - 1] and l < r:
+                    l += 1
+    return res
+
+
 # Time nested loop + sorting =  nest loop worst time
 # Time O(n ^ 2) + O(nlogn) =  O(n ^ 2)
 
@@ -10,7 +38,7 @@ def threeSum(nums):
     # with a sorted array we can then use pointers
     nums.sort()
 
-    if (len(nums) < 3):
+    if len(nums) < 3:
         return []
 
     for i, n in enumerate(nums):

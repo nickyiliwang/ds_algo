@@ -1,7 +1,41 @@
+def isAnagram(s, t):
+    if len(s) != len(t):
+        return False
+
+    counterA, counterB = Counter(), Counter()
+
+    for i in range(len(s)):
+        counterA[s[i]] += 1
+        counterB[t[i]] += 1
+
+    for j in counterA:
+        if counterA[j] != counterB[j]:
+            return False
+
+    return True
+
+
 # Quick idea:
 def isAnagram(s, t):
     return sorted(s) == sorted(t)
 
+
+# def isAnagram(s, t):
+#     if len(s) != len(t):
+#         return False
+
+#     countA, countB = {}, {}
+
+#     for i in range(len(s)):
+#         countA[s[i]] = countA.get(s[i], 0) + 1
+#         countB[t[i]] = countB.get(t[i], 0) + 1
+
+#     for j in countA:
+#         if countA[j] != countB.get(j, 0):
+#             return False
+#     return True
+
+# Explanation
 # Using dictionary to implement (preferred)
 # time O(s + t), space O(s + t)
 def isAnagram(s, t):

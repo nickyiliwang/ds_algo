@@ -1,11 +1,20 @@
-from collections import defaultdict
-
 def groupAnagrams(strs):
-    # res = {}  # mapping chatCount to list of anagrams
+    res = defaultdict(list)
+
+    for s in strs:
+        count = [0] * 26  # => [0,0,0 ...] => a ... z 
+        for c in s:
+            count[ord(c) - ord("a")] += 1
+        res[tuple(count)].append(s)
+
+    return res.values()
+
+# Explanation
+def groupAnagrams(strs):
     # it is initialized with a function (“default factory”) that:
     # takes no arguments and provides the default value for a nonexistent key.
     # Defining a dictionary with key pair as a list => defaultdict(list)
-    res = defaultdict(list)
+    res = collections.defaultdict(list)
 
     for s in strs:
         # only works for List ds, not dicts
@@ -13,7 +22,8 @@ def groupAnagrams(strs):
         for c in s:
             # a 97 97 0 => find the index 0
             # ord() method: Return the Unicode code point for a one-character string.
-            print(c, ord(c), ord("a"), ord(c) - ord("a"))
+            # OUTPUT: (98, 97, 1)
+            # print(ord("b"), ord("a"), ord("b") - ord("a"))
 
             # e 101 97 4 => find the index 4 and tune it to 1
             count[ord(c) - ord("a")] += 1

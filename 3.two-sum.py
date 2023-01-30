@@ -1,4 +1,14 @@
 def twoSum(nums, target):
+    prevMap = {}
+    for i, n in enumerate(nums):
+        diff = target - n
+        if diff in prevMap:
+            return [prevMap[diff], i]
+        prevMap[n] = i
+    return
+
+# Explanation
+def twoSum(nums, target):
     # we can do this in one pass
     prevMap = {}  # val: index
     # enumerate gives the index and value of an iterative data structure

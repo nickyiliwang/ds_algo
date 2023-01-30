@@ -1,5 +1,29 @@
 def encode(strs):
-    res = ''
+    res = ""
+    for word in strs:
+        res = res + str(len(word)) + "#" + word
+    return res
+
+
+def decode(str):
+    res = []
+    i = 0
+
+    while i < len(str):
+        j = i
+
+        while str[j] != "#":
+            j += 1
+        length = int(str[i:j])
+        res.append(str[j + 1 : j + 1 + length])
+        i = j + 1 + length
+
+    return res
+
+
+# Explanation
+def encode(strs):
+    res = ""
     for word in strs:
         # "#" is the delimiter
         res = res + str(len(word)) + "#" + word
@@ -26,7 +50,7 @@ def decode(str):
 
         # we do j + 1 becasue we are skipping the "#" delimiter
         # the word is start: j + 1, and end:  "#" delimiter + length
-        res.append(str[j + 1:j + 1 + length])
+        res.append(str[j + 1 : j + 1 + length])
 
         # char index updatess at the end of the word
         i = j + 1 + length
@@ -76,12 +100,15 @@ def decode(str):
 
 strs = [
     "asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4asdfghjkli4",
-    "code", "love", "you"
+    "code",
+    "love",
+    "you",
 ]
 str = encode(strs)
 print("encoded", str)
 # OUTPUT single string
 decode(str)
 # OUTPUT ["", "we", "#say", ":", "yes"]
+
 
 # watching event horizon while trying to debug my code is not the best way to focus

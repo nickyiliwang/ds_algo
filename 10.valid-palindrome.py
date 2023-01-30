@@ -1,6 +1,25 @@
-# Pointers Solution
+def isPalindrome(s):
+    left, right = 0, len(s) - 1
+
+    while left < right:
+        while left < right and not s[left].isalnum():
+            left += 1
+
+        while right > left and not s[right].isalnum():
+            right -= 1
+
+        if s[left].lower() != s[right].lower():
+            return False
+
+        left, right = left + 1, right - 1
+
+    return True
+
+
+# Explanation
 # Checking left and right char and moving towards the center.
 # If odd, meet center, if even left and right compare, even surpass
+
 
 def isPalindrome(s):
     l, r = 0, len(s) - 1
