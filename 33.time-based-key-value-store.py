@@ -1,5 +1,4 @@
 class TimeMap:
-
     def __init__(self):
         self.hashMap = {}  # {key: [[value, timestamp]]}
 
@@ -9,16 +8,16 @@ class TimeMap:
         return
 
     def get(self, key: str, timestamp: int) -> str:
-        res = ''
+        res = ""
         database = self.hashMap.get(key, [])
         left, right = 0, len(database) - 1
         # binary search for BigO(log n)
         while left <= right:
             middle = (left + right) // 2
-            if (database[middle][1] <= timestamp):
+            if database[middle][1] <= timestamp:
                 res = database[middle][0]
                 left = middle + 1
-            elif (database[middle][1] > timestamp):
+            elif database[middle][1] > timestamp:
                 right = middle - 1
         return res
 

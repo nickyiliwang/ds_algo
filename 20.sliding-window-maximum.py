@@ -2,7 +2,26 @@ from collections import deque
 
 
 def maxSlidingWindow(nums, k):
-    q = deque()
+    q = collections.deque()
+    res = []
+    left = 0
+
+    for right, cur in enumerate(nums):
+        while q and nums[q[-1]] <= cur:
+            q.pop()
+        q.append(right)
+
+        if left > q[0]:
+            q.popleft()
+
+        if right - left + 1 == k:
+            res.append(nums[q[0]])
+            left += 1
+    return res
+
+# Explanation
+def maxSlidingWindow(nums, k):
+    q = collections.deque()
     res = []
     left = 0
 

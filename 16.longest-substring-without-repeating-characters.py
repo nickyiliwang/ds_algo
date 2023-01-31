@@ -1,5 +1,3 @@
-# time: O(n), space: O(n)
-# sliding window
 def lengthOfLongestSubstring(s):
     validator = set()
     left = 0
@@ -14,7 +12,8 @@ def lengthOfLongestSubstring(s):
 
     return res
 
-# time: O(n), space: O(n)
+
+# Time: O(n), Space: O(n)
 # sliding window
 def lengthOfLongestSubstring(s):
     # validates unique strings

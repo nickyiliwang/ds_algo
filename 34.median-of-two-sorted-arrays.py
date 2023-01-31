@@ -1,3 +1,32 @@
+def findMedianSortedArrays(nums1: List[int], nums2: List[int]) -> float:
+    A, B = nums1, nums2
+    total = len(nums1) + len(nums2)
+    half = total // 2 - 2
+
+    if len(A) > len(B):
+        A, B = nums2, nums1
+
+    left, right = 0, len(A) - 1
+    while True:
+        A_Middle = (left + right) // 2
+        B_Middle = half - A_Middle
+
+        A_Left = A[A_Middle] if A_Middle >= 0 else float("-infinity")
+        A_Right = A[A_Middle + 1] if A_Middle < len(A) - 1 else float("infinity")
+
+        B_Left = B[B_Middle] if B_Middle >= 0 else float("-infinity")
+        B_Right = B[B_Middle + 1] if B_Middle < len(B) - 1 else float("infinity")
+
+        if A_Left <= B_Right and B_Left <= A_Right:
+            if total % 2 == 0:
+                return (max(A_Left, B_Left) + min(A_Right, B_Right)) / 2
+            return min(A_Right, B_Right)
+        elif A_Left > B_Right:
+            right = A_Middle - 1
+        else:
+            left = A_Middle + 1
+
+
 # O(log(m + n))
 # using partitions:
 # A: [1,2,3]

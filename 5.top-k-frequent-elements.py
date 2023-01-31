@@ -9,15 +9,42 @@ def topKFrequent(nums, k):
     for n in nums:
         counter[n] += 1
 
-    for n, c in counter.items():
-        freq[c].append(n)
+    for num, count in counter.items():
+        freq[count].append(num)
 
-    for i in range(len(freq) - 1, 0, -1):
+    for i in range(len(freq) - 1, -1, -1):
         for n in freq[i]:
             res.append(n)
             if (len(res)) == k:
                 return res
 
+
+# Explanation
+def topKFrequent(nums, k):
+    counter = Counter()
+    # [[],[],[]]
+    # *We need +1 here for max possible freq of any element
+    freq = [[] for i in range(len(nums) + 1)]
+
+    res = []
+    # Count frequency
+    for n in nums:
+        counter[n] += 1
+
+    # Fill count buckets with numbers
+    for num, count in counter.items():
+        freq[count].append(num)
+
+    # Go from highest count bucket to lowest, hence reverse
+    for i in range(len(freq) - 1, -1, -1):
+        # append each number till we reach K
+        for n in freq[i]:
+            res.append(n)
+            if (len(res)) == k:
+                return res
+
+
+# The "+1" in the line "freq = [[] for i in range(len(nums) + 1)]" is used to create an array of lists that can accommodate the maximum possible frequency of any element in the "nums" list. The frequency of an element can range from 1 to the number of occurrences of that element in the list. So, to ensure that all possible frequencies can be stored in the "freq" array, the size of the array is set to "len(nums) + 1". By adding 1 to the length of "nums", the array can accommodate the frequency of 1, which is the lowest possible frequency of any element.
 
 # bucket sort
 # def topKFrequent(nums, k):
@@ -58,9 +85,9 @@ def topKFrequent(nums, k):
 #                 return res
 
 
-# nums = [1, 1, 1, 2, 2, 2, 3, 4, 4, 4]
-# k = 3
-# print(topKFrequent(nums, k))
+nums = [1, 1, 1, 2, 2, 2, 3, 4, 4, 4, 5]
+k = 3
+print(topKFrequent(nums, k))
 
 
 # # # O(n log m) n is the nums, m is the hashMap item

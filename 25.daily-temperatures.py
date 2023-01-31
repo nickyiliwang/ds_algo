@@ -1,5 +1,19 @@
 from collections import deque
 
+
+def solution(temperatures):
+    res = [0] * len(temperatures)
+    stack = deque()
+
+    for i, t in enumerate(temperatures):
+        while stack and temperatures[stack[-1]] < t:
+            position = stack.pop()
+            res[position] = i - position
+        stack.append(i)
+
+    return res
+
+
 # monotonic decreasing stack: always decreasing or remaining constant, and never increasing
 # Time: O(n), Space: O(n)
 def solution(temperatures):
