@@ -2,7 +2,7 @@ from collections import deque
 
 
 def maxSlidingWindow(nums, k):
-    q = collections.deque()
+    q = deque()
     res = []
     left = 0
 
