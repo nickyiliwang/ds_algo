@@ -14,16 +14,13 @@ def isValidSudoku(board):
                 # end the current loop and continues to the next loop.
                 continue
             # for each number, check row, cols, and squares
-            # cols and rows both cannot have the same number
             if (board[r][c] in rows[r] or board[r][c] in cols[c] or
-                    # subBoxes/squares no repeating numbers
                     board[r][c] in squares[(r // 3, c // 3)]):
                 return False
 
-            # add each number to row and col index for next loop
+            # Add number to everything for the next iteration
             cols[c].add(board[r][c])
             rows[r].add(board[r][c])
-            # add each number to squares tuple for next loop
             squares[(r // 3, c // 3)].add(board[r][c])
     return True
 

@@ -20,6 +20,7 @@ def topKFrequent(nums, k):
 
 
 # Explanation
+# Key here is bucket sort
 def topKFrequent(nums, k):
     counter = Counter()
     # [[],[],[]]
@@ -36,6 +37,7 @@ def topKFrequent(nums, k):
         freq[count].append(num)
 
     # Go from highest count bucket to lowest, hence reverse
+    # for numbers in reversed(freq): also works here
     for i in range(len(freq) - 1, -1, -1):
         # append each number till we reach K
         for n in freq[i]:

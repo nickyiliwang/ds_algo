@@ -1,3 +1,7 @@
+from collections import defaultdict
+import collections
+
+
 def groupAnagrams(strs):
     res = defaultdict(list)
 

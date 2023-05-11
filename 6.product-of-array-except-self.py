@@ -1,3 +1,6 @@
+from typing import *
+
+
 # Time: O(n) Memory: O(n) | O(1)
 def productExceptSelf(nums):
     res = [1] * len(nums)
@@ -7,6 +10,7 @@ def productExceptSelf(nums):
         res[i] = prefix
         prefix *= nums[i]
 
+    print(res)
     postfix = 1
 
     for i in range(len(nums) - 1, -1, -1):
@@ -16,6 +20,9 @@ def productExceptSelf(nums):
     return res
 
 # Explanation
+# key: prefix and suffixes are numbers, not arrays
+# use it and update it
+
 def productExceptSelf(nums):
     res = [1] * len(nums)
     prefix = 1
@@ -36,6 +43,7 @@ def productExceptSelf(nums):
         postfix *= nums[i]
 
     return res
+
 
 nums = [4, 5, 1, 8, 2]
 # [80, 64, 320, 40, 160]
@@ -58,6 +66,8 @@ productExceptSelf(nums)
 # res[i] = prefix[i - 1] * postfix[i + 1]
 
 # prefix postfix long version with pre/post fix array
+
+
 def productExceptSelf(nums: List[int]) -> List[int]:
     # So we are at idx 3, prefix [1,2], post fix [4]
 
@@ -84,10 +94,13 @@ def productExceptSelf(nums: List[int]) -> List[int]:
 
     return res
 
+
 nums = [4, 5, 1, 8, 2]
 productExceptSelf(nums)
 
 # brute force
+
+
 def productExceptSelf(nums: List[int]) -> List[int]:
     res = []
 
