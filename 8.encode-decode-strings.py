@@ -22,6 +22,7 @@ def decode(str):
 
 
 # Explanation
+# Key: length needs to become an integer before we can use it.
 def encode(strs):
     res = ""
     for word in strs:
@@ -52,7 +53,7 @@ def decode(str):
         # the word is start: j + 1, and end:  "#" delimiter + length
         res.append(str[j + 1 : j + 1 + length])
 
-        # char index updatess at the end of the word
+        # char index updates at the end of the word
         i = j + 1 + length
 
     return res

@@ -2,27 +2,24 @@ def threeSum(nums):
     res = []
     nums.sort()
 
-    if len(nums) < 3:
-        return []
-
     for i, n in enumerate(nums):
         if i > 0 and n == nums[i - 1]:
-            print("go next", i, n, nums[i - 1])
             continue
-        l, r = i + 1, len(nums) - 1
-        while l < r:
-            threeSum = n + nums[l] + nums[r]
-            if threeSum > 0:
-                r -= 1
-            elif threeSum < 0:
-                l += 1
+
+        left, right = i + 1, len(nums) - 1
+        while left < right:
+            threeSum = n + nums[left] + nums[right]
+            if threeSum < 0:
+                left -= 1
+            elif threeSum > 0:
+                right += 1
 
             else:
-                res.append([n, nums[l], nums[r]])
-                l += 1
+                res.append([n, nums[left], nums[right]])
+                left += 1
 
-                while nums[l] == nums[l - 1] and l < r:
-                    l += 1
+                while nums[left] == nums[left - 1] and left < right:
+                    left += 1
     return res
 
 
@@ -30,6 +27,13 @@ def threeSum(nums):
 # Time O(n ^ 2) + O(nlogn) =  O(n ^ 2)
 
 # Space: O(1), O(n) depends on sorting implementation
+
+# Keys:
+# Sort the array
+# Make sure no duplicates during loop: i > 0 and n == nums[i - 1]
+# Left starts at the second number (index 1)
+# Do the two pointer sort
+#
 
 
 def threeSum(nums):
@@ -70,7 +74,7 @@ def threeSum(nums):
                 # left index does not meet right index
                 # increment it
                 # ** Why do we not do the same for the right pointer ?
-                # Because we only need to check left, if the right point is two large twice, our previous if statement will adjust it, ie. [1,2,3,5,5], it's just gonna move right pointer left twice if sum is bigger than 0
+                # Because we only need to check left, if the right point is too large twice, our previous if statement will adjust it, ie. [1,2,3,5,5], it's just gonna move right pointer left twice if sum is bigger than 0
                 while nums[l] == nums[l - 1] and l < r:
                     l += 1
                 # [-2, -2, 0, 0, 2, 2]

@@ -17,6 +17,8 @@ def isPalindrome(s):
 
 
 # Explanation
+# Key: remember isalnum and use a while loop to sift out the non alpha numeric.
+
 # Checking left and right char and moving towards the center.
 # If odd, meet center, if even left and right compare, even surpass
 

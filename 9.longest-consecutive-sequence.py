@@ -11,6 +11,9 @@ def longestConsecutive(nums):
     return res
 
 # Explanation
+# Key: using set to get unique numbers
+# before each loop, check if it's the start of a sequence to avoid repetition
+# loop one time to get max length in nums
 def longestConsecutive(nums):
     # a set of unique numbers
     numSet = set(nums)
@@ -18,6 +21,7 @@ def longestConsecutive(nums):
 
     for n in nums:
         # check if its the start of a sequence
+        # This will prevent repetitive work
         if (n - 1) not in numSet:
             length = 0
             # while the sequence is alive keep adding to length val and validating

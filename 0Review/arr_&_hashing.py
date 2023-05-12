@@ -2,6 +2,130 @@ from typing import *
 from collections import *
 
 
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        res = []
+
+        for i, n in enumerate(nums):
+            if i > 0 and n == nums[i - 1]:
+                continue
+
+            left, right = i + 1, len(nums) - 1
+
+            while left < right:
+                threeSum = n + nums[left] + nums[right]
+
+                if (threeSum < 0):
+                    left += 1
+
+                elif (threeSum > 0):
+                    right -= 1
+
+                else:
+                    res.append([n, nums[left], nums[right]])
+                    left += 1
+
+                    while left < right and nums[left] == nums[left - 1]:
+                        left += 1
+
+        return res
+
+
+print(
+    Solution.threeSum("", [-1, 0, 1, 2, -1, -4])
+)
+
+# class Solution:
+#     def twoSum(self, numbers: List[int], target: int) -> List[int]:
+#         left, right = 0, len(numbers) - 1
+#         while left < right:
+#             curr = numbers[left] + numbers[right]
+#             if (target > curr):
+#                 left += 1
+#             elif (target < curr):
+#                 right -= 1
+#             else:
+#                 return [left + 1, right + 1]
+
+
+# print(Solution.twoSum("", [2, 7, 11, 15], 9))
+
+# class Solution:
+#     def isPalindrome(self, s: str) -> bool:
+#         left, right = 0, len(s) - 1
+
+#         while left < right:
+#             while left < right and not s[left].isalnum():
+#                 left += 1
+
+#             while right > left and not s[right].isalnum():
+#                 right -= 1
+
+#             if s[left].lower() != s[right].lower():
+#                 return False
+
+#             left += 1
+#             right -= 1
+
+#         return True
+
+
+# print(
+#     Solution.isPalindrome("", "A man, a plan, a canal: Panama")
+# )
+
+# class Solution:
+#     def longestConsecutive(self, nums: List[int]) -> int:
+#         numsSet = set(nums)
+#         res = 0
+
+#         for n in nums:
+#             if (n-1) not in numsSet:
+#                 length = 0
+#                 while (n + length) in numsSet:
+#                     length += 1
+#                 res = max(res, length)
+#         return res
+
+
+# print(
+#     Solution.longestConsecutive("", [100, 4, 200, 1, 3, 2])
+# )
+# class Solution:
+#     def encode(self, strs):
+#         encoded = ""
+#         for w in strs:
+#             encoded += str(len(w)) + "#" + w
+
+#         return encoded
+
+#     def decode(self, str):
+#         # 4#lint4#code4#love3#you
+#         decoded = []
+
+#         i = 0
+
+#         while i < len(str):
+#             j = i
+
+#             while str[j] != "#":
+#                 j += 1
+
+#             length = int(str[i:j])
+
+#             decoded.append(str[j+1: j+1+length])
+
+#             i = j+1+length
+#         return decoded
+
+
+# print(
+#     # Solution.encode("", ["lint", "code", "love", "you"])
+#     Solution.decode("", "10#asdfghjkli4#code4#love3#you")
+# )
+
+
 # class Solution:
 #     def isValidSudoku(self, board: List[List[str]]) -> bool:
 #         rows = defaultdict(set)
