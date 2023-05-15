@@ -1,40 +1,197 @@
 from typing import *
 from collections import *
 
-
 class Solution:
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
-        nums.sort()
-        res = []
-
-        for i, n in enumerate(nums):
-            if i > 0 and n == nums[i - 1]:
-                continue
-
-            left, right = i + 1, len(nums) - 1
-
-            while left < right:
-                threeSum = n + nums[left] + nums[right]
-
-                if (threeSum < 0):
-                    left += 1
-
-                elif (threeSum > 0):
-                    right -= 1
-
-                else:
-                    res.append([n, nums[left], nums[right]])
-                    left += 1
-
-                    while left < right and nums[left] == nums[left - 1]:
-                        left += 1
-
-        return res
+    def minWindow(self, s: str, t: str) -> str:
+        need, have = Counter(), Counter()
 
 
-print(
-    Solution.threeSum("", [-1, 0, 1, 2, -1, -4])
-)
+# class Solution:
+#     def checkInclusion(self, s1: str, s2: str) -> bool:
+#         count1, count2 = Counter(s1), Counter()
+#         window = len(s1)
+
+#         for i in range(len(s2)):
+#             if (i < window):
+#                 count2[s2[i]] += 1
+#             else:
+#                 count2[s2[window - i]] -= 1
+#                 count2[s2[i]] += 1
+
+#             if count1 == count2:
+#                 return True
+        
+#         return False
+
+
+# print(
+#     Solution.checkInclusion("", "ab", "eidbaooo")
+# )
+
+# class Solution:
+#     def characterReplacement(self, s: str, k: int) -> int:
+#         left, res, counter = 0, 0, Counter()
+
+#         for right in range(len(s)):
+#             counter[s[right]] += 1
+
+#             while (right - left + 1) - max(counter.values()) > k:
+#                 counter[s[left]] -= 1
+#                 left += 1
+
+#             res = max(res, right - left + 1)
+#             return res
+
+
+# print(Solution.characterReplacement("", "ABAB", 2))
+
+
+# class Solution:
+#     def lengthOfLongestSubstring(self, s: str) -> int:
+#         validator = set()
+#         left = 0
+#         res = 0
+
+#         for right in s:
+#             while right in validator:
+#                 validator.remove(s[left])
+#                 left += 1
+#             validator.add(right)
+#             res = max(res, len(validator))
+
+#         return res
+
+
+# print(
+#     Solution.lengthOfLongestSubstring("", "abcabcbb")
+# )
+
+# class Solution:
+#     def maxProfit(self, prices: List[int]) -> int:
+#         res = 0
+#         left, right = 0, 1
+
+#         while right < len(prices):
+#             if prices[left] < prices[right]:
+#                 profit = prices[right] - prices[left]
+#                 res = max(res, profit)
+#             else:
+#                 left = right
+#             right += 1
+#         return res
+
+# print(Solution.maxProfit("", [7,1,5,3,6,4]))
+
+
+# class Solution:
+#     def trap(self, height: List[int]) -> int:
+#         left, right = 0, len(height) - 1
+#         leftMax, rightMax, res = 0, 0, 0
+
+#         while left < right:
+#             leftMax = max(leftMax, height[left])
+#             rightMax = max(rightMax, height[right])
+
+#             if height[left] < height[right]:
+#                 res += leftMax - height[left]
+#                 left += 1
+
+#             else:
+#                 res += rightMax - height[right]
+#                 right -= 1
+
+#         return res
+
+
+# print(Solution.trap("", [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
+
+# class Solution:
+#     def trap(self, height: List[int]) -> int:
+#         res = []
+#         maxLeft = 0
+#         maxRight = 0
+
+#         maxLefts = []
+#         maxRights = []
+
+#         for n in height:
+#             maxLefts.append(maxLeft)
+#             maxLeft = max(maxLeft, n)
+
+#         for n in reversed(height):
+#             print("N", n)
+#             maxRights.append(maxRight)
+#             maxRight = max(maxRight, n)
+
+#         maxRights.reverse()
+
+#         for i in range(len(maxLefts)):
+#             if min(maxLefts[i], maxRights[i]) > n:
+#                 res.append(min(maxLefts[i], maxRights[i]) - n)
+
+#         print(maxLefts, maxRights)
+#         return sum(res)
+
+#         print(maxLefts, maxRights)
+
+
+# print(Solution.trap("", [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
+
+# class Solution:
+#     def maxArea(self, height: List[int]) -> int:
+#         res = 0
+#         left, right = 0, len(height) - 1
+
+#         while left < right:
+#             area = min(height[left], height[right]) * (right - left)
+#             res = max(res, area)
+
+#             if (height[left] <= height[right]):
+#                 left += 1
+#             elif (height[left] > height[right]):
+#                 right -= 1
+
+#         return res
+
+
+# print(
+#     Solution.maxArea("", [1, 8, 6, 2, 5, 4, 8, 3, 7])
+# )
+
+
+# class Solution:
+#     def threeSum(self, nums: List[int]) -> List[List[int]]:
+#         nums.sort()
+#         res = []
+
+#         for i, n in enumerate(nums):
+#             if i > 0 and n == nums[i - 1]:
+#                 continue
+
+#             left, right = i + 1, len(nums) - 1
+
+#             while left < right:
+#                 threeSum = n + nums[left] + nums[right]
+
+#                 if (threeSum < 0):
+#                     left += 1
+
+#                 elif (threeSum > 0):
+#                     right -= 1
+
+#                 else:
+#                     res.append([n, nums[left], nums[right]])
+#                     left += 1
+
+#                     while left < right and nums[left] == nums[left - 1]:
+#                         left += 1
+
+#         return res
+
+
+# print(
+#     Solution.threeSum("", [-1, 0, 1, 2, -1, -4])
+# )
 
 # class Solution:
 #     def twoSum(self, numbers: List[int], target: int) -> List[int]:

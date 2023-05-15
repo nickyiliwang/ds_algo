@@ -18,17 +18,19 @@ def characterReplacement(s, k):
 
 
 def characterReplacement(s, k):
-    # to count the repeating numbers
     counter = Counter()
-    # window
     left = 0
     res = 0
     for right in range(len(s)):
         counter[s[right]] += 1
+        # if > k, out of bounds, while loop moving the left pointer to keep finding potential results
         while (right - left + 1) - max(counter.values()) > k:
             counter[s[left]] -= 1
             left += 1
 
+        # we want the (length of the window (hence + 1), which will get us the remaining numbers that we need to replace
+        #  (# to replace) - max repeating number) <= k , which is implied here
+        # Meaning it's a potential result
         res = max(res, right - left + 1)
 
     return res
@@ -38,7 +40,6 @@ s = "AABABBA"
 k = 1
 characterReplacement(s, k)
 
-# # we want the len of the window - max repeating number <= k
 # # during any window we want to
 # # WIP my solution
 

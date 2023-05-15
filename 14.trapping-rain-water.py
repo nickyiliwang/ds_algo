@@ -1,20 +1,20 @@
 # comparing leftMax and rightMax to decide which pointer to move:
 
 def trap(height):
-    l, r = 0, len(height) - 1
+    left, right = 0, len(height) - 1
     left_max, right_max, res = 0, 0, 0
 
-    while l < r:
-        left_max = max(left_max, height[l])
-        right_max = max(right_max, height[r])
+    while left < right:
+        left_max = max(left_max, height[left])
+        right_max = max(right_max, height[right])
 
         if left_max < right_max:
-            res += left_max - height[l]
-            l += 1
+            res += left_max - height[left]
+            left += 1
         else:
-            res += right_max - height[r]
-            r -= 1
-    return res
+            res += right_max - height[right]
+            right -= 1
+    return res 
 
 
 trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1])

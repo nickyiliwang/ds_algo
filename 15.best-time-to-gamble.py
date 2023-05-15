@@ -1,6 +1,4 @@
 def maxProfit(prices):
-    if not prices:
-        return 0
     res = 0
     left, right = 0, 1
 

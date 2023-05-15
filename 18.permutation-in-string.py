@@ -1,59 +1,59 @@
 from collections import Counter
 
-# c2 starts empty
+
 def checkInclusion(s1, s2):
-    if len(s1) > len(s2):
-        return False
-
-    c1 = Counter(s1)
+    need, have = Counter(s1), Counter()
     window = len(s1)
-
-    c2 = Counter()
 
     for i in range(len(s2)):
         if i < window:
-            c2[s2[i]] += 1
+            have[s2[i]] += 1
         else:
-            c2[s2[i - window]] -= 1
-            c2[s2[i]] += 1
+            have[s2[i - window]] -= 1
+            have[s2[i]] += 1
 
-        if c1 == c2:
+        if need == have:
             return True
 
     return False
 
+# Explanation
+# Key: c2[s2[i - window]] -= 1
+# current index - window length will result in the left pointer index
 
-# alternative solution that doesn't require the initial loops
-# s2 will start with the length of s1, which is initial window
-def checkInclusion(s1, s2):
-    if len(s1) > len(s2):
-        return False
 
-    c1 = Counter(s1)
-    window = len(s1)
+# # alternative solution that doesn't require the initial loops
+# # s2 will start with the length of s1, which is initial window
+# def checkInclusion(s1, s2):
+#     if len(s1) > len(s2):
+#         return False
 
-    c2 = Counter(s2[:window])
+#     c1 = Counter(s1)
+#     window = len(s1)
 
-    if c1 == c2:
-        return True
+#     c2 = Counter(s2[:window])
 
-    for i in range(len(s2)):
-        # Gets the left most val to - 1 to counter
-        c2[s2[i]] -= 1
+#     if c1 == c2:
+#         return True
 
-        if i < len(s2) - window:
-            # Then add a new char from s2
-            c2[s2[i + window]] += 1
+#     for i in range(len(s2)):
+#         # Gets the left most val to - 1 to counter
+#         c2[s2[i]] -= 1
 
-        if c1 == c2:
-            return True
+#         if i < len(s2) - window:
+#             # Then add a new char from s2
+#             c2[s2[i + window]] += 1
 
-    return False
+#         if c1 == c2:
+#             return True
 
-s1 = "ba"
-s2 = "eidbaooo"
+#     return False
 
-print(checkInclusion(s1, s2))
+
+# s1 = "ba"
+# s2 = "eidbaooo"
+
+# print(checkInclusion(s1, s2))
 
 # def checkInclusion(s1, s2):
 #     # target(s1) cannot be longer than query(s2)
@@ -185,3 +185,34 @@ print(checkInclusion(s1, s2))
 # s2 = "eidbaooo"
 
 # checkInclusion(s1, s2)
+
+
+# attempt may 15th 2023
+# class Solution:
+#     def checkInclusion(self, s1: str, s2: str) -> bool:
+#         validator = set(s1)
+#         count1,  = Counter()
+#         left = 0
+
+#         for s in s1:
+#             count1[s] += 1
+
+#         for right in range(len(s2)):
+#             count2 = Counter()
+#             while s2[right] in validator:
+#                 left = right
+
+#             while s2[right] in validator:
+#                 count2[s2[right]] += 1
+
+
+#         # for s in s2:
+#         #     if s in validator:
+#         #         count2[s] += 1
+
+#         #     if count1 == count2:
+#         #         return True
+#         return False
+
+
+# print(Solution.checkInclusion("", "ab", "eidbaooo"))
