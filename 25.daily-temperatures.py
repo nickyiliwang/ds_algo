@@ -5,8 +5,8 @@ def solution(temperatures):
     res = [0] * len(temperatures)
     stack = deque()
 
-    for i, t in enumerate(temperatures):
-        while stack and temperatures[stack[-1]] < t:
+    for i, temp in enumerate(temperatures):
+        while stack and temperatures[stack[-1]] < temp:
             position = stack.pop()
             res[position] = i - position
         stack.append(i)
@@ -22,9 +22,9 @@ def solution(temperatures):
     res = [0] * len(temperatures)
     stack = deque()
 
-    for i, t in enumerate(temperatures):
+    for i, temp in enumerate(temperatures):
         # Only when we find a higher temperature than the current highest temperature, then we can start popping every value in the stack and updating the position with the day difference
-        while stack and temperatures[stack[-1]] < t:
+        while stack and temperatures[stack[-1]] < temp:
             position = stack.pop()
             # update each day's position with the day difference
             res[position] = i - position
@@ -40,7 +40,7 @@ solution(temperatures)
 # # blind brute force
 # def solution(temperatures):
 #     res = []
-#     for i, t in enumerate(temperatures):
+#     for i, temp in enumerate(temperatures):
 #         # we start from the next number to the end of the list
 #         startFrom = temperatures[i + 1:len(temperatures)]
 
@@ -48,7 +48,7 @@ solution(temperatures)
 #         # O(n^2) loop to compare every number
 #         for j, d in enumerate(startFrom):
 #             # if the next day is higher temp than prev
-#             if (d > t):
+#             if (d > temp):
 #                 # append all temperature position higher than i
 #                 # j + 1 is the next number since i
 #                 temporary.append(j + 1)
@@ -60,3 +60,19 @@ solution(temperatures)
 #             res.append(0)
 #     print(res)
 #     return res
+
+# Attempt May 17th 2023
+# class Solution:
+#     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+#         if not temperatures:
+#             return []
+
+#         res = []
+#         for i, temp in enumerate(temperatures):
+#             left = i
+#             right = i + 1
+#             while right < len(temperatures):
+#                 if temperatures[left] < temperatures[right]:
+#                     right - left
+#                     break
+#                 right += 1

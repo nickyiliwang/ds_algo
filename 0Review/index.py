@@ -1,10 +1,163 @@
 from typing import *
 from collections import *
 
-class Solution:
-    def minWindow(self, s: str, t: str) -> str:
-        need, have = Counter(), Counter()
 
+# Mono decreasing stack
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        res = [0] * len(temperatures)
+        stack = []
+        for i, temp in enumerate(temperatures):
+            while stack and temperatures[stack[-1]] < temp:
+                position = stack.pop()
+                res[position] = i - position
+            stack.append(i)
+        return res
+
+
+print(
+    Solution.dailyTemperatures("", [73, 74, 75, 71, 69, 72, 76, 73])
+)
+
+# class Solution:
+#     def generateParenthesis(self, n: int) -> List[str]:
+#         res = []
+
+#         def backtracking(open, close, variation):
+#             if open == close == n:
+#                 res.append(variation)
+#                 return
+
+#             if open < n:
+#                 backtracking(open + 1, close, variation + "(")
+
+#             if close < open:
+#                 backtracking(open, close + 1, variation + ")")
+
+#         backtracking(0, 0, "")
+
+#         return res
+
+
+# print(Solution.generateParenthesis("", 3))
+
+# class Solution:
+#     def evalRPN(self, tokens: List[str]) -> int:
+#         stack = []
+#         for char in tokens:
+#             if char == "+":
+#                 right = stack.pop()
+#                 left = stack.pop()
+#                 stack.append(left + right)
+#             elif char == "-":
+#                 right = stack.pop()
+#                 left = stack.pop()
+#                 stack.append(left - right)
+#             elif char == "*":
+#                 right = stack.pop()
+#                 left = stack.pop()
+#                 stack.append(left * right)
+#             elif char == "/":
+#                 right = stack.pop()
+#                 left = stack.pop()
+#                 stack.append(int(left / right))
+#             else:
+#                 stack.append(int(char))
+
+#         return stack[0]
+
+
+# Input: tokens = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"]
+# Output: 22
+# Explanation: ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
+# = ((10 * (6 / (12 * -11))) + 17) + 5
+# = ((10 * (6 / -132)) + 17) + 5
+# = ((10 * 0) + 17) + 5
+# = (0 + 17) + 5
+# = 17 + 5
+# = 22
+# print(
+#     Solution.evalRPN("", ["10", "6", "9", "3", "+", "-11",
+#                      "*", "/", "*", "17", "+", "5", "+"])
+# )
+
+
+# class MinStack:
+
+#     def __init__(self):
+#         self.stack = []
+#         self.minStack = []
+
+#     def push(self, val: int) -> None:
+#         self.stack.append(val)
+#         if not self.minStack:
+#             self.minStack.append(val)
+#         else:
+#             self.minStack.append(min(self.minStack[-1], val))
+
+#     def pop(self) -> None:
+#         self.stack.pop()
+#         self.minStack.pop()
+
+#     def top(self) -> int:
+#         if not self.stack:
+#             return []
+
+#         return self.stack[-1]
+
+#     def getMin(self) -> int:
+#         return self.minStack[-1]
+
+
+# class Solution:
+#     def isValid(self, s: str) -> bool:
+#         stack = []
+
+#         validator = {
+#             ")": "(",
+#             "]": "[",
+#             "}": "{"
+#         }
+
+#         for p in s:
+#             if p in validator:
+#                 if not stack or stack.pop() != validator[p]:
+#                     return False
+#             else:
+#                 stack.append(p)
+
+#         if len(stack) > 0:
+#             return False
+
+#         return True
+
+
+# print(Solution.isValid("", "()"))
+
+
+# class Solution:
+#     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+#         res, left, q = [], 0, deque()
+
+#         for right, n in enumerate(nums):
+#             while q and nums[q[-1]] <= n:
+#                 q.pop()
+
+#             q.append(right)
+
+#             if left > q[0]:
+#                 q.popleft()
+
+#             if right - left + 1 == k:
+#                 res.append(nums[q[0]])
+#                 left += 1
+
+#         return res
+
+
+# print(
+#     Solution.maxSlidingWindow("", [1, 3, -1, -3, 5, 3, 6, 7], 3)
+# )
 
 # class Solution:
 #     def checkInclusion(self, s1: str, s2: str) -> bool:
@@ -20,7 +173,7 @@ class Solution:
 
 #             if count1 == count2:
 #                 return True
-        
+
 #         return False
 
 
