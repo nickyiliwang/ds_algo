@@ -3,7 +3,7 @@ from typing import List
 
 def searchMatrix(matrix: List[List[int]], target: int) -> bool:
     left, right = 0, len(matrix) - 1
-    res = []
+    nums = []
 
     while left <= right:
         mid = (left + right) // 2
@@ -13,17 +13,17 @@ def searchMatrix(matrix: List[List[int]], target: int) -> bool:
         elif matrix[mid][-1] < target:
             left = mid + 1
         else:
-            res = matrix[mid]
+            nums = matrix[mid]
             break
 
-    left, right = 0, len(res) - 1
+    left, right = 0, len(nums) - 1
 
     while left <= right:
         mid = (left + right) // 2
 
-        if res[mid] > target:
+        if nums[mid] > target:
             right = mid - 1
-        elif res[mid] < target:
+        elif nums[mid] < target:
             left = mid + 1
         else:
             return True
@@ -43,7 +43,7 @@ print(searchMatrix([[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], 3))
 #         return 0
 
 #     # binary search with pointers
-#     res = False
+#     nums = False
 #     index = getIndex(matrix)
 #     list = matrix[index]
 #     left = 0
@@ -51,13 +51,13 @@ print(searchMatrix([[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], 3))
 #     while left <= right:
 #         middle = (left + right) // 2
 #         if (list[middle] == target):
-#             res = True
+#             nums = True
 #         if (list[middle] < target):
 #             left += 1
 #         else:
 #             right -= 1
-#     print(res)
-#     return res
+#     print(nums)
+#     return nums
 
 # matrix = [[1], [3]]
 # target = 3

@@ -1,23 +1,75 @@
 from typing import *
 from collections import *
 
+# class Solution:
+#     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+#         left, right = 0, len(matrix) - 1
+#         numbers = []
 
-# Mono decreasing stack
-class Solution:
-    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
-        res = [0] * len(temperatures)
-        stack = []
-        for i, temp in enumerate(temperatures):
-            while stack and temperatures[stack[-1]] < temp:
-                position = stack.pop()
-                res[position] = i - position
-            stack.append(i)
-        return res
+#         while left <= right:
+#             mid = (left + right) // 2
+
+#             if matrix[mid][0] > target:
+#                 right = mid - 1
+#             elif matrix[mid][-1] < target:
+#                 left = mid + 1
+#             else:
+#                 numbers = matrix[mid]
+#                 break
+
+#         left, right = 0, len(numbers) - 1
+
+#         while left <= right:
+#             mid = (left + right) // 2
+#             if numbers[mid] < target:
+#                 left = mid + 1
+#             elif numbers[mid] > target:
+#                 right = mid - 1
+#             else:
+#                 return True
+
+#         return False
 
 
-print(
-    Solution.dailyTemperatures("", [73, 74, 75, 71, 69, 72, 76, 73])
-)
+# print(Solution.searchMatrix(""), [[1,3,5,7],[10,11,16,20],[23,30,34,60]], 3)
+
+
+# class Solution:
+#     def search(self, nums: List[int], target: int) -> int:
+#         left = 0
+#         right = len(nums) - 1
+
+#         while left <= right:
+#             middle = (left + right) // 2
+
+#             if nums[middle] < target:
+#                 left = middle + 1
+#             elif nums[middle] > target:
+#                 right = middle - 1
+#             elif nums[middle] == target:
+#                 return middle
+
+#         return -1
+
+
+# print(Solution.search("", [-1, 0, 3, 5, 9, 12], 9))
+
+# # Mono decreasing stack
+# class Solution:
+#     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+#         res = [0] * len(temperatures)
+#         stack = []
+#         for i, temp in enumerate(temperatures):
+#             while stack and temperatures[stack[-1]] < temp:
+#                 position = stack.pop()
+#                 res[position] = i - position
+#             stack.append(i)
+#         return res
+
+
+# print(
+#     Solution.dailyTemperatures("", [73, 74, 75, 71, 69, 72, 76, 73])
+# )
 
 # class Solution:
 #     def generateParenthesis(self, n: int) -> List[str]:

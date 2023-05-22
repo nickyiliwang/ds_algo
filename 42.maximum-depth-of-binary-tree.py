@@ -49,6 +49,7 @@ def maxDepth(root: Optional[TreeNode]) -> int:
 #         level += 1
 #     return level
 
+
 tree = Tree()
 tree.insert(3)
 tree.insert(4)
