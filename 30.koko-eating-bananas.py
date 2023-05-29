@@ -18,6 +18,7 @@ def minEatingSpeed(piles: List[int], h: int) -> int:
 import math
 from typing import List
 
+# [3,6,7,11], h = 8
 
 # O(n log n)
 def minEatingSpeed(piles: List[int], h: int) -> int:

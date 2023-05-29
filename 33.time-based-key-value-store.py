@@ -1,32 +1,60 @@
+from collections import *
+
+
 class TimeMap:
+
     def __init__(self):
-        self.hashMap = {}  # {key: [[value, timestamp]]}
+        self.values = defaultdict(list)
 
     def set(self, key: str, value: str, timestamp: int) -> None:
-        self.hashMap[key] = self.hashMap.get(key, [])
-        self.hashMap[key].append([value, timestamp])
-        return
+        self.values[key].append([timestamp, value])
 
     def get(self, key: str, timestamp: int) -> str:
         res = ""
-        database = self.hashMap.get(key, [])
-        left, right = 0, len(database) - 1
-        # binary search for BigO(log n)
+        left, right = 0, len(self.values[key]) - 1
         while left <= right:
-            middle = (left + right) // 2
-            if database[middle][1] <= timestamp:
-                res = database[middle][0]
-                left = middle + 1
-            elif database[middle][1] > timestamp:
-                right = middle - 1
+            mid = (left + right) // 2
+
+            if self.values[key][mid][0] < timestamp:
+                left = mid + 1
+                res = self.values[key][mid][1]
+            elif self.values[key][mid][0] > timestamp:
+                right = mid - 1
+            else:
+                res = self.values[key][mid][1]
+                break
+        print("res", res)
         return res
+
+
+# class TimeMap:
+#     def __init__(self):
+#         self.hashMap = {}  # {key: [[value, timestamp]]}
+
+#     def set(self, key: str, value: str, timestamp: int) -> None:
+#         self.hashMap[key] = self.hashMap.get(key, [])
+#         self.hashMap[key].append([value, timestamp])
+#         return
+
+#     def get(self, key: str, timestamp: int) -> str:
+#         res = ""
+#         database = self.hashMap.get(key, [])
+#         left, right = 0, len(database) - 1
+#         # binary search for BigO(log n)
+#         while left <= right:
+#             middle = (left + right) // 2
+#             if database[middle][1] <= timestamp:
+#                 res = database[middle][0]
+#                 left = middle + 1
+#             elif database[middle][1] > timestamp:
+#                 right = middle - 1
+#         return res
 
 
 # Your TimeMap object will be instantiated and called as such:
 # obj = TimeMap()
 # obj.set(key,value,timestamp)
 # param_2 = obj.get(key,timestamp)
-
 obj = TimeMap()
 print(obj.set("love", "high", 10))
 print(obj.set("love", "low", 20))

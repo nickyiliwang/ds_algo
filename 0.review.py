@@ -1,5 +1,293 @@
 from typing import *
 from collections import *
+from math import *
+
+
+# class Solution:
+#     def findMedian(self, nums):
+#         print(nums)
+#         mid = (0 + len(nums) - 1) // 2
+
+#         if len(nums) % 2 == 0:
+#             return float((nums[mid] + nums[mid + 1]) / 2)
+
+#         else:
+#             return nums[mid]
+
+#     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+#         if not nums1:
+#             return Solution.findMedian("", nums2)
+
+#         if not nums2:
+#             return Solution.findMedian("", nums1)
+
+#         for n in nums2:
+#             left, right = 0, len(nums1) - 1
+
+#             while left <= right:
+#                 mid = (left + right) // 2
+#                 if nums1[mid] <= n < nums1[mid + 1]:
+#                     nums1.insert(mid + 1, n)
+#                     break
+#                 elif nums1[mid] > n:
+#                     right = mid - 1
+#                 elif nums1[mid] < n:
+#                     left = mid + 1
+
+#         return Solution.findMedian("", nums1)
+
+# from typing import List
+
+
+# class Solution:
+#     def findMedian(self, nums):
+#         print(nums)
+#         mid = (0 + len(nums) - 1) // 2
+
+#         if len(nums) % 2 == 0:
+#             return float((nums[mid] + nums[mid + 1]) / 2)
+#         else:
+#             return nums[mid]
+
+#     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+#         if not nums1:
+#             return Solution.findMedian("", nums2)
+
+#         if not nums2:
+#             return Solution.findMedian("", nums1)
+
+#         for n in nums2:
+#             left, right = 0, len(nums1) - 1
+
+#             while left <= right:
+#                 mid = (left + right) // 2
+
+#                 if nums1[mid] <= n < nums1[mid + 1] if mid + 1 < len(nums1) else float('inf'):
+#                     nums1.insert(mid + 1, n)
+#                     break
+#                 elif nums1[mid] > n:
+#                     right = mid - 1
+#                 else:
+#                     left = mid + 1
+
+#         print(nums1)
+
+#         return Solution.findMedian("", nums1)
+
+
+# print(
+#     Solution.findMedianSortedArrays("", [3], [-2, -1])
+# )
+
+
+# class TimeMap:
+
+#     def __init__(self):
+#         self.values = defaultdict(list)
+
+#     def set(self, key: str, value: str, timestamp: int) -> None:
+#         self.values[key].append([timestamp, value])
+
+#     def get(self, key: str, timestamp: int) -> str:
+#         res = ""
+#         left, right = 0, len(self.values[key]) - 1
+#         while left <= right:
+#             mid = (left + right) // 2
+
+#             if self.values[key][mid][0] < timestamp:
+#                 left = mid + 1
+#                 res = self.values[key][mid][1]
+#             elif self.values[key][mid][0] > timestamp:
+#                 right = mid - 1
+#             else:
+#                 res = self.values[key][mid][1]
+#                 break
+#         print("res", res)
+#         return res
+
+
+# timeMap = TimeMap()
+# # store the key "foo" and value "bar" along with timestamp = 1.
+# timeMap.set("foo", "bar", 1)
+# timeMap.get("foo", 1)         # return "bar"
+# timeMap.get("foo", 3)         # return "bar"
+# # store the key "foo" and value "bar2" along with timestamp = 4.
+# timeMap.set("foo", "bar2", 4)
+# timeMap.get("foo", 4)         # return "bar2"
+# timeMap.get("foo", 5)         # return "bar2"
+
+
+# Input
+# ["TimeMap", "set", "get", "get", "set", "get", "get"]
+# [[], ["foo", "bar", 1], ["foo", 1], ["foo", 3], ["foo", "bar2", 4], ["foo", 4], ["foo", 5]]
+# Output
+# [null, null, "bar", "bar", null, "bar2", "bar2"]
+
+# Explanation
+# TimeMap timeMap = new TimeMap();
+
+# class Solution:
+#     def search(self, nums: List[int], target: int) -> int:
+#         left, right = 0, len(nums) - 1
+
+#         while left <= right:
+#             mid = (left + right) // 2
+
+#             if nums[mid] == target:
+#                 return mid
+
+#             if nums[left] <= nums[mid]:
+#                 if nums[left] <= target <= nums[mid]:
+#                     right = mid - 1
+#                 else:
+#                     left = mid + 1
+
+#             else:
+#                 if nums[mid] <= target <= nums[right]:
+#                     left = mid + 1
+#                 else:
+#                     right = mid - 1
+
+#         return -1
+
+# print(Solution.search("", [4, 5, 6, 7, 0, 1, 2], 0))
+
+# class Solution:
+#     def findMin(self, nums: List[int]) -> int:
+#         left, right = 0, len(nums) - 1
+#         res = nums[0]
+
+#         while left <= right:
+#             mid = (left + right) // 2
+#             res = min(res, nums[mid])
+
+#             if nums[mid] > nums[right]:
+#                 left = mid + 1
+#             else:
+#                 right = mid - 1
+#         return res
+
+# print(
+#     Solution.findMin("", [3, 4, 5, 1, 2])
+# )
+
+# class Solution:
+#     def minEatingSpeed(self, piles: List[int], h: int) -> int:
+#         left, right = 1, max(piles)
+#         res = max(piles)
+
+#         while left <= right:
+#             totalHour = 0
+#             mid = (left + right) // 2
+
+#             for banana in piles:
+#                 totalHour += ceil(banana / mid)
+
+#             if totalHour <= h:
+#                 res = min(res, mid)
+#                 right = mid - 1
+#             elif totalHour > h:
+#                 left = mid + 1
+
+#         return res
+
+# print(
+#     Solution.minEatingSpeed("", [3,6,7,11], 8)
+# )
+
+# # Monotonic Decreasing Stack
+
+# def largestRectangleArea(heights):
+#     # The 0 will clear the stack (because 0 > -1) after the heights are iterated
+#     heights.append(0)
+#     stack = [-1]
+#     res = 0
+
+#     for i, curr in enumerate(heights):
+#         # At each iteration, it checks if the current heights is less than the heights at the top of the stack.
+#         while heights[stack[-1]] > curr:
+#             # If it is, it pops the heights at the top of the stack and calculates the area of the rectangle represented by that heights and the width of the rectangle (which is the difference between the current index and the index at the top of the stack).
+#             h = heights[stack.pop()]
+
+#             # By subtracting 1 from the difference (i - stack[-1]), we exclude the current element (curr) from the width calculation, as the width is determined by the elements to the left of the current element.
+
+#             # [2,1,5,6,2,3]
+#             print("height", h, "width", i, stack[-1])
+#             # height 6 width 4 2
+#             # height 5 width 4 1
+#             w = i - stack[-1] - 1
+#             res = max(res, h * w)
+
+#         stack.append(i)
+
+#     return res
+
+# largestRectangleArea([2, 1, 5, 6, 2, 3])
+
+# class Solution(object):
+#     def min_window(self, s, t):
+#         """
+#         :type s: str
+#         :type t: str
+#         :rtype: str
+#         """
+#         # Struggled with this problem for a long while.
+#         # Idea: Two pointers: moving end forward to find a valid window,
+#         #                     moving start forward to find a smaller window
+#         #                     counter and hash_map to determine if the window is valid or not
+
+#         # Count the frequencies for chars in t
+#         hash_map = dict()
+#         for c in t:
+#             if c in hash_map:
+#                 hash_map[c] += 1
+#             else:
+#                 hash_map[c] = 1
+
+#         start, end = 0, 0
+
+#         # If the minimal length doesn't change, it means there's no valid window
+#         min_window_length = len(s) + 1
+
+#         # Start point of the minimal window
+#         min_window_start = 0
+
+#         # Works as a counter of how many chars still need to be included in a window
+#         num_of_chars_to_be_included = len(t)
+
+#         while end < len(s):
+#             # If the current char is desired
+#             if s[end] in hash_map:
+#                 # Then we decreased the counter, if this char is a "must-have" now, in a sense of critical value
+#                 if hash_map[s[end]] > 0:
+#                     num_of_chars_to_be_included -= 1
+#                 # And we decrease the hash_map value
+#                 hash_map[s[end]] -= 1
+
+#             # If the current window has all the desired chars
+#             while num_of_chars_to_be_included == 0:
+#                 # See if this window is smaller
+#                 if end - start + 1 < min_window_length:
+#                     min_window_length = end - start + 1
+#                     min_window_start = start
+
+#                 # if s[start] is desired, we need to update the hash_map value and the counter
+#                 if s[start] in hash_map:
+#                     hash_map[s[start]] += 1
+#                     # Still, update the counter only if the current char is "critical"
+#                     if hash_map[s[start]] > 0:
+#                         num_of_chars_to_be_included += 1
+
+#                 # Move start forward to find a smaller window
+#                 start += 1
+
+#             # Move end forward to find another valid window
+#             end += 1
+
+#         if min_window_length == len(s) + 1:
+#             return ""
+#         else:
+#             return s[min_window_start:min_window_start + min_window_length]
 
 # class Solution:
 #     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
@@ -30,9 +318,7 @@ from collections import *
 
 #         return False
 
-
 # print(Solution.searchMatrix(""), [[1,3,5,7],[10,11,16,20],[23,30,34,60]], 3)
-
 
 # class Solution:
 #     def search(self, nums: List[int], target: int) -> int:
@@ -51,7 +337,6 @@ from collections import *
 
 #         return -1
 
-
 # print(Solution.search("", [-1, 0, 3, 5, 9, 12], 9))
 
 # # Mono decreasing stack
@@ -65,7 +350,6 @@ from collections import *
 #                 res[position] = i - position
 #             stack.append(i)
 #         return res
-
 
 # print(
 #     Solution.dailyTemperatures("", [73, 74, 75, 71, 69, 72, 76, 73])
@@ -89,7 +373,6 @@ from collections import *
 #         backtracking(0, 0, "")
 
 #         return res
-
 
 # print(Solution.generateParenthesis("", 3))
 
@@ -118,7 +401,6 @@ from collections import *
 
 #         return stack[0]
 
-
 # Input: tokens = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"]
 # Output: 22
 # Explanation: ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
@@ -132,7 +414,6 @@ from collections import *
 #     Solution.evalRPN("", ["10", "6", "9", "3", "+", "-11",
 #                      "*", "/", "*", "17", "+", "5", "+"])
 # )
-
 
 # class MinStack:
 
@@ -160,7 +441,6 @@ from collections import *
 #     def getMin(self) -> int:
 #         return self.minStack[-1]
 
-
 # class Solution:
 #     def isValid(self, s: str) -> bool:
 #         stack = []
@@ -183,9 +463,7 @@ from collections import *
 
 #         return True
 
-
 # print(Solution.isValid("", "()"))
-
 
 # class Solution:
 #     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
@@ -205,7 +483,6 @@ from collections import *
 #                 left += 1
 
 #         return res
-
 
 # print(
 #     Solution.maxSlidingWindow("", [1, 3, -1, -3, 5, 3, 6, 7], 3)
@@ -228,7 +505,6 @@ from collections import *
 
 #         return False
 
-
 # print(
 #     Solution.checkInclusion("", "ab", "eidbaooo")
 # )
@@ -247,9 +523,7 @@ from collections import *
 #             res = max(res, right - left + 1)
 #             return res
 
-
 # print(Solution.characterReplacement("", "ABAB", 2))
-
 
 # class Solution:
 #     def lengthOfLongestSubstring(self, s: str) -> int:
@@ -265,7 +539,6 @@ from collections import *
 #             res = max(res, len(validator))
 
 #         return res
-
 
 # print(
 #     Solution.lengthOfLongestSubstring("", "abcabcbb")
@@ -287,7 +560,6 @@ from collections import *
 
 # print(Solution.maxProfit("", [7,1,5,3,6,4]))
 
-
 # class Solution:
 #     def trap(self, height: List[int]) -> int:
 #         left, right = 0, len(height) - 1
@@ -306,7 +578,6 @@ from collections import *
 #                 right -= 1
 
 #         return res
-
 
 # print(Solution.trap("", [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
 
@@ -339,7 +610,6 @@ from collections import *
 
 #         print(maxLefts, maxRights)
 
-
 # print(Solution.trap("", [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
 
 # class Solution:
@@ -358,11 +628,9 @@ from collections import *
 
 #         return res
 
-
 # print(
 #     Solution.maxArea("", [1, 8, 6, 2, 5, 4, 8, 3, 7])
 # )
-
 
 # class Solution:
 #     def threeSum(self, nums: List[int]) -> List[List[int]]:
@@ -393,7 +661,6 @@ from collections import *
 
 #         return res
 
-
 # print(
 #     Solution.threeSum("", [-1, 0, 1, 2, -1, -4])
 # )
@@ -409,7 +676,6 @@ from collections import *
 #                 right -= 1
 #             else:
 #                 return [left + 1, right + 1]
-
 
 # print(Solution.twoSum("", [2, 7, 11, 15], 9))
 
@@ -432,7 +698,6 @@ from collections import *
 
 #         return True
 
-
 # print(
 #     Solution.isPalindrome("", "A man, a plan, a canal: Panama")
 # )
@@ -449,7 +714,6 @@ from collections import *
 #                     length += 1
 #                 res = max(res, length)
 #         return res
-
 
 # print(
 #     Solution.longestConsecutive("", [100, 4, 200, 1, 3, 2])
@@ -481,12 +745,10 @@ from collections import *
 #             i = j+1+length
 #         return decoded
 
-
 # print(
 #     # Solution.encode("", ["lint", "code", "love", "you"])
 #     Solution.decode("", "10#asdfghjkli4#code4#love3#you")
 # )
-
 
 # class Solution:
 #     def isValidSudoku(self, board: List[List[str]]) -> bool:
@@ -506,7 +768,6 @@ from collections import *
 #                 squares[(r // 3, c // 3)].add(board[r][c])
 
 #         return True
-
 
 # board = [[".", ".", "4", ".", ".", ".", "6", "3", "."],
 #          [".", ".", ".", ".", ".", ".", ".", ".", "."],
@@ -544,11 +805,9 @@ from collections import *
 
 #         return res
 
-
 # print(
 #     Solution.productExceptSelf("", [1, 2, 3, 4])
 # )
-
 
 # class Solution:
 #     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
@@ -568,7 +827,6 @@ from collections import *
 #                 if (len(res) == k):
 #                     return res
 
-
 # print(
 #     Solution.topKFrequent("", [1, 1, 1, 2, 2, 3], 2)
 # )
@@ -586,7 +844,6 @@ from collections import *
 #             res[tuple(count)].append(s)
 #         return res.values()
 
-
 # print(
 #     Solution.groupAnagrams("", ["eat", "tea", "tan", "ate", "nat", "bat"])
 # )
@@ -600,7 +857,6 @@ from collections import *
 #             else:
 #                 hash[n] = 1
 #         return False
-
 
 # print(Solution.containsDuplicate("", [1, 2, 3, 1]))
 
@@ -621,7 +877,6 @@ from collections import *
 #         else:
 #             return False
 
-
 # print(
 #     Solution.isAnagram("", "anagram", "nagaram")
 # )
@@ -629,7 +884,6 @@ from collections import *
 # # Input: nums = [2,7,11,15], target = 9
 # # Output: [0,1]
 # # Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
-
 
 # def two_sum(arr, tar):
 #     hash = {}
@@ -640,6 +894,5 @@ from collections import *
 #         else:
 #             hash[n] = i
 #     return res
-
 
 # print(two_sum([2, 7, 11, 15], 9))

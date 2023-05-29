@@ -4,9 +4,6 @@ from collections import *
 
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        if t == "":
-            return ""
-
         left = 0
         needCount, haveCount = Counter(t), Counter()
         needLen, haveLen = len(t), 0
@@ -30,6 +27,45 @@ class Solution:
                 left += 1
 
         return res
+
+# Explanation
+
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        left = 0
+        needCount, haveCount = Counter(t), Counter()
+        needLen, haveLen = len(t), 0
+        # Need the resLen large so the first long result length we find will be smaller and replace it
+        res, resLen = "", float("inf")
+
+        # Extend window
+        for right in range(len(s)):
+
+            haveCount[s[right]] += 1
+
+            # why not exact but instead: "<="
+            # We need to increment the len 1 by 1
+            if haveCount[s[right]] <= needCount[s[right]]:
+                haveLen += 1
+
+            # window found !
+            while haveLen == needLen:
+                # Found a result with shorter length
+                if right - left + 1 < resLen:
+                    res = s[left: right + 1]
+                    resLen = right - left + 1
+
+                # Shrinking window and updating
+                haveCount[s[left]] -= 1
+                # we don't care if have count of the left window has more than we need
+                if haveCount[s[left]] < needCount[s[left]]:
+                    haveLen -= 1
+
+                left += 1
+
+        return res
+
 
 # Method 2
 

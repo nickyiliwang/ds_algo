@@ -16,7 +16,7 @@ def largestRectangleArea(heights):
 
 # Monotonic Decreasing Stack
 def largestRectangleArea(heights):
-    # The heights of 0 is appended to the end of the heights list to handle the case where the stack is not empty after the iterations.
+    # The 0 will clear the stack (because 0 > -1) after the heights are iterated
     heights.append(0)
     stack = [-1]
     res = 0
@@ -27,7 +27,11 @@ def largestRectangleArea(heights):
             # If it is, it pops the heights at the top of the stack and calculates the area of the rectangle represented by that heights and the width of the rectangle (which is the difference between the current index and the index at the top of the stack).
             h = heights[stack.pop()]
 
+            # By subtracting 1 from the difference (i - stack[-1]), we exclude the current element (curr) from the width calculation, as the width is determined by the elements to the left of the current element.
+            
+            # [2,1,5,6,2,3]
             w = i - stack[-1] - 1
+            print("height", h, "width", w)
             res = max(res, h * w)
 
         stack.append(i)
@@ -35,7 +39,7 @@ def largestRectangleArea(heights):
     return res
 
 # how come there's always one element left in the stack at the end of the function loop ?
-# The reason there is always one element left in the stack at the end of the function loop is because the code always appends the current index (i) to the stack, regardless of whether it is smaller or larger than the previous height. The stack will always have at least one element in it, which corresponds to the index of the last height in the list.
+# Because the code always appends the current index (i) to the stack, regardless of whether it is smaller or larger than the previous height. The stack will always have at least one element in it, which corresponds to the index of the last height in the list.
 
 # Additionally, the while loop continues to pop elements off the stack as long as the current height is smaller than the previous height on top of the stack. Even if the current height is larger than the previous height, it will still be appended to the stack, leaving one element left in the stack at the end of the function loop.
 
