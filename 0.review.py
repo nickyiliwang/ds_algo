@@ -1,6 +1,98 @@
 from typing import *
 from collections import *
 from math import *
+from ds_types.linked_list import LinkedList, ListNode
+
+
+# class Solution:
+#     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+#         list1 = []
+#         list2 = []
+
+#         while l1:
+#             list1.append(l1.val)
+#             l1 = l1.next
+
+#         while l2:
+#             list2.append(l2.val)
+#             l2 = l2.next
+
+#         str1 = ""
+#         str2 = ""
+
+#         for n in reversed(list1):
+#             str1 = str1 + str(n)
+
+#         for n in reversed(list2):
+#             str2 = str2 + str(n)
+
+#         sum = int(str1) + int(str2)
+
+#         resList = LinkedList()
+
+#         for n in reversed(str(sum)):
+#             resList.append(int(n))
+
+#         return resList.head.next
+
+
+# list1 = LinkedList()
+# list1.append(2)
+# list1.append(4)
+# list1.append(3)
+
+# list2 = LinkedList()
+# list2.append(5)
+# list2.append(6)
+# list2.append(4)
+
+# print(
+#     Solution.addTwoNumbers("", list1.head.next, list2.head.next)
+# )
+
+
+# class Solution:
+#     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+#         dummy = ListNode()
+#         tail = dummy
+
+#         while list1 and list2:
+#             if (list1.val < list2.val):
+#                 tail.next = list1
+#                 list1 = list1.next
+#             else:
+#                 tail.next = list2
+#                 list2 = list2.next
+
+#             tail = tail.next
+
+#         if list1:
+#             tail.next = list1
+
+#         if list2:
+#             tail.next = list2
+
+#         return dummy.next
+
+
+# list1 = LinkedList()
+# list1.append(1)
+# list1.append(2)
+# list1.append(4)
+
+# list2 = LinkedList()
+# list2.append(1)
+# list2.append(3)
+# list2.append(4)
+
+
+# def traverse(head):
+#     while head.next:
+#         print(head.val)
+#         head = head.next
+
+
+# traverse(Solution.mergeTwoLists("", list1.head, list2.head))
 
 
 # class Solution:

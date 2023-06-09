@@ -38,18 +38,18 @@ class Trie:
 
     def insert(self, word: str) -> None:
         curr = self.root
-        for ch in word:
-            if ch not in curr.children:
-                curr.children[ch] = TrieNode()
-            curr = curr.children[ch]
+        for char in word:
+            if char not in curr.children:
+                curr.children[char] = TrieNode()
+            curr = curr.children[char]
         curr.is_end_of_word = True
 
     def search(self, word: str) -> bool:
         curr = self.root
-        for ch in word:
-            if ch not in curr.children:
+        for char in word:
+            if char not in curr.children:
                 return False
-            curr = curr.children[ch]
+            curr = curr.children[char]
         return curr.is_end_of_word
 
     def find_words_with_prefix(self, prefix: str) -> List[str]:
