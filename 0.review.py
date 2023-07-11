@@ -3,6 +3,102 @@ from collections import *
 from math import *
 from ds_types.linked_list import LinkedList, ListNode
 
+class Solution(object):
+    def findDuplicate(self, nums):
+        res = None
+        validator = set()
+        for n in nums:
+            if n not in validator:
+                validator.add(n)
+            else:
+                res = n
+        return res
+print(
+    Solution.findDuplicate("", [1,3,4,2,2])
+)
+
+# curr = list1.head.next
+# while curr:
+#     print(curr.random_index)
+#     curr = curr.next
+
+# Solution.copyRandomList("", list1.head.next)
+
+
+# class Solution(object):
+#     def removeNthFromEnd(self, head, n):
+#         slow, fast = head, head
+        
+#         while fast and fast.next and n > 0:
+#             fast = fast.next
+#             n -= 1
+            
+#         while fast and fast.next:
+#             slow = slow.next
+#             fast = fast.next
+
+#         slow.next = slow.next.next
+        
+# list1 = LinkedList()
+# list1.append(1)
+# list1.append(2)
+# list1.append(4)
+# list1.append(1)
+# list1.append(3) # <= 2
+# list1.append(4)
+# Solution.removeNthFromEnd("", list1.head, 2)
+# list1.display()
+
+# class Solution(object):
+#     def reorderList(self, head):
+#         slow, fast = head, head
+#         while fast and fast.next:
+#             slow = slow.next
+#             fast = fast.next.next
+            
+#         prev, curr = None, slow
+#         while curr:
+#             temp = curr.next
+#             curr.next = prev
+#             prev = curr
+#             curr = temp
+            
+#         first, second = head, prev
+#         while second.next:
+#             temp = first.next
+#             first.next = second
+#             first = temp
+            
+#             temp = second.next
+#             second.next = first
+#             second = temp
+ 
+# list1 = LinkedList()
+# list1.append(1)
+# list1.append(2)
+# list1.append(3)
+# list1.append(4)
+# list1.append(5)
+
+
+# # current = list1.head
+# # while current is not None:
+# #     print(current.val)  # Do something with the value
+# #     current = current.next
+
+# # 1234 => 12 43 => 14 23
+
+# # Starting at 1 instead of 0 with list1.head.next
+# Solution.reorderList("", list1.head.next)
+
+# # while list1.head.next:
+# #     print(list1.head.next.val)
+# #     list1.head = list1.head.next
+
+# current = list1.head
+# while current is not None:
+#     print(current.val)  # Do something with the value
+#     current = current.next
 
 # class Solution:
 #     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:

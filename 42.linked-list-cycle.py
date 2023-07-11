@@ -35,17 +35,3 @@ def hasCycle(head: Optional[ListNode]) -> bool:
 #         curr = curr.next
 
 #     return False
-
-
-linked_list = LinkedList()
-repeatingNode = ListNode(5)
-# This is not the right way to simulate the data
-# we need Node 1 => Node 2 => Node 1
-linked_list.append(1)
-linked_list.append(2)
-linked_list.append(repeatingNode)
-linked_list.append(4)
-linked_list.append(repeatingNode)
-linked_list.display()
-
-print(hasCycle(linked_list.head))

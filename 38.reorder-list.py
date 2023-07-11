@@ -38,5 +38,12 @@ linked_list.append(1)
 linked_list.append(2)
 linked_list.append(3)
 linked_list.append(4)
-reorderList(linked_list.head)
-linked_list.display()
+
+# Starting at 1 instead of 0 with list1.head.next
+reorderList(linked_list.head.next)
+
+
+current = linked_list.head
+while current is not None:
+    print(current.val)  # Do something with the value
+    current = current.next

@@ -11,7 +11,12 @@ def removeNthFromEnd(head: Optional[ListNode], n: int) -> Optional[ListNode]:
     # slow will be the node we remove while fast hits None
     for i in range(n):
         fast = fast.next
-
+        
+    # Also works
+    # while fast and n > 0:
+    #     fast = fast.next
+    #     n -= 1
+        
     while fast:
         slow = slow.next
         fast = fast.next
