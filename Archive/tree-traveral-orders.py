@@ -25,7 +25,7 @@
 # In-order: 4 2 5 1 6 3 7
 # Post-order: 4 5 2 6 7 3 1
 
-
+# Breath first search
 # Pre-order traversal
 def preOrder(root):
     if root:
@@ -33,7 +33,7 @@ def preOrder(root):
         preOrder(root.left)
         preOrder(root.right)
 
-
+# Depth first search
 # In-order traversal
 def inOrder(root):
     if root:
@@ -41,7 +41,7 @@ def inOrder(root):
         print(root.val)
         inOrder(root.right)
 
-
+# Depth first search
 # Post-order traversal
 def postOrder(root):
     if root:
