@@ -2,42 +2,10 @@
 from typing import Optional
 from typing import List
 from collections import deque
-from ds_types.tree import Tree
-
-
-# Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
-
-
-# Example 1:
-
-
-# Input: root = [3,9,20,null,null,15,7]
-# Output: [[3],[9,20],[15,7]]
-# Example 2:
-
-# Input: root = [1]
-# Output: [[1]]
-# Example 3:
-
-# Input: root = []
-# Output: []
-
-
-# Constraints:
-
-# The number of nodes in the tree is in the range [0, 2000].
-# -1000 <= Node.val <= 1000
-
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+from ds_types.tree import Tree, TreeNode
 
 # DFS does not have the right order
-
 # T: O(n), M: O(n/2) -> O(n)
-
 
 def levelOrder(root: Optional[TreeNode]) -> List[List[int]]:
     if not root:
@@ -47,12 +15,8 @@ def levelOrder(root: Optional[TreeNode]) -> List[List[int]]:
     res = [[root.val]]
 
     while q:
-        # why is it outside the for loop?
-        # for every new iteration of the while loop, tmp is empty
         tmp = []  # captures all nodes in a level
 
-        # why use range(len(q)) ?
-        # we have left and right child nodes in each parent
         for _ in range(len(q)):
             node = q.popleft()
             if (node.left):
@@ -61,12 +25,20 @@ def levelOrder(root: Optional[TreeNode]) -> List[List[int]]:
             if (node.right):
                 q.append(node.right)
                 tmp.append(node.right.val)
-        # why is res.append out side for loop ?
-        # want the loop of left and right nodes to finish
+
         if len(tmp) > 0:
             res.append(tmp)
 
     return res
+
+# Explanation
+# Queue because FIFO, and to check each levels
+# Start with the root node
+# for each node in the range(len(q)), ie. maybe a level has 4 or more nodes in a level, check them all 
+# while the queue is none empty we check the left and right node
+# for each node, put back the left and right child node for next iteration
+# we do not want empty levels to be added into the result
+
 
 # # other solution
 # def levelOrder( root: Optional[TreeNode]) -> List[List[int]]:
