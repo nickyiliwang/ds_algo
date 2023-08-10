@@ -1,5 +1,5 @@
 from typing import Optional
-from ds_types.linked_list import LinkedList, ListNode
+from linked_list import LinkedList, ListNode
 
 
 def reorderList(head: Optional[ListNode]) -> None:

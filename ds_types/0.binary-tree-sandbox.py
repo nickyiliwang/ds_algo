@@ -1,10 +1,10 @@
 
 from typing import *
 from collections import deque
-from ds_types.tree import Tree, TreeNode
+from tree import Tree, TreeNode
 
 class Solution:
-    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+    def sandbox(self, root: Optional[TreeNode]) -> List[int]:
         res = []
         if not root:
             return res
@@ -28,13 +28,14 @@ class Solution:
         
 
 tree = Tree()
-tree.insert(1)
-tree.insert(2)
 tree.insert(3)
+tree.insert(3)
+# tree.insert(None)
 tree.insert(4)
-tree.insert(5)
-print(
-    Solution.rightSideView("", tree.root)
-)
+tree.insert(2)
+tree.printTree()
+# print(
+#     Solution.sandbox("", tree.root)
+# )
 
 # I'm so fucking good

@@ -28,7 +28,7 @@ def isValidBST(root: Optional[TreeNode]) -> bool:
     return True
 
 
-# Recursive approach
+# Recursive approach, DFS
 
 def isValidBST(root: Optional[TreeNode]) -> bool:
 

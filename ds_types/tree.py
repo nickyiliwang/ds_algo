@@ -38,30 +38,10 @@ class Tree:
             self._printTree(self.root)
 
     def _printTree(self, node):
-        # in order traversal
-
         if not node:
             return
 
-        if node:
+        if node: # in order traversal
             self._printTree(node.left)
             print(node.val)
             self._printTree(node.right)
-
-    # def printTree(self, node=None):
-    #     # in order traversal
-    #     if not node:
-    #         return
-    #     if node:
-    #         self.printTree(node.left)
-    #         print(node.val)
-    #         self.printTree(node.right)
-
-
-# tree = Tree()
-# tree.insert(3)
-# tree.insert(4)
-# tree.insert(0)
-# tree.insert(8)
-# tree.insert(2)
-# tree.printTree()
