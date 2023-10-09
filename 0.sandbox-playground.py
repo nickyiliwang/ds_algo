@@ -1,4 +1,12 @@
-print('hello world')
+arr = [1,2,3,4,5]
+arr2 = [6,7,8]
+
+
+arr = arr[slice(1, len(arr))]
+
+
+print(arr)
+
 
 # while True:
 #     print('1')
