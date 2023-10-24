@@ -3,19 +3,54 @@ from collections import *
 from math import *
 from ds_types.linked_list import LinkedList, ListNode
 
-class Solution(object):
-    def findDuplicate(self, nums):
-        res = None
-        validator = set()
-        for n in nums:
-            if n not in validator:
-                validator.add(n)
-            else:
-                res = n
-        return res
-print(
-    Solution.findDuplicate("", [1,3,4,2,2])
-)
+
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        print(lists)
+
+
+list = []
+linked_list_1 = LinkedList()
+linked_list_1.append(1)
+linked_list_1.append(4)
+linked_list_1.append(5)
+linked_list_2 = LinkedList()
+linked_list_2.append(1)
+linked_list_2.append(3)
+linked_list_2.append(4)
+linked_list_3 = LinkedList()
+linked_list_3.append(2)
+linked_list_3.append(6)
+linked_list_1.display()
+linked_list_2.display()
+linked_list_3.display()
+list.append(linked_list_1.head)
+list.append(linked_list_2.head)
+list.append(linked_list_3.head)
+
+mergeKListsInstance = Solution()
+
+newList = mergeKListsInstance.mergeKLists(list)
+
+while newList:
+    print(newList.val)
+    newList = newList.next
+    # @lc code=end
+
+
+# class Solution(object):
+#     def findDuplicate(self, nums):
+#         res = None
+#         validator = set()
+#         for n in nums:
+#             if n not in validator:
+#                 validator.add(n)
+#             else:
+#                 res = n
+#         return res
+# print(
+#     Solution.findDuplicate("", [1,3,4,2,2])
+# )
 
 # curr = list1.head.next
 # while curr:
@@ -28,17 +63,17 @@ print(
 # class Solution(object):
 #     def removeNthFromEnd(self, head, n):
 #         slow, fast = head, head
-        
+
 #         while fast and fast.next and n > 0:
 #             fast = fast.next
 #             n -= 1
-            
+
 #         while fast and fast.next:
 #             slow = slow.next
 #             fast = fast.next
 
 #         slow.next = slow.next.next
-        
+
 # list1 = LinkedList()
 # list1.append(1)
 # list1.append(2)
@@ -55,24 +90,24 @@ print(
 #         while fast and fast.next:
 #             slow = slow.next
 #             fast = fast.next.next
-            
+
 #         prev, curr = None, slow
 #         while curr:
 #             temp = curr.next
 #             curr.next = prev
 #             prev = curr
 #             curr = temp
-            
+
 #         first, second = head, prev
 #         while second.next:
 #             temp = first.next
 #             first.next = second
 #             first = temp
-            
+
 #             temp = second.next
 #             second.next = first
 #             second = temp
- 
+
 # list1 = LinkedList()
 # list1.append(1)
 # list1.append(2)
