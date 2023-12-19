@@ -86,7 +86,7 @@ class Solution(object):
         :type emails: List[str]
         :rtype: int
         """
-        count = []
+        unique = set()
         for e in emails:
             formatted = ""
             split = e.split("@")
@@ -98,10 +98,9 @@ class Solution(object):
                 formatted += local.replace(".", "")
             formatted += "@"
             formatted += domain
-            count.append(formatted)
+            unique.add(formatted)
 
-        print(count)
-        return len(set(count))
+        return len(unique)
 
 
 # @lc code=end
