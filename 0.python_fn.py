@@ -1,6 +1,6 @@
 # ZIP
 numbers = [1, 2, 3]
-letters = ['a', 'b', 'c']
+letters = ["a", "b", "c"]
 zipped = zip(numbers, letters)
 
 print(list(zipped))  # [(1, 'a'), (2, 'b'), (3, 'c')]
@@ -13,10 +13,21 @@ print("sorted numbers", sortedNumbers)  # O(nlogn)
 
 # Will only combine the lower of the two
 numbers = [1, 2, 3, 4, 5, 6, 7, 8]  # 4 - 8 is ignored
-letters = ['a', 'b', 'c']
+letters = ["a", "b", "c"]
 zipped = zip(numbers, letters)
 
 print(list(zipped))  # [(1, 'a'), (2, 'b'), (3, 'c')]
+
+# looping with zip
+s1 = "abc"
+s2 = "123"
+
+for c1, c2 in zip(s1, s2):
+    print("zip(s1, s2)", c1, c2)
+
+# zip(s1, s2) a 1
+# zip(s1, s2) b 2
+# zip(s1, s2) c 3
 
 # ABS
 # returns the absolute value of a number
