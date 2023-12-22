@@ -46,21 +46,29 @@
 #
 
 # @lc code=start
-from collections import *
-from typing import *
+from typing import List
 
 
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        common = ""
-        for i in range(len(strs[0])):
-            for word in strs:
-                # i == len(word) to check if out of bounds
-                if i == len(word) or word[i] != strs[0][i]:
-                    return common
-            common += strs[0][i]
+        res = ""
+        validator = strs[0]
 
-        return common
+        # making sure we have a base range
+        # looping each character index of first word
+        for i in range(len(validator)):
+            for w in strs:
+                # if the index is equal to the length of word we are checking
+                # then we know it's still inbound
+                # if the i letter of each word does not match the first, return the current result
+
+                # i == len(word) to check if out of bounds
+                if i == len(w) or w[i] != validator[i]:
+                    return res
+            # else append each letter that passed the condition
+            res += validator[i]
+
+        return res
 
 
 Solution.longestCommonPrefix("", ["flower", "flow", "flight"])
