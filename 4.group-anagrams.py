@@ -1,4 +1,5 @@
 from collections import *
+from typing import *
 
 
 def groupAnagrams(strs):
