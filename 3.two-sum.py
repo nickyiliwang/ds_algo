@@ -7,6 +7,7 @@ def twoSum(nums, target):
         prevMap[n] = i
     return
 
+
 # Explanation
 def twoSum(nums, target):
     # we can do this in one pass

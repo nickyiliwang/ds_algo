@@ -1,3 +1,6 @@
+from collections import *
+
+
 def isAnagram(s, t):
     if len(s) != len(t):
         return False
@@ -15,7 +18,7 @@ def isAnagram(s, t):
     return True
 
 
-# Quick idea:
+# Quick solution:
 def isAnagram(s, t):
     return sorted(s) == sorted(t)
 
@@ -34,6 +37,7 @@ def isAnagram(s, t):
 #         if countA[j] != countB.get(j, 0):
 #             return False
 #     return True
+
 
 # Explanation
 # Using dictionary to implement (preferred)

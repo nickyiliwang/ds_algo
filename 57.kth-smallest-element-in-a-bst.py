@@ -1,6 +1,7 @@
 from typing import Optional
 from ds_types.tree import Tree, TreeNode
 
+
 # recursive, most straight forward, bit more Memory used
 def kthSmallest(root: Optional[TreeNode], k: int) -> int:
     def traverse(node, res):

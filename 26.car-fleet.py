@@ -10,15 +10,14 @@ class Solution:
 
         for p, s in sorted(pair)[::-1]:
             stack.append((target - p) / s)
-            if (len(stack) > 1 and stack[-1] <= stack[-2]):
+            if len(stack) > 1 and stack[-1] <= stack[-2]:
                 stack.pop()
 
         print(stack)
         return len(stack)
 
 
-print(Solution.carFleet(
-    "", 10,  [0, 4, 2], [2, 1, 3]))  # output 3
+print(Solution.carFleet("", 10, [0, 4, 2], [2, 1, 3]))  # output 3
 
 
 # Explanation

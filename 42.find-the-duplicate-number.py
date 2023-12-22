@@ -5,22 +5,21 @@
 
 # Idea here is 2 phases
 # Using slow and fast pointer to find the node before the beginning of the loop, which is somewhere slow and fast intersect
-# Using another slow2 pointer to find the point of loop  
+# Using another slow2 pointer to find the point of loop
 
 
 class Solution(object):
     def findDuplicate(self, nums):
-        # always outside of the loop
+        # Turtle and rabbit
         slow, fast = 0, 0
-        
+
         while True:
             slow = nums[slow]
             fast = nums[nums[fast]]
-            
-            # keep going until they intersect again
+
             if slow == fast:
-                 break
-            
+                break
+
         # phase 2
         slow2 = 0
         while True:
@@ -28,5 +27,3 @@ class Solution(object):
             slow2 = nums[slow]
             if slow == slow2:
                 return slow
-        
-        

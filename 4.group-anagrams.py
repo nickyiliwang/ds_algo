@@ -1,28 +1,28 @@
-from collections import defaultdict
-import collections
+from collections import *
 
 
 def groupAnagrams(strs):
     res = defaultdict(list)
 
     for s in strs:
-        count = [0] * 26  # => [0,0,0 ...] => a ... z 
+        count = [0] * 26
         for c in s:
             count[ord(c) - ord("a")] += 1
         res[tuple(count)].append(s)
 
     return res.values()
 
+
 # Explanation
 def groupAnagrams(strs):
-    # it is initialized with a function (“default factory”) that:
+    # it is initialized with a function ("default factory") that:
     # takes no arguments and provides the default value for a nonexistent key.
     # Defining a dictionary with key pair as a list => defaultdict(list)
-    res = collections.defaultdict(list)
+    res = defaultdict(list)
 
     for s in strs:
-        # only works for List ds, not dicts
-        count = [0] * 26  # => [0,0,0 ...] => a ... z 
+        # 26 letters of the alphabet
+        count = [0] * 26  # => [0,0,0 ...] => a ... z
         for c in s:
             # a 97 97 0 => find the index 0
             # ord() method: Return the Unicode code point for a one-character string.
@@ -50,10 +50,11 @@ print(groupAnagrams(strs))
 # 2. realized I might need an hashMap { x: [0,1,2] } a record of each repeated word: [index]
 # 3. with this hashMap I'm still using a nested for loop, relative O(n^2) which is slow
 
+
 # Leetcode cheating solution with sorted():
 def groupAnagrams(strs):
     # res = {}  # mapping chatCount to list of anagrams
-    # it is initialized with a function (“default factory”) that:
+    # it is initialized with a function ("default factory") that:
     # takes no arguments and provides the default value for a nonexistent key.
     # Defining a dictionary with key pair as a list => defaultdict(list)
     res = defaultdict(list)
@@ -66,6 +67,7 @@ def groupAnagrams(strs):
         print(res)
     return res.values()
 
+
 # My solution with sorting
 # nlogn is the sorting
 # O(m * nlogn)
@@ -77,7 +79,7 @@ def groupAnagrams(strs: List[str]) -> List[List[str]]:
     res = []
 
     for i, s in enumerate(strs):
-        s = ''.join(sorted(s))
+        s = "".join(sorted(s))
         if s in hashMap:
             hashMap[s] += [i]
         else:
@@ -94,13 +96,16 @@ def groupAnagrams(strs: List[str]) -> List[List[str]]:
     print(res)
     return res
 
+
 # Frozen Set
+
 
 def groupAnagrams(strs: List[str]) -> List[List[str]]:
     res = defaultdict(list)
     for word in strs:
         res[frozenset(Counter(word))].append(word)
     return list(res.values())
+
 
 # The frozenset() function returns an immutable frozenset object initialized with elements from the given iterable.
 

@@ -9,37 +9,37 @@ class Solution:
         twoDList = []
         tempK = k
         temp = []
-        
+
         current = head
-        
+
         while current != None:
-            if (tempK != 0):
+            if tempK != 0:
                 temp.append(current.val)
                 tempK -= 1
             else:
                 twoDList.append(temp)
                 temp = [current.val]
                 tempK = k - 1
-                            
+
             current = current.next
-        
-        twoDList.append(temp)        
+
+        twoDList.append(temp)
         temp = []
-        
+
         for list in twoDList:
-            if (len(list) == k):
+            if len(list) == k:
                 for n in reversed(list):
                     temp.append(n)
             else:
                 for n in list:
                     temp.append(n)
-            
+
         current = dummy
-        
+
         for n in temp:
-            current.next = ListNode(n) 
-            current = current.next   
-            
+            current.next = ListNode(n)
+            current = current.next
+
         return dummy.next
 
 
@@ -55,16 +55,16 @@ print(current.next.val)
 
 
 # Cool recursive solution
-# 
+#
 # class Solution:
-#     def reverseKGroup(self, head: ListNode, k: int) -> ListNode:        
+#     def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
 #         # Check if we need to reverse the group
 #         curr = head
 #         for _ in range(k):
 #             if not curr: return head
 #             curr = curr.next
-		        
-				
+
+
 #         # Reverse the group (basic way to reverse linked list)
 #         prev = None
 #         curr = head
@@ -73,8 +73,8 @@ print(current.next.val)
 #             curr.next = prev
 #             prev = curr
 #             curr = nxt
-        
-		
+
+
 #       # After reverse, we know that `head` is the tail of the group.
 # 		# And `curr` is the next pointer in original linked list order
 #         head.next = self.reverseKGroup(curr, k)

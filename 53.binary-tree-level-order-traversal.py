@@ -1,4 +1,3 @@
-
 from typing import Optional
 from typing import List
 from collections import deque
@@ -6,6 +5,7 @@ from ds_types.tree import Tree, TreeNode
 
 # DFS does not have the right order
 # T: O(n), M: O(n/2) -> O(n)
+
 
 def levelOrder(root: Optional[TreeNode]) -> List[List[int]]:
     if not root:
@@ -19,10 +19,10 @@ def levelOrder(root: Optional[TreeNode]) -> List[List[int]]:
 
         for _ in range(len(q)):
             node = q.popleft()
-            if (node.left):
+            if node.left:
                 q.append(node.left)
                 tmp.append(node.left.val)
-            if (node.right):
+            if node.right:
                 q.append(node.right)
                 tmp.append(node.right.val)
 
@@ -31,10 +31,11 @@ def levelOrder(root: Optional[TreeNode]) -> List[List[int]]:
 
     return res
 
+
 # Explanation
 # Queue because FIFO, and to check each levels
 # Start with the root node
-# for each node in the range(len(q)), ie. maybe a level has 4 or more nodes in a level, check them all 
+# for each node in the range(len(q)), ie. maybe a level has 4 or more nodes in a level, check them all
 # while the queue is none empty we check the left and right node
 # for each node, put back the left and right child node for next iteration
 # we do not want empty levels to be added into the result
@@ -106,6 +107,4 @@ tree.insert(2)
 tree.insert(3)
 tree.insert(4)
 tree.insert(5)
-print(
-    levelOrder(tree.root)
-)
+print(levelOrder(tree.root))

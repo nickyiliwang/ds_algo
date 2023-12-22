@@ -3,6 +3,7 @@ from collections import *
 from math import *
 from ds_types.linked_list import LinkedList, ListNode
 
+
 class Solution(object):
     def copyRandomList(self, head):
         copyOldLink = {None: None}
@@ -24,19 +25,20 @@ class Solution(object):
 
         return copyOldLink[head]
 
+
 class Solution(object):
     def copyRandomList(self, head):
         # one of the random val will point to Null, so None mapped to None
         oldToCopy = {None: None}
-        
+
         curr = head
-        
+
         # create deep copy of nodes and save to map
         while curr:
             copy = ListNode(curr.val)
             oldToCopy[curr] = copy
             curr = curr.next
-        
+
         curr = head
         while curr:
             # directly manipulating the Nodes in the map
@@ -45,6 +47,6 @@ class Solution(object):
             copy.next = oldToCopy[curr.next]
             copy.random = oldToCopy[curr.random]
             curr = curr.next
-        
+
         # return the head from map with copied Nodes
         return oldToCopy[head]

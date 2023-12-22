@@ -9,7 +9,6 @@ from ds_types.tree import Tree, TreeNode
 
 
 def buildTree(preorder: List[int], inorder: List[int]) -> TreeNode:
-
     def array_to_tree(left, right):
         nonlocal preorder_index
         # this condition says if left index is bigger than right
@@ -24,7 +23,8 @@ def buildTree(preorder: List[int], inorder: List[int]) -> TreeNode:
         # For root.right
         # inorder_index_map[9] + 1 becomes (0 + 1)
         # left is 1, right is 0, left is still bigger than right, the algo will not continue
-        if left > right: return None
+        if left > right:
+            return None
 
         # select the preorder_index element as the root and increment it
         root_value = preorder[preorder_index]

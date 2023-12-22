@@ -3,7 +3,7 @@ from ds_types.tree import Tree
 
 # Given a binary search tree (BST), find the lowest common ancestor (LCA) node of two given nodes in the BST.
 
-# According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).”
+# According to the definition of LCA on Wikipedia: The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).
 
 
 # Example 1:
@@ -32,6 +32,7 @@ from ds_types.tree import Tree
 # p != q
 # p and q will exist in the BST.
 
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, x):
@@ -39,11 +40,14 @@ class TreeNode:
         self.left = None
         self.right = None
 
+
 # T: O(logN), because we only visit one node for every level of the tree, so the height of the tree
 # S: O(1), not using any to store values
 
 
-def lowestCommonAncestor(root: Optional[TreeNode], p: Optional[TreeNode], q: Optional[TreeNode]) -> Optional[TreeNode]:
+def lowestCommonAncestor(
+    root: Optional[TreeNode], p: Optional[TreeNode], q: Optional[TreeNode]
+) -> Optional[TreeNode]:
     curr = root
 
     # for LCA that has a node same as the LCA
@@ -79,8 +83,4 @@ tree.insert(5)
 #        3   5
 node1 = TreeNode(7)
 node2 = TreeNode(9)
-print(
-    lowestCommonAncestor(tree.root, node1, node2)
-
-
-)
+print(lowestCommonAncestor(tree.root, node1, node2))

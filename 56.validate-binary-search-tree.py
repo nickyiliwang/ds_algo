@@ -9,7 +9,7 @@ def isValidBST(root: Optional[TreeNode]) -> bool:
     if root is None:
         return True
 
-    q = deque([(root, -float('inf'), float('inf'))])
+    q = deque([(root, -float("inf"), float("inf"))])
     while q:
         node, lower, upper = q.popleft()
         # Not a BST
@@ -30,8 +30,8 @@ def isValidBST(root: Optional[TreeNode]) -> bool:
 
 # Recursive approach, DFS
 
-def isValidBST(root: Optional[TreeNode]) -> bool:
 
+def isValidBST(root: Optional[TreeNode]) -> bool:
     def valid(node, lower, upper):
         if root is None:
             return True
@@ -39,8 +39,7 @@ def isValidBST(root: Optional[TreeNode]) -> bool:
         if not (lower < node.val < upper):
             return False
 
-        return valid(node.left, lower, node.val) and valid(
-            node.right, node.val, upper)
+        return valid(node.left, lower, node.val) and valid(node.right, node.val, upper)
 
     return valid(root, -float("inf"), float("inf"))
 
