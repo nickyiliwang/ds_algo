@@ -1,7 +1,7 @@
 from typing import *
 from collections import *
 from math import *
-from ds_types.linked_list import LinkedList, ListNode
+from ds_types.linked_list import LinkedList, ListNode as Node
 
 
 class Solution(object):
@@ -35,7 +35,7 @@ class Solution(object):
 
         # create deep copy of nodes and save to map
         while curr:
-            copy = ListNode(curr.val)
+            copy = Node(curr.val)
             oldToCopy[curr] = copy
             curr = curr.next
 
