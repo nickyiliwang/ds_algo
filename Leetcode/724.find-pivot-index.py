@@ -74,10 +74,19 @@
 # @lc code=start
 class Solution(object):
     def pivotIndex(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
+        total = sum(nums)
+        left = 0
+
+        for i, n in enumerate(nums):
+            right = total - n - left
+
+            if left == right:
+                return i
+            else:
+                left += n
+        return -1
 
 
 # @lc code=end
+
+print(Solution.pivotIndex("", [1, 7, 3, 6, 5, 6]))
