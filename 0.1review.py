@@ -3,39 +3,59 @@ from collections import *
 from math import *
 from ds_types.linked_list import LinkedList, ListNode
 
+# Input: nums = [-1,0,3,5,9,12], target = 9
+# Output: 4
+# Explanation: 9 exists in nums and its index is 4
 
-class Solution:
-    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        print(lists)
+
+def binarySearch(nums, target):
+    left, right = 0, len(nums) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if nums[mid] > target:
+            right = mid - 1
+        elif nums[mid] < target:
+            left = mid + 1
+        elif nums[mid] == target:
+            return mid
+
+    return -1
 
 
-list = []
-linked_list_1 = LinkedList()
-linked_list_1.append(1)
-linked_list_1.append(4)
-linked_list_1.append(5)
-linked_list_2 = LinkedList()
-linked_list_2.append(1)
-linked_list_2.append(3)
-linked_list_2.append(4)
-linked_list_3 = LinkedList()
-linked_list_3.append(2)
-linked_list_3.append(6)
-linked_list_1.display()
-linked_list_2.display()
-linked_list_3.display()
-list.append(linked_list_1.head)
-list.append(linked_list_2.head)
-list.append(linked_list_3.head)
+print(binarySearch([-1, 0, 3, 5, 9, 12], 13))
 
-mergeKListsInstance = Solution()
+# class Solution:
+#     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+#         print(lists)
 
-newList = mergeKListsInstance.mergeKLists(list)
 
-while newList:
-    print(newList.val)
-    newList = newList.next
-    # @lc code=end
+# list = []
+# linked_list_1 = LinkedList()
+# linked_list_1.append(1)
+# linked_list_1.append(4)
+# linked_list_1.append(5)
+# linked_list_2 = LinkedList()
+# linked_list_2.append(1)
+# linked_list_2.append(3)
+# linked_list_2.append(4)
+# linked_list_3 = LinkedList()
+# linked_list_3.append(2)
+# linked_list_3.append(6)
+# linked_list_1.display()
+# linked_list_2.display()
+# linked_list_3.display()
+# list.append(linked_list_1.head)
+# list.append(linked_list_2.head)
+# list.append(linked_list_3.head)
+
+# mergeKListsInstance = Solution()
+
+# newList = mergeKListsInstance.mergeKLists(list)
+
+# while newList:
+#     print(newList.val)
+#     newList = newList.next
+#     # @lc code=end
 
 
 # class Solution(object):
