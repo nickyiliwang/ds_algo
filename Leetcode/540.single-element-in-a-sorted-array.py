@@ -43,27 +43,32 @@
 class Solution(object):
     def singleNonDuplicate(self, nums):
         left, right = 0, len(nums) - 1
-        # l < r instead of l <= r to ensure that the loop terminates correctly when the single non-duplicate element is found
         while left < right:
             mid = (left + right) // 2
             if (mid % 2 == 1 and nums[mid - 1] == nums[mid]) or (
                 mid % 2 == 0 and nums[mid + 1] == nums[mid]
             ):
-                # LeftPartition clear go to rightPartition
                 left = mid + 1
             else:
                 right = mid
-        return nums[left]
+
+        print(nums[left], nums[right])
+        return nums[right]
 
 
 # @lc code=end
 
-print(Solution.singleNonDuplicate("", [1, 1, 2, 3, 3, 4, 4, 8, 8]))
+print(Solution.singleNonDuplicate("", [3, 3, 7, 7, 10, 11, 11]))
 
 # EXPLANATION:-
 # first element takes even position and second element takes odd position
 
+# l < r instead of l <= r to ensure that the loop terminates correctly when the single non-duplicate element is found
+
+# when the loop terminates, left and right have converged to the same index
+
 # Part 1:
+#   because of indexing. [0,1,2,3] => even numbers odd index
 # 	if mid is odd, then it's duplicate should be in previous index.
 #   if mid is even, then it's duplicate should be in next index.
 # 	if any of the conditions is satisfied then pattern is not missed
@@ -73,7 +78,10 @@ print(Solution.singleNonDuplicate("", [1, 1, 2, 3, 3, 4, 4, 8, 8]))
 # 	if condition is not satisfied, then the pattern is missed.
 # 	so, single number must be before mid.
 # 	so, update end to mid.
-# 3. At last return the nums[left]
+
+# Result:
+# when the loop terminates, left and right have converged to the same index
+# return the nums[left] or nums[right] doesn't matter
 
 
 # My working solution:
