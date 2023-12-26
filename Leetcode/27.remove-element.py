@@ -97,8 +97,7 @@ class Solution(object):
             if n != val:
                 nums[pointer] = n
                 pointer += 1
-
-        print(nums)
+                
         return pointer
 
 
