@@ -1,4 +1,4 @@
-#
+r#
 # @lc app=leetcode id=27 lang=python
 #
 # [27] Remove Element
