@@ -108,6 +108,10 @@
 # O(1) memory?
 #
 
+from typing import *
+from linked_list import LinkedList
+
+
 # @lc code=start
 # Definition for singly-linked list.
 # class ListNode(object):
@@ -122,6 +126,65 @@ class Solution(object):
         :type head1, head1: ListNode
         :rtype: ListNode
         """
+        lengthA, lengthB = 0, 0
+
+        curr = headA
+        while curr:
+            lengthA += 1
+            curr = curr.next
+
+        curr = headB
+        while curr:
+            lengthB += 1
+            curr = curr.next
+
+        diff = abs(lengthA - lengthB)
+
+        if lengthA > lengthB:
+            headACurr, headBCurr = headA, headB
+            while diff != 0:
+                headACurr = headACurr.next
+                diff -= 1
+
+            while headACurr and headBCurr:
+                if headACurr.val == headBCurr.val:
+                    return headACurr
+                else:
+                    headACurr = headACurr.next
+                    headBCurr = headBCurr.next
+        else:
+            headACurr, headBCurr = headA, headB
+
+            while diff != 0:
+                headBCurr = headBCurr.next
+                diff -= 1
+
+            while headACurr and headBCurr:
+                if headACurr.val == headBCurr.val:
+                    return headBCurr
+                else:
+                    headACurr = headACurr.next
+                    headBCurr = headBCurr.next
+        return None
 
 
 # @lc code=end
+
+linked_listA = LinkedList()
+linked_listA.append(4)
+linked_listA.append(1)
+linked_listA.append(8)
+linked_listA.append(4)
+linked_listA.append(5)
+
+linked_listB = LinkedList()
+linked_listB.append(5)
+linked_listB.append(6)
+linked_listB.append(1)
+linked_listB.append(8)
+linked_listB.append(4)
+linked_listB.append(5)
+
+node = Solution.getIntersectionNode("", linked_listA.head.next, linked_listB.head.next)
+
+print(node.val)
