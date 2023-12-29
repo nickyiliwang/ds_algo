@@ -122,50 +122,14 @@ from linked_list import LinkedList
 
 class Solution(object):
     def getIntersectionNode(self, headA, headB):
-        """
-        :type head1, head1: ListNode
-        :rtype: ListNode
-        """
-        lengthA, lengthB = 0, 0
-
-        curr = headA
-        while curr:
-            lengthA += 1
-            curr = curr.next
-
-        curr = headB
-        while curr:
-            lengthB += 1
-            curr = curr.next
-
-        diff = abs(lengthA - lengthB)
-
-        if lengthA > lengthB:
-            headACurr, headBCurr = headA, headB
-            while diff != 0:
-                headACurr = headACurr.next
-                diff -= 1
-
-            while headACurr and headBCurr:
-                if headACurr.val == headBCurr.val:
-                    return headACurr
-                else:
-                    headACurr = headACurr.next
-                    headBCurr = headBCurr.next
-        else:
-            headACurr, headBCurr = headA, headB
-
-            while diff != 0:
-                headBCurr = headBCurr.next
-                diff -= 1
-
-            while headACurr and headBCurr:
-                if headACurr.val == headBCurr.val:
-                    return headBCurr
-                else:
-                    headACurr = headACurr.next
-                    headBCurr = headBCurr.next
-        return None
+        one = headA
+        two = headB
+        
+        while (one != two):
+            one = headB if one is None else one.next
+            two = headA if two is None else two.next
+            
+        return one
 
 
 # @lc code=end
@@ -188,3 +152,208 @@ linked_listB.append(5)
 node = Solution.getIntersectionNode("", linked_listA.head.next, linked_listB.head.next)
 
 print(node.val)
+
+# Visualization
+# Visualization of this solution:
+# Case 1 (Have Intersection & Same Len):
+
+#        a
+# A:     a1 → a2 → a3
+#                    ↘
+#                      c1 → c2 → c3 → null
+#                    ↗
+# B:     b1 → b2 → b3
+#        b
+#             a
+# A:     a1 → a2 → a3
+#                    ↘
+#                      c1 → c2 → c3 → null
+#                    ↗
+# B:     b1 → b2 → b3
+#             b
+#                  a
+# A:     a1 → a2 → a3
+#                    ↘
+#                      c1 → c2 → c3 → null
+#                    ↗
+# B:     b1 → b2 → b3
+#                  b
+# A:     a1 → a2 → a3
+#                    ↘ a
+#                      c1 → c2 → c3 → null
+#                    ↗ b
+# B:     b1 → b2 → b3
+# Since a == b is true, end loop while(a != b), return the intersection node a = c1.
+
+# Case 2 (Have Intersection & Different Len):
+
+#             a
+# A:          a1 → a2
+#                    ↘
+#                      c1 → c2 → c3 → null
+#                    ↗
+# B:     b1 → b2 → b3
+#        b
+#                  a
+# A:          a1 → a2
+#                    ↘
+#                      c1 → c2 → c3 → null
+#                    ↗
+# B:     b1 → b2 → b3
+#             b
+# A:          a1 → a2
+#                    ↘ a
+#                      c1 → c2 → c3 → null
+#                    ↗
+# B:     b1 → b2 → b3
+#                  b
+# A:          a1 → a2
+#                    ↘      a
+#                      c1 → c2 → c3 → null
+#                    ↗ b
+# B:     b1 → b2 → b3
+# A:          a1 → a2
+#                    ↘           a
+#                      c1 → c2 → c3 → null
+#                    ↗      b
+# B:     b1 → b2 → b3
+# A:          a1 → a2
+#                    ↘                a = null, then a = b1
+#                      c1 → c2 → c3 → null
+#                    ↗           b
+# B:     b1 → b2 → b3
+# A:          a1 → a2
+#                    ↘
+#                      c1 → c2 → c3 → null
+#                    ↗                b = null, then b = a1
+# B:     b1 → b2 → b3
+#        a
+#             b
+# A:          a1 → a2
+#                    ↘
+#                      c1 → c2 → c3 → null
+#                    ↗
+# B:     b1 → b2 → b3
+#             a
+#                  b
+# A:          a1 → a2
+#                    ↘
+#                      c1 → c2 → c3 → null
+#                    ↗
+# B:     b1 → b2 → b3
+#                  a
+# A:          a1 → a2
+#                    ↘ b
+#                      c1 → c2 → c3 → null
+#                    ↗ a
+# B:     b1 → b2 → b3
+# Since a == b is true, end loop while(a != b), return the intersection node a = c1.
+
+# Case 3 (Have No Intersection & Same Len):
+
+#        a
+# A:     a1 → a2 → a3 → null
+# B:     b1 → b2 → b3 → null
+#        b
+#             a
+# A:     a1 → a2 → a3 → null
+# B:     b1 → b2 → b3 → null
+#             b
+#                  a
+# A:     a1 → a2 → a3 → null
+# B:     b1 → b2 → b3 → null
+#                  b
+#                       a = null
+# A:     a1 → a2 → a3 → null
+# B:     b1 → b2 → b3 → null
+#                       b = null
+# Since a == b is true (both refer to null), end loop while(a != b), return a = null.
+
+# Case 4 (Have No Intersection & Different Len):
+
+#        a
+# A:     a1 → a2 → a3 → a4 → null
+# B:     b1 → b2 → b3 → null
+#        b
+#             a
+# A:     a1 → a2 → a3 → a4 → null
+# B:     b1 → b2 → b3 → null
+#             b
+#                  a
+# A:     a1 → a2 → a3 → a4 → null
+# B:     b1 → b2 → b3 → null
+#                  b
+#                       a
+# A:     a1 → a2 → a3 → a4 → null
+# B:     b1 → b2 → b3 → null
+#                       b = null, then b = a1
+#        b                   a = null, then a = b1
+# A:     a1 → a2 → a3 → a4 → null
+# B:     b1 → b2 → b3 → null
+#             b
+# A:     a1 → a2 → a3 → a4 → null
+# B:     b1 → b2 → b3 → null
+#        a
+#                  b
+# A:     a1 → a2 → a3 → a4 → null
+# B:     b1 → b2 → b3 → null
+#             a
+#                       b
+# A:     a1 → a2 → a3 → a4 → null
+# B:     b1 → b2 → b3 → null
+#                  a
+#                            b = null
+# A:     a1 → a2 → a3 → a4 → null
+# B:     b1 → b2 → b3 → null
+#                       a = null
+# Since a == b is true (both refer to null), end loop while(a != b), return a = null.
+
+# Notice that if list A and list B have the same length, this solution will terminate in no more than 1 traversal; if both lists have different lengths, this solution will terminate in no more than 2 traversals -- in the second traversal, swapping a and b synchronizes a and b before the end of the second traversal. By synchronizing a and b I mean both have the same remaining steps in the second traversal so that it's guaranteed for them to reach the first intersection node, or reach null at the same time (technically speaking, in the same iteration) -- see Case 2 (Have Intersection & Different Len) and Case 4 (Have No Intersection & Different Len).
+
+# WIP my solution
+# class Solution(object):
+#     def getIntersectionNode(self, headA, headB):
+#         """
+#         :type head1, head1: ListNode
+#         :rtype: ListNode
+#         """
+#         lengthA, lengthB = 0, 0
+
+#         curr = headA
+#         while curr:
+#             lengthA += 1
+#             curr = curr.next
+
+#         curr = headB
+#         while curr:
+#             lengthB += 1
+#             curr = curr.next
+
+#         diff = abs(lengthA - lengthB)
+
+#         if lengthA > lengthB:
+#             headACurr, headBCurr = headA, headB
+#             while diff != 0:
+#                 headACurr = headACurr.next
+#                 diff -= 1
+
+#             while headACurr and headBCurr:
+#                 if headACurr.val == headBCurr.val:
+#                     return headACurr
+#                 else:
+#                     headACurr = headACurr.next
+#                     headBCurr = headBCurr.next
+#         else:
+#             headACurr, headBCurr = headA, headB
+
+#             while diff != 0:
+#                 headBCurr = headBCurr.next
+#                 diff -= 1
+
+#             while headACurr and headBCurr:
+#                 if headACurr.val == headBCurr.val:
+#                     return headBCurr
+#                 else:
+#                     headACurr = headACurr.next
+#                     headBCurr = headBCurr.next
+#         return None
