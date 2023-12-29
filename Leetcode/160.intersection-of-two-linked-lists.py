@@ -122,13 +122,12 @@ from linked_list import LinkedList
 
 class Solution(object):
     def getIntersectionNode(self, headA, headB):
-        one = headA
-        two = headB
-        
-        while (one != two):
-            one = headB if one is None else one.next
-            two = headA if two is None else two.next
-            
+        one, two = headA, headB
+
+        while one != two:
+            one = one.next if one else headB
+            two = two.next if two else headA
+
         return one
 
 
