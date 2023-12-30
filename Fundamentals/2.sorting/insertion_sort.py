@@ -4,18 +4,18 @@ def insertion(arr):
         curr = arr[index]
         # prev index
         prevIdx = index - 1
-        # while pre index is bigger than 0
+        # while pre index is bigger or equal to 0
         # and the current value is smaller than previous
-        while prevIdx >= 0 and curr < arr[prevIdx]:
+        while prevIdx >= 0 and arr[prevIdx] > curr:
             # switch place with previous value
-            arr[prevIdx+1] = arr[prevIdx]
+            arr[prevIdx + 1] = arr[prevIdx]
             # prev index goes down by one
             prevIdx -= 1
 
         # end of while loop
         # prevIdx will be idx 0
         # the first element will be current value
-        arr[prevIdx+1] = curr
+        arr[prevIdx + 1] = curr
     print(arr)
 
 

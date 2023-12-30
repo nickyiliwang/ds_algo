@@ -7,41 +7,40 @@ def merge_sort(arr):
         merge_sort(left_arr)
         merge_sort(right_arr)
 
-        # merge
-        leftIdx = 0
-        rightIdx = 0
-        mergedIdx = 0
-        while leftIdx < len(left_arr) and rightIdx < len(right_arr):
-            if left_arr[leftIdx] < right_arr[rightIdx]:
-                arr[mergedIdx] = left_arr[leftIdx]
-                leftIdx += 1
+        left_idx = 0
+        right_idx = 0
+        merged_idx = 0
+
+        while left_idx < len(left_arr) and right_idx < len(right_arr):
+            if left_arr[left_idx] < right_arr[right_idx]:
+                arr[merged_idx] = left_arr[left_idx]
+                left_idx += 1
             else:
-                arr[mergedIdx] = right_arr[rightIdx]
-                rightIdx += 1
-            mergedIdx += 1
+                arr[merged_idx] = right_arr[right_idx]
+                right_idx += 1
+            merged_idx += 1
 
-        # transfer left overs
-        while leftIdx < len(left_arr):
-            arr[mergedIdx] = left_arr[leftIdx]
-            leftIdx += 1
-            mergedIdx += 1
+        while left_idx < len(left_arr):
+            arr[merged_idx] = left_arr[left_idx]
+            left_idx += 1
+            merged_idx += 1
 
-        while rightIdx < len(right_arr):
-            arr[mergedIdx] = right_arr[rightIdx]
-            rightIdx += 1
-            mergedIdx += 1
+        while right_idx < len(right_arr):
+            arr[merged_idx] = right_arr[right_idx]
+            right_idx += 1
+            merged_idx += 1
 
     return arr
 
 
 # Explanation
 def merge_sort(arr):
-    # arr with more than 1 length is sorted
+    # **important**: without this stopping point this will be an infinite loop
     if len(arr) > 1:
         # Split array in half
-        # from the beginning to the middle point, double slash rounds down the division
+        # from the beginning to the middle point
 
-        mid = len(arr) // 2
+        mid = len(arr) // 2  # round down
         left_arr = arr[:mid]
         right_arr = arr[mid:]
 
@@ -50,35 +49,36 @@ def merge_sort(arr):
         merge_sort(right_arr)
 
         # merge
-        leftIdx = 0
-        rightIdx = 0
-        mergedIdx = 0
-        while leftIdx < len(left_arr) and rightIdx < len(right_arr):
+        left_idx = 0
+        right_idx = 0
+        merged_idx = 0
+        # **important**: while loop here because we want to keep comparing till one index is exhausted
+        while left_idx < len(left_arr) and right_idx < len(right_arr):
             # left arr index value smaller than right
-            if left_arr[leftIdx] < right_arr[rightIdx]:
-                # save left arr index val to the larger array mergedIdx
-                arr[mergedIdx] = left_arr[leftIdx]
-                leftIdx += 1
+            if left_arr[left_idx] < right_arr[right_idx]:
+                # save left arr index val to the larger array merged_idx
+                arr[merged_idx] = left_arr[left_idx]
+                left_idx += 1
             else:
-                # else save right arr index val to arr index mergedIdx
-                arr[mergedIdx] = right_arr[rightIdx]
-                rightIdx += 1
-            mergedIdx += 1
+                # else save right arr index val to arr index merged_idx
+                arr[merged_idx] = right_arr[right_idx]
+                right_idx += 1
+            merged_idx += 1
 
         # transfer left overs
-        while leftIdx < len(left_arr):
-            arr[mergedIdx] = left_arr[leftIdx]
-            leftIdx += 1
-            mergedIdx += 1
+        while left_idx < len(left_arr):
+            arr[merged_idx] = left_arr[left_idx]
+            left_idx += 1
+            merged_idx += 1
 
-        while rightIdx < len(right_arr):
-            arr[mergedIdx] = right_arr[rightIdx]
-            rightIdx += 1
-            mergedIdx += 1
+        while right_idx < len(right_arr):
+            arr[merged_idx] = right_arr[right_idx]
+            right_idx += 1
+            merged_idx += 1
 
     return arr
 
 
-arr_test = [0]
+arr_test = [2, 0, 2, 1, 1, 0]
 
 print(merge_sort(arr_test))
