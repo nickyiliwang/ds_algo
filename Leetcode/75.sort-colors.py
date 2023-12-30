@@ -56,41 +56,9 @@
 # @lc code=start
 class Solution(object):
     def sortColors(self, nums):
-        def merge_sort(arr):
-            if len(arr) > 1:
-                mid = len(arr) // 2
-                left_arr, right_arr = arr[:mid], arr[mid:]
-
-                merge_sort(left_arr)
-                merge_sort(right_arr)
-
-                left_idx = 0
-                right_idx = 0
-                merged_idx = 0
-
-                while left_idx < len(left_arr) and right_idx < len(right_arr):
-                    if left_arr[left_idx] < right_arr[right_idx]:
-                        arr[merged_idx] = left_arr[left_idx]
-                        left_idx += 1
-                    else:
-                        arr[merged_idx] = right_arr[right_idx]
-                        right_idx += 1
-
-                    merged_idx += 1
-
-                while left_idx < len(left_arr):
-                    arr[merged_idx] = left_arr[left_idx]
-                    left_idx += 1
-                    merged_idx += 1
-
-                while right_idx < len(right_arr):
-                    arr[merged_idx] = right_arr[right_idx]
-                    right_idx += 1
-                    merged_idx += 1
-
-            return arr
-
-        return merge_sort(nums)
+    # TODO: learn bucket sort and quick sort
+    
+    
 
 
 # @lc code=end
@@ -115,3 +83,38 @@ print(Solution.sortColors("", [2, 0, 2, 1, 1, 0]))
 #             nums[j + 1] = curr
 
 #         return nums
+
+
+# def merge_sort(arr):
+#     if len(arr) > 1:
+#         mid = len(arr) // 2
+#         left_arr, right_arr = arr[:mid], arr[mid:]
+
+#         merge_sort(left_arr)
+#         merge_sort(right_arr)
+
+#         left_idx = 0
+#         right_idx = 0
+#         merged_idx = 0
+
+#         while left_idx < len(left_arr) and right_idx < len(right_arr):
+#             if left_arr[left_idx] < right_arr[right_idx]:
+#                 arr[merged_idx] = left_arr[left_idx]
+#                 left_idx += 1
+#             else:
+#                 arr[merged_idx] = right_arr[right_idx]
+#                 right_idx += 1
+
+#             merged_idx += 1
+
+#         while left_idx < len(left_arr):
+#             arr[merged_idx] = left_arr[left_idx]
+#             left_idx += 1
+#             merged_idx += 1
+
+#         while right_idx < len(right_arr):
+#             arr[merged_idx] = right_arr[right_idx]
+#             right_idx += 1
+#             merged_idx += 1
+
+#     return arr
