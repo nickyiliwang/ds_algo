@@ -57,6 +57,7 @@
 class Solution(object):
     def sortColors(self, nums):
     # TODO: learn bucket sort and quick sort
+    # https://www.youtube.com/watch?v=4xbWSRZHqac
     
     
 
