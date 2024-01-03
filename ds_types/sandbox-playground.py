@@ -1,4 +1,29 @@
-print(len([1, 2, 3, 4, 5, 6, 7, 8]) - 1 // 2)
+from linked_list import LinkedList
+
+
+def function():
+    linked_list = LinkedList()
+
+    linked_list.append(1)
+    linked_list.append(2)
+    linked_list.append(3)
+    linked_list.append(4)
+    linked_list.append(5)
+
+    curr = linked_list.head.next
+    while curr.next:
+        if curr.next.val == 6:
+            curr.next = curr.next.next
+            linked_list.display()
+            return
+        curr = curr.next
+
+
+function()
+
+# print(100004 % 1000)
+
+# print(len([1, 2, 3, 4, 5, 6, 7, 8]) - 1 // 2)
 
 # while True:
 #     print('1')
