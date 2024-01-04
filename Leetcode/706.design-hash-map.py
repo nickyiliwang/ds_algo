@@ -64,8 +64,6 @@
 
 
 # @lc code=start
-
-
 class ListNode:
     def __init__(self, key=-1, value=-1, next=None):
         self.key = key
@@ -77,11 +75,11 @@ class MyHashMap(object):
     def __init__(self):
         self.map = [ListNode() for i in range(1000)]
 
-    def currIdx(self, key):
+    def currNode(self, key):
         return self.map[key % 1000]
 
     def put(self, key, value):
-        curr = self.currIdx(key)
+        curr = self.currNode(key)
         while curr.next:
             if curr.next.key == key:
                 curr.next.value = value
@@ -91,7 +89,7 @@ class MyHashMap(object):
         curr.next = ListNode(key, value)
 
     def get(self, key):
-        curr = self.currIdx(key)
+        curr = self.currNode(key)
 
         while curr.next:
             if curr.next.key == key:
@@ -101,7 +99,7 @@ class MyHashMap(object):
         return -1
 
     def remove(self, key):
-        curr = self.currIdx(key)
+        curr = self.currNode(key)
 
         while curr.next:
             if curr.next.key == key:
@@ -118,7 +116,7 @@ class MyHashMap(object):
 # @lc code=end
 
 
-# Array solution
+# Array only solution
 class MyHashMap(object):
     def __init__(self):
         self.arr = []
