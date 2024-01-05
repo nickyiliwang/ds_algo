@@ -97,12 +97,6 @@ class MyHashSet(object):
 # @lc code=end
 
 
-# class ListNode:
-#     def __init__(self, value=-1, next=None):
-#         self.value = value
-#         self.next = next
-
-
 # # You can certainly solve the HashSet problem using a linked list approach. However, it's important to note that the time complexity of the operations will be different compared to using a hash table.
 
 # # In a linked list approach, you can use a singly linked list where each node represents a value in the HashSet. To add a value, you would traverse the linked list to check if the value already exists. If not, you would add a new node at the end of the list. To remove a value, you would again traverse the list to find the node with the target value and remove it by updating the pointers. To check if a value exists, you would traverse the list and compare each node's value with the target value.
@@ -117,50 +111,56 @@ class MyHashSet(object):
 # # Overall, linked lists are most appropriate when dynamic resizing, frequent insertion/deletion, memory allocation considerations, or simplicity of implementation are important factors in your specific use case.
 
 
-# class MyHashSet(object):
-#     def __init__(self):
-#         self.head = ListNode()
+class ListNode:
+    def __init__(self, value=-1, next=None):
+        self.value = value
+        self.next = next
 
-#     def add(self, value):
-#         """
-#         :type value: int
-#         :rtype: None
-#         """
-#         curr = self.head
-#         while curr.next:
-#             if curr.value == value or curr.next.value == value:
-#                 return
-#             curr = curr.next
-#         curr.next = ListNode(value)
 
-#     def remove(self, value):
-#         """
-#         :type value: int
-#         :rtype: None
-#         """
-#         curr = self.head
-#         while curr.next:
-#             if curr.next.value == value:
-#                 curr.next = curr.next.next
-#                 return
-#             curr = curr.next
+class MyHashSet(object):
+    def __init__(self):
+        self.head = ListNode()
 
-#     def contains(self, value):
-#         """
-#         :type value: int
-#         :rtype: bool
-#         """
-#         curr = self.head
-#         while curr.next:
-#             if curr.next.value == value:
-#                 return True
-#             curr = curr.next
-#         return False
+    def add(self, value):
+        """
+        :type value: int
+        :rtype: None
+        """
+        curr = self.head
+        while curr.next:
+            if curr.value == value or curr.next.value == value:
+                return
+            curr = curr.next
+        curr.next = ListNode(value)
 
-#     def printList(self):
-#         res = []
-#         curr = self.head
-#         while curr:
-#             res.append(curr.value)
-#             curr = curr.next
-#         print(res)
+    def remove(self, value):
+        """
+        :type value: int
+        :rtype: None
+        """
+        curr = self.head
+        while curr.next:
+            if curr.next.value == value:
+                curr.next = curr.next.next
+                return
+            curr = curr.next
+
+    def contains(self, value):
+        """
+        :type value: int
+        :rtype: bool
+        """
+        curr = self.head
+        while curr.next:
+            if curr.next.value == value:
+                return True
+            curr = curr.next
+        return False
+
+    def printList(self):
+        res = []
+        curr = self.head
+        while curr:
+            res.append(curr.value)
+            curr = curr.next
+        print(res)

@@ -1,8 +1,10 @@
-hey = {}
+print(3 // 2)
 
-hey["hi"] = 1
+# hey = {}
 
-print(hey)
+# hey["hi"] = 1
+
+# print(hey)
 
 # from linked_list import LinkedList
 
