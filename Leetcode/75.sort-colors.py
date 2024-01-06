@@ -56,10 +56,20 @@
 # @lc code=start
 class Solution(object):
     def sortColors(self, nums):
-    # TODO: learn bucket sort and quick sort
-    # https://www.youtube.com/watch?v=4xbWSRZHqac
-    
-    
+        l, r = 0, len(nums) - 1
+        i = 0
+
+        while i <= r:
+            if nums[i] == 0:
+                nums[l], nums[i] = nums[i], nums[l]
+                l += 1
+                i += 1
+            elif nums[i] == 2:
+                nums[i], nums[r] = nums[r], nums[i]
+                r -= 1
+                # moving i pointer here will introduce 0 into middle
+            else:  # encountered 1
+                i += 1
 
 
 # @lc code=end
@@ -68,6 +78,13 @@ print(Solution.sortColors("", [2, 0, 2, 1, 1, 0]))
 
 # Input: nums = [2,0,2,1,1,0]
 # Output: [0,0,1,1,2,2]
+
+# # Bucket Sort:
+# def sortColors(self, nums):
+#     buckets = [[] for i in range(3)]
+#     for n in nums:
+#         buckets[n].append(n)
+#     return [n for bucket in buckets for n in bucket]
 
 
 # Insertion sort
