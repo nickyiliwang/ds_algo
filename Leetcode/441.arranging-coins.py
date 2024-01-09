@@ -56,7 +56,7 @@ class Solution(object):
 
         while left <= right:
             mid = (left + right) // 2
-            need = (mid / 2) * (1 + mid)
+            need = (mid / 2) * (1 + mid)  # Gauss' formula
             if need > n:
                 right = mid - 1
             else:
