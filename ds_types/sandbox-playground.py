@@ -1,7 +1,18 @@
-num = "-12"
+# list = [1, 2, 3, 4, 5]
+# left, right = 0, len(list) - 1
+# sums = []
 
-print(type(int("=") == int))
-print(type(-12) == int)
+# while left < right:
+#     sum = list[left] + list[right]
+#     sums.append(sum)
+#     left += 1
+#     right -= 1
+
+# print(sums)
+# num = "-12"
+
+# print(type(int("=") == int))
+# print(type(-12) == int)
 
 # def fib(n, memo={}):
 #     if n in memo:
