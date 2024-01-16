@@ -56,6 +56,24 @@
 # @lc code=start
 class Solution(object):
     def sortColors(self, nums):
+        buckets = [[] for i in range(3)]
+
+        for n in nums:
+            buckets[n].append(n)
+
+        return [n for bucket in buckets for n in bucket]
+
+
+# @lc code=end
+
+print(Solution.sortColors("", [2, 0, 2, 1, 1, 0]))
+
+# Most efficient way to doing this problem
+# With partitioning One pass and O(1) space
+
+
+class Solution(object):
+    def sortColors(self, nums):
         l, r = 0, len(nums) - 1
         i = 0
 
@@ -71,10 +89,6 @@ class Solution(object):
             else:  # encountered 1
                 i += 1
 
-
-# @lc code=end
-
-print(Solution.sortColors("", [2, 0, 2, 1, 1, 0]))
 
 # Input: nums = [2,0,2,1,1,0]
 # Output: [0,0,1,1,2,2]
