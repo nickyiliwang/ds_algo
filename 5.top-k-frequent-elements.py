@@ -1,16 +1,17 @@
 from collections import Counter
 
+
 # Time: O(n), Memory O(n)
 def topKFrequent(nums, k):
     counter = Counter()
-    freq = [[] for i in range(len(nums) + 1)]
+    freq = [[] for i in range(len(nums))]
 
     res = []
     for n in nums:
         counter[n] += 1
 
     for num, count in counter.items():
-        freq[count].append(num)
+        freq[count - 1].append(num)
 
     for i in range(len(freq) - 1, -1, -1):
         for n in freq[i]:
@@ -25,16 +26,15 @@ def topKFrequent(nums, k):
     counter = Counter()
     # [[],[],[]]
     # *We need +1 here for max possible freq of any element
-    freq = [[] for i in range(len(nums) + 1)]
+    freq = [[] for i in range(len(nums))]
 
     res = []
-    # Count frequency
     for n in nums:
         counter[n] += 1
 
-    # Fill count buckets with numbers
+    # count here will need to become 0 starting index
     for num, count in counter.items():
-        freq[count].append(num)
+        freq[count - 1].append(num)
 
     # Go from highest count bucket to lowest, hence reverse
     # for numbers in reversed(freq): also works here
@@ -45,8 +45,6 @@ def topKFrequent(nums, k):
             if (len(res)) == k:
                 return res
 
-
-# The "+1" in the line "freq = [[] for i in range(len(nums) + 1)]" is used to create an array of lists that can accommodate the maximum possible frequency of any element in the "nums" list. The frequency of an element can range from 1 to the number of occurrences of that element in the list. So, to ensure that all possible frequencies can be stored in the "freq" array, the size of the array is set to "len(nums) + 1". By adding 1 to the length of "nums", the array can accommodate the frequency of 1, which is the lowest possible frequency of any element.
 
 # bucket sort
 # def topKFrequent(nums, k):

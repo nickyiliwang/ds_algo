@@ -4,16 +4,38 @@ from math import *
 from ds_types.linked_list import LinkedList, ListNode
 
 
-def reverseString(str):
-    res = ""
-    for i in range(len(str) - 1, -1, -1):
-        res += str[i]
+def topK(nums, k):
+    freq = [[] for i in range(len(nums))]
+    res = []
+    counter = Counter()
 
-    print(res)
+    for n in nums:
+        counter[n] += 1
+
+    for num, count in counter.items():
+        freq[count - 1].append(num)
+
+    for nums in reversed(freq):
+        for n in nums:
+            if len(res) != k:
+                res.append(n)
+
     return res
 
 
-reverseString("Hello World !")
+topK([1], 1)
+
+
+# def reverseString(str):
+#     res = ""
+#     for i in range(len(str) - 1, -1, -1):
+#         res += str[i]
+
+#     print(res)
+#     return res
+
+
+# reverseString("Hello World !")
 
 # # Input: nums = [-1,0,3,5,9,12], target = 9
 # # Output: 4

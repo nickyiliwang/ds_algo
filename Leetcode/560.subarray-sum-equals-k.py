@@ -37,26 +37,25 @@
 #
 #
 
+from collections import Counter
+
 
 # @lc code=start
-class Solution(object):
-    def subarraySum(self, nums, k):
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: int
-        """
+class Solution:
+    def subarraySum(self, nums, k: int) -> int:
         sum = 0
         res = 0
-        prefixMap = {0: 1}
+        prefixMap = Counter({0: 1})
 
         for num in nums:
             sum += num
             diff = sum - k
+
             if diff in prefixMap:
                 res += prefixMap[diff]
 
-            prefixMap[sum] = prefixMap.get(sum, 0) + 1
+            prefixMap[sum] += 1
+
         return res
 
 
@@ -68,4 +67,4 @@ class Solution(object):
 # 2. prefixMap stores the different prefixes that we can remove and result in an sum of k
 # 3. update the prefixMap regardless
 
-print(Solution.subarraySum("", [1, 1, 1], 2))
+print(Solution.subarraySum("", [1, 1, 1, 1, 1, 1, 1, 1, 1], 3))
