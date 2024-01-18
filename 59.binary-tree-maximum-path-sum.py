@@ -3,11 +3,12 @@ from ds_types.tree import Tree, TreeNode
 
 
 def maxPathSum(root):
-    maxPath = [root.val]
+    maxPath = root.val
 
     def dfs(root):
+        nonlocal maxPath
         if not root:
-            return
+            return 0
 
         leftMax = dfs(root.left)
         rightMax = dfs(root.right)
@@ -17,13 +18,13 @@ def maxPathSum(root):
         rightMax = max(rightMax, 0)
 
         # max path sum WITH split but we are not passing this to the root
-        maxPath[0] = max(maxPath[0], root.val + leftMax + rightMax)
+        maxPath = max(maxPath, root.val + leftMax + rightMax)
 
         # max path without split
         return root.val + max(leftMax, rightMax)
 
     dfs(root)
-    return maxPath[0]
+    return maxPath
 
 
 root = TreeNode(-10)
@@ -31,5 +32,9 @@ root.left = TreeNode(9)
 root.right = TreeNode(20)
 root.right.left = TreeNode(15)
 root.right.right = TreeNode(7)
+root.left = TreeNode(9)
+root.left.left = TreeNode(24)
+root.left.right = TreeNode(5)
+
 
 print(maxPathSum(root))

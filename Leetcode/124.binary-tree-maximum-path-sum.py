@@ -1,5 +1,5 @@
 #
-# @lc app=leetcode id=124 lang=python
+# @lc app=leetcode id=124 lang=python3
 #
 # [124] Binary Tree Maximum Path Sum
 #
@@ -52,24 +52,22 @@
 #
 #
 
-from typing import Optional, List
-from tree import Tree, TreeNode
-
 
 # @lc code=start
 # Definition for a binary tree node.
-# class TreeNode(object):
+# class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
-    def maxPathSum(self, root):
-        maxPath = [root.val]
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        maxPath = root.val
 
         def dfs(root):
+            nonlocal maxPath
             if not root:
-                return
+                return 0
 
             leftMax = dfs(root.left)
             rightMax = dfs(root.right)
@@ -89,11 +87,3 @@ class Solution(object):
 
 
 # @lc code=end
-
-root = TreeNode(-10)
-root.left = TreeNode(9)
-root.right = TreeNode(20)
-root.right.left = TreeNode(15)
-root.right.right = TreeNode(7)
-
-print(Solution.maxPathSum("", root))

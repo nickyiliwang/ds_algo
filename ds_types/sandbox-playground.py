@@ -1,9 +1,14 @@
-print(type(("toys", "books")))
+leftMax = None
 
-stuff = set()
-stuff.add(("toys", "books"))
+print(max(leftMax, 0))
 
-print(stuff)
+
+# print(type(("toys", "books")))
+
+# stuff = set()
+# stuff.add(("toys", "books"))
+
+# print(stuff)
 
 # list = [1, 2, 3, 4, 5]
 # left, right = 0, len(list) - 1
