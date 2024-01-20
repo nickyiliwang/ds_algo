@@ -1,6 +1,8 @@
-leftMax = None
+stuff = ["a", "b"]
 
-print(max(leftMax, 0))
+stuff.extend(["c", "d"])
+
+print(stuff)
 
 
 # print(type(("toys", "books")))

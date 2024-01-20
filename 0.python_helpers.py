@@ -50,3 +50,10 @@ print(ord("a"), ord("b"), ord("c"))
 # reversing an array
 listX = [1, 2, 3, 4, 5, 6]
 print(listX[::-1])
+
+# extend
+stuff = ["a", "b"]
+
+stuff.extend(["c", "d"])
+
+print(stuff)  # ['a', 'b', 'c', 'd']

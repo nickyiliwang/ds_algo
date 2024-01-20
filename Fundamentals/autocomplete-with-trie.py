@@ -25,14 +25,12 @@ from typing import List
 
 
 class TrieNode:
-
     def __init__(self):
         self.children = {}
         self.is_end_of_word = False
 
 
 class Trie:
-
     def __init__(self):
         self.root = TrieNode()
 
@@ -54,20 +52,19 @@ class Trie:
 
     def find_words_with_prefix(self, prefix: str) -> List[str]:
         curr = self.root
-        for ch in prefix:
-            if ch not in curr.children:
+        for char in prefix:
+            if char not in curr.children:
                 return []
-            curr = curr.children[ch]
+            curr = curr.children[char]
         return self._find_all_words(curr, prefix)
 
     def _find_all_words(self, node, prefix):
         result = []
         if node.is_end_of_word:
             result.append(prefix)
-        for ch, child in node.children.items():
-            child_prefix = prefix + ch
+        for char, child in node.children.items():
+            child_prefix = prefix + char
             result.extend(self._find_all_words(child, child_prefix))
-        print(result)
         return result
 
 
@@ -79,11 +76,11 @@ trie.insert("cherry")
 trie.insert("orange")
 trie.insert("octopus")
 
-trie.search("apple")  # returns True
-trie.search("app")  # returns False
+# trie.search("apple")  # returns True
+# trie.search("app")  # returns False
 
-trie.find_words_with_prefix("app")  # returns ["apple"]
-trie.find_words_with_prefix("o")  # returns ["orange"]
+print(trie.find_words_with_prefix("app"))
+print(trie.find_words_with_prefix("o"))
 
 # A trie (prefix tree) is a tree-like data structure that is used to store a dynamic set of strings. It allows you to efficiently search for a string in the set by prefix, making it well-suited for tasks such as autocomplete and spell check.
 
