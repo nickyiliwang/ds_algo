@@ -1,8 +1,14 @@
-stuff = ["a", "b"]
+stuff = {
+    "a": 1,
+    "b": 2,
+    "c": 3,
+    "d": 4,
+    "e": 5,
+}
 
-stuff.extend(["c", "d"])
+items = stuff.items()
 
-print(stuff)
+print(items) # dict_items([('a', 1), ('b', 2), ('c', 3), ('d', 4), ('e', 5)])
 
 
 # print(type(("toys", "books")))

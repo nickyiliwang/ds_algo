@@ -57,3 +57,13 @@ stuff = ["a", "b"]
 stuff.extend(["c", "d"])
 
 print(stuff)  # ['a', 'b', 'c', 'd']
+
+# items
+stuff = {
+    "a": 1,
+    "b": 2,
+}
+
+items = stuff.items()
+
+print(items)  # dict_items([('a', 1), ('b', 2)])
