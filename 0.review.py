@@ -4,26 +4,65 @@ from math import *
 from ds_types.linked_list import LinkedList, ListNode
 
 
-def topK(nums, k):
-    freq = [[] for i in range(len(nums))]
-    res = []
-    counter = Counter()
-
-    for n in nums:
-        counter[n] += 1
-
-    for num, count in counter.items():
-        freq[count - 1].append(num)
-
-    for nums in reversed(freq):
-        for n in nums:
-            if len(res) != k:
-                res.append(n)
-
-    return res
+class TriNode:
+    def __init__(self):
+        self.children = {}
+        self.isEnd = False
 
 
-topK([1], 1)
+class WordDictionary:
+    def __init__(self):
+        self.root = TriNode()
+
+    def addWord(self, word: str) -> None:
+        curr = self.root
+        for char in word:
+            if char not in curr.children:
+                curr.children[char] = TriNode()
+
+            curr = curr.children[char]
+        curr.isEnd = True
+
+    def search(self, word: str) -> bool:
+        def dfs(index, root):
+            if index == len(word):
+                return root.isEnd
+
+            curr = root
+            char = word[index]
+            if char == ".":
+                for child in curr.children.values():
+                    if dfs(index + 1, child):
+                        return True
+
+            if char in root.children:
+                return dfs(index + 1, root.children[char])
+
+            return False
+        
+        return (0, self.root)
+
+
+# def topK(nums, k):
+#     freq = [[] for i in range(len(nums))]
+#     res = []
+#     counter = Counter()
+
+#     for n in nums:
+#         counter[n] += 1
+
+#     for num, count in counter.items():
+#         freq[count - 1].append(num)
+
+#     for nums in reversed(freq):
+#         for n in nums:
+#             if len(res) != k:
+#                 res.append(n)
+
+#     return res
+
+
+# topK([1], 1)
 
 
 # def reverseString(str):
