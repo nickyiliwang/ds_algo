@@ -30,16 +30,19 @@
 
 # Pre-order traversal starts by visiting the root node, then recursively visits the left subtree in pre-order, and finally recursively visits the right subtree in pre-order.
 
+
 def preOrder(root):
     if root:
         print(root.val)
         preOrder(root.left)
         preOrder(root.right)
 
+
 # Depth first search
 # In-order traversal
 
 # In-order traversal starts by recursively visiting the left subtree in in-order, then visits the root node, and finally recursively visits the right subtree in in-order.
+
 
 def inOrder(root):
     if root:
@@ -47,8 +50,10 @@ def inOrder(root):
         print(root.val)
         inOrder(root.right)
 
+
 # Depth first search
 # Post-order traversal
+
 
 # Post-order traversal starts by recursively visiting the left subtree in post-order, then recursively visits the right subtree in post-order, and finally visits the root node.
 def postOrder(root):
@@ -56,7 +61,7 @@ def postOrder(root):
         postOrder(root.left)
         postOrder(root.right)
         print(root.val)
-        
+
 
 # BFS is a graph traversal technique that systematically explores all the vertices of a graph level by level. It starts at the root (or source node) and explores its neighbors before moving on to the next level. It can be implemented using a queue data structure.
 
@@ -70,14 +75,6 @@ def postOrder(root):
 # 3. Post-order
 
 
-
-
-
-
-
-
-
-
 # The relationship between the three binary tree traversals (pre-order, in-order, and post-order) and BFS and DFS is that pre-order and post-order traversals are essentially forms of DFS, while in-order traversal does not directly correspond to either BFS or DFS.
 
 # Pre-order traversal is similar to DFS (using a stack) because it explores the nodes depth-first. It visits a node, then visits its left subtree, and finally visits its right subtree. This is equivalent to exploring the tree in a top-down, left-to-right manner.
@@ -86,5 +83,47 @@ def postOrder(root):
 
 # Post-order traversal is also similar to DFS, but it explores the nodes from the bottom-up. It visits the left subtree, then visits the right subtree, and finally visits the root node. This is equivalent to exploring the tree in a bottom-up manner, visiting leaf nodes first.
 
-# pre-order and post-order traversals can be viewed as forms of DFS 
+# pre-order and post-order traversals can be viewed as forms of DFS
 # while in-order traversal has its own distinct order that does not align with BFS or DFS.
+
+# BFS
+
+from collections import deque
+
+
+def bfs(graph, start):
+    visited = set()  # Set to keep track of visited nodes
+    queue = deque([start])  # Queue for BFS traversal
+    visited.add(start)
+
+    while queue:
+        node = queue.popleft()
+        print(node, end=" ")
+
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                queue.append(neighbor)
+                visited.add(neighbor)
+
+
+def bfs_recursive(graph, queue, visited):
+    if not queue:
+        return
+
+    node = queue.popleft()
+    print(node, end=" ")
+    visited.add(node)
+
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            queue.append(neighbor)
+            visited.add(neighbor)
+
+    bfs_recursive(graph, queue, visited)
+
+
+# Example graph represented as an adjacency list
+graph = {"A": ["B", "C"], "B": ["D", "E"], "C": ["F"], "D": [], "E": ["F"], "F": []}
+
+print("BFS Traversal:")
+bfs(graph, "A")

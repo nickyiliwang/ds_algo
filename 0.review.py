@@ -4,43 +4,124 @@ from math import *
 from ds_types.linked_list import LinkedList, ListNode
 
 
-class TriNode:
-    def __init__(self):
-        self.children = {}
-        self.isEnd = False
+def merge_sort(arr):
+    if len(arr) > 1:
+        mid = len(arr) // 2
+        left_arr = arr[:mid]
+        right_arr = arr[mid:]
+
+        merge_sort(left_arr)
+        merge_sort(right_arr)
+
+        left_idx = 0
+        right_idx = 0
+        merged_idx = 0
+
+        while left_idx < len(left_arr) and right_idx < len(right_arr):
+            if left_arr[left_idx] < right_arr[right_idx]:
+                arr[merged_idx] = left_arr[left_idx]
+                left_idx += 1
+            else:
+                arr[merged_idx] = right_arr[right_idx]
+                right_idx += 1
+            merged_idx += 1
+
+        while left_idx < len(left_arr):
+            arr[merged_idx] = left_arr[left_idx]
+            left_idx += 1
+            merged_idx += 1
+
+        while right_idx < len(right_arr):
+            arr[merged_idx] = right_arr[right_idx]
+            right_idx += 1
+            merged_idx += 1
+
+    return arr
 
 
-class WordDictionary:
-    def __init__(self):
-        self.root = TriNode()
+print(merge_sort([3, 2, 1, 4, 5]))
 
-    def addWord(self, word: str) -> None:
-        curr = self.root
-        for char in word:
-            if char not in curr.children:
-                curr.children[char] = TriNode()
+# class Solution:
+#     def exist(self, board: List[List[str]], word: str) -> bool:
+#         row, col = len(board), len(board[0])
+#         path = set()
 
-            curr = curr.children[char]
-        curr.isEnd = True
+#         def dfs(r, c, i):
+#             if i == len(word):
+#                 return True
 
-    def search(self, word: str) -> bool:
-        def dfs(index, root):
-            if index == len(word):
-                return root.isEnd
+#             if (
+#                 r < 0
+#                 or c < 0
+#                 or r >= row
+#                 or c >= col
+#                 or word[i] != board[r][c]
+#                 or (r, c) in path
+#             ):
+#                 return False
 
-            curr = root
-            char = word[index]
-            if char == ".":
-                for child in curr.children.values():
-                    if dfs(index + 1, child):
-                        return True
+#             path.add((r, c))
+#             res = (
+#                 dfs(r + 1, c, i + 1)
+#                 or dfs(r - 1, c, i + 1)
+#                 or dfs(r, c + 1, i + 1)
+#                 or dfs(r, c - 1, i + 1)
+#             )
+#             path.remove((r, c))
+#             return res
 
-            if char in root.children:
-                return dfs(index + 1, root.children[char])
+#         for r in range(row):
+#             for c in range(col):
+#                 if dfs(r, c, 0):
+#                     return True
 
-            return False
-        
-        return (0, self.root)
+#         return False
+
+
+# print(
+#     Solution.exist(
+#         "", [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]], "SEE"
+#     )
+# )
+
+
+# class TriNode:
+#     def __init__(self):
+#         self.children = {}
+#         self.isEnd = False
+
+
+# class WordDictionary:
+#     def __init__(self):
+#         self.root = TriNode()
+
+#     def addWord(self, word: str) -> None:
+#         curr = self.root
+#         for char in word:
+#             if char not in curr.children:
+#                 curr.children[char] = TriNode()
+
+#             curr = curr.children[char]
+#         curr.isEnd = True
+
+#     def search(self, word: str) -> bool:
+#         def dfs(index, root):
+#             if index == len(word):
+#                 return root.isEnd
+
+#             curr = root
+#             char = word[index]
+#             if char == ".":
+#                 for child in curr.children.values():
+#                     if dfs(index + 1, child):
+#                         return True
+
+#             if char in root.children:
+#                 return dfs(index + 1, root.children[char])
+
+#             return False
+
+#         return (0, self.root)
 
 
 # def topK(nums, k):

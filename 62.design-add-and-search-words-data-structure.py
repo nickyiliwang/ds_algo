@@ -85,7 +85,7 @@ class WordDictionary:
 
     def search(self, word: str) -> bool:
         def dfs(index, root):
-            if index == len(word):
+            if index == len(word):  # base case
                 return root.isEnd
 
             curr = root

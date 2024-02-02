@@ -1,14 +1,114 @@
-stuff = {
-    "a": 1,
-    "b": 2,
-    "c": 3,
-    "d": 4,
-    "e": 5,
-}
+print(31 // 4)
+print((31 - 1) // 4)
 
-items = stuff.items()
+# nums = [17, 18, 19, 20, 21, 22, 23, 25, 26, 29]
+# length = 3
+# res = 0
 
-print(items) # dict_items([('a', 1), ('b', 2), ('c', 3), ('d', 4), ('e', 5)])
+
+# def xor_of_sequence(first, last):
+#     if first % 2 == 0:
+#         xor_pattern = [last, 1, last + 1, 0]
+#     else:
+#         xor_pattern = [first, first ^ last, first - 1, (first - 1) ^ last]
+
+#     return xor_pattern[(last - first) % 4]
+
+
+# for security_id in range(length):  # treat each 'row' as a sequence of numbers
+#     first = 0 + (length * security_id)  # the first number in the row / sequence
+#     last = first + (length - security_id) - 1  # the last number in the row / sequence
+#     print(first, last)
+#     res ^= xor_of_sequence(first, last)
+
+# print(res)
+# nums = [17, 18, "/", 19, 20, 21, 22, 23, 25, 26, 29]
+# res = 0
+
+# for n in nums:
+#     res ^= n
+
+# print(res)
+
+
+# 17 18 19 20 /
+
+
+# num = 20
+# loop = 0
+
+# print(loop, num >> 2)
+
+# def recursive_function(value):
+#     # Base case
+#     if value == 0:
+#         return 0
+
+#     # Recursive case
+#     print(value)  # Print the current value
+#     return recursive_function(value - 1) + 1
+
+
+# # Call the recursive function with an initial value of 5
+# result = recursive_function(5)
+# print(result)
+
+
+# bucket = ["1", "2", "3"]
+# # bucket = {"1": "value1", "2": "value2"}
+
+# print(bucket.index("1"))
+
+# num = int("10000", 3)
+
+# print(num)
+
+# s = "aaaaaaab"
+# unique = set()
+# for char in s:
+#     unique.add(char)
+
+# print("".join(list(unique)))
+
+# class Solution:
+#     def __init__(self):
+#         self.root = "1"
+
+#     def addWords(self, word):
+#         curr = self
+#         curr.root = word
+
+#     def findWords(self, board, words):
+#         self.addWords("word")
+#         return "result"
+
+
+# solution = Solution()
+# print(solution.findWords("board", "words"))
+
+# word = "HelLo"
+# i = 3
+
+# print(word[: i + 1])
+
+# stuff = set([(0, 0), (1, 1)])
+
+# stuff.add((2, 2))
+
+# for r, l in stuff:
+#     print(r, l)
+
+# stuff = {
+#     "a": 1,
+#     "b": 2,
+#     "c": 3,
+#     "d": 4,
+#     "e": 5,
+# }
+
+# items = stuff.items()
+
+# print(items) # dict_items([('a', 1), ('b', 2), ('c', 3), ('d', 4), ('e', 5)])
 
 
 # print(type(("toys", "books")))
