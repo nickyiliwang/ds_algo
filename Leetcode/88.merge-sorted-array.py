@@ -94,7 +94,7 @@ class Solution:
 
 sol = Solution()
 
-print(sol.merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3))
+print(sol.merge([2, 0], 1, [1], 1))
 
 
 # Unaccepted correct solution
