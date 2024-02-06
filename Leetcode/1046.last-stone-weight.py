@@ -71,7 +71,10 @@ import heapq
 class Solution:
     def lastStoneWeight(self, stones: List[int]) -> int:
         # stones = list(map(lambda n: -abs(n), stones))
+        # turning negative here so we can have a max heap
+        # [1,2,3] => [-3, -2, -1]  <= stone[0] will always be largest
         stones = [-abs(n) for n in stones]
+
         heapq.heapify(stones)
 
         while True:
