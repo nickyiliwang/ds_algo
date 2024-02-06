@@ -1,5 +1,17 @@
-print(31 // 4)
-print((31 - 1) // 4)
+# import heapq
+
+points = [8, -2, 2]
+
+points = list(map(lambda n: n**2, points))
+
+print(points)
+
+# heapq.heapify(nums)
+
+# print(nums)
+
+# print(31 // 4)
+# print((31 - 1) // 4)
 
 # nums = [17, 18, 19, 20, 21, 22, 23, 25, 26, 29]
 # length = 3
