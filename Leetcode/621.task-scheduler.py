@@ -72,40 +72,30 @@
 
 from typing import List
 import heapq
+from collections import Counter, deque
 
 
-# MY passing solution
 # @lc code=start
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
-        if n == 0:
-            return len(tasks)
-
-        maxHeap = []
-        counter = {}
-        res = []
-        for task in tasks:
-            counter[task] = counter.get(task, 0) + 1
-
-        for key, val in counter.items():
-            maxHeap.append([-abs(val), key])
-
+        maxHeap = [[-val, key] for key, val in Counter(tasks).items()]
         heapq.heapify(maxHeap)
+        res = []
 
-        while len(maxHeap) > 0:
+        while maxHeap:
             temp = []
             for _ in range(n + 1):
-                if len(maxHeap) > 0:
-                    secondaryTask = heapq.heappop(maxHeap)
-                    secondaryTask[0] += 1
-                    if secondaryTask[0] != 0:
-                        temp.append(secondaryTask)
-                    res.append(secondaryTask[1])
+                if maxHeap:
+                    task = heapq.heappop(maxHeap)
+                    task[0] += 1
+                    if task[0]:
+                        temp.append(task)
+                    res.append(task[1])
                 else:
-                    if len(maxHeap) == 0:
-                        res.append("idle")
-            for item in temp:
-                heapq.heappush(maxHeap, item)
+                    res.append("idle")
+
+            for task in temp:
+                heapq.heappush(maxHeap, task)
 
         while res[-1] == "idle":
             res.pop()
@@ -114,8 +104,52 @@ class Solution:
 
 
 # @lc code=end
-print(
-    Solution().leastInterval(
-        ["A", "A", "A", "A", "A", "A", "B", "C", "D", "E", "F", "G"], 2
-    )
-)
+print(Solution().leastInterval(["A", "A", "A", "B", "B", "B"], 2))
+
+
+# Can't figure out when to increment the time
+# because when I reach the end of the maxHeap
+# there will still be n extra idle times at the end
+def leastInterval(self, tasks: List[str], n: int) -> int:
+    maxHeap = [[-val, key] for key, val in Counter(tasks).items()]
+    heapq.heapify(maxHeap)
+    times = 0
+
+    while maxHeap:
+        temp = []
+        for _ in range(n + 1):
+            if maxHeap:
+                task = heapq.heappop(maxHeap)
+                task[0] += 1
+                if task[0]:
+                    temp.append(task)
+
+            times += 1
+
+        for task in temp:
+            heapq.heappush(maxHeap, task)
+
+    return times - n
+
+
+# neetcode
+def leastInterval(self, tasks: List[str], n: int) -> int:
+    count = Counter(tasks)
+    maxHeap = [-cnt for cnt in count.values()]
+    heapq.heapify(maxHeap)
+
+    time = 0
+    q = deque()  # pairs of [-cnt, idleTime]
+    while maxHeap or q:
+        time += 1
+
+        if maxHeap:
+            cnt = 1 + heapq.heappop(maxHeap)
+            if cnt:
+                q.append([cnt, time + n])
+        else:
+            time = q[0][1]
+
+        if q and q[0][1] == time:
+            heapq.heappush(maxHeap, q.popleft()[0])
+    return time
