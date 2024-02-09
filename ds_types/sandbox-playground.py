@@ -1,29 +1,35 @@
-import heapq
+data = set([1, 2, 3, 4, 5])
 
-n = 2
-points = [8, 2, 21, 2, 23, 4, 1, 413, 3, 55, 4]
+data.add(1)
+data.remove(4)
 
-heapq.heapify(points)
+print(data)
+# import heapq
 
-res = []
+# n = 2
+# points = [8, 2, 21, 2, 23, 4, 1, 413, 3, 55, 4]
 
-while len(points) > 0:
-    temp = []
+# heapq.heapify(points)
 
-    for _ in range(n):
-        if len(points) > 0:
-            high = heapq.heappop(points)
-            high -= 1
-            if high != 0:
-                temp.append(high)
-            res.append(high)
-        else:
-            res.append("idle")
+# res = []
 
-    for item in temp:
-        heapq.heappush(points, item)
+# while len(points) > 0:
+#     temp = []
 
-print(res)
+#     for _ in range(n):
+#         if len(points) > 0:
+#             high = heapq.heappop(points)
+#             high -= 1
+#             if high != 0:
+#                 temp.append(high)
+#             res.append(high)
+#         else:
+#             res.append("idle")
+
+#     for item in temp:
+#         heapq.heappush(points, item)
+
+# print(res)
 
 # points = list(map(lambda n: n**2, points))
 
