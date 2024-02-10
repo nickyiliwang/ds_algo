@@ -79,12 +79,14 @@ from collections import deque
 
 
 # @lc code=start
+
+
+# None optimized solution with looping the entire feed database
 class Twitter:
 
     def __init__(self):
         self.database = {}
         self.feed = deque([])
-        self.time = -1
 
     def createUser(self, userId):
         self.database[userId] = {"follows": set([userId])}
