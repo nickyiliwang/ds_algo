@@ -75,70 +75,96 @@
 
 from typing import List
 import heapq
-from collections import deque
+from collections import deque, defaultdict
 
 
 # @lc code=start
-
-
 # None optimized solution with looping the entire feed database
 class Twitter:
 
     def __init__(self):
-        self.database = {}
+        self.followDB = defaultdict(set)
         self.feed = deque([])
 
-    def createUser(self, userId):
-        self.database[userId] = {"follows": set([userId])}
-
     def postTweet(self, userId: int, tweetId: int) -> None:
-        if userId not in self.database:
-            self.createUser(userId)
-
         self.feed.appendleft([userId, tweetId])
 
     def getNewsFeed(self, userId: int) -> List[int]:
         res = []
 
+        self.followDB[userId].add(userId)
         for tweet in self.feed:
-            if tweet[0] in self.database[userId]["follows"]:
+            if tweet[0] in self.followDB[userId] and len(res) < 10:
                 res.append(tweet[1])
-
-        while len(res) > 10:
-            res.pop()
 
         return res
 
     def follow(self, followerId: int, followeeId: int) -> None:
-        if followerId not in self.database:
-            self.createUser(followerId)
-        if followeeId not in self.database:
-            self.createUser(followeeId)
-
-        self.database[followerId]["follows"].add(followeeId)
+        self.followDB[followerId].add(followeeId)
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
-        if followerId not in self.database or followeeId not in self.database:
-            return
-
-        if followeeId in self.database[followerId]["follows"]:
-            self.database[followerId]["follows"].remove(followeeId)
+        self.followDB[followerId].discard(followeeId)
 
 
-# Your Twitter object will be instantiated and called as such:
-
-# param_2 = obj.getNewsFeed(userId)
-# obj.unfollow(followerId,followeeId)
 # @lc code=end
 
 
 obj = Twitter()
 obj.postTweet(1, 5)
-obj.getNewsFeed(1)
+print(obj.getNewsFeed(1))
 obj.follow(1, 2)
 obj.postTweet(2, 6)
 obj.unfollow(1, 2)
-obj.getNewsFeed(1)
+print(obj.getNewsFeed(1))
+
+
+# optimized solution with almost linked list like structure.
+class Twitter:
+
+    def __init__(self):
+        self.count = 0
+        self.followDB = defaultdict(set)
+        self.feedDB = defaultdict(list)
+
+    def postTweet(self, userId: int, tweetId: int) -> None:
+        self.feedDB[userId].append([self.count, tweetId])
+        self.count -= 1
+
+    def getNewsFeed(self, userId: int) -> List[int]:
+        res = []
+        minHeap = []
+
+        self.followDB[userId].add(userId)  # follows self
+
+        for followeeId in self.followDB[userId]:
+            if followeeId in self.feedDB:
+                recentIdx = len(self.feedDB[followeeId]) - 1
+                prevIdx = recentIdx - 1
+                count, tweetId = self.feedDB[followeeId][recentIdx]
+                heapq.heappush(minHeap, [count, tweetId, followeeId, prevIdx])
+
+        while minHeap and len(res) < 10:
+            count, tweetId, followeeId, prevIdx = heapq.heappop(minHeap)
+            res.append(tweetId)
+            if prevIdx >= 0:
+                count, tweetId = self.feedDB[followeeId][prevIdx]
+                prevIdx = prevIdx - 1
+                heapq.heappush(
+                    minHeap,
+                    [count, tweetId, followeeId, prevIdx],
+                )
+
+        return res
+
+    def follow(self, followerId: int, followeeId: int) -> None:
+        self.followDB[followerId].add(followeeId)
+
+    def unfollow(self, followerId: int, followeeId: int) -> None:
+        # This method is different from the remove() method, because the remove() method will raise an error if the specified item does not exist, and the discard() method will not.
+        self.followDB[followerId].discard(followeeId)
+
+        # if followeeId in self.followDB[followerId]:
+        #     self.followDB[followerId].remove(followeeId)
 
 
 # obj.follow(2, 1)
