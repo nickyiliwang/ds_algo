@@ -1,9 +1,14 @@
-data = set([1, 2, 3, 4, 5])
+data = [1, 2, 3, 4, 5]
 
-data.add(1)
-data.remove(4)
+for n in range(len(data)):
+    print(n)
 
-print(data)
+# data = set([1, 2, 3, 4, 5])
+
+# data.add(1)
+# data.remove(4)
+
+# print(data)
 # import heapq
 
 # n = 2
