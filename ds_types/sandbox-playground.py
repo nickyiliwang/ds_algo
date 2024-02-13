@@ -1,7 +1,10 @@
-data = [1, 2, 3, 4, 5]
+import heapq
 
-for n in range(len(data)):
-    print(n)
+minHeap = [14, 35, 23, 523, 52, 5, 3, 2, 3, 4, 5]
+
+heapq.heapify(minHeap)
+
+print(3 % 2)
 
 # data = set([1, 2, 3, 4, 5])
 
