@@ -78,14 +78,6 @@ class Solution:
             curr = curr.children[char]
         curr.isEnd = True
 
-    def searchWord(self, word):
-        curr = self.root
-        for char in word:
-            if char not in curr.children:
-                return False
-            curr = curr.children[char]
-        return True
-
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         row, col = len(board), len(board[0])
         path = set()
