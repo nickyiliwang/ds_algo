@@ -62,6 +62,14 @@
 from typing import List
 import heapq
 
+# kth largest
+
+# [1,2,3,4,5] <= k = 3 is third largest
+# minHeap([1,2,3,4,5])
+# keep popping till len is k
+# minHeap([3,4,5])
+# Do that even when we add
+
 
 # @lc code=start
 class KthLargest:
