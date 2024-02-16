@@ -47,16 +47,22 @@
 from typing import List
 
 
+# 6/10 cases passed
 # @lc code=start
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        res = []
+        res = set()
         for i, n in enumerate(nums):
             j = i
-            while j < len(nums):
-                
+            while j <= len(nums):
+                res.add(tuple(nums[i:j]))
+                if j < len(nums) and i != j:
+                    res.add(tuple((nums[i], nums[j])))
+                j += 1
+
+        return list([list(tup) for tup in res])
 
 
 # @lc code=end
 
-Solution().subsets([1, 2, 3])
+print(Solution().subsets([1, 2, 3]))
