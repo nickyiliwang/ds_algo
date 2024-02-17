@@ -47,8 +47,46 @@
 from typing import List
 
 
-# 6/10 cases passed
 # @lc code=start
+# O(n * 2 ^ n)
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res = []
+
+        subset = []
+
+        def dfs(i):
+            if i >= len(nums):
+                res.append(subset.copy())
+                return
+
+            # include nums[i]
+            subset.append(nums[i])
+            dfs(i + 1)
+
+            # do not include nums[i], by removing the nums[i]
+            subset.pop()
+            dfs(i + 1)
+
+        dfs(0)
+        return res
+
+
+# @lc code=end
+
+print(Solution().subsets([1, 2, 3]))
+
+# https://docs.python.org/3/library/copy.html
+# copy.copy(x)
+# Return a shallow copy of x.
+
+# copy.deepcopy(x[, memo])
+# Return a deep copy of x.
+
+# The difference between shallow and deep copying is only relevant for compound objects (objects that contain other objects, like lists or class instances)
+
+
+# 6/10 cases passed
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         res = set()
@@ -61,8 +99,3 @@ class Solution:
                 j += 1
 
         return list([list(tup) for tup in res])
-
-
-# @lc code=end
-
-print(Solution().subsets([1, 2, 3]))
