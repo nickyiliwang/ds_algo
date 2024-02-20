@@ -45,21 +45,18 @@ from typing import List
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         res = []
-        maxLength = len(nums)
 
-        def dfs(i, subset):
-            if len(subset) == maxLength:
+        def dfs(subset):
+            if len(subset) >= len(nums):
                 res.append(subset.copy())
                 return
 
             for n in nums:
                 if n in subset:
                     continue
-                subset.append(n)
-                dfs(i, subset)
-                subset.pop()
+                dfs(subset + [n])
 
-        dfs(0, [])
+        dfs([])
 
         return res
 

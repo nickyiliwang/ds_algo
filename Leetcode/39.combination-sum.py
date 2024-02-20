@@ -75,13 +75,11 @@ class Solution:
             if total == target:
                 res.append(subset.copy())
                 return
-            elif i >= len(candidates) or total > target:
+            elif total > target:
                 return
 
-            subset.append(candidates[i])
-            dfs(i, subset, total + candidates[i])
-            subset.pop()
-            dfs(i + 1, subset, total)
+            for j in range(i, len(candidates)):
+                dfs(j, subset + [candidates[j]], total + candidates[j])
 
         dfs(0, [], 0)
 
