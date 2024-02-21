@@ -1,10 +1,18 @@
-import heapq
+string = "abc"
+res = ""
 
-minHeap = [14, 35, 23, 523, 52, 5, 3, 2, 3, 4, 5]
+for n in range(len(string) - 1, -1, -1):
+    res += string[n]
 
-heapq.heapify(minHeap)
+print(res)
 
-print(3 % 2)
+# import heapq
+
+# minHeap = [14, 35, 23, 523, 52, 5, 3, 2, 3, 4, 5]
+
+# heapq.heapify(minHeap)
+
+# print(3 % 2)
 
 # data = set([1, 2, 3, 4, 5])
 
