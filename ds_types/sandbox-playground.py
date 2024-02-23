@@ -1,10 +1,18 @@
-string = "abc"
-res = ""
+n = 4
+res = "...."
 
-for n in range(len(string) - 1, -1, -1):
-    res += string[n]
+def dfs(i, r):
+    if i == n - 1:
+        
 
-print(res)
+
+# string = "abc"
+# res = ""
+
+# for n in range(len(string) - 1, -1, -1):
+#     res += string[n]
+
+# print(res)
 
 # import heapq
 
