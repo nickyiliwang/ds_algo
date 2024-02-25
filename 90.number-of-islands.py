@@ -57,50 +57,36 @@
 #
 #
 
-import collections
+from typing import List
 
 
-# @lc code=start
-class Solution(object):
-    def numIslands(self, grid):
-        """
-        :type grid: List[List[str]]
-        :rtype: int
-        """
-        rows, cols = len(grid), len(grid[0])
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
         visited = set()
+        row, col = len(grid), len(grid[0])
         islands = 0
 
-        def bfs(r, c):
-            q = collections.deque()
+        def dfs(r, c):
+            if (
+                r not in range(row)
+                or c not in range(col)
+                or grid[r][c] == "0"
+                or (r, c) in visited
+            ):
+                return
+
             visited.add((r, c))
-            q.append((r, c))
+            dfs(r + 1, c)
+            dfs(r - 1, c)
+            dfs(r, c + 1)
+            dfs(r, c - 1)
 
-            while q:
-                row, col = q.popleft()
-                directions = [
-                    [-1, 0],  # Up
-                    [0, 1],  # Right
-                    [1, 0],  # Down
-                    [0, -1],  # Left
-                ]
-
-                for dr, dc in directions:
-                    r, c = (row + dr), (col + dc)
-                    if (
-                        r in range(rows)
-                        and c in range(cols)
-                        and grid[r][c] == "1"
-                        and (r, c) not in visited
-                    ):
-                        q.append((r, c))
-                        visited.add((r, c))
-
-        for row in range(rows):
-            for col in range(cols):
-                if grid[row][col] == "1" and (row, col) not in visited:
-                    bfs(row, col)
+        for r in range(row):
+            for c in range(col):
+                if grid[r][c] == "1" and (r, c) not in visited:
                     islands += 1
+                    dfs(r, c)
+
         return islands
 
 
