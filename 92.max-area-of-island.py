@@ -55,40 +55,39 @@
 from typing import List
 
 
-# 625/728 cases passed (N/A)
 # @lc code=start
 class Solution:
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
         row, col = len(grid), len(grid[0])
+        rowBound, colBound = range(row), range(col)
         islands = 0
         visited = set()
         maxArea = float("-inf")
 
         def dfs(r, c, area):
-            nonlocal maxArea
             if (
-                r not in range(row)
-                or c not in range(col)
+                r not in rowBound
+                or c not in colBound
                 or (r, c) in visited
                 or grid[r][c] == 0
             ):
-                maxArea = max(maxArea, area)
-                return area
+                return 0
 
             visited.add((r, c))
-            dfs(r + 1, c, area + 1)
-            dfs(r - 1, c, area + 1)
-            dfs(r, c + 1, area + 1)
-            dfs(r, c - 1, area + 1)
-            visited.remove((r, c))
+            return (
+                1
+                + dfs(r + 1, c, area + 1)
+                + dfs(r - 1, c, area + 1)
+                + dfs(r, c + 1, area + 1)
+                + dfs(r, c - 1, area + 1)
+            )
 
-        for r in range(row):
-            for c in range(col):
+        for r in rowBound:
+            for c in colBound:
                 if grid[r][c] == 1 and (r, c) not in visited:
                     islands += 1
-                    dfs(r, c, 0)
+                    maxArea = max(maxArea, dfs(r, c, 0))
 
-        # return islands
         return maxArea if islands > 0 else 0
 
 

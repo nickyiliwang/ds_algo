@@ -54,11 +54,10 @@
 #
 
 from typing import *
-from testCases import board, words
+from Leetcode.testCases import board, words
+
 
 # @lc code=start
-
-
 class TriNode:
     def __init__(self):
         self.children = {}
@@ -80,6 +79,7 @@ class Solution:
 
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         row, col = len(board), len(board[0])
+        rowBounds, colBounds = range(row), range(col)
         path = set()
         result = set()
 
@@ -88,10 +88,8 @@ class Solution:
 
         def dfs(r, c, node, word):
             if (
-                r < 0
-                or c < 0
-                or r >= row
-                or c >= col
+                r not in rowBounds
+                or c not in colBounds
                 or (r, c) in path
                 or board[r][c] not in node.children
             ):
@@ -111,8 +109,8 @@ class Solution:
 
             path.remove((r, c))
 
-        for r in range(row):
-            for c in range(col):
+        for r in rowBounds:
+            for c in colBounds:
                 dfs(r, c, self.root, "")
 
         return list(result)
@@ -128,43 +126,43 @@ print(
 )
 
 
-# Brute force
-def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
-    row, col = len(board), len(board[0])
-    path = set()
-    pointer = 0
-    result = set()
+# # Brute force, do not use
+# def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+#     row, col = len(board), len(board[0])
+#     path = set()
+#     pointer = 0
+#     result = set()
 
-    def dfs(r, c, i):
-        if i == len(word):
-            return True
+#     def dfs(r, c, i):
+#         if i == len(word):
+#             return True
 
-        if (
-            r < 0
-            or c < 0
-            or r >= row
-            or c >= col
-            or word[i] != board[r][c]
-            or (r, c) in path
-        ):
-            return False
+#         if (
+#             r < 0
+#             or c < 0
+#             or r >= row
+#             or c >= col
+#             or word[i] != board[r][c]
+#             or (r, c) in path
+#         ):
+#             return False
 
-        path.add((r, c))
-        res = (
-            dfs(r + 1, c, i + 1)
-            or dfs(r - 1, c, i + 1)
-            or dfs(r, c + 1, i + 1)
-            or dfs(r, c - 1, i + 1)
-        )
-        path.remove((r, c))
-        return res
+#         path.add((r, c))
+#         res = (
+#             dfs(r + 1, c, i + 1)
+#             or dfs(r - 1, c, i + 1)
+#             or dfs(r, c + 1, i + 1)
+#             or dfs(r, c - 1, i + 1)
+#         )
+#         path.remove((r, c))
+#         return res
 
-    while pointer < len(words):
-        word = words[pointer]
-        for r in range(row):
-            for c in range(col):
-                if dfs(r, c, 0):
-                    result.add(word)
-        pointer += 1
+#     while pointer < len(words):
+#         word = words[pointer]
+#         for r in range(row):
+#             for c in range(col):
+#                 if dfs(r, c, 0):
+#                     result.add(word)
+#         pointer += 1
 
-    return result
+#     return result
