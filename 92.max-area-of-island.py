@@ -60,9 +60,8 @@ class Solution:
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
         row, col = len(grid), len(grid[0])
         rowBound, colBound = range(row), range(col)
-        islands = 0
         visited = set()
-        maxArea = float("-inf")
+        maxArea = 0
 
         def dfs(r, c, area):
             if (
@@ -85,10 +84,9 @@ class Solution:
         for r in rowBound:
             for c in colBound:
                 if grid[r][c] == 1 and (r, c) not in visited:
-                    islands += 1
                     maxArea = max(maxArea, dfs(r, c, 0))
 
-        return maxArea if islands > 0 else 0
+        return maxArea
 
 
 # @lc code=end
