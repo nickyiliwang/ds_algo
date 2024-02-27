@@ -74,43 +74,25 @@
 from typing import List
 
 
+# left here is nums1 current none-empty number
 # @lc code=start
 class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-        left, right, n1LastIdx = m - 1, n - 1, len(nums1) - 1
+        left, right, n1empty = m - 1, n - 1, len(nums1) - 1
 
         while right >= 0:
-            if left >= 0 and nums1[left] > nums2[right]:
-                nums1[n1LastIdx] = nums1[left]
+            if left >= 0 and nums1[left] >= nums2[right]:
+                nums1[n1empty] = nums1[left]
                 left -= 1
             else:
-                nums1[n1LastIdx] = nums2[right]
+                nums1[n1empty] = nums2[right]
                 right -= 1
 
-            n1LastIdx -= 1
+            n1empty -= 1
+
+        return nums1
 
 
 # @lc code=end
 
-sol = Solution()
-
-print(sol.merge([2, 0], 1, [1], 1))
-
-
-# Unaccepted correct solution
-class Solution:
-    def sort(self, a: List[int], num: int):
-        left, right = 0, len(a)
-        while left < right:
-            mid = (left + right) // 2
-
-            if a[mid] < num:
-                left = mid + 1
-            else:
-                right = mid
-
-        a.insert(left, num)
-
-    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-        for n in nums2:
-            self.sort(nums1, n)
+print(Solution().merge([2, 0], 1, [1], 1))

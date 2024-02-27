@@ -1,9 +1,28 @@
-n = 4
-res = "...."
+stuff = [-8, -3, 2]
 
-def dfs(i, r):
-    if i == n - 1:
-        
+
+def recur(i, lst):
+    if i == len(lst):
+        return None
+
+    value = recur(i + 1, lst)
+
+    if lst[i] % 2 != 0:
+        return value
+    if value == None:
+        return lst[i]
+
+    return lst[i] * value
+
+
+print(recur(0, stuff))
+
+
+# n = 4
+# res = "...."
+
+# def dfs(i, r):
+#     if i == n - 1:
 
 
 # string = "abc"
