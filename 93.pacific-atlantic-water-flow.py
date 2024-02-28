@@ -84,7 +84,40 @@ from typing import List
 # @lc code=start
 class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
-        pass
+        row, col = len(heights), len(heights[0])
+        rowBound, colBound = range(row), range(col)
+        res = []
+        pac, atl = set(), set()
+
+        def dfs(r, c, visited, prevHeight):
+            if (
+                r not in rowBound
+                or c not in colBound
+                or (r, c) in visited
+                or heights[r][c] < prevHeight
+            ):
+                return
+
+            visited.add((r, c))
+            dfs(r + 1, c, visited, heights[r][c])
+            dfs(r - 1, c, visited, heights[r][c])
+            dfs(r, c + 1, visited, heights[r][c])
+            dfs(r, c - 1, visited, heights[r][c])
+
+        for c in colBound:
+            dfs(0, c, pac, heights[0][c])
+            dfs(row - 1, c, atl, heights[row - 1][c])
+
+        for r in rowBound:
+            dfs(r, 0, pac, heights[r][0])
+            dfs(r, col - 1, atl, heights[r][col - 1])
+
+        for r in rowBound:
+            for c in colBound:
+                if (r, c) in atl and (r, c) in pac:
+                    res.append([r, c])
+
+        return res
 
 
 # @lc code=end
