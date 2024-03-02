@@ -1,45 +1,81 @@
-from typing import *
-from collections import *
-from math import *
-from ds_types.linked_list import LinkedList, ListNode
+from typing import List
+from collections import deque
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        row, col = len(grid), len(grid[0])
+        rowBound, colBound = range(row), range(col)
+        time, fresh = 0, 0
+        q = deque()
+        
+        for r in rowBound:
+            for c in colBound:
+                if grid[r][c] == "1":
+                    fresh += 1
+                if grid[r][c] == "2":
+                   q.append([r, c])
+                   
+        direction = [[1,0],[-1,0],[0,1],[0,-1]]
+        while q or fresh > 0:
+            r, c = q.popleft() 
+            for dr, dc in direction:
+                row, col = dr+r, dc+c
+                if (
+                    row not in rowBound or col not in colBound or grid[r][c] != 1
+                ):
+                    continue
+                
+                grid[row][col] = 2
+                q.append([row, col])
+                fresh -= 1
+
+            time += 1
+        return time if fresh == 0 else -1
+                
+                
+
+# from typing import *
+# from collections import *
+# from math import *
+# from ds_types.linked_list import LinkedList, ListNode
 
 
-def merge_sort(arr):
-    if len(arr) > 1:
-        mid = len(arr) // 2
-        left_arr = arr[:mid]
-        right_arr = arr[mid:]
+# def merge_sort(arr):
+#     if len(arr) > 1:
+#         mid = len(arr) // 2
+#         left_arr = arr[:mid]
+#         right_arr = arr[mid:]
 
-        merge_sort(left_arr)
-        merge_sort(right_arr)
+#         merge_sort(left_arr)
+#         merge_sort(right_arr)
 
-        left_idx = 0
-        right_idx = 0
-        merged_idx = 0
+#         left_idx = 0
+#         right_idx = 0
+#         merged_idx = 0
 
-        while left_idx < len(left_arr) and right_idx < len(right_arr):
-            if left_arr[left_idx] < right_arr[right_idx]:
-                arr[merged_idx] = left_arr[left_idx]
-                left_idx += 1
-            else:
-                arr[merged_idx] = right_arr[right_idx]
-                right_idx += 1
-            merged_idx += 1
+#         while left_idx < len(left_arr) and right_idx < len(right_arr):
+#             if left_arr[left_idx] < right_arr[right_idx]:
+#                 arr[merged_idx] = left_arr[left_idx]
+#                 left_idx += 1
+#             else:
+#                 arr[merged_idx] = right_arr[right_idx]
+#                 right_idx += 1
+#             merged_idx += 1
 
-        while left_idx < len(left_arr):
-            arr[merged_idx] = left_arr[left_idx]
-            left_idx += 1
-            merged_idx += 1
+#         while left_idx < len(left_arr):
+#             arr[merged_idx] = left_arr[left_idx]
+#             left_idx += 1
+#             merged_idx += 1
 
-        while right_idx < len(right_arr):
-            arr[merged_idx] = right_arr[right_idx]
-            right_idx += 1
-            merged_idx += 1
+#         while right_idx < len(right_arr):
+#             arr[merged_idx] = right_arr[right_idx]
+#             right_idx += 1
+#             merged_idx += 1
 
-    return arr
+#     return arr
 
 
-print(merge_sort([3, 2, 1, 4, 5]))
+# print(merge_sort([3, 2, 1, 4, 5]))
 
 # class Solution:
 #     def exist(self, board: List[List[str]], word: str) -> bool:
