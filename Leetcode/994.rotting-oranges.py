@@ -85,24 +85,24 @@ class Solution:
                 if grid[r][c] == 2:
                     q.append([r, c])
 
-        directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+        def transformOranges(r, c):
+            nonlocal fresh
+            if r not in rowBound or c not in colBound or grid[r][c] != 1:
+                return
+
+            grid[r][c] = 2
+            q.append([r, c])
+            fresh -= 1
 
         while q and fresh > 0:
             for i in range(len(q)):
                 r, c = q.popleft()
 
-                for dr, dc in directions:
-                    row, col = dr + r, dc + c
-                    if (
-                        row not in rowBound
-                        or col not in colBound
-                        or grid[row][col] != 1
-                    ):
-                        continue
+                transformOranges(r + 1, c)
+                transformOranges(r - 1, c)
+                transformOranges(r, c + 1)
+                transformOranges(r, c - 1)
 
-                    grid[row][col] = 2
-                    q.append([row, col])
-                    fresh -= 1
             time += 1
 
         return time if fresh == 0 else -1
