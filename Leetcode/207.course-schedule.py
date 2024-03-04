@@ -65,24 +65,25 @@ class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         validator = [[] for _ in range(numCourses)]
         visited = set()
+        cycle = set()
 
         for course, pre in prerequisites:
             validator[course].append(pre)
 
         def dfs(course):
-            if course in visited:
+            if course in cycle:
                 return False
 
-            if validator[course] == []:
+            if course in visited:
                 return True
 
-            visited.add(course)
+            cycle.add(course)
             for pre in validator[course]:
-                if not dfs(pre):
+                if dfs(pre) == False:
                     return False
+            cycle.remove(course)
 
-            visited.remove(course)
-            validator[course] = []
+            visited.add(course)
             return True
 
         for c in range(numCourses):
