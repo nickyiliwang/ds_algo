@@ -57,72 +57,66 @@
 #
 
 from typing import List
+from collections import defaultdict
 
 
 # @lc code=start
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
-        adjacencyList = [[] for _ in range(len(edges))]
-        visited, cycle = set(), set()
+        adjacencyList = defaultdict(list)
+        visited = set()
 
-        for a, b in edges:
-            adjacencyList[a].append(b)
-
-        def dfs(edge):
-            if edge in cycle:
-                print(edge, adjacencyList[edge - 1], adjacencyList)
-                return False
-            if edge in visited:
+        def cycle_detect(a, b):
+            if a == b:
                 return True
 
-            cycle.add(edge)
-            for eg in adjacencyList[edge - 1]:
-                if dfs(eg) == False:
-                    return False
-            cycle.remove(edge)
-            visited.add(edge)
-            return True
+            visited.add(a)
+            for nei in adjacencyList[a]:
+                if nei not in visited and cycle_detect(nei, b):
+                    return True
+            visited.remove(a)
 
-        for eg in range(len(edges)):
-            if dfs(eg) == False:
-                return False
+            return False
 
-        return True
+        for a, b in edges:
+            if cycle_detect(a, b):
+                return [a, b]
+            else:
+                adjacencyList[a].append(b)
+                adjacencyList[b].append(a)
+        return None
 
 
 # @lc code=end
 
-# print(Solution().findRedundantConnection([[1, 2], [1, 3], [2, 3]]))
+print(Solution().findRedundantConnection([[1, 2], [1, 3], [2, 3]]))
 # [2,3]
-print(Solution().findRedundantConnection([[1, 2], [2, 3], [3, 4], [1, 4], [1, 5]]))
+# print(Solution().findRedundantConnection([[1, 2], [2, 3], [3, 4], [1, 4], [1, 5]]))
 # [1,4]
 
-# WIP non union find
+
+# DFS with O(N ^ 2)
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
-        adjacencyList = [[] for _ in range(len(edges))]
-        visited, cycle = set(), set()
+        adjacencyList = defaultdict(list)
+        visited = set()
 
-        for a, b in edges:
-            adjacencyList[a].append(b)
-
-        def dfs(edge):
-            if edge in cycle:
-                print(edge, adjacencyList[edge - 1], adjacencyList)
-                return False
-            if edge in visited:
+        def cycle_detect(a, b):
+            if a == b:
                 return True
 
-            cycle.add(edge)
-            for eg in adjacencyList[edge - 1]:
-                if dfs(eg) == False:
-                    return False
-            cycle.remove(edge)
-            visited.add(edge)
-            return True
+            visited.add(a)
+            for nei in adjacencyList[a]:
+                if nei not in visited and cycle_detect(nei, b):
+                    return True
+            visited.remove(a)
 
-        for eg in range(len(edges)):
-            if dfs(eg) == False:
-                return False
+            return False
 
-        return True
+        for a, b in edges:
+            if cycle_detect(a, b):
+                return [a, b]
+            else:
+                adjacencyList[a].append(b)
+                adjacencyList[b].append(a)
+        return None
