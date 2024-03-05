@@ -95,6 +95,7 @@ class Solution:
                 if dfs(pre) == False:
                     return False
             cycle.remove(course)
+            
             visited.add(course)
             orders.append(course)
             return True
