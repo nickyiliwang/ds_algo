@@ -1,38 +1,72 @@
 from typing import List
-from collections import deque
+
 
 class Solution:
-    def orangesRotting(self, grid: List[List[int]]) -> int:
-        row, col = len(grid), len(grid[0])
-        rowBound, colBound = range(row), range(col)
-        time, fresh = 0, 0
-        q = deque()
-        
-        for r in rowBound:
-            for c in colBound:
-                if grid[r][c] == "1":
-                    fresh += 1
-                if grid[r][c] == "2":
-                   q.append([r, c])
-                   
-        direction = [[1,0],[-1,0],[0,1],[0,-1]]
-        while q or fresh > 0:
-            r, c = q.popleft() 
-            for dr, dc in direction:
-                row, col = dr+r, dc+c
-                if (
-                    row not in rowBound or col not in colBound or grid[r][c] != 1
-                ):
-                    continue
-                
-                grid[row][col] = 2
-                q.append([row, col])
-                fresh -= 1
+    def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
+        parent = [i for i in range(len(edges) + 1)]
+        rank = [1] * (len(edges) + 1)
 
-            time += 1
-        return time if fresh == 0 else -1
-                
-                
+        def find(i):
+            if parent[i] == i:
+                return i
+            else:
+                return find(parent[i])
+
+        def union(x, y):
+            pX, pY = find(x), find(y)
+
+            if pX == pY:
+                return False
+
+            if parent[pX] < parent[pY]:
+                parent[pY] = parent[pX]
+            elif parent[pX] > parent[pY]:
+                parent[pX] = parent[pY]
+            else:
+                parent[pX] = parent[pY]
+                rank[pY] = rank[pX] + 1
+
+            return True
+
+        for x, y in edges:
+            if union(x, y) == False:
+                return [x, y]
+
+
+# from typing import List
+# from collections import deque
+
+# class Solution:
+#     def orangesRotting(self, grid: List[List[int]]) -> int:
+#         row, col = len(grid), len(grid[0])
+#         rowBound, colBound = range(row), range(col)
+#         time, fresh = 0, 0
+#         q = deque()
+
+#         for r in rowBound:
+#             for c in colBound:
+#                 if grid[r][c] == "1":
+#                     fresh += 1
+#                 if grid[r][c] == "2":
+#                    q.append([r, c])
+
+#         direction = [[1,0],[-1,0],[0,1],[0,-1]]
+#         while q or fresh > 0:
+#             r, c = q.popleft()
+#             for dr, dc in direction:
+#                 row, col = dr+r, dc+c
+#                 if (
+#                     row not in rowBound or col not in colBound or grid[r][c] != 1
+#                 ):
+#                     continue
+
+#                 grid[row][col] = 2
+#                 q.append([row, col])
+#                 fresh -= 1
+
+#             time += 1
+#         return time if fresh == 0 else -1
+
 
 # from typing import *
 # from collections import *
