@@ -59,32 +59,41 @@
 from typing import List
 from collections import defaultdict
 
+# Union find
+# https://www.youtube.com/watch?v=ayW5B2W9hfo
+
 
 # @lc code=start
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
-        adjacencyList = defaultdict(list)
-        visited = set()
+        # Need range instead of index
+        parent = [i for i in range(len(edges) + 1)]
+        rank = [1] * (len(edges) + 1)
 
-        def cycle_detect(a, b):
-            if a == b:
-                return True
-
-            visited.add(a)
-            for nei in adjacencyList[a]:
-                if nei not in visited and cycle_detect(nei, b):
-                    return True
-            visited.remove(a)
-
-            return False
-
-        for a, b in edges:
-            if cycle_detect(a, b):
-                return [a, b]
+        def find(i):
+            if parent[i] == i:
+                return i
             else:
-                adjacencyList[a].append(b)
-                adjacencyList[b].append(a)
-        return None
+                return find(parent[i])
+
+        def union(x, y):
+            parentX, parentY = find(x), find(y)
+
+            if parentX == parentY:
+                return False
+
+            if rank[parentX] < rank[parentY]:
+                parent[parentX] = parentY
+            elif rank[parentX] > rank[parentY]:
+                parent[parentX] = parentY
+            else:
+                parent[parentX] = parentY
+                rank[parentY] = rank[parentX] + 1
+            return True
+
+        for x, y in edges:
+            if union(x, y) == False:
+                return [x, y]
 
 
 # @lc code=end
