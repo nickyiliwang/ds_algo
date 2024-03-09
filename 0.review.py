@@ -1,36 +1,36 @@
-from typing import List
+# from typing import List
 
 
-class Solution:
-    def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
-        parent = [i for i in range(len(edges) + 1)]
-        rank = [1] * (len(edges) + 1)
+# class Solution:
+#     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
+#         parent = [i for i in range(len(edges) + 1)]
+#         rank = [1] * (len(edges) + 1)
 
-        def find(i):
-            if parent[i] == i:
-                return i
-            else:
-                return find(parent[i])
+#         def find(i):
+#             if parent[i] == i:
+#                 return i
+#             else:
+#                 return find(parent[i])
 
-        def union(x, y):
-            pX, pY = find(x), find(y)
+#         def union(x, y):
+#             pX, pY = find(x), find(y)
 
-            if pX == pY:
-                return False
+#             if pX == pY:
+#                 return False
 
-            if parent[pX] < parent[pY]:
-                parent[pY] = parent[pX]
-            elif parent[pX] > parent[pY]:
-                parent[pX] = parent[pY]
-            else:
-                parent[pX] = parent[pY]
-                rank[pY] = rank[pX] + 1
+#             if parent[pX] < parent[pY]:
+#                 parent[pY] = parent[pX]
+#             elif parent[pX] > parent[pY]:
+#                 parent[pX] = parent[pY]
+#             else:
+#                 parent[pX] = parent[pY]
+#                 rank[pY] = rank[pX] + 1
 
-            return True
+#             return True
 
-        for x, y in edges:
-            if union(x, y) == False:
-                return [x, y]
+#         for x, y in edges:
+#             if union(x, y) == False:
+#                 return [x, y]
 
 
 # from typing import List

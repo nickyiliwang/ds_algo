@@ -1,4 +1,3 @@
-#
 # @lc app=leetcode id=210 lang=python3
 #
 # [210] Course Schedule II
@@ -76,8 +75,7 @@ from typing import List
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         validator = [[] for _ in range(numCourses)]
-        visited = set()
-        cycle = set()
+        visited, cycle = set(), set()
         orders = []
 
         for crs, pre in prerequisites:

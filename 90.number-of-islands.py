@@ -62,14 +62,15 @@ from typing import List
 
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        visited = set()
         row, col = len(grid), len(grid[0])
+        rowBound, colBound = range(row), range(col)
+        visited = set()
         islands = 0
 
         def dfs(r, c):
             if (
-                r not in range(row)
-                or c not in range(col)
+                r not in rowBound
+                or c not in colBound
                 or grid[r][c] == "0"
                 or (r, c) in visited
             ):
@@ -81,16 +82,16 @@ class Solution:
             dfs(r, c + 1)
             dfs(r, c - 1)
 
-        for r in range(row):
-            for c in range(col):
+        for r in rowBound:
+            for c in colBound:
                 if grid[r][c] == "1" and (r, c) not in visited:
                     islands += 1
                     dfs(r, c)
 
         return islands
 
-
 # @lc code=end
+
 
 Solution.numIslands(
     "",

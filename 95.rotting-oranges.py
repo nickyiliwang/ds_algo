@@ -69,15 +69,19 @@
 from typing import List
 from collections import deque
 
+# Multi value BFS
 
 # @lc code=start
+
+
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
         row, col = len(grid), len(grid[0])
         rowBound, colBound = range(row), range(col)
-        q = deque()
         time, fresh = 0, 0
+        q = deque()
 
+        # Start with all fresh oranges count and location
         for r in rowBound:
             for c in colBound:
                 if grid[r][c] == 1:
@@ -91,11 +95,12 @@ class Solution:
                 return
 
             grid[r][c] = 2
-            q.append([r, c])
             fresh -= 1
+            q.append([r, c])
 
         while q and fresh > 0:
-            for i in range(len(q)):
+            # need to process all items in queue
+            for _ in range(len(q)):
                 r, c = q.popleft()
 
                 transformOranges(r + 1, c)
@@ -113,7 +118,7 @@ class Solution:
 print(Solution().orangesRotting([[2, 1, 1], [1, 1, 0], [0, 1, 1]]))
 
 
-# DFS does not work here.
+# DFS does not work here ?
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
         row, col = len(grid), len(grid[0])

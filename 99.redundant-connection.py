@@ -68,7 +68,7 @@ class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
         # Need range instead of index
         parent = [i for i in range(len(edges) + 1)]
-        rank = [1] * (len(edges) + 1)
+        rank = [i for i in range(len(edges) + 1)]
 
         def find(i):
             if parent[i] == i:
@@ -77,26 +77,24 @@ class Solution:
                 return find(parent[i])
 
         def union(x, y):
-            parentX, parentY = find(x), find(y)
+            pX, pY = find(x), find(y)
 
-            if parentX == parentY:
+            if pX == pY:
                 return False
 
-            if rank[parentX] < rank[parentY]:
-                parent[parentX] = parentY
-            elif rank[parentX] > rank[parentY]:
-                parent[parentX] = parentY
+            if rank[pX] > rank[pY]:
+                parent[pX] = parent[pY]
             else:
-                parent[parentX] = parentY
-                rank[parentY] = rank[parentX] + 1
+                parent[pX] = parent[pY]
+                rank[pY] += rank[pX]
             return True
 
         for x, y in edges:
             if union(x, y) == False:
                 return [x, y]
 
-
 # @lc code=end
+
 
 print(Solution().findRedundantConnection([[1, 2], [1, 3], [2, 3]]))
 # [2,3]

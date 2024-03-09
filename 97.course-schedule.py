@@ -64,8 +64,7 @@ from typing import List
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         validator = [[] for _ in range(numCourses)]
-        visited = set()
-        cycle = set()
+        visited, cycle = set(), set()
 
         for course, pre in prerequisites:
             validator[course].append(pre)

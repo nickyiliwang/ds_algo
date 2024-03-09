@@ -73,17 +73,19 @@ class Solution:
                 return 0
 
             visited.add((r, c))
+            area += 1
+
             return (
                 1
-                + dfs(r + 1, c, area + 1)
-                + dfs(r - 1, c, area + 1)
-                + dfs(r, c + 1, area + 1)
-                + dfs(r, c - 1, area + 1)
+                + dfs(r + 1, c, area)
+                + dfs(r - 1, c, area)
+                + dfs(r, c + 1, area)
+                + dfs(r, c - 1, area)
             )
 
         for r in rowBound:
             for c in colBound:
-                if grid[r][c] == 1 and (r, c) not in visited:
+                if grid[r][c] == 1:
                     maxArea = max(maxArea, dfs(r, c, 0))
 
         return maxArea

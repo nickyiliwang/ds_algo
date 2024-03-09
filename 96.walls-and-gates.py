@@ -45,14 +45,17 @@
 from typing import List
 from collections import deque
 
+# Multi value BFS
+
 
 class Solution:
     def islandsAndTreasure(self, grid: List[List[int]]) -> None:
         row, col = len(grid), len(grid[0])
         rowBound, colBound = range(row), range(col)
-        q = deque()  # gates
+        q = deque()
         visited = set()
 
+        # Like rotting orange, capture all doors/treasures first
         for r in rowBound:
             for c in colBound:
                 if grid[r][c] == 0:
@@ -67,7 +70,7 @@ class Solution:
                 or (r, c) in visited
             ):
                 return
-            
+
             visited.add((r, c))
             q.append([r, c])
 

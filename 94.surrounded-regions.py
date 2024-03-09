@@ -16,8 +16,7 @@
 # Given an m x n matrix board containing 'X' and 'O', capture all regions that
 # are 4-directionally surrounded by 'X'.
 #
-# A region is captured by flipping all 'O's into 'X's in that surrounded
-# region.
+# A region is captured by flipping all 'O's into 'X's in that surrounded region.
 #
 #
 # Example 1:
@@ -57,12 +56,13 @@ from typing import List
 
 # Key here is: board[r][c] != "O"
 # We do not want to touch anything that's not "O", meaning "T" and "X"
+# Like Pacific Atlantic, we do the corners
+
 # @lc code=start
+
+
 class Solution:
     def solve(self, board: List[List[str]]) -> None:
-        """
-        Do not return anything, modify board in-place instead.
-        """
         row, col = len(board), len(board[0])
         rowBound, colBound = range(row), range(col)
 
@@ -97,13 +97,12 @@ class Solution:
 
 print(
     Solution().solve(
-        [[["O", "O"], ["O", "O"]]]
-        # [
-        #     ["X", "X", "X", "X"],
-        #     ["X", "O", "O", "X"],
-        #     ["X", "X", "O", "X"],
-        #     ["X", "O", "X", "X"],
-        # ]
+        [
+            ["X", "X", "X", "X"],
+            ["X", "O", "O", "X"],
+            ["X", "X", "O", "X"],
+            ["X", "O", "X", "X"],
+        ]
     )
 )
 

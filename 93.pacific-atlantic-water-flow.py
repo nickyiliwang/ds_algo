@@ -80,16 +80,28 @@
 
 from typing import List
 
+# P A C I F I C
+# A             A
+# C             T
+# I             L
+# F             A
+# C             T
+#               I
+# A T L A N T I C
 
 # @lc code=start
+
+
 class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
         row, col = len(heights), len(heights[0])
         rowBound, colBound = range(row), range(col)
+        pacific, atlantic = set(), set()
         res = []
-        pac, atl = set(), set()
 
+        # prevHeight is key
         def dfs(r, c, visited, prevHeight):
+
             if (
                 r not in rowBound
                 or c not in colBound
@@ -104,17 +116,17 @@ class Solution:
             dfs(r, c + 1, visited, heights[r][c])
             dfs(r, c - 1, visited, heights[r][c])
 
-        for c in colBound:
-            dfs(0, c, pac, heights[0][c])
-            dfs(row - 1, c, atl, heights[row - 1][c])
-
         for r in rowBound:
-            dfs(r, 0, pac, heights[r][0])
-            dfs(r, col - 1, atl, heights[r][col - 1])
+            dfs(r, 0, pacific, heights[r][0])  # TOP
+            dfs(r, col - 1, atlantic, heights[r][col - 1])  # BOTTOM
+
+        for c in colBound:
+            dfs(0, c, pacific, heights[0][c])  # LEFT
+            dfs(row - 1, c, atlantic, heights[row - 1][c])  # RIGHT
 
         for r in rowBound:
             for c in colBound:
-                if (r, c) in atl and (r, c) in pac:
+                if (r, c) in atlantic and (r, c) in pacific:
                     res.append([r, c])
 
         return res
