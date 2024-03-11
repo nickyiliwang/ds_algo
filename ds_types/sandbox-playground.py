@@ -1,55 +1,59 @@
-from collections import deque
-from typing import List
+word = "hitman"
+
+print(word[:0] + "*" + word[0 + 1 :])
+
+# from collections import deque
+# from typing import List
 
 
-class Solution:
-    def walls_and_gates(self, rooms: List[List[int]]):
-        ROWS, COLS = len(rooms), len(rooms[0])
-        visit = set()
-        q = deque()
+# class Solution:
+#     def walls_and_gates(self, rooms: List[List[int]]):
+#         ROWS, COLS = len(rooms), len(rooms[0])
+#         visit = set()
+#         q = deque()
 
-        def addRooms(r, c):
-            if (
-                min(r, c) < 0
-                or r == ROWS
-                or c == COLS
-                or (r, c) in visit
-                or rooms[r][c] == -1
-            ):
-                return
-            visit.add((r, c))
-            q.append([r, c])
+#         def addRooms(r, c):
+#             if (
+#                 min(r, c) < 0
+#                 or r == ROWS
+#                 or c == COLS
+#                 or (r, c) in visit
+#                 or rooms[r][c] == -1
+#             ):
+#                 return
+#             visit.add((r, c))
+#             q.append([r, c])
 
-        for r in range(ROWS):
-            for c in range(COLS):
-                if rooms[r][c] == 0:
-                    q.append([r, c])
-                    visit.add((r, c))
+#         for r in range(ROWS):
+#             for c in range(COLS):
+#                 if rooms[r][c] == 0:
+#                     q.append([r, c])
+#                     visit.add((r, c))
 
-        dist = 0
-        while q:
-            for i in range(len(q)):
-                r, c = q.popleft()
-                rooms[r][c] = dist
-                addRooms(r + 1, c)
-                addRooms(r - 1, c)
-                addRooms(r, c + 1)
-                addRooms(r, c - 1)
-            dist += 1
+#         dist = 0
+#         while q:
+#             for i in range(len(q)):
+#                 r, c = q.popleft()
+#                 rooms[r][c] = dist
+#                 addRooms(r + 1, c)
+#                 addRooms(r - 1, c)
+#                 addRooms(r, c + 1)
+#                 addRooms(r, c - 1)
+#             dist += 1
 
-        return rooms
+#         return rooms
 
 
-print(
-    Solution().walls_and_gates(
-        [
-            [2147483647, -1, 0, 2147483647],
-            [2147483647, 2147483647, 2147483647, -1],
-            [2147483647, -1, 2147483647, -1],
-            [0, -1, 2147483647, 2147483647],
-        ]
-    )
-)
+# print(
+#     Solution().walls_and_gates(
+#         [
+#             [2147483647, -1, 0, 2147483647],
+#             [2147483647, 2147483647, 2147483647, -1],
+#             [2147483647, -1, 2147483647, -1],
+#             [0, -1, 2147483647, 2147483647],
+#         ]
+#     )
+# )
 
 
 # stuff = [-8, -3, 2]
