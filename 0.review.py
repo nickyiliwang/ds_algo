@@ -1,42 +1,60 @@
-from typing import List
-from collections import defaultdict, deque
+def climbingStairs(n):
+    if n == 1:
+        return 1
+
+    oneAway = 1
+    twoAway = 1
+    total = 0
+
+    for _ in range(2, n + 1):
+        total = oneAway + twoAway
+        twoAway = oneAway
+        oneAway = total
+
+    return total
 
 
-class Solution:
-    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
-        if endWord not in wordList:
-            return 0
+print(climbingStairs(5))
 
-        visited = set()
-        q = deque([beginWord])
-        nei = defaultdict(list)
-        wordList.append(beginWord)
-        res = 1
-        # adjList built
-        for word in wordList:
-            for i in range(len(beginWord)):
-                pattern = word[:i] + "*" + word[i + 1 :]
-                nei[pattern].append(word)
-
-        # DFS
-        while q:
-            for _ in range(len(q)):
-                word = q.popleft()
-
-                if word == endWord:
-                    return res
-
-                for i in range(len(word)):
-                    pattern = word[:i] + "*" + word[i + 1 :]
-                    for neiWord in nei[pattern]:
-                        if neiWord not in visited:
-                            visited.add(neiWord)
-                            q.append(neiWord)
-            res += 1
-        return 0
+# from typing import List
+# from collections import defaultdict, deque
 
 
-print(Solution().ladderLength("hit", "cog", ["hot", "dot", "dog", "lot", "log", "cog"]))
+# class Solution:
+#     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+#         if endWord not in wordList:
+#             return 0
+
+#         visited = set()
+#         q = deque([beginWord])
+#         nei = defaultdict(list)
+#         wordList.append(beginWord)
+#         res = 1
+#         # adjList built
+#         for word in wordList:
+#             for i in range(len(beginWord)):
+#                 pattern = word[:i] + "*" + word[i + 1 :]
+#                 nei[pattern].append(word)
+
+#         # DFS
+#         while q:
+#             for _ in range(len(q)):
+#                 word = q.popleft()
+
+#                 if word == endWord:
+#                     return res
+
+#                 for i in range(len(word)):
+#                     pattern = word[:i] + "*" + word[i + 1 :]
+#                     for neiWord in nei[pattern]:
+#                         if neiWord not in visited:
+#                             visited.add(neiWord)
+#                             q.append(neiWord)
+#             res += 1
+#         return 0
+
+
+# print(Solution().ladderLength("hit", "cog", ["hot", "dot", "dog", "lot", "log", "cog"]))
 
 
 # class Solution:
