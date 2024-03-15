@@ -14,7 +14,8 @@ def climbingStairs(n):
     return total
 
 
-print(climbingStairs(5))
+print(climbingStairs(3))
+
 
 # from typing import List
 # from collections import defaultdict, deque
