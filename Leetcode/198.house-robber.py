@@ -58,8 +58,7 @@ from typing import List
 # @lc code=start
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        oneAway = 0
-        twoAway = 0
+        oneAway, twoAway = 0, 0
 
         for n in nums:
             temp = max(twoAway + n, oneAway)

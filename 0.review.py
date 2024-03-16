@@ -1,20 +1,36 @@
-def climbingStairs(n):
-    if n == 1:
-        return 1
-
-    oneAway = 1
-    twoAway = 1
-    total = 0
-
-    for _ in range(2, n + 1):
-        total = oneAway + twoAway
-        twoAway = oneAway
-        oneAway = total
-
-    return total
+data = [1, 2, 3, 4, 5, 6, 7, 8]
+print(data[1:])
+print(data[:-1])
 
 
-print(climbingStairs(3))
+# def houseRobber(nums):
+#     oneAway, twoAway = 0, 0
+
+#     for num in nums:
+#         temp = max(twoAway + num, oneAway)
+#         oneAway = temp
+#         twoAway = oneAway
+
+#     return oneAway
+
+
+# def climbingStairs(n):
+#     if n == 1:
+#         return 1
+
+#     oneAway = 1
+#     twoAway = 1
+#     total = 0
+
+#     for _ in range(2, n + 1):
+#         total = oneAway + twoAway
+#         twoAway = oneAway
+#         oneAway = total
+
+#     return total
+
+
+# print(climbingStairs(3))
 
 
 # from typing import List
