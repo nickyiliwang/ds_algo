@@ -41,24 +41,34 @@
 #
 #
 
+
 # @lc code=start
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        def validator(s):
-            left, right = 0, len(s) - 1
+        res = ""
+        resLen = 0
 
-            while left < right:
-                while left < right and not s[left].isalnum():
-                    left += 1
+        def isPali(l, r):
+            nonlocal res
+            nonlocal resLen
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                if (r - l + 1) > resLen:
+                    res = s[l : r + 1]
+                    resLen = r - l + 1
+                l -= 1
+                r += 1
 
-                while left > right and not s[right].isalnum():
-                    right -= 1
+        for i in range(len(s)):
+            # odd
+            l, r = i, i
+            isPali(l, r)
 
-                if s[left].lower() != s[right].lower():
-                    return False
-                
-            return True
-        
-        left, right = 0, len(s) - 1
-        
-        while left < right:
+            # even
+            l, r = i, i + 1
+            isPali(l, r)
+
+        return res
+
+
+# @lc code=end
+print(Solution().longestPalindrome("babad"))
