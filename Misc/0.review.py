@@ -1,12 +1,18 @@
-def houseRobber(nums):
-    oneAway, twoAway = 0, 0
+mid = (1 + 10) // 2
 
-    for n in nums:
-        temp = max(n + twoAway, oneAway)
-        oneAway = temp
-        twoAway = oneAway
+res = (mid / 2) * (1 + mid)
 
-    return oneAway
+print(res)
+
+# def houseRobber(nums):
+#     oneAway, twoAway = 0, 0
+
+#     for n in nums:
+#         temp = max(n + twoAway, oneAway)
+#         oneAway = temp
+#         twoAway = oneAway
+
+#     return oneAway
 
 
 # data = [1, 2, 3, 4, 5, 6, 7, 8]

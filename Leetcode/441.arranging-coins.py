@@ -92,31 +92,3 @@ class Solution(object):
             row += 1
 
         return row - 1
-
-
-# Memory Limit Exceeded
-class Solution(object):
-    def arrangeCoins(self, n):
-        """
-        :type n: int
-        :rtype: int
-        """
-        total = n
-        for i in range(n):
-            if total > (i + 1):
-                total = total - (i + 1)
-            elif total == (i + 1):
-                return i + 1
-            else:
-                return i
-
-
-# KEKbonacci sequence
-def fib(n, memo={}):
-    if n in memo:
-        return memo[n]
-    if n <= 2:
-        return 1
-
-    memo[n] = fib(n - 1, memo) + fib(n - 2, memo)
-    return memo[n]
