@@ -1,6 +1,17 @@
-data = [1, 2, 3, 4, 5, 6, 7, 8]
-print(data[1:])
-print(data[:-1])
+def houseRobber(nums):
+    oneAway, twoAway = 0, 0
+
+    for n in nums:
+        temp = max(n + twoAway, oneAway)
+        oneAway = temp
+        twoAway = oneAway
+
+    return oneAway
+
+
+# data = [1, 2, 3, 4, 5, 6, 7, 8]
+# print(data[1:])
+# print(data[:-1])
 
 
 # def houseRobber(nums):

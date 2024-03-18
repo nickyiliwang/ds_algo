@@ -5,12 +5,6 @@
 #
 # https://leetcode.com/problems/word-ladder/description/
 #
-# algorithms
-# Hard (38.84%)
-# Likes:    11750
-# Dislikes: 1863
-# Total Accepted:    1M
-# Total Submissions: 2.7M
 # Testcase Example:  '"hit"\n"cog"\n["hot","dot","dog","lot","log","cog"]'
 #
 # A transformation sequence from word beginWord to word endWord using a
@@ -75,6 +69,8 @@ from typing import List
 
 # KEY:
 # word[:i] + "*" + word[i + 1:]
+# BFS with deq
+# defaultdict(list)
 
 from collections import defaultdict, deque
 
@@ -88,7 +84,7 @@ class Solution:
         nei = defaultdict(list)
         wordList.append(beginWord)
 
-        # build adjacency list
+        # Build adjacency list
         for word in wordList:
             for i in range(len(word)):
                 pattern = word[:i] + "*" + word[i + 1 :]
@@ -135,8 +131,8 @@ print(Solution().ladderLength("hit", "cog", ["hot", "dot", "dog", "lot", "log", 
 #                      hot,2   dot,3  lot,3   hot,2    hot,2
 
 
-# # as we can see,  "hot" has been visited in level 2, but "hot" will still appear at the next level.
-# # To avoid duplicate calculation,
-# # we keep a visited map,
-# # if the word in the visited map, we skip the word, i.e. don't append the word into the queue.
-# # if the word not in the visited map, we put the word into the map, and append the word into the queue.
+# As we can see,  "hot" has been visited in level 2, but "hot" will still appear at the next level.
+# To avoid duplicate calculation,
+# we keep a visited map,
+# if the word in the visited map, we skip the word, i.e. don't append the word into the queue.
+# if the word not in the visited map, we put the word into the map, and append the word into the queue.

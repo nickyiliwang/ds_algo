@@ -1,6 +1,13 @@
-word = "hitman"
+data = "abcdefg"
 
-print(word[:0] + "*" + word[0 + 1 :])
+bound = range(len(data))
+
+print(len(data))
+print(bound)
+
+# word = "hitman"
+
+# print(word[:0] + "*" + word[0 + 1 :])
 
 # from collections import deque
 # from typing import List
