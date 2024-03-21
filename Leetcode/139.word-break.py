@@ -5,14 +5,6 @@
 #
 # https://leetcode.com/problems/word-break/description/
 #
-# algorithms
-# Medium (46.65%)
-# Likes:    16855
-# Dislikes: 757
-# Total Accepted:    1.6M
-# Total Submissions: 3.5M
-# Testcase Example:  '"leetcode"\n["leet","code"]'
-#
 # Given a string s and a dictionary of strings wordDict, return true if s can
 # be segmented into a space-separated sequence of one or more dictionary
 # words.
@@ -63,6 +55,8 @@
 from typing import List
 
 
+# DP
+# O(n * m ^ 2)
 # @lc code=start
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
@@ -70,7 +64,30 @@ class Solution:
 
 
 # @lc code=end
-print(Solution().wordBreak("cars", ["car", "ca", "rs"]))
+print(Solution().wordBreak("leetcode", ["leet", "code"]))
+
+
+# DFS
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        def dfs(curr, wordDict, memo):
+            if curr in memo:
+                return memo[curr]
+
+            if not curr:
+                return True
+
+            for word in wordDict:
+                if curr.startswith(word):
+                    nextPart = curr[len(word) :]
+                    if dfs(nextPart, wordDict, memo):
+                        memo[curr] = True
+                        return True
+
+            memo[curr] = False
+            return False
+
+        return dfs(s, wordDict, {})
 
 
 # 34/46 cases passed (N/A)
