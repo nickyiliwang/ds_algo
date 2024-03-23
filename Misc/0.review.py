@@ -1,8 +1,26 @@
-mid = (1 + 10) // 2
+from typing import List
 
-res = (mid / 2) * (1 + mid)
 
-print(res)
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        dp = [1] * len(nums)
+
+        for i in range(len(nums)):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    dp[i] = max(dp[i], dp[j] + 1)
+
+        return max(dp)
+
+
+print(Solution().lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]))
+
+
+# mid = (1 + 10) // 2
+
+# res = (mid / 2) * (1 + mid)
+
+# print(res)
 
 # def houseRobber(nums):
 #     oneAway, twoAway = 0, 0
