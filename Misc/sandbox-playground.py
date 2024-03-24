@@ -1,9 +1,14 @@
-data = "abcdefg"
+print(3 % 3)
 
-bound = range(len(data))
+if 3 % 3 == 0:
+    print("Hi")
 
-print(len(data))
-print(bound)
+# data = "abcdefg"
+
+# bound = range(len(data))
+
+# print(len(data))
+# print(bound)
 
 # word = "hitman"
 
