@@ -1,3 +1,6 @@
+# Range
+# range(START, STOP, STEP)
+
 # ZIP
 numbers = [1, 2, 3]
 letters = ["a", "b", "c"]

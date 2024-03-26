@@ -1,7 +1,8 @@
-print(3 % 3)
+dp = [True, False, True, False, False]
 
-if 3 % 3 == 0:
-    print("Hi")
+dp[1] = dp[1] or dp[2]
+
+print(dp)
 
 # data = "abcdefg"
 

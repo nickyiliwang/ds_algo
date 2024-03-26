@@ -48,10 +48,30 @@ from typing import List
 
 # O(n * sum(nums))
 
-
-# @lc code=start
+# Key
+# 
+# for j in range(target, n - 1, -1):
+#     dp[j] = dp[j] or dp[j - n]
+# we are finding if the sub problem of j - n can become 0
+# if j - n is 0 let's say: 1 - 1, then dp[j] => dp[1] becomes True
+# the next time if dp[6 - 5] (j - n) => dp[1] will be True, then dp[6] is also True 
+# 
+# # @lc code=start
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
+        total = sum(nums)
+        if total % 2 != 0:
+            return False
+
+        target = total // 2
+
+        dp = [False] * (target + 1)
+        dp[0] = True
+
+        for n in nums:
+            for j in range(target, n - 1, -1):
+                dp[j] = dp[j] or dp[j - n]
+        return dp[target]
 
 
 # @lc code=end
