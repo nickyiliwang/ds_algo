@@ -49,25 +49,25 @@
 #
 #
 
-# Dynamic Programming solution
+# Key:
+# [twoBefore, oneBefore, 2, 3, 4 ]
+# oneBefore will keep track of the total
+# range(n - 1) because we only need to loop n - 1 times
+# think of it like range(2, n + ) if you like
+# total starts at 1 because constrains: 1 <= n <= 45
 
 
 # @lc code=start
 class Solution:
     def climbStairs(self, n: int) -> int:
-        if n == 1:
-            return 1
+        oneBefore, twoBefore = 1, 1
 
-        oneBefore = 1
-        twoBefore = 1
-        total = 0
-
-        for _ in range(2, n + 1):
-            total = oneBefore + twoBefore
+        for _ in range(n - 1):
+            tmpTotal = oneBefore + twoBefore
             twoBefore = oneBefore
-            oneBefore = total
+            oneBefore = tmpTotal
 
-        return total
+        return oneBefore
 
 
 # @lc code=end

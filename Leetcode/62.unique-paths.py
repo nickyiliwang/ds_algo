@@ -46,8 +46,32 @@
 #
 #
 
+# Time: O(m * n) Space: O(n)
+# Key:
+# Right most element is always 1
+# To calculate for the new value in position j, we just need the old row position j and the now row at position j
+# j here points to a col
 
 # @lc code=start
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        oldRow = [1] * n
+
+        for i in range(m - 1):
+            newRow = [1] * n
+            for j in range(n - 2, -1, -1):
+                newRow[j] = newRow[j + 1] + oldRow[j]
+            oldRow = newRow
+        return oldRow[0]
+
+
+# @lc code=end
+
+print(Solution().uniquePaths(3, 2))
+
+
+# My easier to understand solution
+# Time: O(m * n) Space: O(m * n)
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
         row, col = m, n
@@ -63,8 +87,3 @@ class Solution:
                     matrix[r][c] += matrix[r][c + 1]
 
         return matrix[0][0]
-
-
-# @lc code=end
-
-print(Solution().uniquePaths(3, 2))

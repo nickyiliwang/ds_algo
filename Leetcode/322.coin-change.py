@@ -1,17 +1,8 @@
-#
 # @lc app=leetcode id=322 lang=python3
 #
 # [322] Coin Change
 #
 # https://leetcode.com/problems/coin-change/description/
-#
-# algorithms
-# Medium (43.70%)
-# Likes:    18517
-# Dislikes: 433
-# Total Accepted:    1.7M
-# Total Submissions: 3.9M
-# Testcase Example:  '[1,2,5]\n11'
 #
 # You are given an integer array coins representing coins of different
 # denominations and an integer amount representing a total amount of money.
@@ -59,7 +50,7 @@
 from typing import List
 
 
-# O(amount * len(coins))
+# O(amount * coins)
 # O(amount)
 # @lc code=start
 class Solution:
