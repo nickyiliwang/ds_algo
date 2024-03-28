@@ -41,7 +41,7 @@ class Solution:
                 return True
             else:
                 validator.add(n)
-
+            
 
 # @lc code=end
 
