@@ -5,14 +5,6 @@
 #
 # https://leetcode.com/problems/house-robber/description/
 #
-# algorithms
-# Medium (50.88%)
-# Likes:    20568
-# Dislikes: 407
-# Total Accepted:    2.1M
-# Total Submissions: 4.2M
-# Testcase Example:  '[1,2,3,1]'
-#
 # You are a professional robber planning to rob houses along a street. Each
 # house has a certain amount of money stashed, the only constraint stopping you
 # from robbing each of them is that adjacent houses have security systems
@@ -58,25 +50,16 @@ from typing import List
 # @lc code=start
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        oneAway, twoAway = 0, 0
+        oneBefore, twoBefore = 0, 0
 
         for n in nums:
-            temp = max(twoAway + n, oneAway)
-            twoAway = oneAway
-            oneAway = temp
+            temp = max(twoBefore + n, oneBefore)
+            twoBefore = oneBefore
+            oneBefore = temp
 
-        return oneAway
+        return oneBefore
 
 
 # @lc code=end
 
-# print(Solution().rob([1, 2, 3, 1]))
 print(Solution().rob([2, 7, 9, 3, 1]))
-
-# You can't do this like min climbing stairs
-# class Solution:
-#     def rob(self, nums: List[int]) -> int:
-#         for i in range(len(nums) - 3, -1, -1):
-#             nums[i] += max(nums[i + 1], nums[i + 2])
-
-#         return max(nums[0], nums[1])

@@ -5,14 +5,6 @@
 #
 # https://leetcode.com/problems/min-cost-climbing-stairs/description/
 #
-# algorithms
-# Easy (65.48%)
-# Likes:    11178
-# Dislikes: 1719
-# Total Accepted:    1.1M
-# Total Submissions: 1.7M
-# Testcase Example:  '[10,15,20]'
-#
 # You are given an integer array cost where cost[i] is the cost of i^th step on
 # a staircase. Once you pay the cost, you can either climb one or two steps.
 #
@@ -45,17 +37,16 @@
 # - Pay 1 and climb one step to reach the top.
 # The total cost is 6.
 #
-#
-#
 # Constraints:
-#
-#
 # 2 <= cost.length <= 1000
 # 0 <= cost[i] <= 999
 #
 #
-#
 from typing import List
+
+# Key
+# Need to start from len(cost) - 3, 1 account for index, 1 account for i + 1, and 1 account for i + 2
+# Remember to add onto the cost[i], not just equal
 
 
 # @lc code=start

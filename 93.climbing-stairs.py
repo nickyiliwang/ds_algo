@@ -4,15 +4,6 @@
 # [70] Climbing Stairs
 #
 # https://leetcode.com/problems/climbing-stairs/description/
-#
-# algorithms
-# Easy (52.83%)
-# Likes:    21408
-# Dislikes: 779
-# Total Accepted:    3.1M
-# Total Submissions: 5.9M
-# Testcase Example:  '2'
-#
 # You are climbing a staircase. It takes n steps to reach the top.
 #
 # Each time you can either climb 1 or 2 steps. In how many distinct ways can

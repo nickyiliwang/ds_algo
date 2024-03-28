@@ -1,19 +1,28 @@
-from typing import List
+def rob(nums):
+    twoBefore, oneBefore = 0, 0
+    for n in nums:
+        tmp = max(twoBefore + n, oneBefore)
+        twoBefore = oneBefore
+        oneBefore = tmp
+    return oneBefore    
+
+print(rob([2, 7, 9, 3, 1]))
+# from typing import List
 
 
-class Solution:
-    def lengthOfLIS(self, nums: List[int]) -> int:
-        dp = [1] * len(nums)
+# class Solution:
+#     def lengthOfLIS(self, nums: List[int]) -> int:
+#         dp = [1] * len(nums)
 
-        for i in range(len(nums)):
-            for j in range(i):
-                if nums[i] > nums[j]:
-                    dp[i] = max(dp[i], dp[j] + 1)
+#         for i in range(len(nums)):
+#             for j in range(i):
+#                 if nums[i] > nums[j]:
+#                     dp[i] = max(dp[i], dp[j] + 1)
 
-        return max(dp)
+#         return max(dp)
 
 
-print(Solution().lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]))
+# print(Solution().lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]))
 
 
 # mid = (1 + 10) // 2
