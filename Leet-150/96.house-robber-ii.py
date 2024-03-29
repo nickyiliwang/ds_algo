@@ -5,14 +5,6 @@
 #
 # https://leetcode.com/problems/house-robber-ii/description/
 #
-# algorithms
-# Medium (41.87%)
-# Likes:    9605
-# Dislikes: 141
-# Total Accepted:    723K
-# Total Submissions: 1.7M
-# Testcase Example:  '[2,3,2]'
-#
 # You are a professional robber planning to rob houses along a street. Each
 # house has a certain amount of money stashed. All houses at this place are
 # arranged in a circle. That means the first house is the neighbor of the last
@@ -71,9 +63,9 @@ class Solution:
         def robHelper(nums):
             oneAway, twoAway = 0, 0
             for n in nums:
-                temp = max(twoAway + n, oneAway)
+                tmp = max(twoAway + n, oneAway)
                 twoAway = oneAway
-                oneAway = temp
+                oneAway = tmp
 
             return oneAway
 

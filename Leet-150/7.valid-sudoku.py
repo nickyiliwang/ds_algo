@@ -1,26 +1,29 @@
-import collections
+from collections import defaultdict
 
 
 def isValidSudoku(board):
-    cols = collections.defaultdict(set)
-    rows = collections.defaultdict(set)
-    squares = collections.defaultdict(set)
+    # visited sets
+    rows = defaultdict(set)
+    cols = defaultdict(set)
+    squares = defaultdict(set)
 
     # board is 9 x 9
     for r in range(9):
         for c in range(9):
-            # skip empty numbers
             if board[r][c] == ".":
-                # end the current loop and continues to the next loop.
                 continue
-            # for each number, check row, cols, and squares
-            if (board[r][c] in rows[r] or board[r][c] in cols[c] or
-                    board[r][c] in squares[(r // 3, c // 3)]):
+
+            # check r,c,s
+            if (
+                board[r][c] in rows[r]
+                or board[r][c] in cols[c]
+                or board[r][c] in squares[(r // 3, c // 3)]
+            ):
                 return False
 
-            # Add number to everything for the next iteration
-            cols[c].add(board[r][c])
+            # add r,c,s into visited
             rows[r].add(board[r][c])
+            cols[c].add(board[r][c])
             squares[(r // 3, c // 3)].add(board[r][c])
     return True
 
@@ -30,8 +33,8 @@ def isValidSudoku(board):
 # colValidator uses {col: HashSet}
 # rowValidator uses set in each row loop in the board
 def isValidSudoku(board):
-    subBoxValidator = collections.defaultdict(set)
-    colValidator = collections.defaultdict(set)
+    subBoxValidator = defaultdict(set)
+    colValidator = defaultdict(set)
     # {
     #   "0": {1, 2, 3 ...}
     #   "1": {1, 2, 3 ...}
@@ -44,22 +47,22 @@ def isValidSudoku(board):
         rowValidator = set()
         for rowIdx, num in enumerate(col):
             if num not in rowValidator:
-                if num != '.':
+                if num != ".":
                     rowValidator.add(num)
             else:
                 res = False
 
             subBoxPos = subBoxValidator[tuple([colIdx // 3, rowIdx // 3])]
             if num not in subBoxPos:
-                if num != '.':
+                if num != ".":
                     subBoxPos.add(num)
             else:
-                print('found dupe', subBoxPos, num)
+                print("found dupe", subBoxPos, num)
                 res = False
 
             key = colValidator[rowIdx]
             if num not in key:
-                if num != '.':
+                if num != ".":
                     key.add(num)
             else:
                 res = False
@@ -67,15 +70,17 @@ def isValidSudoku(board):
     return res
 
 
-board = [[".", ".", "4", ".", ".", ".", "6", "3", "."],
-         [".", ".", ".", ".", ".", ".", ".", ".", "."],
-         ["5", ".", ".", ".", ".", ".", ".", "9", "."],
-         [".", ".", ".", "5", "6", ".", ".", ".", "."],
-         ["4", ".", "3", ".", ".", ".", ".", ".", "1"],
-         [".", ".", ".", "7", ".", ".", ".", ".", "."],
-         [".", ".", ".", "5", ".", ".", ".", ".", "."],
-         [".", ".", ".", ".", ".", ".", ".", ".", "."],
-         [".", ".", ".", ".", ".", ".", ".", ".", "."]]
+board = [
+    [".", ".", "4", ".", ".", ".", "6", "3", "."],
+    [".", ".", ".", ".", ".", ".", ".", ".", "."],
+    ["5", ".", ".", ".", ".", ".", ".", "9", "."],
+    [".", ".", ".", "5", "6", ".", ".", ".", "."],
+    ["4", ".", "3", ".", ".", ".", ".", ".", "1"],
+    [".", ".", ".", "7", ".", ".", ".", ".", "."],
+    [".", ".", ".", "5", ".", ".", ".", ".", "."],
+    [".", ".", ".", ".", ".", ".", ".", ".", "."],
+    [".", ".", ".", ".", ".", ".", ".", ".", "."],
+]
 # Output: true
 
 isValidSudoku(board)

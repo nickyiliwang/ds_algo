@@ -46,8 +46,11 @@ print(hash)
 
 # ORD
 # Return the Unicode for a string.
-# reference groupAnagrams for example
+# ref group anagrams
+ord("b") - ord("a")  # conceptually it's 2 - 1 = 1
+ord("a") - ord("a")  # 1 - 1 = 0
 print(ord("a"), ord("b"), ord("c"))
+
 
 # [::-1]
 # reversing an array

@@ -3,8 +3,7 @@ from typing import Optional
 
 # Time: O(1), Space: O(1)
 # Tortoise and Hare
-# Eventually the Tortoise will catch up to the Rabbit if there is a cycle
-
+# while loop only tracks the hare
 
 def hasCycle(head: Optional[ListNode]) -> bool:
     slow, fast = head, head

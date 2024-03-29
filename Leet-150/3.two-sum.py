@@ -5,14 +5,6 @@
 #
 # https://leetcode.com/problems/two-sum/description/
 #
-# algorithms
-# Easy (51.53%)
-# Likes:    54437
-# Dislikes: 1831
-# Total Accepted:    12M
-# Total Submissions: 23.2M
-# Testcase Example:  '[2,7,11,15]\n9'
-#
 # Given an array of integers nums and an integer target, return indices of the
 # two numbers such that they add up to target.
 #
@@ -63,19 +55,12 @@
 # @lc code=start
 class Solution(object):
     def twoSum(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
-        hashMap = {}
-
+        validator = {}
         for i, n in enumerate(nums):
-            diff = target - n
-            if diff in hashMap:
-                return [hashMap[diff], i]
+            if n in validator:
+                return [validator[n], i]
             else:
-                hashMap[n] = i
+                validator[target - n] = i
 
 
 # @lc code=end

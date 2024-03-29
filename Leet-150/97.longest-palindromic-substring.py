@@ -5,14 +5,6 @@
 #
 # https://leetcode.com/problems/longest-palindromic-substring/description/
 #
-# algorithms
-# Medium (32.76%)
-# Likes:    27265
-# Dislikes: 1616
-# Total Accepted:    2.6M
-# Total Submissions: 8M
-# Testcase Example:  '"babad"'
-#
 # Given a string s, return the longest palindromic substring in s.
 #
 #
