@@ -1,22 +1,47 @@
 from typing import List
 
-
 class Solution:
-    def maxProduct(self, nums: List[int]) -> int:
-        total = max(nums)
-        currMin = 0
-        currMax = 0
+    def maxProfit(self, prices: List[int]) -> int:
+        dp = {}
+        def dfs(i, buying):
+            if i >= len(prices):
+                return 0
+            if (i, buying) in dp:
+                return dp[(i, buying)]
+            if buying:
+                buying = dfs(i + 1, not buying) - prices[i]
+                cooldown = dfs(i + 1, buying)
+                dp[(i, buying)] = max(buying, cooldown)
+            else:
+                selling = dfs(i + 2, not buying) + prices[i]
+                cooldown = dfs(i + 1, buying)
+                dp[(i, buying)] = max(selling, cooldown)
+            
+            return dp[(i, buying)]
+        
+        return dfs(0, True)
+                
+                
 
-        for n in nums:
-            tmp = currMax
-            currMax = max(n, n + currMax, n + currMin)
-            currMin = min(n, n + tmp, n + currMin)
-            total = max(total, currMax, currMin)
 
-        return total
+print(Solution().maxProfit([1, 2, 3, 0, 2]))
+
+# class Solution:
+#     def maxProduct(self, nums: List[int]) -> int:
+#         total = max(nums)
+#         currMin = 0
+#         currMax = 0
+
+#         for n in nums:
+#             tmp = currMax
+#             currMax = max(n, n + currMax, n + currMin)
+#             currMin = min(n, n + tmp, n + currMin)
+#             total = max(total, currMax, currMin)
+
+#         return total
 
 
-print(Solution().maxProduct([7,1,5,3,6,4]))
+# print(Solution().maxProduct([7,1,5,3,6,4]))
 
 # Explanation: [2,3] has the largest product 6.
 

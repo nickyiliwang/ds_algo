@@ -60,12 +60,12 @@ class Solution:
                 return dp[(i, buying)]
 
             if buying:
-                buying = dfs(i + 1, not buying) - prices[i]
+                buy = dfs(i + 1, not buying) - prices[i]
                 cooldown = dfs(i + 1, buying)
-                dp[(i, buying)] = max(buying, cooldown)
+                dp[(i, buying)] = max(buy, cooldown)
             else:
                 selling = dfs(i + 2, not buying) + prices[i]
-                cooldown = dfs(i + 1, selling)
+                cooldown = dfs(i + 1, buying)
                 dp[(i, buying)] = max(selling, cooldown)
 
             return dp[(i, buying)]
