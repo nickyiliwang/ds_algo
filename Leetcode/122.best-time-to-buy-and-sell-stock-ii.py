@@ -5,14 +5,7 @@
 #
 # https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/description/
 #
-# algorithms
-# Medium (65.70%)
-# Likes:    13007
-# Dislikes: 2651
-# Total Accepted:    1.7M
-# Total Submissions: 2.6M
-# Testcase Example:  '[7,1,5,3,6,4]'
-#
+
 # You are given an integer array prices where prices[i] is the price of a given
 # stock on the i^th day.
 #

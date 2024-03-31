@@ -1,8 +1,12 @@
-dp = [True, False, True, False, False]
 
-dp[1] = dp[1] or dp[2]
 
-print(dp)
+# print(range(5))
+
+# dp = [True, False, True, False, False]
+
+# dp[1] = dp[1] or dp[2]
+
+# print(dp)
 
 # data = "abcdefg"
 

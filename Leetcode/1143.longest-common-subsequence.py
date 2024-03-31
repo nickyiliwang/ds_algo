@@ -54,15 +54,27 @@
 
 
 # Key
-# text1 and text2 are row and col
+# text1 and text2 are row and col, 2D Matrix
+# Bottom up approach to avoid repeated work
+# if text1[r] == text2[c] we look diagonally for the next sub problem
+# if no match we look bottom and right to any of them are a match
 
 
 # @lc code=start
 class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
-        pass
+        row, col = len(text1), len(text2)
+        dp = [[0 for _ in range(col + 1)] for _ in range(row + 1)]
+
+        for r in range(row - 1, -1, -1):
+            for c in range(col - 1, -1, -1):
+                if text1[r] == text2[c]:
+                    dp[r][c] = dp[r + 1][c + 1] + 1
+                else:
+                    dp[r][c] = max(dp[r + 1][c], dp[r][c + 1])
+        return dp[0][0]
 
 
 # @lc code=end
 
-print(Solution().longestCommonSubsequence("abc", "def"))
+print(Solution().longestCommonSubsequence("abcefd", "aacsd"))  # acd => 3

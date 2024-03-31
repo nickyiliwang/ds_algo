@@ -1,13 +1,52 @@
-def rob(nums):
-    twoBefore, oneBefore = 0, 0
-    for n in nums:
-        tmp = max(twoBefore + n, oneBefore)
-        twoBefore = oneBefore
-        oneBefore = tmp
-    return oneBefore    
+from typing import List
 
-print(rob([2, 7, 9, 3, 1]))
-# from typing import List
+
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        total = max(nums)
+        currMin = 0
+        currMax = 0
+
+        for n in nums:
+            tmp = currMax
+            currMax = max(n, n + currMax, n + currMin)
+            currMin = min(n, n + tmp, n + currMin)
+            total = max(total, currMax, currMin)
+
+        return total
+
+
+print(Solution().maxProduct([7,1,5,3,6,4]))
+
+# Explanation: [2,3] has the largest product 6.
+
+
+# class Solution:
+#     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+#         row, col = len(text1), len(text2)
+#         dp = [[0 for _ in range(col + 1)] for _ in range(row + 1)]
+
+#         for r in range(row - 1, -1, -1):
+#             for c in range(col - 1, -1, -1):
+#                 if text1[r] == text2[c]:
+#                     dp[r][c] = dp[r + 1][c + 1] + 1
+#                 else:
+#                     dp[r][c] = max(dp[r + 1][c], dp[r][c + 1])
+
+#         return dp[0][0]
+
+
+# def rob(nums):
+#     twoBefore, oneBefore = 0, 0
+#     for n in nums:
+#         tmp = max(twoBefore + n, oneBefore)
+#         twoBefore = oneBefore
+#         oneBefore = tmp
+#     return oneBefore
+
+
+# print(rob([2, 7, 9, 3, 1]))
+# # from typing import List
 
 
 # class Solution:

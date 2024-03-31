@@ -5,14 +5,6 @@
 #
 # https://leetcode.com/problems/maximum-product-subarray/description/
 #
-# algorithms
-# Medium (34.99%)
-# Likes:    18102
-# Dislikes: 591
-# Total Accepted:    1.2M
-# Total Submissions: 3.5M
-# Testcase Example:  '[2,3,-2,4]'
-#
 # Given an integer array nums, find a subarray that has the largest product,
 # and return the product.
 #
@@ -57,11 +49,10 @@ class Solution:
         currMax, currMin = 1, 1
 
         for n in nums:
-            # we want pre mutated val
-            tempMax = currMax * n
+            tmp = currMax
 
             currMax = max(n, n * currMax, n * currMin)
-            currMin = min(n, tempMax, n * currMin)
+            currMin = min(n, n * tmp, n * currMin)
             res = max(res, currMax, currMin)
 
         return res
@@ -70,17 +61,3 @@ class Solution:
 # @lc code=end
 
 print(Solution().maxProduct([-2, 3, 4]))
-
-
-# 109/190 cases passed (N/A)
-# not considering 2 negative numbers becoming pos
-class Solution:
-    def maxProduct(self, nums: List[int]) -> int:
-        nums = [1] + nums
-        res = float("-inf")
-        for i in range(1, len(nums)):
-            temp = nums[i - 1] * nums[i]
-            nums[i] = max(temp, nums[i])
-            res = max(res, nums[i])
-
-        return res
