@@ -9,9 +9,9 @@ class Solution:
             if (i, buying) in dp:
                 return dp[(i, buying)]
             if buying:
-                buying = dfs(i + 1, not buying) - prices[i]
+                buy = dfs(i + 1, not buying) - prices[i]
                 cooldown = dfs(i + 1, buying)
-                dp[(i, buying)] = max(buying, cooldown)
+                dp[(i, buying)] = max(buy, cooldown)
             else:
                 selling = dfs(i + 2, not buying) + prices[i]
                 cooldown = dfs(i + 1, buying)
@@ -24,7 +24,7 @@ class Solution:
                 
 
 
-print(Solution().maxProfit([1, 2, 3, 0, 2]))
+print(Solution().maxProfit([3, 3]))
 
 # class Solution:
 #     def maxProduct(self, nums: List[int]) -> int:
