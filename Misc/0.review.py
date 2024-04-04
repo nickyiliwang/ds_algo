@@ -1,30 +1,49 @@
 from typing import List
 
+
 class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        dp = {}
-        def dfs(i, buying):
-            if i >= len(prices):
-                return 0
-            if (i, buying) in dp:
-                return dp[(i, buying)]
-            if buying:
-                buy = dfs(i + 1, not buying) - prices[i]
-                cooldown = dfs(i + 1, buying)
-                dp[(i, buying)] = max(buy, cooldown)
-            else:
-                selling = dfs(i + 2, not buying) + prices[i]
-                cooldown = dfs(i + 1, buying)
-                dp[(i, buying)] = max(selling, cooldown)
-            
-            return dp[(i, buying)]
-        
-        return dfs(0, True)
-                
-                
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        cache = {}
+
+        def dfs(i, t):
+            if i == len(nums):
+                return 1 if t == target else 0
+            if (i, t) in cache:
+                return cache[(i, t)]
+
+            cache[(i, t)] = dfs(i + 1, t + nums[i]) + dfs(i + 1, t - nums[i])
+            return cache[(i, t)]
+
+        return dfs(0, 0)
 
 
-print(Solution().maxProfit([3, 3]))
+print(Solution().findTargetSumWays([1, 1, 1, 1, 1], 3))
+
+# from typing import List
+
+# class Solution:
+#     def maxProfit(self, prices: List[int]) -> int:
+#         dp = {}
+#         def dfs(i, buying):
+#             if i >= len(prices):
+#                 return 0
+#             if (i, buying) in dp:
+#                 return dp[(i, buying)]
+#             if buying:
+#                 buy = dfs(i + 1, not buying) - prices[i]
+#                 cooldown = dfs(i + 1, buying)
+#                 dp[(i, buying)] = max(buy, cooldown)
+#             else:
+#                 selling = dfs(i + 2, not buying) + prices[i]
+#                 cooldown = dfs(i + 1, buying)
+#                 dp[(i, buying)] = max(selling, cooldown)
+
+#             return dp[(i, buying)]
+
+#         return dfs(0, True)
+
+
+# print(Solution().maxProfit([3, 3]))
 
 # class Solution:
 #     def maxProduct(self, nums: List[int]) -> int:

@@ -63,12 +63,10 @@ class Solution:
         cache = {}
 
         def dfs(i, a):
-            if a == amount:
-                return 1
             if a > amount:
                 return 0
             if i == len(coins):
-                return 0
+                return 1 if a == amount else 0
             if (i, a) in cache:
                 return cache[(i, a)]
             # with a coin, and skipping a coin
@@ -85,6 +83,7 @@ print(Solution().change(5, [1, 2, 5]))
 
 
 # DP solution
+# ??? what is even going on here
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
         dp = [[0] * (len(coins) + 1) for _ in range(amount + 1)]
