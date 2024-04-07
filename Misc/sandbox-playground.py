@@ -1,4 +1,9 @@
+length = len("123456")
+print(length)
+rangeBound = range(length)
 
+if 5 in rangeBound:
+    print("hi")
 
 # print(range(5))
 
