@@ -1,7 +1,21 @@
-def something(str):
-    print('hello world ' + str)
+from typing import List
 
-something('nick')
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        maxSum = currSum = nums[0]
+        
+        for n in nums[1:]:
+            currSum = max(n, currSum + n)
+            maxSum = max(maxSum, currSum)
+        
+        return maxSum
+
+
+
+# def something(str):
+#     print('hello world ' + str)
+
+# something('nick')
 
 # from typing import List
 

@@ -5,14 +5,6 @@
 #
 # https://leetcode.com/problems/maximum-subarray/description/
 #
-# algorithms
-# Medium (50.57%)
-# Likes:    33139
-# Dislikes: 1391
-# Total Accepted:    3.7M
-# Total Submissions: 7.3M
-# Testcase Example:  '[-2,1,-3,4,-1,2,1,-5,4]'
-#
 # Given an integer array nums, find the subarray with the largest sum, and
 # return its sum.
 #
@@ -56,36 +48,23 @@
 #
 from typing import List
 
-
+# Key:
+# O(n)
+# because constrain says we have at least 1 value
+# we use the first value as base
+ 
 # @lc code=start
-# O(N)
-# Think of as sliding window
-# Left will reset to the right pointer if there is a negative number
-# left is the current sum
-# res is the max sum
-
 
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        res = nums[0]
-        left = 0
+        maxSum = currSum = nums[0]
 
-        for right in nums:
-            if left < 0:
-                left = 0
+        for num in nums[1:]:
+            currSum = max(num, currSum + num)
+            maxSum = max(maxSum, currSum)
 
-            left += right
-
-            res = max(res, left)
-
-        return res
-
+        return maxSum
 
 # @lc code=end
-
-# Explanation
-# Doing this we can go from O(n ^ 3) to calculate every sub array's max sum
-
-# But doing this we can ignore any current sum that results in a negative number. the first number as the result will help filter out any current number that's not bigger than result. (using max)
 
 print(Solution().maxSubArray([5, 4, -1, 7, 8]))
