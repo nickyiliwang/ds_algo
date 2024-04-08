@@ -1,23 +1,28 @@
-from typing import List
+def something(str):
+    print('hello world ' + str)
+
+something('nick')
+
+# from typing import List
 
 
-class Solution:
-    def findTargetSumWays(self, nums: List[int], target: int) -> int:
-        cache = {}
+# class Solution:
+#     def findTargetSumWays(self, nums: List[int], target: int) -> int:
+#         cache = {}
 
-        def dfs(i, t):
-            if i == len(nums):
-                return 1 if t == target else 0
-            if (i, t) in cache:
-                return cache[(i, t)]
+#         def dfs(i, t):
+#             if i == len(nums):
+#                 return 1 if t == target else 0
+#             if (i, t) in cache:
+#                 return cache[(i, t)]
 
-            cache[(i, t)] = dfs(i + 1, t + nums[i]) + dfs(i + 1, t - nums[i])
-            return cache[(i, t)]
+#             cache[(i, t)] = dfs(i + 1, t + nums[i]) + dfs(i + 1, t - nums[i])
+#             return cache[(i, t)]
 
-        return dfs(0, 0)
+#         return dfs(0, 0)
 
 
-print(Solution().findTargetSumWays([1, 1, 1, 1, 1], 3))
+# print(Solution().findTargetSumWays([1, 1, 1, 1, 1], 3))
 
 # from typing import List
 
