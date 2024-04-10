@@ -1,9 +1,12 @@
-length = len("123456")
-print(length)
-rangeBound = range(length)
+data = [1, 2, 3, 4]
 
-if 5 in rangeBound:
-    print("hi")
+print(data[len(data)])
+# length = len("123456")
+# print(length)
+# rangeBound = range(length)
+
+# if 5 in rangeBound:
+#     print("hi")
 
 # print(range(5))
 
