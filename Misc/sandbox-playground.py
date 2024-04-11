@@ -1,6 +1,9 @@
 data = [1, 2, 3, 4]
 
-print(data[len(data)])
+for i in range(len(data) - 1):
+    print(data[i], i)
+
+# print(data[len(data)])
 # length = len("123456")
 # print(length)
 # rangeBound = range(length)
