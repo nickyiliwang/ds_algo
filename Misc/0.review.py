@@ -1,16 +1,30 @@
 from typing import List
 
+
 class Solution:
-    def maxSubArray(self, nums: List[int]) -> int:
-        maxSum = currSum = nums[0]
-        
-        for n in nums[1:]:
-            currSum = max(n, currSum + n)
-            maxSum = max(maxSum, currSum)
-        
-        return maxSum
+    def jump(self, nums: List[int]) -> int:
+        res, far, end = 0, 0, 0
+        n = len(nums)
+        for i in range(n - 1):
+            far = max(far, i + nums[i])
+            if far >= n - 1:
+                res += 1
+                break
+            if i == end:
+                res += 1
+                end = far
+        return res
 
 
+# class Solution:
+#     def maxSubArray(self, nums: List[int]) -> int:
+#         maxSum = currSum = nums[0]
+
+#         for n in nums[1:]:
+#             currSum = max(n, currSum + n)
+#             maxSum = max(maxSum, currSum)
+
+#         return maxSum
 
 # def something(str):
 #     print('hello world ' + str)
