@@ -56,24 +56,25 @@ from typing import List
 # len(nums) - 1 is very important here, this means we are not reaching the last number in the index in the loop
 # minJump will not increment if there is only one element in the list
 
-# end will always try to be the farthest in the queue
+# end will always try to be the far in the queue
+
 
 # @lc code=start
 class Solution:
     def jump(self, nums: List[int]) -> int:
-        n = len(nums) - 1
-        minJump, farthest, end = 0, 0, 0
+        n = len(nums)
+        res, far, end = 0, 0, 0
 
-        for i in range(n):
-            farthest = max(farthest, i + nums[i])
-            if farthest >= n:
-                minJump += 1
+        for i in range(n - 1):
+            far = max(far, i + nums[i])
+            if far >= n - 1:
+                res += 1
                 break
             if i == end:  # visited current level
-                minJump += 1
-                end = farthest  # make the next queue
+                res += 1
+                end = far  # make the next queue
 
-        return minJump
+        return res
 
 
 # @lc code=end

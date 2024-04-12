@@ -5,14 +5,6 @@
 #
 # https://leetcode.com/problems/jump-game/description/
 #
-# algorithms
-# Medium (38.50%)
-# Likes:    18891
-# Dislikes: 1187
-# Total Accepted:    1.8M
-# Total Submissions: 4.8M
-# Testcase Example:  '[2,3,1,1,4]'
-#
 # You are given an integer array nums. You are initially positioned at the
 # array's first index, and each element in the array represents your maximum
 # jump length at that position.

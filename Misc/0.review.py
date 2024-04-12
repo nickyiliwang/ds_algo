@@ -1,19 +1,37 @@
 from typing import List
 
+# class Solution:
+#     def jump(self, nums: List[int]) -> int:
+#         res, far, end = 0, 0, 0
+#         n = len(nums)
 
-class Solution:
-    def jump(self, nums: List[int]) -> int:
-        res, far, end = 0, 0, 0
-        n = len(nums)
-        for i in range(n - 1):
-            far = max(far, i + nums[i])
-            if far >= n - 1:
-                res += 1
-                break
-            if i == end:
-                res += 1
-                end = far
-        return res
+#         for i in range(n - 1):
+#             far = max(far, i + nums[i])
+
+#             if far >= n - 1:
+#                 res += 1
+#                 break
+
+#             if i == end:
+#                 res += 1
+#                 end = far
+
+#         return res
+
+
+# class Solution:
+#     def jump(self, nums: List[int]) -> int:
+#         res, far, end = 0, 0, 0
+#         n = len(nums)
+#         for i in range(n - 1):
+#             far = max(far, i + nums[i])
+#             if far >= n - 1:
+#                 res += 1
+#                 break
+#             if i == end:
+#                 res += 1
+#                 end = far
+#         return res
 
 
 # class Solution:
