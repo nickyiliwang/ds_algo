@@ -54,7 +54,7 @@ from typing import List
 # Key
 # newInterval smaller than first idx in intervals
 # start in newInterval bigger than end in interval[i] 
-# all other scenarios
+# all other scenarios: [min start, max end]
 
 # @lc code=start
 class Solution:
