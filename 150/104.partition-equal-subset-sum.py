@@ -5,14 +5,6 @@
 #
 # https://leetcode.com/problems/partition-equal-subset-sum/description/
 #
-# algorithms
-# Medium (46.23%)
-# Likes:    12006
-# Dislikes: 235
-# Total Accepted:    793.4K
-# Total Submissions: 1.7M
-# Testcase Example:  '[1,5,11,5]'
-#
 # Given an integer array nums, return true if you can partition the array into
 # two subsets such that the sum of the elements in both subsets is equal or
 # false otherwise.
@@ -55,6 +47,9 @@ from typing import List
 # we are finding if the sub problem of j - n can become 0
 # if j - n is 0 let's say: 1 - 1, then dp[j] => dp[1] becomes True
 # the next time if dp[6 - 5] (j - n) => dp[1] will be True, then dp[6] is also True 
+
+# target will be total // 2 since both half has to be equal
+
 # 
 # # @lc code=start
 class Solution:

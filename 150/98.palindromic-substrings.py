@@ -5,14 +5,6 @@
 #
 # https://leetcode.com/problems/palindromic-substrings/description/
 #
-# algorithms
-# Medium (69.96%)
-# Likes:    10604
-# Dislikes: 228
-# Total Accepted:    782.3K
-# Total Submissions: 1.1M
-# Testcase Example:  '"abc"'
-#
 # Given a string s, return the number of palindromic substrings in it.
 #
 # A string is a palindrome when it reads the same backward as forward.

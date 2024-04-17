@@ -38,7 +38,12 @@
 # integer.
 #
 #
-#
+
+# Key
+# keep a max and min
+# during the loop update the max/min/res
+# need a tmp to keep max in memory
+
 from typing import List
 
 

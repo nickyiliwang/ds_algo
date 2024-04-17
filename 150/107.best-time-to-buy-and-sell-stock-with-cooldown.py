@@ -47,6 +47,9 @@
 #
 from typing import List
 
+# Key
+# selling +2 because you can't sell on the same day
+
 
 # @lc code=start
 class Solution:

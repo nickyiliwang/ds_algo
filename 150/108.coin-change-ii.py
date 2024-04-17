@@ -60,18 +60,18 @@ from typing import List
 # @lc code=start
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
-        cache = {}
+        dp = {}
 
         def dfs(i, a):
             if a > amount:
                 return 0
             if i == len(coins):
                 return 1 if a == amount else 0
-            if (i, a) in cache:
-                return cache[(i, a)]
+            if (i, a) in dp:
+                return dp[(i, a)]
             # with a coin, and skipping a coin
-            cache[(i, a)] = dfs(i, a + coins[i]) + dfs(i + 1, a)
-            return cache[(i, a)]
+            dp[(i, a)] = dfs(i, a + coins[i]) + dfs(i + 1, a)
+            return dp[(i, a)]
 
         return dfs(0, 0)
 

@@ -5,14 +5,6 @@
 #
 # https://leetcode.com/problems/decode-ways/description/
 #
-# algorithms
-# Medium (34.72%)
-# Likes:    11689
-# Dislikes: 4484
-# Total Accepted:    1.2M
-# Total Submissions: 3.5M
-# Testcase Example:  '"12"'
-#
 # A message containing letters from A-Z can be encoded into numbers using the
 # following mapping:
 #
@@ -64,7 +56,7 @@
 # Input: s = "06"
 # Output: 0
 # Explanation: "06" cannot be mapped to "F" because of the leading zero ("6" is
-# different from "06").
+
 #
 #
 #

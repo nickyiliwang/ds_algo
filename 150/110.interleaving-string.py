@@ -74,6 +74,8 @@
 # 2DP
 # nested loops bottom up approach
 # need to make sure
+# if i < iLen and s3[i + j] == s1[i] and dp[i + 1][j]:
+# if j < jLen and s3[i + j] == s2[j] and dp[i][j + 1]:
 
 
 # @lc code=start

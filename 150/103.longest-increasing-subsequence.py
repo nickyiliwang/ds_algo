@@ -5,14 +5,6 @@
 #
 # https://leetcode.com/problems/longest-increasing-subsequence/description/
 #
-# algorithms
-# Medium (55.13%)
-# Likes:    20482
-# Dislikes: 426
-# Total Accepted:    1.6M
-# Total Submissions: 2.9M
-# Testcase Example:  '[10,9,2,5,3,7,101,18]'
-#
 # Given an integer array nums, return the length of the longest strictly
 # increasing subsequence.
 #
@@ -56,6 +48,9 @@
 
 from typing import List
 
+# Key
+# If nums[i] is bigger than any nums[j] (all previous numbers)
+# We need to update dp[i], while comparing to dp[j] + 1
 
 # Time: O(n ^ 2) Space: O(n)
 # @lc code=start
