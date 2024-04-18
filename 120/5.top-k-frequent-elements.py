@@ -1,5 +1,9 @@
 from collections import Counter
 
+# Key
+# Bucket sort
+# counter.items gets both the key and value 
+#  
 
 # Time: O(n), Memory O(n)
 def topKFrequent(nums, k):

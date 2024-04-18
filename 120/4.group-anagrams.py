@@ -33,6 +33,10 @@
 #
 #
 #
+
+# Key
+# sorted will break the string into an array, so we need to join it
+
 from typing import List
 from collections import defaultdict
 
@@ -42,13 +46,11 @@ class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         res = defaultdict(list)
 
-        for w in strs:
-            alpha = [0] * 26
-            for c in w:
-                alpha[ord(c) - ord("a")] += 1
-            res[tuple(alpha)].append(w)
+        for word in strs:
+            sortedWord = "".join(sorted(word))
+            res[sortedWord].append(word)
 
-        return res.values()
+        return list(res.values())
 
 
 # @lc code=end
@@ -62,3 +64,17 @@ class Solution:
         for c in strs:
             group[tuple(sorted(c))].append(c)
         return group.values()
+
+
+# Cleaver if you can remember it, with ord
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        res = defaultdict(list)
+
+        for w in strs:
+            alpha = [0] * 26
+            for c in w:
+                alpha[ord(c) - ord("a")] += 1
+            res[tuple(alpha)].append(w)
+
+        return res.values()
