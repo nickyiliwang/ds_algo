@@ -5,6 +5,14 @@
 #
 # https://leetcode.com/problems/top-k-frequent-elements/description/
 #
+# algorithms
+# Medium (62.75%)
+# Likes:    16985
+# Dislikes: 635
+# Total Accepted:    2.1M
+# Total Submissions: 3.3M
+# Testcase Example:  '[1,1,1,2,2,3]\n2'
+#
 # Given an integer array nums and an integer k, return the k most frequent
 # elements. You may return the answer in any order.
 #
@@ -34,14 +42,7 @@
 from typing import List
 from collections import Counter
 
-# Key
-# Bucket Sort
-# counter.item gets the (key, value) => (num, count)
-# -1 count to become index
-# Count backwards in each bucket and fill res till k
 
-
-# Time: O(n), Space: O(n)
 # @lc code=start
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
