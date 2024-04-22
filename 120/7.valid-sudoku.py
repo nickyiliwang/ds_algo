@@ -81,24 +81,32 @@ from collections import defaultdict
 # @lc code=start
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        # visited
-        row = defaultdict(set)
-        col = defaultdict(set)
-        sqr = defaultdict(set)
+        row, col, sqr = (
+            defaultdict(set),
+            defaultdict(set),
+            defaultdict(set),
+        )
+        rowBound = range(len(board))
+        colBound = range(len(board[0]))
 
-        for r in range(9):
-            for c in range(9):
-                curr = board[r][c]
+        def checkBoard(r, c):
+            curr = board[r][c]
+            if curr == ".":
+                return True
 
-                if curr == ".":
-                    continue
+            if curr in row[r] or curr in col[c] or curr in sqr[r // 3, c // 3]:
+                return False
 
-                if curr in row[r] or curr in col[c] or curr in sqr[(r // 3, c // 3)]:
+            row[r].add(curr)
+            col[c].add(curr)
+            sqr[r // 3, c // 3].add(curr)
+
+            return True
+
+        for r in rowBound:
+            for c in colBound:
+                if not checkBoard(r, c):
                     return False
-
-                row[r].add(curr)
-                col[c].add(curr)
-                sqr[(r // 3, c // 3)].add(curr)
 
         return True
 

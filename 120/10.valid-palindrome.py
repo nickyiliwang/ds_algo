@@ -1,56 +1,83 @@
-def isPalindrome(s):
-    left, right = 0, len(s) - 1
+#
+# @lc app=leetcode id=125 lang=python3
+#
+# [125] Valid Palindrome
+#
+# https://leetcode.com/problems/valid-palindrome/description/
+#
+# A phrase is a palindrome if, after converting all uppercase letters into
+# lowercase letters and removing all non-alphanumeric characters, it reads the
+# same forward and backward. Alphanumeric characters include letters and
+# numbers.
+#
+# Given a string s, return true if it is a palindrome, or false otherwise.
+#
+#
+# Example 1:
+#
+#
+# Input: s = "A man, a plan, a canal: Panama"
+# Output: true
+# Explanation: "amanaplanacanalpanama" is a palindrome.
+#
+#
+# Example 2:
+#
+#
+# Input: s = "race a car"
+# Output: false
+# Explanation: "raceacar" is not a palindrome.
+#
+#
+# Example 3:
+#
+#
+# Input: s = " "
+# Output: true
+# Explanation: s is an empty string "" after removing non-alphanumeric
+# characters.
+# Since an empty string reads the same forward and backward, it is a
+# palindrome.
+#
+#
+#
+# Constraints:
+#
+#
+# 1 <= s.length <= 2 * 10^5
+# s consists only of printable ASCII characters.
+#
+#
+#
 
-    while left < right:
-        while left < right and not s[left].isalnum():
-            left += 1
 
-        while right > left and not s[right].isalnum():
-            right -= 1
+# @lc code=start
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        l, r = 0, len(s) - 1
+        while l < r:
+            while l < r and not s[l].isalnum():
+                l += 1
+            while r > l and not s[r].isalnum():
+                r -= 1
 
-        if s[left].lower() != s[right].lower():
-            return False
+            if s[l].lower() != s[r].lower():
+                return False
 
-        left += 1
-        right += 1
-
-    return True
-
-
-# Explanation
-# Key: remember isalnum and use a while loop to sift out the non alpha numeric.
-
-# Checking left and right char and moving towards the center.
-# If odd, meet center, if even left and right compare, even surpass
-
-
-def isPalindrome(s):
-    l, r = 0, len(s) - 1
-
-    while l < r:
-        # Skips non alpha numeric characters
-        while l < r and not s[l].isalnum():
             l += 1
-
-        while r > l and not s[r].isalnum():
             r -= 1
 
-        if s[l].lower() != s[r].lower():
-            return False
-
-        # moving the pointer
-        l, r = l + 1, r - 1
-
-    return True
+        return True
 
 
-# #  This solution is using python built in isalnum, and uses extra memory by building an string and array.
+# @lc code=end
+
+
 # # Time: O(n), Space: O(n)
 # def solution(s):
 #     newStr = ""
 
 #     for c in s:
-#         # is alpha numeric
 #         if c.isalnum():
 #             newStr += c.lower()
 

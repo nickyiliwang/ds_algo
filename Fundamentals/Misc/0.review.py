@@ -1,5 +1,31 @@
 from typing import List
 
+
+class Solution:
+    def encode(self, l):
+        res = ""
+        for w in l:
+            res += str(len(w)) + "#" + w
+
+        return res
+
+    def decode(self, s):
+        res = []
+        pointer = 0
+
+        while pointer < len(s):
+            if s[pointer] != "#":
+                pointer += 1
+            else:
+                tmp = pointer
+                length = pointer
+                res.append(s[pointer + 1 : tmp + 1 + length])
+                pointer = tmp + 1 + length
+        return res
+
+
+coded = Solution().encode(["I", "Love", "You"])
+print(Solution().decode(coded))
 # class Solution:
 #     def jump(self, nums: List[int]) -> int:
 #         res, far, end = 0, 0, 0
