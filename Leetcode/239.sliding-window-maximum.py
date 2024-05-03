@@ -73,32 +73,3 @@ class Solution:
 
 
 # @lc code=end
-
-
-# Key
-def maxSlidingWindow(nums, k):
-    q = deque()
-    res = []
-    left = 0
-
-    for right, rightVal in enumerate(nums):
-        # monotonic decreasing queue
-        # pops all numbers at the end of the queue smaller than right pointer number
-        while q and nums[q[-1]] <= rightVal:
-            q.pop()
-
-        q.append(right)
-
-        # its out of bounds if the left pointer is bigger than first index item in q
-        if left > q[0]:
-            q.popleft()
-
-        # if we arrive at the sliding window k
-        # 1st elem will always be largest
-        if right - left + 1 == k:
-            res.append(nums[q[0]])
-            left += 1
-    return res
-
-
-print(maxSlidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3))
