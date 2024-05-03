@@ -62,7 +62,6 @@ from collections import Counter
 # while we find/still have a matching length
 # update the results and shrink the left pointer/window
 
-
 # @lc code=start
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
@@ -75,24 +74,21 @@ class Solution:
         for right in range(len(s)):
             haveC[s[right]] += 1
 
-            # increment have only when we have less than the char needed
             if haveC[s[right]] <= needC[s[right]]:
                 haveLen += 1
 
             while haveLen == needLen:
-                # update res
                 currLen = right - left + 1
                 if currLen < resLen:
                     res = s[left : right + 1]
                     resLen = currLen
 
-                # shrink window
-                haveC[s[left]] -= 1
+                haveC[s[left]] -= 1 
+
                 if haveC[s[left]] < needC[s[left]]:
                     haveLen -= 1
+
                 left += 1
-
         return res
-
 
 # @lc code=end
