@@ -90,4 +90,3 @@ def largestRectangleArea(heights):
 
 # w = i - stack[-1] - 1
 # if there's no elements in the heights list, the loop runs and end, but if there is one+ element, like [1]. The index will run up to 1, and w = i - stack[-1] - 1 => w = 1 - (-1) - 1 => w = 2 - 1 => 1 for the width.
-

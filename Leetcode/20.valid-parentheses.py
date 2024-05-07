@@ -58,7 +58,7 @@ class Solution:
 
         for p in s:
             if p in validator:
-                if not stack or stack.pop() != validator[p]:
+                if len(stack) == 0 or stack.pop() != validator[p]:
                     return False
             else:
                 stack.append(p)

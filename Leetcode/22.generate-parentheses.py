@@ -40,7 +40,6 @@ class Solution:
 
             if open < n:
                 backtracking(open + 1, closed, paren + "(")
-
             if closed < open:
                 backtracking(open, closed + 1, paren + ")")
 
