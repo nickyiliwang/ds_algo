@@ -44,10 +44,6 @@
 #
 from typing import List
 
-# Key
-# using logic to trap the target to left or right partition
-# 
-
 
 # @lc code=start
 class Solution:
@@ -77,4 +73,3 @@ class Solution:
 
 
 # @lc code=end
-

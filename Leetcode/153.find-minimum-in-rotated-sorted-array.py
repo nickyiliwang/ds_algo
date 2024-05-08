@@ -62,14 +62,12 @@
 #
 #
 from typing import List
-
 # Draw solution if confused
 # [3,4,5,1,2] => part A: [3,4,5] part B: [1,2]
 # if m = 5, left = 3, right = 2
 # mid > right num means we have found a rotation
 # for sure the min number is right, so move the left pointer
 # O(log n)
-
 
 # @lc code=start
 class Solution:

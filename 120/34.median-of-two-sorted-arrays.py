@@ -85,6 +85,7 @@ class Solution:
             else:
                 left = A_Mid + 1
 
+
 # Divide-and-conquer approach.
 # The function takes in two input lists nums1 and nums2 and returns a float as the median. The function first assigns the shorter of the two input lists to a variable A and the longer one to a variable B.
 # It then calculates the Mid index of the combined list by taking the floor division of the total number of elements in the two lists by 2.
