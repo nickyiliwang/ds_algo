@@ -10,7 +10,6 @@
 
 class Solution(object):
     def findDuplicate(self, nums):
-        # Turtle and rabbit
         slow, fast = 0, 0
 
         while True:

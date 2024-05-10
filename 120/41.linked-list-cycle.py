@@ -1,36 +1,26 @@
 from ds_types.linked_list import LinkedList, ListNode
 from typing import Optional
 
+# @lc app=leetcode id=141 lang=python3
+
 # Time: O(1), Space: O(1)
 # Tortoise and Hare
 # while loop only tracks the hare
 
-def hasCycle(head: Optional[ListNode]) -> bool:
-    slow, fast = head, head
 
-    while fast and fast.next:
-        slow = slow.next
-        fast = fast.next.next
-        # if here because we don't want to check the initial loop.
-        if slow == fast:
-            return True
+# @lc code=start
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow, fast = head, head
 
-    return False
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
 
-# # Time: O(n), Space: O(n)
+            if slow == fast:
+                return True
 
-# def hasCycle(head: Optional[ListNode]) -> bool:
-#     # with python set
-#     validationHashSet = set()
+        return False
 
-#     curr = head
 
-#     while curr:
-#         if (curr not in validationHashSet):
-#             validationHashSet.add(curr)
-#         else:
-#             return True
-
-#         curr = curr.next
-
-#     return False
+# @lc code=end

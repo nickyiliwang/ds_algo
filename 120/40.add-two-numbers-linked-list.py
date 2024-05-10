@@ -1,11 +1,37 @@
 from typing import *
-from ds_types.linked_list import LinkedList, ListNode
+from ds_types.linked_list import ListNode
 
+# @lc app=leetcode id=2 lang=python3
+
+# Example 1:
+#
+# Input: l1 = [2,4,3], l2 = [5,6,4]
+# Output: [7,0,8]
+# Explanation: 342 + 465 = 807.
+#
+#
+# Example 2:
+#
+# Input: l1 = [0], l2 = [0]
+# Output: [0]
+#
+#
+# Example 3:
+#
+# Input: l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]
+# Output: [8,9,9,9,0,0,0,1]
+#
+
+
+# @lc code=start
 class Solution:
-    def addTwoNumbers(self, l1, l2):
-        l1str = ""
-        l2str = ""
+    def addTwoNumbers(
+        self, l1: Optional[ListNode], l2: Optional[ListNode]
+    ) -> Optional[ListNode]:
+        l1str = l2str = ""
 
+        # phase 1
+        # get the numbers by flipping the order of appending
         while l1:
             l1str = str(l1.val) + l1str
             l1 = l1.next
@@ -13,8 +39,8 @@ class Solution:
             l2str = str(l2.val) + l2str
             l2 = l2.next
 
-        sum = int(l1str) + int(l2str)
-        sum = str(sum)
+        # phase 2
+        sum = str(int(l1str) + int(l2str))
 
         dummy = ListNode()
         curr = dummy
@@ -26,49 +52,4 @@ class Solution:
         return dummy.next
 
 
-# # NONE optimal solution
-# class Solution:
-#     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-#         list1 = []
-#         list2 = []
-
-#         while l1:
-#             list1.append(l1.val)
-#             l1 = l1.next
-
-#         while l2:
-#             list2.append(l2.val)
-#             l2 = l2.next
-
-#         str1 = ""
-#         str2 = ""
-
-#         for n in reversed(list1):
-#             str1 = str1 + str(n)
-
-#         for n in reversed(list2):
-#             str2 = str2 + str(n)
-
-#         sum = int(str1) + int(str2)
-
-#         resList = LinkedList()
-
-#         for n in reversed(str(sum)):
-#             resList.append(int(n))
-
-#         return resList.head.next
-
-
-# list1 = LinkedList()
-# list1.append(2)
-# list1.append(4)
-# list1.append(3)
-
-# list2 = LinkedList()
-# list2.append(5)
-# list2.append(6)
-# list2.append(4)
-
-# print(
-#     Solution.addTwoNumbers("", list1.head.next, list2.head.next)
-# )
+# @lc code=end

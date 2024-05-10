@@ -1,30 +1,36 @@
 from typing import Optional
 from ds_types.linked_list import LinkedList
 
+# @lc app=leetcode id=19 lang=python3
 
-def removeNthFromEnd(head: Optional[ListNode], n: int) -> Optional[ListNode]:
-    # dummy is for when you want to remove any Node in the list, even if it's the head
-    dummy = ListNode(0, head)
 
-    slow, fast = dummy, head
-    # 2 pointer
-    # slow will be the node we remove while fast hits None
-    for i in range(n):
-        fast = fast.next
-        
-    # Also works
-    # while fast and n > 0:
-    #     fast = fast.next
-    #     n -= 1
-        
-    while fast:
-        slow = slow.next
-        fast = fast.next
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
-    # actually removing a node
-    slow.next = slow.next.next
 
-    return dummy.next
+# @lc code=start
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+
+        slow, fast = dummy, head
+        for _ in range(n):
+            fast = fast.next
+
+        while fast:
+            slow = slow.next
+            fast = fast.next
+
+        # removing a node
+        slow.next = slow.next.next
+
+        return dummy.next
+
+
+# @lc code=end
 
 
 linked_list = LinkedList()

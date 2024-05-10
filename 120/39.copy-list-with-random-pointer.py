@@ -1,52 +1,35 @@
-from typing import *
-from collections import *
-from math import *
-from ds_types.linked_list import LinkedList, ListNode as Node
+# @lc app=leetcode id=138 lang=python3
 
 
-class Solution(object):
-    def copyRandomList(self, head):
-        copyOldLink = {None: None}
-
-        curr = head
-
-        while curr:
-            copy = Node(curr.val)
-            copyOldLink[curr] = copy
-            curr = curr.next
-
-        curr = head
-
-        while curr:
-            copy = copyOldLink[curr]
-            copy.next = copyOldLink[curr.next]
-            copy.random = copyOldLink[curr.random]
-            curr = curr.next
-
-        return copyOldLink[head]
+class Node:
+    def __init__(self, x: int, next: "Node" = None, random: "Node" = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
 
 
-class Solution(object):
-    def copyRandomList(self, head):
-        # one of the random val will point to Null, so None mapped to None
-        oldToCopy = {None: None}
+# @lc code=start
+class Solution:
+    def copyRandomList(self, head: "Optional[Node]") -> "Optional[Node]":
+        # one of the random val might point to Null, so None mapped to None
+        db = {None: None}
 
         curr = head
-
         # create deep copy of nodes and save to map
         while curr:
-            copy = Node(curr.val)
-            oldToCopy[curr] = copy
+            n = Node(curr.val)
+            db[curr] = n
             curr = curr.next
 
         curr = head
         while curr:
-            # directly manipulating the Nodes in the map
-            copy = oldToCopy[curr]
-            # assign what was in the old link values to the copy
-            copy.next = oldToCopy[curr.next]
-            copy.random = oldToCopy[curr.random]
+            n = db[curr]
+            # point to nodes in the db with original head's next and random values
+            n.next = db[curr.next]
+            n.random = db[curr.random]
             curr = curr.next
 
-        # return the head from map with copied Nodes
-        return oldToCopy[head]
+        return db[head]
+
+
+# @lc code=end

@@ -1,37 +1,43 @@
 from typing import Optional
 from ds_types.linked_list import LinkedList, ListNode
 
+# @lc app=leetcode id=143 lang=python3
 
-def reorderList(head: Optional[ListNode]) -> None:
-    # phase 1
-    # using Slow Fast Algo to divide the list into 2 parts
-    slow, fast = head, head
-    while fast and fast.next:
-        slow = slow.next
-        fast = fast.next.next
 
-    # phase 2
-    # reverse second half
-    prev, curr = None, slow
-    while curr:
-        tmp = curr.next
-        curr.next = prev
-        prev = curr
-        curr = tmp
+# @lc code=start
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        # phase 1
+        # using Slow Fast Algo to divide the list into 2 parts
+        slow, fast = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
 
-    # phase 3
-    # rearrange the 2 parts into desired linked list
-    # weave into the pattern
-    first, second = head, prev
-    while second.next:
-        tmp = first.next
-        first.next = second
-        first = tmp
+        # phase 2
+        # reverse second half
+        prev, curr = None, slow
+        while curr:
+            tmp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = tmp
 
-        tmp = second.next
-        second.next = first
-        second = tmp
+        # phase 3
+        # rearrange the 2 parts into desired linked list
+        # only need to go as far as the second half
+        first, second = head, prev
+        while second.next:
+            tmp = first.next
+            first.next = second
+            first = tmp
 
+            tmp = second.next
+            second.next = first
+            second = tmp
+
+
+# @lc code=end
 
 linked_list = LinkedList()
 linked_list.append(1)
