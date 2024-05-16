@@ -4,7 +4,15 @@
 # [23] Merge k Sorted Lists
 #
 # https://leetcode.com/problems/merge-k-sorted-lists/description/
-# 
+#
+# algorithms
+# Hard (52.87%)
+# Likes:    19210
+# Dislikes: 700
+# Total Accepted:    2M
+# Total Submissions: 3.8M
+# Testcase Example:  '[[1,4,5],[1,3,4],[2,6]]'
+#
 # You are given an array of k linked-lists lists, each linked-list is sorted in
 # ascending order.
 #
@@ -54,17 +62,11 @@
 #
 #
 
-# Key:
-# have a normal merge list method
-# merge in-place
-# loop until one list is left
-# l2 will either be i + 1 or None 
-
 # @lc code=start
-# Definition for singly-linked list.
 from typing import List, Optional
 
 
+# Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -83,13 +85,12 @@ class Solution:
             else:
                 tail.next = l2
                 l2 = l2.next
-
             tail = tail.next
 
         if l1:
             tail.next = l1
         else:
-            tail.next = l2
+            tail.nextt = l2
 
         return dummy.next
 
@@ -104,9 +105,10 @@ class Solution:
                 l2 = lists[i + 1] if len(lists) > (i + 1) else None
 
                 merged.append(self.mergeLists(l1, l2))
+
             lists = merged
+
         return lists[0]
 
 
 # @lc code=end
-

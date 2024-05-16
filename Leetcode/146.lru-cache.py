@@ -5,6 +5,15 @@
 #
 # https://leetcode.com/problems/lru-cache/description/
 #
+# algorithms
+# Medium (42.50%)
+# Likes:    20424
+# Dislikes: 999
+# Total Accepted:    1.6M
+# Total Submissions: 3.8M
+# Testcase Example:  '["LRUCache","put","put","get","put","get","put","get","get","get"]\n' +
+# '[[2],[1,1],[2,2],[1],[3,3],[2],[4,4],[1],[3],[4]]'
+#
 # Design a data structure that follows the constraints of a Least Recently Used
 # (LRU) cache.
 #
@@ -57,19 +66,12 @@
 #
 #
 
-# Key
-# Doubly Linked list
-# need to insert it into the tail
-# need to return the value in get()
-# need to define a remove and insert helper method
-
-
 
 # @lc code=start
 class Node:
     def __init__(self, key, value):
         self.key, self.value = key, value
-        self.prev = self.next = None
+        self.prev, self.next = None
 
 
 class LRUCache:
@@ -94,6 +96,7 @@ class LRUCache:
             self.remove(self.cache[key])
             self.insert(self.cache[key])
             return self.cache[key].value
+
         return -1
 
     def put(self, key: int, value: int) -> None:
@@ -101,13 +104,17 @@ class LRUCache:
             self.remove(self.cache[key])
 
         node = Node(key, value)
-        self.cache[key] = node
         self.insert(node)
+        self.cache[key] = node
 
         if len(self.cache) > self.capacity:
             lru = self.head.next
             self.remove(lru)
-            del self.cache[lru.key]
+            del self.cache[key]
 
 
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
 # @lc code=end

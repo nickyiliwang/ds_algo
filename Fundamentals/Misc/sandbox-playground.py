@@ -1,8 +1,19 @@
-data = [1, 2, 3, 4]
+cache = {
+    1: "hello",
+    2: "nick",
+    3: "wang",
+}
 
-data.append([5, 5, 5, 5, 5, 5])
-data
-print(data + [5, 5, 5, 5, 5, 5])
+del cache[1]
+
+print(cache)
+
+
+# data = [1, 2, 3, 4]
+
+# data.append([5, 5, 5, 5, 5, 5])
+# data
+# print(data + [5, 5, 5, 5, 5, 5])
 
 # [1, 2, 3, 4, [5, 5, 5, 5, 5, 5], 5, 5, 5, 5, 5, 5]
 # for i in range(len(data) - 1):
