@@ -1,104 +1,37 @@
+# @lc app=leetcode id=572 lang=python3
+
 from typing import Optional
-from ds_types.tree import Tree
+from ds_types.tree import TreeNode
 
 # Given the roots of two binary trees p and q, write a function to check if they are the same or not.
 
 # Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
 
 
-# Example 1:
+# @lc code=start
+class Solution:
+    def sameTree(self, p, q):
+        if not p and not q:
+            return True
+
+        if not p or not q or p.val != q.val:
+            return False
+        else:
+            return self.sameTree(p.left, q.left) and self.sameTree(p.right, q.right)
+
+    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+        # empty subRoot will always be part of a tree
+        if not subRoot:
+            return True
+
+        #  but if root is None, subRoot cannot be the subtree
+        if not root:
+            return False
+
+        if self.sameTree(root, subRoot):
+            return True
+
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
 
 
-# Input: p = [1,2,3], q = [1,2,3]
-# Output: true
-# Example 2:
-
-
-# Input: p = [1,2], q = [1,null,2]
-# Output: false
-# Example 3:
-
-
-# Input: p = [1,2,1], q = [1,1,2]
-# Output: false
-
-
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-
-# recursive
-
-def isSubtree(root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-    # subRoot is None meaning it's a subtree
-    # this condition also confirms subRoot will not be empty
-    if not subRoot:
-        return True
-    #  but if root is None, subRoot cannot be the subtree
-    if not root:
-        return False
-
-    if sameTree(root, subRoot):
-        return True
-
-    # do check for both left and right node
-    return isSubtree(root.left, subRoot) or isSubtree(root.right, subRoot)
-
-
-def sameTree(p: Optional[TreeNode], q: Optional[TreeNode]):
-    if p is None and q is None:
-        return True
-
-    if p is None or q is None or p.val != q.val:
-        return False
-
-    return sameTree(p.left, q.left) and sameTree(p.right, q.right)
-
-
-# # iterative DFS passes 167 / 182 testcases
-# # falls short when encountering:
-# # root: [1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,null,1,2], subRoot: [1,null,1,null,1,null,1,null,1,null,1,2] <- returns False when it's True
-
-# def isSubtree(root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-#     if root.val != subRoot.val:
-#         return False
-
-#     res = False
-
-#     stack = [root]
-#     while stack:
-#         node = stack.pop()
-#         if node:
-#             if node.val == subRoot.val:
-#                 res = sameTree(node, subRoot)
-#             stack.append(node.left)
-#             stack.append(node.right)
-
-#     return res
-
-# def sameTree(p: Optional[TreeNode], q: Optional[TreeNode]):
-#     if p is None and q is None:
-#         return True
-
-#     if p is None or q is None or p.val != q.val:
-#         return False
-
-#     return sameTree(p.left, q.left) and sameTree(p.right, q.right)
-
-
-tree1 = Tree()
-tree1.insert(1)
-tree1.insert(1)
-
-# tree1.printTree()
-#     3
-#  0      4
-#    2      8
-#  1
-tree2 = Tree()
-tree2.insert(1)
-
-print(isSubtree(tree1.root, tree2.root))
+# @lc code=end

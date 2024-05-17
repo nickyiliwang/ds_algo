@@ -1,13 +1,4 @@
-## NeetCode 150 questions
-
-1. 1 - 9 Arrays and Hashing
-2. 10 - x Two pointers
-
-Note:
-15.best-time-to-gamble.py is actually a two pointer problem
-Two pointers are essentially a subset of sliding window
-Goals
-
+## NeetCode 150
 1. do them all
 2. try to have fun and be consistent
 3. Become an SDE
