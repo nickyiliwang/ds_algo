@@ -1,17 +1,15 @@
+#
+# @lc app=leetcode id=199 lang=python3
+#
 # [199] Binary Tree Right Side View
-
-from typing import List, Optional
-from collections import deque
-from ds_types.tree import TreeNode
-
+#
+# https://leetcode.com/problems/binary-tree-right-side-view/description/
+#
 # Given the root of a binary tree, imagine yourself standing on the right side
 # of it, return the values of the nodes you can see ordered from top to
 # bottom.
-
-
-# Key:
-# BST level order traversal with queue
-# while adding the res from the loop, only add the right most value, which is tmp[-1]
+from typing import List, Optional
+from collections import deque
 
 
 # @lc code=start

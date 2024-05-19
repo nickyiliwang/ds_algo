@@ -1,4 +1,3 @@
-
 #
 # @lc app=leetcode id=235 lang=python3
 #
@@ -78,5 +77,3 @@ class Solution:
 
 
 # @lc code=end
-
-

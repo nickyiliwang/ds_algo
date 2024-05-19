@@ -1,110 +1,50 @@
+# @lc app=leetcode id=98 lang=python3
 from typing import Optional
 from collections import deque
 from ds_types.tree import Tree, TreeNode
 
-# Using deque and lower and upper bounds
-
-
-def isValidBST(root: Optional[TreeNode]) -> bool:
-    if root is None:
-        return True
-
-    q = deque([(root, -float("inf"), float("inf"))])
-    while q:
-        node, lower, upper = q.popleft()
-        # Not a BST
-        if not lower < node.val < upper:
-            return False
-
-        if node.left:
-            # set parent node value as upper bound
-            # meaning left node has to be smaller than upper bound
-            q.append((node.left, lower, node.val))
-
-        if node.right:
-            # opposite as above, using paren node val as lower bound
-            q.append((node.right, node.val, upper))
-
-    return True
-
 
 # Recursive approach, DFS
+# @lc code=start
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        def valid(node, lower, upper):
+            if not node:
+                return True
+
+            if not (lower < node.val < upper):
+                return False
+
+            return valid(node.left, lower, node.val) and valid(
+                node.right, node.val, upper
+            )
+
+        return valid(root, float("-inf"), float("inf"))
 
 
-def isValidBST(root: Optional[TreeNode]) -> bool:
-    def valid(node, lower, upper):
+# @lc code=end
+
+
+# Using deque
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
         if root is None:
             return True
 
-        if not (lower < node.val < upper):
-            return False
+        q = deque([(root, float("-inf"), float("inf"))])
+        while q:
+            for _ in range(len(q)):
+                node, lower, upper = q.popleft()
 
-        return valid(node.left, lower, node.val) and valid(node.right, node.val, upper)
+                if not lower < node.val < upper:
+                    return False
 
-    return valid(root, -float("inf"), float("inf"))
+                if node.left:
+                    # left node, update upper bound since it cannot be bigger than parent node
+                    q.append((node.left, lower, node.val))
 
+                if node.right:
+                    # right node, update the lower bound since it cannot be smaller than parent node
+                    q.append((node.right, node.val, upper))
 
-# # Naive approach
-# # Failed at root = [5,4,6,null,null,3,7]
-# # It failed because we are not checking if the left and right child nodes are also valid BSTs
-# # A BST is a tree where each node's value is greater than all the values in its left subtree, and less than all the values in its right subtree.
-# def isValidBST(root: Optional[TreeNode]) -> bool:
-#     q = deque([root])
-#     while q:
-#         for _ in range(len(q)):
-#             node = q.popleft()
-#             parent = node.val
-#             if node.left:
-#                 if node.val > node.left.val:
-#                     q.append(node.left)
-#                 else:
-#                     return False
-#             if node.right:
-#                 if node.val < node.right.val:
-#                     q.append(node.right)
-#                 else:
-#                     return False
-
-#     return True
-
-tree = Tree()
-tree.insert(1)
-tree.insert(2)
-tree.insert(3)
-# tree.printTree()
-
-print(isValidBST(tree.root))
-
-# Long form explanation of the deque solution
-# This implementation uses a deque to store a tuple for each node, consisting of the node, a lower bound on the node's value, and an upper bound on the node's value. The lower and upper bounds are used to ensure that the node's value is within the valid range for a BST.
-
-# The deque is initialized with a tuple for the root node, with the lower and upper bounds set to negative infinity and positive infinity, respectively. This allows the root node to have any value, as long as it is within the bounds of the left and right subtrees.
-
-# The implementation then enters a loop that processes the nodes in the deque. For each node, it checks if the node's value is within the valid range specified by the lower and upper bounds. If the value is not within the range, it returns False immediately. If the value is within the range, it adds the left and right child nodes (if they exist) to the deque, with the appropriate lower and upper bounds set based on the value of the parent node.
-
-# Finally, after the deque is empty, the function returns True to indicate that the tree is a valid BST.
-
-# ChatGPT wrote this, I do not understand, pretty confusing to remember too. Here for reference
-# class Solution:
-
-#     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-#         if root is None:
-#             return True
-
-#         if root.left and not self.isValidBST(root.left):
-#             return False
-
-#         if root.right and not self.isValidBST(root.right):
-#             return False
-
-#         if root.left and root.val <= root.left.val:
-#             return False
-
-#         if root.right and root.val >= root.right.val:
-#             return False
-
-#         return True
-
-# # This implementation first checks if the root node is None, in which case it returns True since an empty tree is considered a valid BST.
-# # It then checks the left and right child nodes to see if they are valid BSTs, and returns False if either of them is not.
-# # Finally, it checks the parent node's value against the values of the left and right child nodes, and returns False if the parent's value is not greater than the left child's value and less than the right child's value.
+        return True
