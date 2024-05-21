@@ -1,8 +1,9 @@
-class TreeNode(object):
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
+# @lc app=leetcode id=297 lang=python3
+from ds_types.tree import TreeNode
+
+# Key:
+# Can use preorder for both serialize and deserialize
+# use a index to traverse the data and deserialize
 
 
 # @lc code=start
@@ -21,7 +22,6 @@ class Codec:
             return root
 
         dfs(root)
-        print(serialize)
         return ",".join(serialize)
 
     def deserialize(self, data):
@@ -45,13 +45,3 @@ class Codec:
 
 
 # @lc code=end
-
-
-root = TreeNode(1)
-root.left = TreeNode(2)
-root.right = TreeNode(3)
-
-root.right.left = TreeNode(4)
-root.right.right = TreeNode(5)
-
-tree = Codec.deserialize("", Codec.serialize("", root))

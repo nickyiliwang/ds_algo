@@ -1,4 +1,9 @@
+#
 # @lc app=leetcode id=703 lang=python3
+#
+# [703] Kth Largest Element in a Stream
+#
+# https://leetcode.com/problems/kth-largest-element-in-a-stream/description/
 #
 # Design a class to find the k^th largest element in a stream. Note that it is
 # the k^th largest element in the sorted order, not the k^th distinct element.
@@ -45,15 +50,8 @@
 #
 #
 #
-
-from typing import List
 import heapq
-
-# Key:
-# using a minHeap we can
-# heap[0] is always the smallest
-# heappop will always pop the smallest
-# so popping till k will give k largest in heap[0]
+from typing import List
 
 
 # @lc code=start
@@ -62,7 +60,6 @@ class KthLargest:
     def __init__(self, k: int, nums: List[int]):
         self.minHeap = nums
         self.k = k
-        # heapify transforms list in-place
         heapq.heapify(self.minHeap)
         while len(self.minHeap) > k:
             heapq.heappop(self.minHeap)
@@ -71,7 +68,11 @@ class KthLargest:
         heapq.heappush(self.minHeap, val)
         if len(self.minHeap) > self.k:
             heapq.heappop(self.minHeap)
+
         return self.minHeap[0]
 
 
+# Your KthLargest object will be instantiated and called as such:
+# obj = KthLargest(k, nums)
+# param_1 = obj.add(val)
 # @lc code=end

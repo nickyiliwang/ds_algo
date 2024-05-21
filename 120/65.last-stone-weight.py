@@ -5,14 +5,6 @@
 #
 # https://leetcode.com/problems/last-stone-weight/description/
 #
-# algorithms
-# Easy (65.20%)
-# Likes:    5837
-# Dislikes: 103
-# Total Accepted:    571.1K
-# Total Submissions: 876K
-# Testcase Example:  '[2,7,4,1,8,1]'
-#
 # You are given an array of integers stones where stones[i] is the weight of
 # the i^th stone.
 #
