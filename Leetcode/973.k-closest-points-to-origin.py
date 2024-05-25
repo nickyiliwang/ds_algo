@@ -3,6 +3,16 @@
 #
 # [973] K Closest Points to Origin
 #
+# https://leetcode.com/problems/k-closest-points-to-origin/description/
+#
+# algorithms
+# Medium (66.39%)
+# Likes:    8318
+# Dislikes: 303
+# Total Accepted:    1.2M
+# Total Submissions: 1.8M
+# Testcase Example:  '[[1,3],[-2,2]]\n1'
+#
 # Given an array of points where points[i] = [xi, yi] represents a point on the
 # X-Y plane and an integer k, return the k closest points to the origin (0,
 # 0).
@@ -45,13 +55,6 @@
 #
 #
 
-from typing import List
-import heapq
-
-# instead of sorting O(n) we use a min Heap to loop the heap k times to get the result
-# minHeap for the distance between origin and the point
-# ** is the exponent operation
-
 
 # @lc code=start
 class Solution:
@@ -70,5 +73,3 @@ class Solution:
 
 
 # @lc code=end
-
-print(Solution().kClosest([[1, 3], [-2, 2], [2, -2]], 2))

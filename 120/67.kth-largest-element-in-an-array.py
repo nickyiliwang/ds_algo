@@ -5,14 +5,6 @@
 #
 # https://leetcode.com/problems/kth-largest-element-in-an-array/description/
 #
-# algorithms
-# Medium (66.83%)
-# Likes:    16578
-# Dislikes: 831
-# Total Accepted:    2.1M
-# Total Submissions: 3.2M
-# Testcase Example:  '[3,2,1,5,6,4]\n2'
-#
 # Given an integer array nums and an integer k, return the k^th largest element
 # in the array.
 #
@@ -60,23 +52,12 @@ import heapq
 
 # @lc code=start
 class Solution:
-    def __init__(self, k: int, nums: List[int]):
-        self.minHeap = nums
-        self.k = k
-        heapq.heapify(self.minHeap)
-        while len(self.minHeap) > k:
-            heapq.heappop(self.minHeap)
-
-    def add(self, val):
-        heapq.heappush(self.minHeap, val)
-        if len(self.minHeap) > self.k:
-            heapq.heappop(self.minHeap)
-
-        return self.minHeap[0]
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        minHeap = nums
+        heapq.heapify(minHeap)
+        while len(minHeap) > k:
+            heapq.heappop(minHeap)
+        return minHeap[0]
 
 
 # @lc code=end
-
-solution = Solution(2, [3, 2, 1, 5, 6, 4])
-
-print(solution.add(1))

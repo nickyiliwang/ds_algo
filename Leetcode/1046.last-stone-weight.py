@@ -3,6 +3,16 @@
 #
 # [1046] Last Stone Weight
 #
+# https://leetcode.com/problems/last-stone-weight/description/
+#
+# algorithms
+# Easy (65.38%)
+# Likes:    5950
+# Dislikes: 115
+# Total Accepted:    614.3K
+# Total Submissions: 939.6K
+# Testcase Example:  '[2,7,4,1,8,1]'
+#
 # You are given an array of integers stones where stones[i] is the weight of
 # the i^th stone.
 #
@@ -51,21 +61,12 @@
 #
 #
 #
-from typing import List
 import heapq
-
-# Key:
-# using negative to make maxHeap
-# heappush negative numbers back
-# base case for the while loop is the return conditions
-# can subtract neg numbers to the diff: -6 - (-5) = 1
 
 
 # @lc code=start
 class Solution:
     def lastStoneWeight(self, stones: List[int]) -> int:
-        # turning negative here so we can have a max heap
-        # [1,2,3] => [-3, -2, -1]  <= stone[0] will always be largest
         stones = [-abs(n) for n in stones]
         heapq.heapify(stones)
 
@@ -80,7 +81,3 @@ class Solution:
 
 
 # @lc code=end
-
-solution = Solution()
-
-print(solution.lastStoneWeight([2, 7, 4, 1, 8, 1]))

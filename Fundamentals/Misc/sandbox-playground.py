@@ -1,12 +1,18 @@
-cache = {
-    1: "hello",
-    2: "nick",
-    3: "wang",
-}
+print(5**2)
 
-del cache[1]
 
-print(cache)
+
+
+# cache = {
+#     1: "hello",
+#     2: "nick",
+#     3: "wang",
+# }
+
+# del cache[1]
+
+
+# print(cache)
 
 
 # data = [1, 2, 3, 4]

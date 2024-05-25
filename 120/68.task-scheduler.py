@@ -5,14 +5,6 @@
 #
 # https://leetcode.com/problems/task-scheduler/description/
 #
-# algorithms
-# Medium (58.15%)
-# Likes:    9311
-# Dislikes: 1937
-# Total Accepted:    502.7K
-# Total Submissions: 864.5K
-# Testcase Example:  '["A","A","A","B","B","B"]\n2'
-#
 # Given a characters array tasks, representing the tasks a CPU needs to do,
 # where each letter represents a different task. Tasks could be done in any
 # order. Each task is done in one unit of time. For each unit of time, the CPU
