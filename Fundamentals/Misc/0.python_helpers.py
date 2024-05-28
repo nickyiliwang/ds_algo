@@ -73,3 +73,14 @@ stuff = {
 items = stuff.items()
 
 print(items)  # dict_items([('a', 1), ('b', 2)])
+
+# copy
+mylist = [1, 2, 3]
+# https://docs.python.org/3/library/copy.html
+mylist.copy()
+# Return a shallow copy of x.
+
+# list.deepcopy(x[, memo])
+# Return a deep copy of x.
+
+# The difference between shallow and deep copying is only relevant for compound objects (objects that contain other objects, like lists or class instances)

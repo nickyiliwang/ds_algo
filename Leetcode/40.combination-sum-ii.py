@@ -5,6 +5,14 @@
 #
 # https://leetcode.com/problems/combination-sum-ii/description/
 #
+# algorithms
+# Medium (54.61%)
+# Likes:    10329
+# Dislikes: 290
+# Total Accepted:    977K
+# Total Submissions: 1.8M
+# Testcase Example:  '[10,1,2,7,6,1,5]\n8'
+#
 # Given a collection of candidate numbers (candidates) and a target number
 # (target), find all unique combinations in candidates where the candidate
 # numbers sum to target.
@@ -49,34 +57,27 @@
 #
 #
 
-from typing import List
-
-# Key:
-# same as subset II, we don't want duplicated numbers in the recursion
-# if j > i and candidates[j] == candidates[j - 1]:
-# will skip all duplicate numbers
-
 
 # @lc code=start
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-        candidates.sort()
         res = []
+        candidates.sort()
 
-        def dfs(i, subset, total):
-            if total == target:
-                res.append(subset)
+        def bt(i, ss, tt):
+            if tt == target:
+                res.append(ss.copy())
                 return
-            elif total > target:
+            elif tt > target:
                 return
 
             for j in range(i, len(candidates)):
                 if j > i and candidates[j] == candidates[j - 1]:
                     continue
 
-                dfs(j + 1, subset + [candidates[j]], total + candidates[j])
+                bt(j + 1, ss + [candidates[j]], tt + candidates[j])
 
-        dfs(0, [], 0)
+        bt(0, [], 0)
 
         return res
 

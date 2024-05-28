@@ -5,6 +5,14 @@
 #
 # https://leetcode.com/problems/subsets-ii/description/
 #
+# algorithms
+# Medium (57.38%)
+# Likes:    9621
+# Dislikes: 303
+# Total Accepted:    922.6K
+# Total Submissions: 1.6M
+# Testcase Example:  '[1,2,2]'
+#
 # Given an integer array nums that may contain duplicates, return all possible
 # subsets (the power set).
 #
@@ -29,14 +37,6 @@
 #
 #
 
-from typing import List
-
-# Key:
-# sort nums to avoid dup subsets
-#
-# while current number and the next number is the same, inc index till they are not.
-# ie. [1,2,2,3] , i will get to index 2 bc index 3 is 3
-
 
 # @lc code=start
 class Solution:
@@ -56,27 +56,6 @@ class Solution:
         backtrack(0, [])
 
         return res
+
+
 # @lc code=end
-
-class Solution:
-    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        res = []
-        nums.sort()
-
-        def backtrack(i, subset):
-            if i == len(nums):
-                res.append(subset.copy())
-                return
-
-            # with nums[i]
-            subset.append(nums[i])
-            backtrack(i + 1, subset)
-            subset.pop()
-
-            # without nums[i]
-            while i + 1 < len(nums) and nums[i] == nums[i + 1]:
-                i += 1
-            backtrack(i + 1, subset)
-
-        backtrack(0, [])
-        return res

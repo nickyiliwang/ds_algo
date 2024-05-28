@@ -5,6 +5,14 @@
 #
 # https://leetcode.com/problems/permutations/description/
 #
+# algorithms
+# Medium (78.44%)
+# Likes:    18846
+# Dislikes: 323
+# Total Accepted:    2.1M
+# Total Submissions: 2.6M
+# Testcase Example:  '[1,2,3]'
+#
 # Given an array nums of distinct integers, return all the possible
 # permutations. You can return the answer in any order.
 #
@@ -30,13 +38,6 @@
 #
 #
 
-from typing import List
-
-# Key:
-# base case is when subset len is the same as the nums len
-# if a number is in the subset we skip the number with continue
-# base case is take the subset with .copy() when the length is matching
-
 
 # @lc code=start
 class Solution:
@@ -44,20 +45,18 @@ class Solution:
         res = []
 
         def dfs(subset):
-            if len(subset) == len(nums):
+            if len(subset) >= len(nums):
                 res.append(subset.copy())
                 return
 
             for n in nums:
                 if n in subset:
                     continue
+
                 dfs(subset + [n])
 
         dfs([])
-
         return res
 
 
 # @lc code=end
-print(Solution().permute([1, 2, 3]))
-# Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]

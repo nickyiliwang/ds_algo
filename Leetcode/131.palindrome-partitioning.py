@@ -5,6 +5,14 @@
 #
 # https://leetcode.com/problems/palindrome-partitioning/description/
 #
+# algorithms
+# Medium (69.26%)
+# Likes:    12732
+# Dislikes: 486
+# Total Accepted:    890.1K
+# Total Submissions: 1.3M
+# Testcase Example:  '"aab"'
+#
 # Given a string s, partition s such that every substring of the partition is a
 # palindrome. Return all possible palindrome partitioning of s.
 #
@@ -23,18 +31,20 @@
 # 1 <= s.length <= 16
 # s contains only lowercase English letters.
 #
+#
+#
 
-from typing import List
-
-# Key:
-# simple implementation since s only contains lower case letters
 
 # @lc code=start
 class Solution:
-    def isPali(self, a):
-        l, r = 0, len(a) - 1
+    def isPali(self, str):
+        l, r = 0, len(str) - 1
         while l < r:
-            if a[l] != a[r]:
+            while l < r and not str[l].isalnum():
+                l += 1
+            while l < r and not str[r].isalnum():
+                r -= 1
+            if str[l].lower() != str[r].lower():
                 return False
             l += 1
             r -= 1
@@ -59,5 +69,3 @@ class Solution:
 
 
 # @lc code=end
-
-print(Solution().partition("aab"))

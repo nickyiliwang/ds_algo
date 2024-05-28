@@ -5,6 +5,14 @@
 #
 # https://leetcode.com/problems/combination-sum/description/
 #
+# algorithms
+# Medium (71.59%)
+# Likes:    18581
+# Dislikes: 409
+# Total Accepted:    1.9M
+# Total Submissions: 2.7M
+# Testcase Example:  '[2,3,6,7]\n7'
+#
 # Given an array of distinct integers candidates and a target integer target,
 # return a list of all unique combinations of candidates where the chosen
 # numbers sum to target. You may return the combinations in any order.
@@ -55,15 +63,6 @@
 #
 #
 
-from typing import List
-
-# Key:
-# range from i to len of candidates
-# 
-# dfs(j, subset + [candidates[j]], total + candidates[j])
-# in recursion can't use append, so we use subset + [candidates[j]]
-# 
-# two base cases: equal to target => copy the subset => break the loop, larger than target => break the loop
 
 # @lc code=start
 class Solution:
@@ -86,7 +85,3 @@ class Solution:
 
 
 # @lc code=end
-
-print(Solution().combinationSum([2, 3, 5], 8))
-# Input: candidates = [2,3,5], target = 8
-# Output: [[2,2,2,2],[2,3,3],[3,5]]

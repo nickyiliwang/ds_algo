@@ -5,6 +5,14 @@
 #
 # https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/
 #
+# algorithms
+# Medium (60.59%)
+# Likes:    18324
+# Dislikes: 984
+# Total Accepted:    2M
+# Total Submissions: 3.4M
+# Testcase Example:  '"23"'
+#
 # Given a string containing digits from 2-9 inclusive, return all possible
 # letter combinations that the number could represent. Return the answer in any
 # order.
@@ -44,11 +52,8 @@
 #
 #
 
-from typing import List
-
 
 # @lc code=start
-# O(n4 ^ n) ie. 99999
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
         digDict = {
@@ -61,26 +66,20 @@ class Solution:
             "8": "tuv",
             "9": "wxyz",
         }
-
         res = []
 
-        def backtrack(i, str):
+        def dfs(i, str):
             if i == len(digits):
                 res.append(str)
                 return
 
             for char in digDict[digits[i]]:
-                backtrack(i + 1, str + char)
+                dfs(i + 1, str + char)
 
         if digits:
-            backtrack(0, "")
+            dfs(0, "")
 
         return res
 
 
 # @lc code=end
-
-print(
-    Solution().letterCombinations("23")
-    # Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
-)

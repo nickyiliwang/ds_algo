@@ -5,6 +5,14 @@
 #
 # https://leetcode.com/problems/subsets/description/
 #
+# algorithms
+# Medium (78.31%)
+# Likes:    17054
+# Dislikes: 277
+# Total Accepted:    2M
+# Total Submissions: 2.5M
+# Testcase Example:  '[1,2,3]'
+#
 # Given an integer array nums of unique elements, return all possible subsets
 # (the power set).
 #
@@ -36,17 +44,8 @@
 #
 #
 #
+
 from typing import List
-
-# Key:
-# base case is when the index is less than the len of nums
-# use nums[i] appending
-# shallow copy
-
-# O(n * 2 ^ n)
-# read: ds_algo\Fundamentals\subset-dryrun.py
-# for details
-
 
 # @lc code=start
 class Solution:
@@ -66,23 +65,6 @@ class Solution:
 
 # @lc code=end
 
-print(Solution().subsets([1, 2, 3]))
-
-
-class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
-        res = []
-
-        def dfs(i, subset):
-            if i >= len(nums):
-                res.append(subset.copy())
-                return
-
-            subset.append(nums[i])
-            dfs(i + 1, subset)
-
-            subset.pop()
-            dfs(i + 1, subset)
-
-        dfs(0, [])
-        return res
+print(
+    Solution().subsets([1,2,3])
+)

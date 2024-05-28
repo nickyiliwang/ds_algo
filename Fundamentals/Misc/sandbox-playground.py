@@ -1,7 +1,8 @@
-print(5**2)
+# print(5**2)
 
-
-
+thing = []
+thing.append("haha")
+print(thing)
 
 # cache = {
 #     1: "hello",

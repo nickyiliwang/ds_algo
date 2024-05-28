@@ -5,6 +5,14 @@
 #
 # https://leetcode.com/problems/word-search/description/
 #
+# algorithms
+# Medium (42.88%)
+# Likes:    15707
+# Dislikes: 661
+# Total Accepted:    1.7M
+# Total Submissions: 3.9M
+# Testcase Example:  '[["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]\n"ABCCED"'
+#
 # Given an m x n grid of characters board and a string word, return true if
 # word exists in the grid.
 #
@@ -54,54 +62,43 @@
 #
 #
 
-from typing import *
-
-
-# O(n * m * 4 ^ len(word))
-
 
 # @lc code=start
 class Solution:
-    def exist(self, board, word: str) -> bool:
+    def exist(self, board: List[List[str]], word: str) -> bool:
         row, col = len(board), len(board[0])
         rowBound, colBound = range(row), range(col)
-        path = set()
+        visited = set()
 
-        def dfs(i, r, c):
+        def bt(i, r, c):
             if i == len(word):
                 return True
 
             if (
                 r not in rowBound
                 or c not in colBound
-                or (r, c) in path
-                or word[i] != board[r][c]
+                or (r, c) in visited
+                or board[r][c] != word[i]
             ):
                 return False
 
-            path.add((r, c))
+            visited.add((r, c))
             res = (
-                dfs(i + 1, r + 1, c)
-                or dfs(i + 1, r - 1, c)
-                or dfs(i + 1, r, c + 1)
-                or dfs(i + 1, r, c - 1)
+                bt(i + 1, r + 1, c)
+                or bt(i + 1, r - 1, c)
+                or bt(i + 1, r, c + 1)
+                or bt(i + 1, r, c - 1)
             )
-            path.remove((r, c))
+            visited.remove((r, c))
 
             return res
 
         for r in rowBound:
             for c in colBound:
-                if dfs(0, r, c):
+                if bt(0, r, c):
                     return True
 
         return False
 
 
 # @lc code=end
-
-print(
-    Solution.exist(
-        "", [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]], "SEE"
-    )
-)

@@ -5,14 +5,6 @@
 #
 # https://leetcode.com/problems/design-twitter/description/
 #
-# algorithms
-# Medium (38.96%)
-# Likes:    3691
-# Dislikes: 485
-# Total Accepted:    161.7K
-# Total Submissions: 415.2K
-# Testcase Example:  '["Twitter","postTweet","getNewsFeed","follow","postTweet","getNewsFeed","unfollow","getNewsFeed"]\n' + '[[],[1,5],[1],[1,2],[2,6],[1],[1,2],[1]]'
-#
 # Design a simplified version of Twitter where users can post tweets,
 # follow/unfollow another user, and is able to see the 10 most recent tweets in
 # the user's news feed.
