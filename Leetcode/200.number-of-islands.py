@@ -1,9 +1,17 @@
 #
-# @lc app=leetcode id=200 lang=python
+# @lc app=leetcode id=200 lang=python3
 #
 # [200] Number of Islands
 #
 # https://leetcode.com/problems/number-of-islands/description/
+#
+# algorithms
+# Medium (59.59%)
+# Likes:    22624
+# Dislikes: 510
+# Total Accepted:    2.7M
+# Total Submissions: 4.6M
+# Testcase Example:  '[["1","1","1","1","0"],["1","1","0","1","0"],["1","1","0","0","0"],["0","0","0","0","0"]]'
 #
 # Given an m x n 2D binary grid grid which represents a map of '1's (land) and
 # '0's (water), return the number of islands.
@@ -49,9 +57,8 @@
 #
 #
 
-from typing import List
 
-
+# @lc code=start
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         row, col = len(grid), len(grid[0])
@@ -63,8 +70,8 @@ class Solution:
             if (
                 r not in rowBound
                 or c not in colBound
-                or grid[r][c] == "0"
                 or (r, c) in visited
+                or grid[r][c] == "0"
             ):
                 return
 
@@ -74,23 +81,13 @@ class Solution:
             dfs(r, c + 1)
             dfs(r, c - 1)
 
+            
         for r in rowBound:
             for c in colBound:
                 if grid[r][c] == "1" and (r, c) not in visited:
                     islands += 1
                     dfs(r, c)
-
         return islands
 
+
 # @lc code=end
-
-
-Solution.numIslands(
-    "",
-    [
-        ["1", "1", "0", "0", "0"],
-        ["1", "1", "0", "0", "0"],
-        ["0", "0", "1", "0", "0"],
-        ["0", "0", "0", "1", "1"],
-    ],
-)
