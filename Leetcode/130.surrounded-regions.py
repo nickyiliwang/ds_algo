@@ -5,10 +5,19 @@
 #
 # https://leetcode.com/problems/surrounded-regions/description/
 #
+# algorithms
+# Medium (39.62%)
+# Likes:    8508
+# Dislikes: 1803
+# Total Accepted:    708.3K
+# Total Submissions: 1.8M
+# Testcase Example:  '[["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]'
+#
 # Given an m x n matrix board containing 'X' and 'O', capture all regions that
 # are 4-directionally surrounded by 'X'.
 #
-# A region is captured by flipping all 'O's into 'X's in that surrounded region.
+# A region is captured by flipping all 'O's into 'X's in that surrounded
+# region.
 #
 #
 # Example 1:
@@ -44,12 +53,6 @@
 #
 #
 
-from typing import List
-
-# Key here is: board[r][c] != "O"
-# We do not want to touch anything that's not "O", meaning "T" and "X"
-# Like Pacific Atlantic, we do the corners to change it to "T"
-
 
 # @lc code=start
 class Solution:
@@ -69,11 +72,15 @@ class Solution:
             dfs(r, c - 1)
 
         for r in rowB:
+            # left
             dfs(r, 0)
+            # right
             dfs(r, col - 1)
 
         for c in colB:
+            # top
             dfs(0, c)
+            # bot
             dfs(row - 1, c)
 
         for r in rowB:
@@ -85,17 +92,3 @@ class Solution:
 
 
 # @lc code=end
-
-print(
-    Solution().solve(
-        [
-            ["X", "X", "X", "X"],
-            ["X", "O", "O", "X"],
-            ["X", "X", "O", "X"],
-            ["X", "O", "X", "X"],
-        ]
-    )
-)
-
-# Output:
-# [["X","X","X","X"],["X","X","X","X"],["X","X","X","X"],["X","O","X","X"]]

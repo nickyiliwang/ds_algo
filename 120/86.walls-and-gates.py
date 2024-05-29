@@ -5,7 +5,7 @@
 # 0 - A Gate
 # INF - Empty room, 2147483647 represents it.
 
-# Fill each land cell with the distance to its nearest gate. If a land cell cannot reach a treasure chest than the value should remain INF.
+# Fill each land cell with the dist to its nearest gate. If a land cell cannot reach a treasure chest than the value should remain INF.
 
 # Assume the grid can only be traversed up, down, left, or right.
 
@@ -47,6 +47,8 @@ from collections import deque
 
 # Multi value BFS
 
+# start with the treasure/doors first
+# update the dist in the while => forloop
 
 class Solution:
     def islandsAndTreasure(self, grid: List[List[int]]) -> None:
@@ -54,6 +56,7 @@ class Solution:
         rowBound, colBound = range(row), range(col)
         q = deque()
         visited = set()
+        dist = 0
 
         # Like rotting orange, capture all doors/treasures first
         for r in rowBound:
@@ -62,29 +65,28 @@ class Solution:
                     q.append([r, c])
                     visited.add((r, c))
 
-        def modifyRoom(r, c):
+        def mod(r, c):
             if (
                 r not in rowBound
                 or c not in colBound
-                or grid[r][c] == -1
                 or (r, c) in visited
+                or grid[r][c] == -1
             ):
                 return
 
             visited.add((r, c))
             q.append([r, c])
 
-        distance = 0
         while q:
             for _ in range(len(q)):
                 r, c = q.popleft()
-                grid[r][c] = distance
-                modifyRoom(r + 1, c)
-                modifyRoom(r - 1, c)
-                modifyRoom(r, c + 1)
-                modifyRoom(r, c - 1)
+                grid[r][c] = dist
+                mod(r + 1, c)
+                mod(r - 1, c)
+                mod(r, c + 1)
+                mod(r, c - 1)
 
-            distance += 1
+            dist += 1
 
 
 print(

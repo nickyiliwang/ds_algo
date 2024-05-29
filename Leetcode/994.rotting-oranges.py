@@ -5,6 +5,14 @@
 #
 # https://leetcode.com/problems/rotting-oranges/description/
 #
+# algorithms
+# Medium (54.12%)
+# Likes:    12622
+# Dislikes: 398
+# Total Accepted:    848.2K
+# Total Submissions: 1.6M
+# Testcase Example:  '[[2,1,1],[1,1,0],[0,1,1]]'
+#
 # You are given an m x n grid where each cell can have one of three
 # values:
 #
@@ -57,16 +65,7 @@
 #
 #
 #
-
-from typing import List
 from collections import deque
-
-# Multi value BFS
-
-# Key:
-# append the rotted into the q during first loop
-# base case for rot() checks for grid[r][c] that's not fresh (!= 1)
-# keep looping till no more q or fresh
 
 
 # @lc code=start
@@ -77,13 +76,12 @@ class Solution:
         time, fresh = 0, 0
         q = deque()
 
-        # Start with all fresh oranges count and location
         for r in rowBound:
             for c in colBound:
                 if grid[r][c] == 1:
                     fresh += 1
                 if grid[r][c] == 2:
-                    q.append([r, c])
+                    q.append((r, c))
 
         def rot(r, c):
             nonlocal fresh
@@ -92,9 +90,8 @@ class Solution:
 
             grid[r][c] = 2
             fresh -= 1
-            q.append([r, c])
+            q.append((r, c))
 
-        # need to process all items in queue
         while q and fresh:
             for _ in range(len(q)):
                 r, c = q.popleft()
@@ -110,5 +107,3 @@ class Solution:
 
 
 # @lc code=end
-
-print(Solution().orangesRotting([[2, 1, 1], [1, 1, 0], [0, 1, 1]]))

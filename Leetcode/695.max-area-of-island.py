@@ -58,10 +58,10 @@ class Solution:
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
         row, col = len(grid), len(grid[0])
         rowBound, colBound = range(row), range(col)
-        visited = set()
         maxArea = 0
+        visited = set()
 
-        def dfs(r, c, area):
+        def dfs(r, c):
             if (
                 r not in rowBound
                 or c not in colBound
@@ -71,18 +71,13 @@ class Solution:
                 return 0
 
             visited.add((r, c))
-            return (
-                1
-                + dfs(r + 1, c, area)
-                + dfs(r - 1, c, area)
-                + dfs(r, c + 1, area)
-                + dfs(r, c - 1, area)
-            )
+
+            return 1 + dfs(r + 1, c) + dfs(r - 1, c) + dfs(r, c + 1) + dfs(r, c - 1)
 
         for r in rowBound:
             for c in colBound:
                 if grid[r][c] == 1 and (r, c) not in visited:
-                    maxArea = max(maxArea, dfs(r, c, 0))
+                    maxArea = max(maxArea, dfs(r, c))
 
         return maxArea
 

@@ -5,6 +5,14 @@
 #
 # https://leetcode.com/problems/pacific-atlantic-water-flow/description/
 #
+# algorithms
+# Medium (55.32%)
+# Likes:    7284
+# Dislikes: 1451
+# Total Accepted:    469.2K
+# Total Submissions: 848.1K
+# Testcase Example:  '[[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]'
+#
 # There is an m x n rectangular island that borders both the Pacific Ocean and
 # Atlantic Ocean. The Pacific Ocean touches the island's left and top edges,
 # and the Atlantic Ocean touches the island's right and bottom edges.
@@ -70,38 +78,20 @@
 #
 #
 
-from typing import List
-
-# P A C I F I C
-# A             A
-# C             T
-# I             L
-# F             A
-# C             T
-#               I
-# A T L A N T I C
 
 # @lc code=start
-
-# Key:
-# 
-# heights[r][c] < prevHeight
-# need to pass in curr hight into next iteration in dfs
-
 class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
         row, col = len(heights), len(heights[0])
-        rowBound, colBound = range(row), range(col)
-        pacific, atlantic = set(), set()
-        res = []
+        rowB, colB = range(row), range(col)
+        pac, atl = set(), set()
 
-        # prevHeight is key
-        def dfs(r, c, visited, prevHeight):
+        def dfs(r, c, visited, prevH):
             if (
-                r not in rowBound
-                or c not in colBound
+                r not in rowB
+                or c not in colB
                 or (r, c) in visited
-                or heights[r][c] < prevHeight
+                or heights[r][c] < prevH
             ):
                 return
 
@@ -111,29 +101,24 @@ class Solution:
             dfs(r, c + 1, visited, heights[r][c])
             dfs(r, c - 1, visited, heights[r][c])
 
-        for r in rowBound:
-            dfs(r, 0, pacific, heights[r][0])  # left
-            dfs(r, col - 1, atlantic, heights[r][col - 1])  # right
+        for r in rowB:
+            # left
+            dfs(r, 0, pac, heights[r][0])
+            # right
+            dfs(r, col - 1, atl, heights[r][col - 1])
 
-        for c in colBound:
-            dfs(0, c, pacific, heights[0][c])  # top
-            dfs(row - 1, c, atlantic, heights[row - 1][c])  # bottom
+        for c in colB:
+            # top
+            dfs(0, c, pac, heights[0][c])
+            # bottom
+            dfs(row - 1, c, atl, heights[row - 1][c])
 
-        for r in rowBound:
-            for c in colBound:
-                if (r, c) in atlantic and (r, c) in pacific:
+        res = []
+        for r in rowB:
+            for c in colB:
+                if (r, c) in pac and (r, c) in atl:
                     res.append([r, c])
-
         return res
 
 
 # @lc code=end
-
-heights = [
-    [1, 2, 2, 3, 5],
-    [3, 2, 3, 4, 4],
-    [2, 4, 5, 3, 1],
-    [6, 7, 1, 4, 5],
-    [5, 1, 1, 2, 4],
-]
-# Output: [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]
