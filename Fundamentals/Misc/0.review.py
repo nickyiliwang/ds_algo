@@ -1,57 +1,93 @@
 from typing import List
-from collections import deque
-
-# -1 - Wall or an obstacle
-# 0 - A Gate
-# INF - Empty room, 2147483647 represents it.
-
-# Fill each land cell with the distance to its nearest gate. If a land cell cannot reach a treasure chest than the value should remain INF.
 
 
-# Assume the grid can only be traversed up, down, left, or right.
 class Solution:
-    def islandsAndTreasure(self, grid: List[List[int]]) -> None:
-        row, col = len(grid), len(grid[0])
-        rowB, colB = range(row), range(col)
-        visited = set()
-        q = deque()
-        dist = 0
+    def countComponents(self, n: int, edges: List[List[int]]) -> int:
+        par = [i for i in range(n)]
+        rank = [i for i in range(n)]
 
-        for r in rowB:
-            for c in colB:
-                if grid[r][c] == 0:
-                    q.append((r, c))
-                    visited.add((r, c))
+        def find(i):
+            if par[i] == i:
+                return i
+            else:
+                return find(par[i])
 
-        def mod(r, c):
-            if r not in rowB or c not in colB or (r, c) in visited or grid[r][c] == -1:
-                return
+        def union(x, y):
+            px, py = find(x), find(y)
 
-            visited.add((r, c))
-            q.append((r, c))
+            if px == py:
+                return 0
 
-        while q:
-            for _ in range(len(q)):
-                r, c = q.popleft()
-                grid[r][c] = dist
+            if rank[px] > rank[py]:
+                par[px] = par[py]
+            else:
+                par[px] = py
+                rank[py] += 1
 
-                mod(r + 1, c)
-                mod(r - 1, c)
-                mod(r, c + 1)
-                mod(r, c - 1)
-            dist += 1
+            return 1
+
+        res = n
+
+        for x, y in edges:
+            res -= union(x, y)
+
+        return res
 
 
-print(
-    Solution().islandsAndTreasure(
-        [
-            [2147483647, -1, 0, 2147483647],
-            [2147483647, 2147483647, 2147483647, -1],
-            [2147483647, -1, 2147483647, -1],
-            [0, -1, 2147483647, 2147483647],
-        ]
-    )
-)
+# from typing import List
+# from collections import deque
+
+# # -1 - Wall or an obstacle
+# # 0 - A Gate
+# # INF - Empty room, 2147483647 represents it.
+
+# # Fill each land cell with the distance to its nearest gate. If a land cell cannot reach a treasure chest than the value should remain INF.
+
+
+# # Assume the grid can only be traversed up, down, left, or right.
+# class Solution:
+#     def islandsAndTreasure(self, grid: List[List[int]]) -> None:
+#         row, col = len(grid), len(grid[0])
+#         rowB, colB = range(row), range(col)
+#         visited = set()
+#         q = deque()
+#         dist = 0
+
+#         for r in rowB:
+#             for c in colB:
+#                 if grid[r][c] == 0:
+#                     q.append((r, c))
+#                     visited.add((r, c))
+
+#         def mod(r, c):
+#             if r not in rowB or c not in colB or (r, c) in visited or grid[r][c] == -1:
+#                 return
+
+#             visited.add((r, c))
+#             q.append((r, c))
+
+#         while q:
+#             for _ in range(len(q)):
+#                 r, c = q.popleft()
+#                 grid[r][c] = dist
+
+#                 mod(r + 1, c)
+#                 mod(r - 1, c)
+#                 mod(r, c + 1)
+#                 mod(r, c - 1)
+#             dist += 1
+
+
+# print(
+#     Solution().islandsAndTreasure(
+#         [
+#             [2147483647, -1, 0, 2147483647],
+#             [2147483647, 2147483647, 2147483647, -1],
+#             [2147483647, -1, 2147483647, -1],
+#             [0, -1, 2147483647, 2147483647],
+#         ]
+#     )
+# )
 
 # from typing import List
 

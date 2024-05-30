@@ -1,8 +1,17 @@
+#
 # @lc app=leetcode id=210 lang=python3
 #
 # [210] Course Schedule II
 #
 # https://leetcode.com/problems/course-schedule-ii/description/
+#
+# algorithms
+# Medium (50.59%)
+# Likes:    10644
+# Dislikes: 344
+# Total Accepted:    1M
+# Total Submissions: 2.1M
+# Testcase Example:  '2\n[[1,0]]'
 #
 # There are a total of numCourses courses you have to take, labeled from 0 to
 # numCourses - 1. You are given an array prerequisites where prerequisites[i] =
@@ -60,12 +69,10 @@
 #
 #
 #
-
 from typing import List
 from collections import defaultdict
 
-# Key:
-# just need to append the crs to an list to keep order
+
 # @lc code=start
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
@@ -101,7 +108,3 @@ class Solution:
 
 
 # @lc code=end
-
-print(Solution().findOrder(4, [[1, 0], [2, 0], [3, 1], [3, 2]]))
-
-# [0,2,1,3]

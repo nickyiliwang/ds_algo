@@ -5,6 +5,14 @@
 #
 # https://leetcode.com/problems/course-schedule/description/
 #
+# algorithms
+# Medium (46.83%)
+# Likes:    16004
+# Dislikes: 697
+# Total Accepted:    1.6M
+# Total Submissions: 3.4M
+# Testcase Example:  '2\n[[1,0]]'
+#
 # There are a total of numCourses courses you have to take, labeled from 0 to
 # numCourses - 1. You are given an array prerequisites where prerequisites[i] =
 # [ai, bi] indicates that you must take course bi first if you want to take
@@ -50,7 +58,6 @@
 #
 #
 from typing import List
-
 from collections import defaultdict
 
 
@@ -58,10 +65,9 @@ from collections import defaultdict
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         graph = defaultdict(list)
-        visited, cycle = set(), set()
+        cycle, visited = set(), set()
 
-        # adjacency list to rep the directed graph
-        for crs, pre in prerequisites:
+        for pre, crs in prerequisites:
             graph[crs].append(pre)
 
         def dfs(crs):
@@ -71,25 +77,20 @@ class Solution:
             if crs in visited:
                 return True
 
-            # check for cycle by checking each pre in a crs
-            # then backtrack for the next course
             cycle.add(crs)
             for pre in graph[crs]:
-                if not dfs(pre):
+                if dfs(pre) == False:
                     return False
             cycle.remove(crs)
 
             visited.add(crs)
             return True
 
-        # each crs can be rep by the index
-        for c in range(numCourses):
-            if not dfs(c):
+        for crs in range(numCourses):
+            if not dfs(crs):
                 return False
 
         return True
 
 
 # @lc code=end
-
-print(Solution().canFinish(2, [[1, 0]]))

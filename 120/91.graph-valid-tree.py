@@ -24,38 +24,44 @@
 # 1 <= n <= 100
 # 0 <= edges.length <= n * (n - 1) / 2
 
+# union find
+
 
 class Solution:
     def validTree(self, n: int, edges) -> bool:
-        # KEY here is to check this
-        if len(edges) < n-1:
+        # edges will need to match num of nodes
+        if len(edges) < n - 1:
             return False
 
-        parent = [i for i in range(n + 1)]
-        rank = [i for i in range(n + 1)]
+        parent = [i for i in range(n)]
+        rank = [i for i in range(n)]
 
         def find(i):
             if parent[i] == i:
                 return i
             else:
+                # recur finding parent
                 return find(parent[i])
 
         def union(x, y):
-            pX, pY = find(x), find(y)
+            # find parent nodes
+            px, py = find(x), find(y)
 
-            if pX == pY:
+            if px == py:
                 return False
 
-            if rank[pX] > rank[pY]:
-                parent[pX] = parent[pY]
+            # the larger rank tree becomes the parent, and the ranks of x and y do not change
+            if rank[px] > rank[py]:
+                parent[px] = parent[py]
             else:
-                parent[pX] = parent[pY]
-                rank[pY] += rank[pX]
+                # if y/x becomes root, increment their rank
+                parent[px] = py
+                rank[py] += 1
 
             return True
 
         for x, y in edges:
-            if union(x, y) == False:
+            if not union(x, y):
                 return False
 
         return True

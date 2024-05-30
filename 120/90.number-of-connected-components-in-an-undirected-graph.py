@@ -27,33 +27,38 @@
 
 from typing import List
 
+# Key:
+# 0 for false
+# 1 for true
+# res start with max components and as they connect decrease accordingly
 
 class Solution:
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
-        parent = [i for i in range(n + 1)]
-        rank = [i for i in range(n + 1)]
+        par = [i for i in range(n)]
+        rank = [i for i in range(n)]
 
         def find(i):
-            if parent[i] == i:
+            if par[i] == i:
                 return i
             else:
-                return find(parent[i])
+                return find(par[i])
 
         def union(x, y):
-            pX, pY = find(x), find(y)
+            px, py = find(x), find(y)
 
-            if pX == pY:
+            if px == py:
                 return 0
 
-            if rank[pX] > rank[pY]:
-                parent[pX] = parent[pY]
+            if rank[px] > rank[py]:
+                par[px] = par[py]
             else:
-                parent[pX] = parent[pY]
-                rank[pY] += rank[pX]
+                par[px] = py
+                rank[py] += 1
 
             return 1
 
         res = n
+
         for x, y in edges:
             res -= union(x, y)
 

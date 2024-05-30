@@ -5,6 +5,14 @@
 #
 # https://leetcode.com/problems/redundant-connection/description/
 #
+# algorithms
+# Medium (62.93%)
+# Likes:    6112
+# Dislikes: 394
+# Total Accepted:    359.3K
+# Total Submissions: 570.9K
+# Testcase Example:  '[[1,2],[1,3],[2,3]]'
+#
 # In this problem, a tree is an undirected graph that is connected and has no
 # cycles.
 #
@@ -48,16 +56,10 @@
 #
 #
 
-from typing import List
-
-# Union find
-# https://www.youtube.com/watch?v=ayW5B2W9hfo
-
 
 # @lc code=start
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
-        # Need length instead of index
         par = [i for i in range(len(edges) + 1)]
         rank = [i for i in range(len(edges) + 1)]
 
@@ -86,6 +88,3 @@ class Solution:
 
 
 # @lc code=end
-
-
-print(Solution().findRedundantConnection([[1, 2], [1, 3], [2, 3]]))
