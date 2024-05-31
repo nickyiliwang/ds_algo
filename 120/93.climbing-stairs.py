@@ -41,8 +41,8 @@
 #
 
 # Key:
-# [twoBefore, oneBefore, 2, 3, 4 ]
-# oneBefore will keep track of the total
+# [two, one, 2, 3, 4 ]
+# one will keep track of the total
 # range(n - 1) because we only need to loop n - 1 times
 # think of it like range(2, n + ) if you like
 # total starts at 1 because constrains: 1 <= n <= 45
@@ -51,32 +51,19 @@
 # @lc code=start
 class Solution:
     def climbStairs(self, n: int) -> int:
-        oneBefore, twoBefore = 1, 1
+        one, two = 1, 1
 
         for _ in range(n - 1):
-            tmpTotal = oneBefore + twoBefore
-            twoBefore = oneBefore
-            oneBefore = tmpTotal
+            tmp = one + two
+            two = one
+            one = tmp
 
-        return oneBefore
+        return one
 
 
 # @lc code=end
 
 print(Solution().climbStairs(5))
-
-
-# Naive recursive:
-class Solution:
-    def climbStairs(self, n: int) -> int:
-        if n == 1:
-            return 1
-
-        if n == 2:
-            return 2
-
-        return self.climbStairs(n - 1) + self.climbStairs(n - 2)
-
 
 # Recursive with memoization
 class Solution:

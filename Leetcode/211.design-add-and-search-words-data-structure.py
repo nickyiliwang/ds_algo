@@ -5,6 +5,15 @@
 #
 # https://leetcode.com/problems/design-add-and-search-words-data-structure/description/
 #
+# algorithms
+# Medium (45.35%)
+# Likes:    7522
+# Dislikes: 448
+# Total Accepted:    639.8K
+# Total Submissions: 1.4M
+# Testcase Example:  '["WordDictionary","addWord","addWord","addWord","search","search","search","search"]\n' +
+# '[[],["bad"],["dad"],["mad"],["pad"],["bad"],[".ad"],["b.."]]'
+#
 # Design a data structure that supports adding new words and finding if a
 # string matches any previously added string.
 #
@@ -56,7 +65,7 @@
 
 
 # @lc code=start
-class TriNode:
+class TrieNode:
     def __init__(self):
         self.children = {}
         self.isEnd = False
@@ -64,35 +73,41 @@ class TriNode:
 
 class WordDictionary:
     def __init__(self):
-        self.root = TriNode()
+        self.root = TrieNode()
 
     def addWord(self, word: str) -> None:
         curr = self.root
         for c in word:
             if c not in curr.children:
-                curr.children[c] = TriNode()
+                curr.children[c] = TrieNode()
 
             curr = curr.children[c]
         curr.isEnd = True
 
     def search(self, word: str) -> bool:
         def dfs(i, root):
-            # need to return isEnd instead of True
             if i == len(word):
                 return root.isEnd
 
+            curr = root
             c = word[i]
-            # wildcard search
+
+            # wildcard
             if c == ".":
-                for child in root.children.values():
+                for child in curr.children.values():
                     if dfs(i + 1, child):
                         return True
-            # normal search
-            if c in root.children:
-                return dfs(i + 1, root.children[c])
+            # normal
+            if c in curr.children:
+                return dfs(i + 1, curr.children[c])
 
             return False
 
         return dfs(0, self.root)
 
-    # @lc code=end
+
+# Your WordDictionary object will be instantiated and called as such:
+# obj = WordDictionary()
+# obj.addWord(word)
+# param_2 = obj.search(word)
+# @lc code=end
