@@ -55,12 +55,12 @@
 # @lc code=start
 class Solution(object):
     def twoSum(self, nums, target):
-        validator = {}
+        cache = {}
         for i, n in enumerate(nums):
-            if n in validator:
-                return [validator[n], i]
+            if n in cache:
+                return [cache[n], i]
             else:
-                validator[target - n] = i
+                cache[target - n] = i
 
 
 # @lc code=end
