@@ -1,8 +1,9 @@
 # print(5**2)
+print(None + None)
 
-thing = []
-thing.append("haha")
-print(thing)
+# thing = []
+# thing.append("haha")
+# print(thing)
 
 # cache = {
 #     1: "hello",

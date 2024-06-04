@@ -13,28 +13,20 @@ from typing import Optional
 # performs a depth-first search traversal of the binary tree and updates the `diameter` variable along the way
 # avoiding repetitive work, we go from bottom up
 # Post-order DFS
+from ds_types.tree import TreeNode
 
 
 # @lc code=start
-# Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        diameter = 0
 
         def dfs(root):
             nonlocal diameter
             if root is None:
                 return 0
 
-            # Heights
-            left = dfs(root.left)
-            right = dfs(root.right)
+            left, right = dfs(root.left), dfs(root.right)
 
             # only care about the max between the previous height
             diameter = max(diameter, left + right)
@@ -42,7 +34,6 @@ class Solution:
             # returning the height/depth of the tree
             return 1 + max(left, right)
 
-        diameter = 0
         dfs(root)
         return diameter
 

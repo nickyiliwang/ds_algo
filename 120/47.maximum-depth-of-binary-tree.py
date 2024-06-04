@@ -10,18 +10,11 @@
 # A binary tree's maximum depth is the number of nodes along the longest path
 # from the root node down to the farthest leaf node.
 
+from ds_types.tree import TreeNode
 from typing import Optional
 
 
 # @lc code=start
-# Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         if not root:

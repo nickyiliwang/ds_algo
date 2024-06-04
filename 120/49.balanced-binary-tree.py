@@ -1,7 +1,7 @@
 # @lc app=leetcode id=110 lang=python3
 
 from typing import Optional
-from ds_types.tree import Tree, TreeNode
+from ds_types.tree import TreeNode
 
 # Key
 # Like diameter of a tree, post-order traversal DFS
@@ -25,7 +25,7 @@ class Solution:
             if abs(left - right) > 1:
                 isBalanced = False
 
-            return max(left, right) + 1
+            return 1 + max(left, right) 
 
         dfs(root)
 
