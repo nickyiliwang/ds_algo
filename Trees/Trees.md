@@ -10,9 +10,9 @@
 <!-- Convert Sorted Array to Binary Search Tree -->
 <!-- Merge Two Binary Trees -->
 <!-- Path Sum -->
-Range Sum of BST
-Leaf-Similar Trees
-Evaluate Boolean Binary Tree
+<!-- Range Sum of BST -->
+<!-- Leaf-Similar Trees -->
+Evaluate Boolean Binary Tree (Locked)
 Construct String From Binary Tree
 Lowest Common Ancestor of a Binary Search Tree
 Insert into a Binary Search Tree
