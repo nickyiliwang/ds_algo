@@ -12,11 +12,11 @@
 <!-- Path Sum -->
 <!-- Range Sum of BST -->
 <!-- Leaf-Similar Trees -->
-Evaluate Boolean Binary Tree (Locked)
-Construct String From Binary Tree
-Lowest Common Ancestor of a Binary Search Tree
-Insert into a Binary Search Tree
-Delete Node in a BST
+<!-- Evaluate Boolean Binary Tree -->
+<!-- Construct String From Binary Tree -->
+<!-- Lowest Common Ancestor of a Binary Search Tree -->
+<!-- Insert into a Binary Search Tree -->
+<!-- Delete Node in a BST -->
 Binary Tree Level Order Traversal
 Binary Tree Right Side View
 Minimum Distance between BST Nodes
