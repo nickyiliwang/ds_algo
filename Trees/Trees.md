@@ -17,10 +17,10 @@
 <!-- Lowest Common Ancestor of a Binary Search Tree -->
 <!-- Insert into a Binary Search Tree -->
 <!-- Delete Node in a BST -->
-Binary Tree Level Order Traversal
-Binary Tree Right Side View
-Minimum Distance between BST Nodes
-Symmetric Tree
+<!-- Binary Tree Level Order Traversal -->
+<!-- Binary Tree Right Side View -->
+<!-- Minimum Distance between BST Nodes -->
+<!-- Symmetric Tree -->
 Minimum Time to Collect All Apples in a Tree
 Binary Tree Zigzag Level Order Traversal
 Construct Quad Tree

@@ -1,5 +1,14 @@
+data = [1,2,3,4,5,6,7,8,9,10]
+res, idx  = float("inf"), 0
+
+while idx + 1 < len(data):
+    res = min(res, data[idx + 1] - data[idx])
+    idx += 1
+
+print(res)
+
 # print(5**2)
-print(None + None)
+# print(None + None)
 
 # thing = []
 # thing.append("haha")
