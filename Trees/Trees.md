@@ -21,8 +21,7 @@
 <!-- Binary Tree Right Side View -->
 <!-- Minimum Distance between BST Nodes -->
 <!-- Symmetric Tree -->
-Minimum Time to Collect All Apples in a Tree
-Binary Tree Zigzag Level Order Traversal
+<!-- Binary Tree Zigzag Level Order Traversal -->
 Construct Quad Tree
 Find Duplicate Subtrees
 Check Completeness of a Binary Tree
@@ -53,3 +52,6 @@ Distribute Coins in Binary Tree
 Convert Bst to Greater Tree
 Binary Tree Maximum Path Sum
 Serialize And Deserialize Binary Tree
+
+Review maybe:
+Minimum Time to Collect All Apples in a Tree
