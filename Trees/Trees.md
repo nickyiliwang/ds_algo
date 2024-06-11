@@ -22,16 +22,16 @@
 <!-- Minimum Distance between BST Nodes -->
 <!-- Symmetric Tree -->
 <!-- Binary Tree Zigzag Level Order Traversal -->
-Construct Quad Tree
-Find Duplicate Subtrees
-Check Completeness of a Binary Tree
-Construct Binary Tree from Inorder and Postorder Traversal
+<!-- Find Duplicate Subtrees -->
+<!-- Check Completeness of a Binary Tree -->
+<!-- Construct Binary Tree from Inorder and Postorder Traversal -->
+
+Construct Binary Tree From Preorder And Inorder Traversal
 Maximum Width of Binary Tree
 Time Needed to Inform All Employees
 Count Good Nodes In Binary Tree
 Validate Binary Search Tree
 Kth Smallest Element In a Bst
-Construct Binary Tree From Preorder And Inorder Traversal
 Unique Binary Search Trees
 Unique Binary Search Trees II
 Sum Root to Leaf Numbers
@@ -53,5 +53,6 @@ Convert Bst to Greater Tree
 Binary Tree Maximum Path Sum
 Serialize And Deserialize Binary Tree
 
-Review maybe:
+Skipped:
 Minimum Time to Collect All Apples in a Tree
+Construct Quad Tree
