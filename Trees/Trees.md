@@ -25,9 +25,9 @@
 <!-- Find Duplicate Subtrees -->
 <!-- Check Completeness of a Binary Tree -->
 <!-- Construct Binary Tree from Inorder and Postorder Traversal -->
+<!-- Construct Binary Tree From Preorder And Inorder Traversal -->
+<!-- Maximum Width of Binary Tree -->
 
-Construct Binary Tree From Preorder And Inorder Traversal
-Maximum Width of Binary Tree
 Time Needed to Inform All Employees
 Count Good Nodes In Binary Tree
 Validate Binary Search Tree

@@ -1,9 +1,13 @@
-flip = True
-flip = not flip
+data = [None, None, None]
 
-print(
-    flip
-)
+for data
+
+# flip = True
+# flip = not flip
+
+# print(
+#     flip
+# )
 
 # data = [1,2,3,4,5,6,7,8,9,10]
 # res, idx  = float("inf"), 0

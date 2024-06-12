@@ -74,9 +74,9 @@ class Solution:
 
             root = TreeNode(postorder.pop())
 
-            idx = inorderIndex[root.val]
-            root.right = builder(idx + 1, r)
-            root.left = builder(l, idx - 1)
+            i = inorderIndex[root.val]
+            root.right = builder(i + 1, r)
+            root.left = builder(l, i - 1)
 
             return root
 
@@ -93,9 +93,9 @@ class Solution:
             return None
 
         root = TreeNode(postorder.pop())
-        idx = inorder.index(root.val)
+        i = inorder.index(root.val)
 
-        root.right = self.buildTree(inorder[idx + 1 :], postorder)
-        root.left = self.buildTree(inorder[:idx], postorder)
+        root.right = self.buildTree(inorder[i + 1 :], postorder)
+        root.left = self.buildTree(inorder[:i], postorder)
 
         return root

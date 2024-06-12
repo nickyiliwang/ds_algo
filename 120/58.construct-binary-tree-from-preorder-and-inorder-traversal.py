@@ -13,15 +13,21 @@ from typing import List, Optional
 # @lc code=start
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        if inorder:
-            # pop left from preorder to get the root node val
-            i = inorder.index(preorder.pop(0))
-            root = TreeNode(inorder[i])
+        inorderDict = {v: i for i, v in enumerate(inorder)}
 
-            root.left = self.buildTree(preorder, inorder[:i])
-            root.right = self.buildTree(preorder, inorder[i + 1 :])
+        def builder(l, r):
+            if l > r:
+                return None
+
+            root = TreeNode(preorder.pop(0))
+            i = inorderDict[root.val]
+
+            root.left = builder(l, i - 1)
+            root.right = builder(i + 1, r)
 
             return root
+
+        return builder(0, len(inorder) - 1)
 
 
 # @lc code=end
