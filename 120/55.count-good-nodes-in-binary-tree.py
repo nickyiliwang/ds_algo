@@ -16,29 +16,25 @@ from ds_types.tree import Tree, TreeNode
 # Key:
 # Need a maxVal value that keeps the max for next iteration
 # current node must be bigger than or equal to be considered good
-# remember the first value in the queue is an tuple (node, maxVal
+# remember the first value in the queue is an tuple (node, maxVal)
 
 
 # @lc code=start
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
-        if not root:
-            return 0
-
-        q = deque([(root, float("-inf"))])
-        count = 0
+        q = deque([(root, root.val)])
+        res = 0
 
         while q:
             for _ in range(len(q)):
                 node, maxVal = q.popleft()
-
                 if node:
                     if node.val >= maxVal:
-                        count += 1
-
-                    q.append((node.left, max(maxVal, node.val)))
-                    q.append((node.right, max(maxVal, node.val)))
-        return count
+                        res += 1
+                    maxVal = max(maxVal, node.val)
+                    q.append((node.left, maxVal))
+                    q.append((node.right, maxVal))
+        return res
 
 
 # @lc code=end

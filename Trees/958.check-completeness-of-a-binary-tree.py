@@ -58,6 +58,7 @@
 #         self.right = right
 from collections import deque
 
+
 # bfs level order, left to right
 # if there is a single null in the q then the rest needs to be null values
 class Solution:
@@ -66,18 +67,17 @@ class Solution:
         containNull = False
 
         while q:
-            for _ in range(len(q)):
-                node = q.popleft()
+            node = q.popleft()
 
-                if node and not containNull:
-                    q.append(node.left)
-                    q.append(node.right)
+            if node and not containNull:
+                q.append(node.left)
+                q.append(node.right)
 
-                if not node:
-                    containNull = True
+            if not node:
+                containNull = True
 
-                if node and containNull:
-                    return False
+            if node and containNull:
+                return False
 
         return True
 

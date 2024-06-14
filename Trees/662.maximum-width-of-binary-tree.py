@@ -75,7 +75,7 @@ from collections import deque
 
 class Solution:
     def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-        q = deque([(root, 0)]) # (node, level)
+        q = deque([(root, 0)])  # (node, level)
         res = 0
 
         while q:

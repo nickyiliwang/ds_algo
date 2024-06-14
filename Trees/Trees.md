@@ -27,14 +27,12 @@
 <!-- Construct Binary Tree from Inorder and Postorder Traversal -->
 <!-- Construct Binary Tree From Preorder And Inorder Traversal -->
 <!-- Maximum Width of Binary Tree -->
+<!-- Time Needed to Inform All Employees -->
+<!-- Count Good Nodes In Binary Tree -->
+<!-- Validate Binary Search Tree -->
+<!-- Kth Smallest Element In a Bst -->
+<!-- Sum Root to Leaf Numbers -->
 
-Time Needed to Inform All Employees
-Count Good Nodes In Binary Tree
-Validate Binary Search Tree
-Kth Smallest Element In a Bst
-Unique Binary Search Trees
-Unique Binary Search Trees II
-Sum Root to Leaf Numbers
 House Robber III
 Flip Equivalent Binary Trees
 Operations On Tree
@@ -56,3 +54,5 @@ Serialize And Deserialize Binary Tree
 Skipped:
 Minimum Time to Collect All Apples in a Tree
 Construct Quad Tree
+Unique Binary Search Trees
+Unique Binary Search Trees II
