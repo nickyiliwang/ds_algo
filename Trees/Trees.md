@@ -32,8 +32,7 @@
 <!-- Validate Binary Search Tree -->
 <!-- Kth Smallest Element In a Bst -->
 <!-- Sum Root to Leaf Numbers -->
-
-House Robber III
+<!-- House Robber III -->
 Flip Equivalent Binary Trees
 Operations On Tree
 All Possible Full Binary Trees
