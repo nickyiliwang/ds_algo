@@ -55,6 +55,7 @@
 #
 #
 
+
 # @lc code=start
 # Definition for a binary tree node.
 # class TreeNode:
@@ -62,45 +63,22 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-from collections import deque
-
-# 72/77 cases passed (N/A)
 class Solution:
     def flipEquiv(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
-        q1 = deque([root1])
-        q2 = deque([root2])
+        def valid(r1, r2):
+            # if either is null, return False if none of them if False
+            if not r1 or not r2:
+                return not r1 and not r2
 
-        while q1 or q2:
-            tmp1 = []
-            tmp2 = []
-            if len(q1) != len(q2):
+            if r1.val != r2.val:
                 return False
 
-            for _ in range(len(q1)):
-                node1 = q1.popleft()
-                node2 = q2.popleft()
+            # didn't flip
+            tmp = valid(r1.left, r2.left) and valid(r1.right, r2.right)
+            # flipped
+            return tmp or valid(r1.left, r2.right) and valid(r1.right, r2.left)
 
-                if node1:
-                    tmp1.append(node1.val)
-                    q1.append(node1.left)
-                    q1.append(node1.right)
-                else:
-                    tmp1.append(0)
-
-                if node2:
-                    tmp2.append(node2.val)
-                    q2.append(node2.left)
-                    q2.append(node2.right)
-                else:
-                    tmp2.append(0)
-
-            if tmp1 or tmp2:
-                if sum(tmp1) != sum(tmp2):
-                    return False
-                elif len(tmp1) != len(tmp2):
-                    return False
-
-        return True
+        return valid(root1, root2)
 
 
 # @lc code=end

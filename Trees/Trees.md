@@ -33,11 +33,10 @@
 <!-- Kth Smallest Element In a Bst -->
 <!-- Sum Root to Leaf Numbers -->
 <!-- House Robber III -->
-Flip Equivalent Binary Trees
-Operations On Tree
-All Possible Full Binary Trees
-Find Bottom Left Tree Value
-Trim a Binary Search Tree
+<!-- Flip Equivalent Binary Trees -->
+<!-- Find Bottom Left Tree Value -->
+<!-- Trim a Binary Search Tree -->
+
 Binary Search Tree Iterator
 Validate Binary Tree Nodes
 Find Largest Value in Tree Row
@@ -50,8 +49,12 @@ Convert Bst to Greater Tree
 Binary Tree Maximum Path Sum
 Serialize And Deserialize Binary Tree
 
+Might checkout:
+All Possible Full Binary Trees
+
 Skipped:
 Minimum Time to Collect All Apples in a Tree
 Construct Quad Tree
 Unique Binary Search Trees
 Unique Binary Search Trees II
+Operations On Tree
