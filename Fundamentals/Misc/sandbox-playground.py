@@ -1,6 +1,11 @@
-data = [None, None, None]
+node = None
+print(
+    node.val
+)
 
-for data
+# data = [None, None, None]
+
+# for data
 
 # flip = True
 # flip = not flip

@@ -36,8 +36,8 @@
 <!-- Flip Equivalent Binary Trees -->
 <!-- Find Bottom Left Tree Value -->
 <!-- Trim a Binary Search Tree -->
+<!-- Binary Search Tree Iterator -->
 
-Binary Search Tree Iterator
 Validate Binary Tree Nodes
 Find Largest Value in Tree Row
 Pseudo-Palindromic Paths in a Binary Tree
