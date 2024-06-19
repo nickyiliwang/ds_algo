@@ -37,12 +37,8 @@
 <!-- Find Bottom Left Tree Value -->
 <!-- Trim a Binary Search Tree -->
 <!-- Binary Search Tree Iterator -->
+<!-- Find Largest Value in Tree Row -->
 
-Validate Binary Tree Nodes
-Find Largest Value in Tree Row
-Pseudo-Palindromic Paths in a Binary Tree
-Even Odd Tree
-Smallest String Starting From Leaf
 Delete Leaves With a Given Value
 Distribute Coins in Binary Tree
 Convert Bst to Greater Tree
@@ -51,10 +47,14 @@ Serialize And Deserialize Binary Tree
 
 Might checkout:
 All Possible Full Binary Trees
+Pseudo-Palindromic Paths in a Binary Tree
 
 Skipped:
+Even Odd Tree
+Validate Binary Tree Nodes
 Minimum Time to Collect All Apples in a Tree
 Construct Quad Tree
 Unique Binary Search Trees
 Unique Binary Search Trees II
 Operations On Tree
+Smallest String Starting From Leaf
