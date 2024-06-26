@@ -38,16 +38,15 @@
 <!-- Trim a Binary Search Tree -->
 <!-- Binary Search Tree Iterator -->
 <!-- Find Largest Value in Tree Row -->
-
-Delete Leaves With a Given Value
-Distribute Coins in Binary Tree
-Convert Bst to Greater Tree
-Binary Tree Maximum Path Sum
-Serialize And Deserialize Binary Tree
+<!-- Delete Leaves With a Given Value -->
+<!-- Convert Bst to Greater Tree -->
+<!-- Binary Tree Maximum Path Sum -->
+<!-- Serialize And Deserialize Binary Tree -->
 
 Might checkout:
 All Possible Full Binary Trees
 Pseudo-Palindromic Paths in a Binary Tree
+Distribute Coins in Binary Tree
 
 Skipped:
 Even Odd Tree

@@ -13,23 +13,23 @@ class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         maxPath = root.val
 
-        def dfs(root):
+        def dfs(node):
             nonlocal maxPath
 
-            if not root:
+            if not node:
                 return 0
 
-            leftMax = dfs(root.left)
-            rightMax = dfs(root.right)
+            leftMax = dfs(node.left)
+            rightMax = dfs(node.right)
 
             # To clear negative numbers
             leftMax = max(leftMax, 0)
             rightMax = max(rightMax, 0)
 
-            maxPath = max(maxPath, root.val + leftMax + rightMax)
+            maxPath = max(maxPath, node.val + leftMax + rightMax)
 
             # bottom up, so able to add upon previous levels
-            return root.val + max(leftMax, rightMax)
+            return node.val + max(leftMax, rightMax)
 
         dfs(root)
         return maxPath

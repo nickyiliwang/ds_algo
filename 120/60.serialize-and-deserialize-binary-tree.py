@@ -15,7 +15,7 @@ class Codec:
             nonlocal serialize
             if not root:
                 serialize.append("None")
-                return
+                return # remember to return
             serialize.append(str(root.val))
             dfs(root.left)
             dfs(root.right)
