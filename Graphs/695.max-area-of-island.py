@@ -5,6 +5,14 @@
 #
 # https://leetcode.com/problems/max-area-of-island/description/
 #
+# algorithms
+# Medium (72.26%)
+# Likes:    9912
+# Dislikes: 202
+# Total Accepted:    887.5K
+# Total Submissions: 1.2M
+# Testcase Example:  '[[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]'
+#
 # You are given an m x n binary matrix grid. An island is a group of 1's
 # (representing land) connected 4-directionally (horizontal or vertical.) You
 # may assume all four edges of the grid are surrounded by water.
@@ -44,8 +52,6 @@
 #
 #
 
-from typing import List
-
 
 # @lc code=start
 class Solution:
@@ -53,7 +59,7 @@ class Solution:
         row, col = len(grid), len(grid[0])
         rowBound, colBound = range(row), range(col)
         visited = set()
-        maxArea = 0
+        res = 0
 
         def dfs(r, c):
             if (
@@ -65,36 +71,13 @@ class Solution:
                 return 0
 
             visited.add((r, c))
-
-            return (
-                1
-                + dfs(r + 1, c)
-                + dfs(r - 1, c)
-                + dfs(r, c + 1)
-                + dfs(r, c - 1)
-            )
+            return 1 + dfs(r + 1, c) + dfs(r - 1, c) + dfs(r, c + 1) + dfs(r, c - 1)
 
         for r in rowBound:
             for c in colBound:
-                maxArea = max(maxArea, dfs(r, c))
+                res = max(res, dfs(r, c))
 
-        return maxArea
+        return res
 
 
 # @lc code=end
-
-print(
-    Solution().maxAreaOfIsland(
-        [
-            [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
-            [0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0],
-            [0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
-        ]
-    )
-)
-# Output: 6

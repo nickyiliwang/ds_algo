@@ -5,9 +5,17 @@
 #
 # https://leetcode.com/problems/clone-graph/description/
 #
+# algorithms
+# Medium (57.97%)
+# Likes:    9440
+# Dislikes: 3801
+# Total Accepted:    1.3M
+# Total Submissions: 2.2M
+# Testcase Example:  '[[2,4],[1,3],[2,4],[1,3]]'
+#
 # Given a reference of a node in a connected undirected graph.
 #
-# Return a deep clone (clone) of the graph.
+# Return a deep copy (clone) of the graph.
 #
 # Each node in the graph contains a value (int) and a list (List[Node]) of its
 # neighbors.
@@ -33,7 +41,7 @@
 # graph.
 #
 # The given node will always be the first node with val = 1. You must return
-# the clone of the given node as a reference to the cloned graph.
+# the copy of the given node as a reference to the cloned graph.
 #
 #
 # Example 1:
@@ -79,23 +87,17 @@
 #
 #
 #
-from typing import Optional
-
-
-class Node:
-    def __init__(self, val=0, neighbors=None):
-        self.val = val
-        self.neighbors = neighbors if neighbors is not None else []
-
-
-# Key:
-# use a db for cache
-# return the clone
-# loop and clone the nodes
-# use node.val in the clone
-# if the input node isn't null then we can dfs
 
 # @lc code=start
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val = 0, neighbors = None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+"""
+
+
 class Solution:
     def cloneGraph(self, node: Optional["Node"]) -> Optional["Node"]:
         db = {}

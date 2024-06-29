@@ -79,7 +79,7 @@ class Solution:
                 if grid[r][c] == 1 and (r, c) not in visited:
                     maxArea = max(maxArea, dfs(r, c))
 
-        return maxArea
+        eturn maxArea
 
 
 # @lc code=end

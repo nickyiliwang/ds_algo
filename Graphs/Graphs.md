@@ -1,9 +1,9 @@
 <!-- Island Perimeter	 -->
 <!-- Find the Town Judge	 -->
+<!-- Number of Islands   	 -->
+<!-- Max Area of Island   	 -->
+<!-- Clone Graph   	 -->
 
-Number of Islands   	
-Max Area of Island   	
-Clone Graph   	
 Walls And Gates   	
 Rotting Oranges   	
 Count Sub Islands	
