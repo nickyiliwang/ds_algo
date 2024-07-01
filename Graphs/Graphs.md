@@ -3,10 +3,10 @@
 <!-- Number of Islands   	 -->
 <!-- Max Area of Island   	 -->
 <!-- Clone Graph   	 -->
+<!-- Rotting Oranges   	 -->
+<!-- Count Sub Islands	 -->
 
-Walls And Gates   	
-Rotting Oranges   	
-Count Sub Islands	
+
 Pacific Atlantic Water Flow   	
 Surrounded Regions   	
 Reorder Routes to Make All Paths Lead to The City Zero	
@@ -36,6 +36,10 @@ Evaluate Division
 Detonate the Maximum Bombs	
 Minimum Height Trees	
 Path with Maximum Gold
+
+Premium:
+Walls And Gates   	
+
 
 Might checkout:
 Verifying An Alien Dictionary	
