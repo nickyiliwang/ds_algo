@@ -86,7 +86,8 @@ from typing import List
 # Key:
 # 
 # heights[r][c] < prevHeight
-# need to pass in curr hight into next iteration in dfs
+# pass in curr hight into next iteration in dfs
+# set the starting height, which is the starting (r,c)
 
 class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
