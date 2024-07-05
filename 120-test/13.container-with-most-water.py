@@ -40,23 +40,11 @@
 # 
 from typing import List
 
+# Key:
+# 
 
 # @lc code=start
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-        res = 0
-        l, r = 0, len(height) - 1
-        
-        while l < r:
-            length = r - l
-            area = min(height[l] , height[r]) * length
-            res = max(res, area)
-            
-            if height[l] <= height[r]:
-                l += 1
-            else:
-                r -= 1
-        return res
+
 # @lc code=end
-
-

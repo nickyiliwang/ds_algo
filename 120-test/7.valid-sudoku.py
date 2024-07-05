@@ -70,12 +70,12 @@
 #
 #
 #
-from typing import List
-from collections import defaultdict
+from typing import *
+from collections import *
 
 # Key
 # (r // 3, c // 3) gets you the little 田 square
-# r,c,s visited sets, check and add
+# have visited sets for row, col sqr, check and add
 
 
 # @lc code=start
@@ -104,20 +104,5 @@ class Solution:
 
         return True
 
-# @lc code=end
 
-print(
-    Solution().isValidSudoku(
-        [
-            ["8", "3", ".", ".", "7", ".", ".", ".", "."],
-            ["6", ".", ".", "1", "9", "5", ".", ".", "."],
-            [".", "9", "8", ".", ".", ".", ".", "6", "."],
-            ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
-            ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
-            ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
-            [".", "6", ".", ".", ".", ".", "2", "8", "."],
-            [".", ".", ".", "4", "1", "9", ".", ".", "5"],
-            [".", ".", ".", ".", "8", ".", ".", "7", "9"],
-        ]
-    )
-)
+# @lc code=end

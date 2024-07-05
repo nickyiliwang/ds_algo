@@ -1,3 +1,6 @@
+# Key
+# Use a delimiter
+
 def encode(strs):
     res = ""
     for word in strs:

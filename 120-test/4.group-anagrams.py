@@ -31,42 +31,19 @@
 # 0 <= strs[i].length <= 100
 # strs[i] consists of lowercase English letters.
 #
-#
-#
+
+from typing import *
+from collections import *
 
 # Key
 # sorted will break the string into an array, so we need to join it or use a tuple when appending to res
-# Cleaver if you can remember it, with ord
-
-from typing import List
-from collections import defaultdict
-
+# can decode it into alpha and use ord
 
 # @lc code=start
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        res = defaultdict(list)
-
-        for word in strs:
-            res[tuple(sorted(word))].append(word)
-
-        return res.values()
 
 
 # @lc code=end
 
 print(Solution().groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
-
-
-# Cleaver if you can remember it, with ord
-class Solution:
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        res = defaultdict(list)
-
-        for w in strs:
-            alpha = [0] * 26
-            for c in w:
-                alpha[ord(c) - ord("a")] += 1
-            res[tuple(alpha)].append(w)
-
-        return res.values()

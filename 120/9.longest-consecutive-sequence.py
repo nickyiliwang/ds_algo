@@ -38,6 +38,8 @@
 #
 from typing import List
 
+# Key:
+# n - 1 in nums in a before a while loop will help check if this is the start of a sequence
 
 # @lc code=start
 class Solution:
@@ -57,14 +59,7 @@ class Solution:
 
 # @lc code=end
 
-
-# Explanation
-# Key:
-# n - 1 in nums in a before a while loop will help check if this is the start of a sequence
-
-
 def longestConsecutive(nums):
-    # a set of unique numbers
     numSet = set(nums)
     res = 0
 
