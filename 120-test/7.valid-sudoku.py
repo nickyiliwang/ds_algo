@@ -73,36 +73,15 @@
 from typing import *
 from collections import *
 
-# Key
+# Time:
+# Space:
+
+# Key:
 # (r // 3, c // 3) gets you the little 田 square
 # have visited sets for row, col sqr, check and add
-
 
 # @lc code=start
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        row, col, sqr = set(), set(), set()
-
-        def dfs(r, c):
-            curr = board[r][c]
-            if curr == ".":
-                return True
-
-            if (r, curr) in row or (c, curr) in col or (r // 3, c // 3, curr) in sqr:
-                return False
-
-            row.add((r, curr))
-            col.add((c, curr))
-            sqr.add((r // 3, c // 3, curr))
-
-            return True
-
-        for r in range(len(board)):
-            for c in range(len(board[0])):
-                if not dfs(r, c):
-                    return False
-
-        return True
-
 
 # @lc code=end

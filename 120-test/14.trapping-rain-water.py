@@ -32,10 +32,14 @@
 # 1 <= n <= 2 * 10^4
 # 0 <= height[i] <= 10^5
 #
-from typing import List
+from typing import *
+from collections import *
+
+# Time:
+# Space:
 
 # Key:
-# We want the leftMax value and rightMax value and get the maximum rain water we can trap in the left or right position
+# Get the leftMax value and rightMax value and get the maximum rain water we can trap in the left or right position
 # Comparing leftMax and rightMax and move the smaller value 
 
 # @lc code=start
@@ -43,4 +47,6 @@ class Solution:
     def trap(self, height: List[int]) -> int:
 
 # @lc code=end
-
+print(
+    Solution().trap([4,2,0,3,2,5])
+)

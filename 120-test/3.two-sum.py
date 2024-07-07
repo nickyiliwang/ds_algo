@@ -53,8 +53,14 @@
 from typing import *
 from collections import *
 
+# Time:
+# Space:
+
 # @lc code=start
 class Solution(object):
     def twoSum(self, nums, target):
 
 # @lc code=end
+print(
+    Solution().twoSum([2,7,11,15], 9)
+)

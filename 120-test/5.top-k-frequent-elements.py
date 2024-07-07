@@ -34,16 +34,21 @@
 from typing import *
 from collections import *
 
+# Time:
+# Space:
+
 # Key
 # Bucket Sort
 # counter.item gets the (key, value) => (num, count)
 # -1 count to become index
 # Count backwards in each bucket and fill res till k
 
-# Time: O(n), Space: O(n)
 # @lc code=start
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
 
 
 # @lc code=end
+print(
+    Solution().topKFrequent([1,1,1,2,2,3], 2)
+)

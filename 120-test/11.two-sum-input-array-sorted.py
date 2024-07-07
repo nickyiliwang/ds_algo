@@ -56,13 +56,19 @@
 # -1000 <= target <= 1000
 # The tests are generated such that there is exactly one solution.
 #
-#
-#
-from typing import List
+from typing import *
+from collections import *
 
+# Time:
+# Space:
+
+# Key:
 
 # @lc code=start
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
 
 # @lc code=end
+print(
+    Solution().twoSum([2,7,11,15], 9)
+)

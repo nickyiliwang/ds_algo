@@ -52,10 +52,13 @@
 #
 # Follow up: Could you find an algorithm that runs in O(m + n) time?
 #
-#
-from collections import Counter
+from typing import *
+from collections import *
 
-# Key
+# Time:
+# Space:
+
+# Key:
 # Sliding window
 # increment have count one be one until we reach needed len
 # only increment have len when the count does not exceed the needed count for the char
@@ -66,33 +69,5 @@ from collections import Counter
 # @lc code=start
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        haveC, needC = Counter(), Counter(t)
-        haveLen, needLen = 0, len(t)
-        res, resLen = "", float("inf")
-
-        left = 0
-
-        for right in range(len(s)):
-            haveC[s[right]] += 1
-
-            # increment have only when we have less than the char needed
-            if haveC[s[right]] <= needC[s[right]]:
-                haveLen += 1
-
-            while haveLen == needLen:
-                # update res
-                currLen = right - left + 1
-                if currLen < resLen:
-                    res = s[left : right + 1]
-                    resLen = currLen
-
-                # shrink window
-                haveC[s[left]] -= 1
-                if haveC[s[left]] < needC[s[left]]:
-                    haveLen -= 1
-                left += 1
-
-        return res
-
 
 # @lc code=end

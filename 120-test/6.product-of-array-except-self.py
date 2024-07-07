@@ -38,11 +38,13 @@
 # output array does not count as extra space for space complexity analysis.)
 #
 #
-
 from typing import *
 from collections import *
 
-# Key
+# Time:
+# Space:
+
+# Key:
 # Prefix and postfix
 
 # @lc code=start
@@ -50,7 +52,6 @@ class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
 
 # @lc code=end
-
 print(Solution().productExceptSelf([1, 2, 3, 4]))
 
 # Without the constrains this problem would be easy, just divide each number with the sum of all the numbers multiplied together.

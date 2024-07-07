@@ -34,10 +34,13 @@
 # 0 <= nums.length <= 10^5
 # -10^9 <= nums[i] <= 10^9
 #
-#
-#
-from typing import List
+from typing import *
+from collections import *
 
+# Time:
+# Space:
+
+# Key:
 
 # @lc code=start
 class Solution:
@@ -45,11 +48,4 @@ class Solution:
 
 
 # @lc code=end
-
-# nums = [0, 3, 7, 2, 5, 8, 4, 6, 0, 1]
-# 9
-# nums = [100, 4, 200, 1, 3, 2]
-# 4
-nums = [0, -1]
-# 2
-Solution().longestConsecutive(nums)
+Solution().longestConsecutive([0, 3, 7, 2, 5, 8, 4, 6, 0, 1])

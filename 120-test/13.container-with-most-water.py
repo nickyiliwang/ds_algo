@@ -38,13 +38,19 @@
 # 2 <= n <= 10^5
 # 0 <= height[i] <= 10^4
 # 
-from typing import List
+from typing import *
+from collections import *
+
+# Time:
+# Space:
 
 # Key:
-# 
 
 # @lc code=start
 class Solution:
     def maxArea(self, height: List[int]) -> int:
 
 # @lc code=end
+print(
+    Solution().maxArea([1,8,6,2,5,4,8,3,7])
+)

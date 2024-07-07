@@ -37,5 +37,7 @@ from collections import *
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
 
-
 # @lc code=end
+print(
+    Solution().isAnagram("anagram", "nagaram")
+)

@@ -44,11 +44,19 @@
 #
 #
 #
-from typing import List
+from typing import *
+from collections import *
 
+# Time:
+# Space:
+
+# Key:
 
 # @lc code=start
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
 
 # @lc code=end
+print(
+    Solution().maxProfit([7,1,5,3,6,4])
+)

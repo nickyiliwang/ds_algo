@@ -51,19 +51,24 @@
 #
 #
 
-from typing import List
+from typing import *
+from collections import *
+
+# Time:
+# Space:
 
 # Key:
-# sort it
+# sort the input
 # continue for too big of number, and prev number is the same as curr
 # l = n + 1, do 2pointer search
 # once find, still need to find other instances for n with while loop, check prev and less than r
 
-# Time:
-# Space: 
 
 # @lc code=start
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
 
 # @lc code=end
+print(
+    Solution().threeSum([-1,0,1,2,-1,-4])
+)

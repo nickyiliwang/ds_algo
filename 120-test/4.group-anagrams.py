@@ -31,9 +31,11 @@
 # 0 <= strs[i].length <= 100
 # strs[i] consists of lowercase English letters.
 #
-
 from typing import *
 from collections import *
+
+# Time:
+# Space:
 
 # Key
 # sorted will break the string into an array, so we need to join it or use a tuple when appending to res

@@ -42,13 +42,15 @@
 # 0 <= s.length <= 5 * 10^4
 # s consists of English letters, digits, symbols and spaces.
 #
-#
-#
-# Time: 
+from typing import *
+from collections import *
+
+# Time:
 # Space:
 
 # Key:
 # Sliding window
+
 # @lc code=start
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:

@@ -34,32 +34,21 @@
 # 1 <= s1.length, s2.length <= 10^4
 # s1 and s2 consist of lowercase English letters.
 #
-#
-#
-# Key
+from typing import *
+from collections import *
+
+# Time:
+# Space:
+
+# Key:
 # Sliding window
 # 1) establish a window and add one letter and remove one letter
-
-from collections import Counter
 
 
 # @lc code=start
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        c1, c2 = Counter(s1), Counter()
-        window = len(s1)
-
-        for i in range(len(s2)):
-            if i < window:
-                c2[s2[i]] += 1
-            else:
-                c2[s2[i - window]] -= 1
-                c2[s2[i]] += 1
-
-            if c1 == c2:
-                return True
-
-        return False
 
 
 # @lc code=end
+print(Solution().checkInclusion("ab", "eidbaooo"))

@@ -38,9 +38,11 @@
 # s consists of only uppercase English letters.
 # 0 <= k <= s.length
 # 
-# 
-#
-from collections import Counter
+from typing import *
+from collections import *
+
+# Time:
+# Space:
 
 # Key:
 # while (r - l + 1) - max(counter.values()) > k:
@@ -48,23 +50,13 @@ from collections import Counter
 # (r - l + 1) == the len of the window, this minus the largest num in the counter gets how many char was replaced
 # interestingly, we don't need to know which numbers are replaced
 # sliding window
-# O(n) time and space
 
 # @lc code=start
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        res, l = 0, 0
-        counter = Counter()
-        
-        for r in range(len(s)):
-            counter[s[r]] += 1
-            
-            while (r - l + 1) - max(counter.values()) > k:
-                counter[s[l]] -= 1
-                l += 1
-            
-            res = max(res, (r - l + 1))     
-        
-        return res    
+
 # @lc code=end
+print(
+    Solution().characterReplacement("ABAC", 2)
+)
 

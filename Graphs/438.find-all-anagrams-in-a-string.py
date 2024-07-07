@@ -49,13 +49,8 @@
 # 1 <= s.length, p.length <= 3 * 10^4
 # s and p consist of lowercase English letters.
 # 
-from typing import *
-from collections import *
-
-# Time:
-# Space:
-
-# Key:
+# 
+#
 
 # @lc code=start
 class Solution:

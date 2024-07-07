@@ -47,15 +47,19 @@
 # 1 <= s.length <= 2 * 10^5
 # s consists only of printable ASCII characters.
 #
-#
-#
+from typing import *
+from collections import *
 
 # Time:
 # Space:
+
+# Key:
 
 # @lc code=start
 class Solution:
     def isPalindrome(self, s: str) -> bool:
 
-
 # @lc code=end
+print(
+ Solution().isPalindrome("race a car")   
+)
