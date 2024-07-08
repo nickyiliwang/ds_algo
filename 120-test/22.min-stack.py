@@ -51,31 +51,25 @@
 # stacks.
 # At most 3 * 10^4 calls will be made to push, pop, top, and getMin.
 #
-#
-#
+from typing import *
+from collections import *
 
+# Time:
+# Space:
+
+# Key:
+# for O(1) look up on minVal
 
 # @lc code=start
 class MinStack:
     def __init__(self):
-        self.stack = []
-        # for O(1) look up on minVal
-        self.minStack = []
 
     def push(self, val: int) -> None:
-        self.stack.append(val)
-
-        if self.minStack:
-            val = min(val, self.minStack[-1])
-        self.minStack.append(val)
 
     def pop(self) -> None:
-        self.stack.pop()
-        self.minStack.pop()
 
     def top(self) -> int:
-        return self.stack[-1]
 
     def getMin(self) -> int:
-        return self.minStack[-1]
 
+# @lc code=end

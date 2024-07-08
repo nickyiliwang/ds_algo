@@ -38,43 +38,22 @@
 # All the timestamps timestamp of set are strictly increasing.
 # At most 2 * 10^5 calls will be made to set and get.
 #
-#
-#
-from collections import defaultdict
+from typing import *
+from collections import *
+
+# Time:
+# Space:
+
 # Key:
 # break out the search if exact is found
-# update the res when there are 
 
 # @lc code=start
 class TimeMap:
 
     def __init__(self):
-        self.values = defaultdict(list)
 
     def set(self, key: str, value: str, timestamp: int) -> None:
-        self.values[key].append([timestamp, value])
 
     def get(self, key: str, timestamp: int) -> str:
-        data = self.values[key]
-        l, r = 0, len(data) - 1
-        res = ""
 
-        while l <= r:
-            m = (l + r) // 2
-            if data[m][0] < timestamp:
-                res = data[m][1]
-                l = m + 1
-            elif data[m][0] > timestamp:
-                r = m - 1
-            else:
-                res = data[m][1]
-                break
-        return res
-
-
-# Your TimeMap object will be instantiated and called as such:
-# obj = TimeMap()
-# obj.set(key,value,timestamp)
-# param_2 = obj.get(key,timestamp)
 # @lc code=end
-

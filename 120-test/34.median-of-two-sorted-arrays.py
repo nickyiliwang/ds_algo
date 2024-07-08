@@ -41,7 +41,11 @@
 #
 #
 
-from typing import List
+from typing import *
+from collections import *
+
+# Time:
+# Space:
 
 # Key:
 # start with the shorter arr for optimization
@@ -56,37 +60,6 @@ from typing import List
 # @lc code=start
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-        n1, n2 = nums1, nums2
-        l1, l2 = len(n1), len(n2)
-        total = l1 + l2
-
-        if l1 > l2:
-            return self.findMedianSortedArrays(n2, n1)
-
-        l, r = 0, l1 - 1
-
-        while True:
-            mid1 = (l + r) // 2
-            mid2 = total // 2 - 2 - mid1
-
-            # left
-            n1Max = n1[mid1] if mid1 >= 0 else float("-inf")
-            n2Max = n2[mid2] if mid2 >= 0 else float("-inf")
-
-            # right
-            n1Min = n1[mid1 + 1] if mid1 < l1 - 1 else float("inf")
-            n2Min = n2[mid2 + 1] if mid2 < l2 - 1 else float("inf")
-
-            if n1Max <= n2Min and n2Max <= n1Min:
-                if total % 2 == 0:
-                    return (max(n1Max, n2Max) + min(n1Min, n2Min)) / 2
-                else:
-                    return min(n1Min, n2Min)
-            elif n1Max > n2Min:
-                r = mid1 - 1
-            else:
-                l = mid1 + 1
-
 
 # @lc code=end
 

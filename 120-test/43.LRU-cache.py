@@ -54,16 +54,12 @@
 # 0 <= value <= 10^5
 # At most 2 * 10^5 calls will be made to get and put.
 #
-#
-#
 
 # Key
 # Doubly Linked list
 # need to insert it into the tail
 # need to return the value in get()
 # need to define a remove and insert helper method
-
-
 
 # @lc code=start
 class Node:
@@ -74,40 +70,13 @@ class Node:
 
 class LRUCache:
     def __init__(self, capacity: int):
-        self.capacity = capacity
-        self.cache = {}
-        self.head = self.tail = Node(0, 0)
-        self.head.next = self.tail
-        self.tail.prev = self.head
 
     def remove(self, node):
-        prev, next = node.prev, node.next
-        prev.next, next.prev = next, prev
 
     def insert(self, node):
-        prev, next = self.tail.prev, self.tail
-        prev.next = next.prev = node
-        node.prev, node.next = prev, next
 
     def get(self, key: int) -> int:
-        if key in self.cache:
-            self.remove(self.cache[key])
-            self.insert(self.cache[key])
-            return self.cache[key].value
-        return -1
 
     def put(self, key: int, value: int) -> None:
-        if key in self.cache:
-            self.remove(self.cache[key])
-
-        node = Node(key, value)
-        self.cache[key] = node
-        self.insert(node)
-
-        if len(self.cache) > self.capacity:
-            lru = self.head.next
-            self.remove(lru)
-            del self.cache[lru.key]
-
 
 # @lc code=end

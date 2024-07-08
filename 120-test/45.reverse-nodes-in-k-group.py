@@ -57,24 +57,5 @@ class ListNode:
 
 class Solution:
     def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
-        curr = head
-        for _ in range(k):
-            if not curr:
-                return head
-            curr = curr.next
-
-        prev, curr = None, head
-
-        for _ in range(k):
-            tmp = curr.next
-            curr.next = prev
-            prev = curr
-            curr = tmp
-
-        # after the reverse the head is the tail
-        # curr continues the original list
-        head.next = self.reverseKGroup(curr, k)
-        return prev
-
 
 # @lc code=end

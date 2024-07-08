@@ -2,7 +2,6 @@
 
 from typing import Optional
 
-
 # @lc code=start
 # Definition for a binary tree node.
 class TreeNode:
@@ -14,12 +13,5 @@ class TreeNode:
 
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        if not root:
-            return
-
-        root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
-
-        return root
-
 
 # @lc code=end

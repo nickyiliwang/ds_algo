@@ -45,28 +45,21 @@
 # 1 <= s.length <= 10^4
 # s consists of parentheses only '()[]{}'.
 #
-#
-#
+from typing import *
+from collections import *
+
+# Time:
+# Space:
+
+# Key:
 
 
 # @lc code=start
 class Solution:
     def isValid(self, s: str) -> bool:
-        stack = []
-
-        validator = {")": "(", "]": "[", "}": "{"}
-
-        for p in s:
-            if p in validator:
-                if not stack or stack.pop() != validator[p]:
-                    return False
-            else:
-                stack.append(p)
-
-        if len(stack) > 0:
-            return False
-
-        return True
-
 
 # @lc code=end
+print(
+    Solution().isValid("(]")
+)
+

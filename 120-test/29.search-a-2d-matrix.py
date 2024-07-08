@@ -43,9 +43,11 @@
 # 1 <= m, n <= 100
 # -10^4 <= matrix[i][j], target <= 10^4
 #
-#
-#
-from typing import List
+from typing import *
+from collections import *
+
+# Time:
+# Space:
 
 # Key:
 # you want the largest in the list to compare and adjust left, matrix[m][-1]
@@ -54,34 +56,6 @@ from typing import List
 # @lc code=start
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        l, r = 0, len(matrix) - 1
-        nums = []
-
-        while l <= r:
-            m = (l + r) // 2
-
-            if matrix[m][-1] < target:
-                l = m + 1
-            elif matrix[m][0] > target:
-                r = m - 1
-            else:
-                nums = matrix[m]
-                break
-
-        l, r = 0, len(nums) - 1
-
-        while l <= r:
-            m = (l + r) // 2
-
-            if nums[m] < target:
-                l = m + 1
-            elif nums[m] > target:
-                r = m - 1
-            else:
-                return True
-
-        return False
-
-
+        
 # @lc code=end
 

@@ -3,7 +3,13 @@ from typing import Optional
 
 # @lc app=leetcode id=141 lang=python3
 
-# Time: O(1), Space: O(1)
+from typing import *
+from collections import *
+
+# Time:
+# Space:
+
+# Key:
 # Tortoise and Hare
 # while loop only tracks the hare
 
@@ -11,16 +17,5 @@ from typing import Optional
 # @lc code=start
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        slow, fast = head, head
-
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
-
-            if slow == fast:
-                return True
-
-        return False
-
 
 # @lc code=end

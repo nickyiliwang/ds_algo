@@ -28,11 +28,10 @@ from collections import *
 # Time:
 # Space:
 
+
 # @lc code=start
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
 
 # @lc code=end
-print(
-    Solution().containsDuplicate([1,2,3,1])
-)
+print(Solution().containsDuplicate([1, 2, 3, 1]))

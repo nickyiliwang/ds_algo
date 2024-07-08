@@ -49,12 +49,14 @@
 # piles.length <= h <= 10^9
 # 1 <= piles[i] <= 10^9
 #
-#
-#
-from typing import List
-from math import ceil
+from typing import *
+from collections import *
+from math import *
 
-# Keys
+# Time:
+# Space:
+
+# Key: 
 # celi to round up because we are not gonna not eat the banana if we start
 #       7 / 4 = 1.75
 # update the result each time the right pointer is shifting:
@@ -65,25 +67,6 @@ from math import ceil
 # @lc code=start
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
-        l, r = 1, max(piles)
-        res = max(piles)
-        totalTime = 0
-
-        while l <= r:
-            totalTime = 0
-            m = (l + r) // 2
-            for b in piles:
-                totalTime += ceil(b / m)
-                if totalTime > h:
-                    break
-            if totalTime <= h:
-                res = min(res, m)
-                r = m - 1
-            else:
-                l = m + 1
-
-        return res
-
 
 # @lc code=end
 

@@ -19,14 +19,5 @@ class ListNode:
 # @lc code=start
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        prev, curr = None, head
-        while curr:
-            nextNode = curr.next
-            curr.next = prev
-            prev = curr
-            curr = nextNode
-
-        return prev
-
 
 # @lc code=end

@@ -28,34 +28,22 @@
 # 1 <= temperatures.length <= 10^5
 # 30 <= temperatures[i] <= 100
 #
-#
-#
-from typing import List
+from typing import *
+from collections import *
+
+# Time:
+# Space:
 
 # Key:
 # Mono-decreasing stack
 # stack[-1] should not be bigger than the current temp
 # else update the result pos with popped position
 
+
 # @lc code=start
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
-        res = [0] * len(temperatures)
-        stack = []
-
-        for i, temp in enumerate(temperatures):
-            print(stack)
-            while stack and temperatures[stack[-1]] < temp:
-                pos = stack.pop()
-                res[pos] = i - pos
-            stack.append(i)
-
-        return res
-
 
 # @lc code=end
 
-print(
-    Solution().dailyTemperatures([73,74,75,71,69,72,76,73])
-    
-)
+print(Solution().dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]))

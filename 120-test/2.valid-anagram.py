@@ -30,14 +30,13 @@
 from typing import *
 from collections import *
 
-# Time: 
+# Time:
 # Space:
+
 
 # @lc code=start
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
 
 # @lc code=end
-print(
-    Solution().isAnagram("anagram", "nagaram")
-)
+print(Solution().isAnagram("anagram", "nagaram"))

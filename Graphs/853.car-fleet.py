@@ -5,6 +5,14 @@
 #
 # https://leetcode.com/problems/car-fleet/description/
 #
+# algorithms
+# Medium (51.37%)
+# Likes:    3504
+# Dislikes: 961
+# Total Accepted:    269.4K
+# Total Submissions: 524.4K
+# Testcase Example:  '12\n[10,8,0,5,3]\n[2,4,1,1,3]'
+#
 # There are n cars at given miles away from the starting mile 0, traveling to
 # reach the mile target.
 # 
@@ -82,22 +90,10 @@
 # All the values of position are unique.
 # 0 < speed[i] <= 10^6
 # 
-from typing import *
-from collections import *
-
-# Time:
-# Space:
-
-# Key:
-# sorted(pair)
-# We need to sort the pairs before stacking
-# (target - position) / speed = time to position at constant speed.
-# stack[-1] <= stack[-2]
-# We always want to pop the slower one
 
 # @lc code=start
 class Solution:
     def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
         
 # @lc code=end
-print(Solution.carFleet("", 10, [0, 4, 2], [2, 1, 3]))  # output 3
+

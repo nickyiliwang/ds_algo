@@ -59,32 +59,21 @@
 # All the integers of nums are unique.
 # nums is sorted and rotated between 1 and n times.
 #
-#
-#
-from typing import List
+from typing import *
+from collections import *
 
-# Draw solution if confused
+# Time:
+# Space:
+
+# Key:
 # [3,4,5,1,2] => part A: [3,4,5] part B: [1,2]
 # if m = 5, left = 3, right = 2
 # mid > right num means we have found a rotation
 # for sure the min number is right, so move the left pointer
-# O(log n)
-
 
 # @lc code=start
 class Solution:
     def findMin(self, nums: List[int]) -> int:
-        l, r = 0, len(nums) - 1
-        res = float("inf")
-
-        while l <= r:
-            m = (l + r) // 2
-            res = min(res, nums[m])
-            if nums[m] > nums[r]:
-                l = m + 1
-            else:
-                r = m - 1
-        return res
 
 
 # @lc code=end
