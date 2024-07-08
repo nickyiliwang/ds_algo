@@ -55,11 +55,6 @@
 # At most 2 * 10^5 calls will be made to get and put.
 #
 
-# Key
-# Doubly Linked list
-# need to insert it into the tail
-# need to return the value in get()
-# need to define a remove and insert helper method
 
 # @lc code=start
 class Node:

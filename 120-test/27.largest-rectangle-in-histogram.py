@@ -40,9 +40,6 @@ from collections import *
 # Time:
 # Space:
 
-# Key:
-# Monotonic stack
-
 # @lc code=start
 class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:

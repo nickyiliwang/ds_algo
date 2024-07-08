@@ -56,14 +56,6 @@ from math import *
 # Time:
 # Space:
 
-# Key: 
-# celi to round up because we are not gonna not eat the banana if we start
-#       7 / 4 = 1.75
-# update the result each time the right pointer is shifting:
-#       meaning eating less banana and increasing time to consume
-# break out if totalTime > than h
-
-
 # @lc code=start
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:

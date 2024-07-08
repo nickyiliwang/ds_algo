@@ -34,16 +34,9 @@ from collections import *
 # Time:
 # Space:
 
-# Key:
-# Mono-decreasing stack
-# stack[-1] should not be bigger than the current temp
-# else update the result pos with popped position
-
-
 # @lc code=start
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
 
 # @lc code=end
-
 print(Solution().dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]))

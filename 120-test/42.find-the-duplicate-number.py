@@ -52,14 +52,10 @@
 # How can we prove that at least one duplicate number must exist in nums?
 # Can you solve the problem in linear runtime complexity?
 #
-#
-#
 from typing import List
 
-# Key:
-# Using slow and fast pointer to find the node before the beginning of the loop, which is somewhere slow and fast intersect
-# Using another slow2 pointer to find the point of loop
-
+# Time:
+# Space:
 
 # @lc code=start
 class Solution:

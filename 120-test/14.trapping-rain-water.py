@@ -38,10 +38,6 @@ from collections import *
 # Time:
 # Space:
 
-# Key:
-# Get the leftMax value and rightMax value and get the maximum rain water we can trap in the left or right position
-# Comparing leftMax and rightMax and move the smaller value 
-
 # @lc code=start
 class Solution:
     def trap(self, height: List[int]) -> int:

@@ -27,11 +27,7 @@
 # timeMap.get("foo", 4);         // return "bar2"
 # timeMap.get("foo", 5);         // return "bar2"
 #
-#
-#
 # Constraints:
-#
-#
 # 1 <= key.length, value.length <= 100
 # key and value consist of lowercase English letters and digits.
 # 1 <= timestamp <= 10^7
@@ -43,9 +39,6 @@ from collections import *
 
 # Time:
 # Space:
-
-# Key:
-# break out the search if exact is found
 
 # @lc code=start
 class TimeMap:

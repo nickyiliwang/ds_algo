@@ -65,12 +65,6 @@ from collections import *
 # Time:
 # Space:
 
-# Key:
-# [3,4,5,1,2] => part A: [3,4,5] part B: [1,2]
-# if m = 5, left = 3, right = 2
-# mid > right num means we have found a rotation
-# for sure the min number is right, so move the left pointer
-
 # @lc code=start
 class Solution:
     def findMin(self, nums: List[int]) -> int:

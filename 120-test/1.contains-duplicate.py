@@ -28,7 +28,6 @@ from collections import *
 # Time:
 # Space:
 
-
 # @lc code=start
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:

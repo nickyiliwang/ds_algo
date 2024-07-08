@@ -5,6 +5,14 @@
 #
 # https://leetcode.com/problems/combination-sum/description/
 #
+# algorithms
+# Medium (72.00%)
+# Likes:    18737
+# Dislikes: 419
+# Total Accepted:    2M
+# Total Submissions: 2.8M
+# Testcase Example:  '[2,3,6,7]\n7'
+#
 # Given an array of distinct integers candidates and a target integer target,
 # return a list of all unique combinations of candidates where the chosen
 # numbers sum to target. You may return the combinations in any order.
@@ -55,17 +63,26 @@
 #
 #
 
-from typing import List
-# Time:
-# Space:
 
 # @lc code=start
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        # Input: candidates = [2,3,5], target = 8
+        # Output: [[2,2,2,2],[2,3,3],[3,5]]
+        res = []
 
+        def combine(i, nSum, path):
+            if nSum == target:
+                res.append(path.copy())
+                return
+            elif nSum > target:
+                return
+
+            for n in range(i, len(candidates)):
+                combine(n, nSum + candidates[n], path + [candidates[n]])
+
+        combine(0, 0, [])
+
+        return res
 
 # @lc code=end
-
-print(Solution().combinationSum([2, 3, 5], 8))
-# Input: candidates = [2,3,5], target = 8
-# Output: [[2,2,2,2],[2,3,3],[3,5]]

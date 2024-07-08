@@ -11,7 +11,6 @@ def encode(strs):
 
 def decode(str):
 
-
 strs = [
     "I",
     "love",

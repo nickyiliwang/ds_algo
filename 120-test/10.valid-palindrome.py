@@ -55,11 +55,10 @@ from collections import *
 
 # Key:
 
+
 # @lc code=start
 class Solution:
     def isPalindrome(self, s: str) -> bool:
 
 # @lc code=end
-print(
- Solution().isPalindrome("race a car")   
-)
+print(Solution().isPalindrome("race a car"))

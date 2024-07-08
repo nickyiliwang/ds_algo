@@ -58,14 +58,6 @@ from collections import *
 # Time:
 # Space:
 
-# Key:
-# Sliding window
-# increment have count one be one until we reach needed len
-# only increment have len when the count does not exceed the needed count for the char
-# while we find/still have a matching length
-# update the results and shrink the left pointer/window
-
-
 # @lc code=start
 class Solution:
     def minWindow(self, s: str, t: str) -> str:

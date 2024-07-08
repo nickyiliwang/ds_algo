@@ -33,7 +33,6 @@ from collections import *
 # Time:
 # Space:
 
-
 # @lc code=start
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:

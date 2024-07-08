@@ -46,9 +46,6 @@ from collections import *
 # Time:
 # Space:
 
-# Key:
-# using logic to trap the target to left or right partition
-
 # @lc code=start
 class Solution:
     def search(self, nums: List[int], target: int) -> int:

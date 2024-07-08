@@ -49,10 +49,6 @@ from collections import *
 # Time:
 # Space:
 
-# Key:
-# you want the largest in the list to compare and adjust left, matrix[m][-1]
-# and the smallest in the list to adjust for right, matrix[m][0]
-
 # @lc code=start
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:

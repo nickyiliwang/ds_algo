@@ -41,7 +41,7 @@ from typing import List
 
 # Transpose the matrix by swapping elements along the main diagonal, then symmetrically flip it for the desired rotation.
 
-# 1  2  3             
+# 1  2  3
 # 4  5  6
 # 7  8  9
 
@@ -56,30 +56,10 @@ from typing import List
 # 8  5  2
 # 9  6  3
 
+# Do not return anything, modify matrix in-place instead.
 # @lc code=start
 class Solution:
     def rotate(self, matrix: List[List[int]]) -> None:
-        """
-        Do not return anything, modify matrix in-place instead.
-        """
-        n = len(matrix)
-
-        def swap(m):
-            for r in range(n):
-                for c in range(r):
-                    m[r][c], m[c][r] = m[c][r], m[r][c]
-
-        def reverse(m):
-            for row in range(n):
-                l, r = 0, n - 1
-
-                while l < r:
-                    m[row][l], m[row][r] = m[row][r], m[row][l]
-                    l += 1
-                    r -= 1
-
-        swap(matrix)
-        reverse(matrix)
 
 
 # @lc code=end

@@ -78,7 +78,6 @@ from collections import *
 
 # Key:
 # (r // 3, c // 3) gets you the little 田 square
-# have visited sets for row, col sqr, check and add
 
 # @lc code=start
 class Solution:

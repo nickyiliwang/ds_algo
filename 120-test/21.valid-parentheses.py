@@ -51,9 +51,6 @@ from collections import *
 # Time:
 # Space:
 
-# Key:
-
-
 # @lc code=start
 class Solution:
     def isValid(self, s: str) -> bool:

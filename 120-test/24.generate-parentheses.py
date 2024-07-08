@@ -28,10 +28,6 @@ from collections import *
 # Time:
 # Space:
 
-# Key:
-# In the backtracking fn, start with open bracket if open is less than n
-# close when closed is less than open
-
 # @lc code=start
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:

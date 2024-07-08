@@ -28,13 +28,6 @@ from typing import List
 
 class Solution:
     def canAttendMeetings(self, intervals) -> bool:
-        intervals.sort(key=lambda i: (i[0]))
-        prevEnd = intervals[0][1]
-        for start, end in intervals:
-            if prevEnd > start:
-                return False
-        return True
-
 
 print(
     Solution().canAttendMeetings([(0,30),(5,10),(15,20)])

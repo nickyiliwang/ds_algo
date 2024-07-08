@@ -50,16 +50,9 @@ from collections import *
 # Time:
 # Space:
 
-# Key:
-# monotonic decreasing queue
-# pops all numbers at the end of the queue smaller than right pointer number
-# its out of bounds if the left pointer is bigger than first index item in q
-# if we arrive at the sliding window k
-# 1st elem will always be largest
-
 # @lc code=start
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
 
 # @lc code=end
-print(maxSlidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3))
+print(Solution().maxSlidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3))

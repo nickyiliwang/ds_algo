@@ -44,17 +44,12 @@ from collections import *
 # Time:
 # Space:
 
-# Key:
-# Prefix and postfix
-
 # @lc code=start
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
 
 # @lc code=end
 print(Solution().productExceptSelf([1, 2, 3, 4]))
-
-# Without the constrains this problem would be easy, just divide each number with the sum of all the numbers multiplied together.
 
 # nums: [1,2,3,4]
 # prefix: [1,1,2,6] 24 [1, 2, 3, 4]

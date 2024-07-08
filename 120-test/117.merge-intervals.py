@@ -35,30 +35,12 @@
 # intervals[i].length == 2
 # 0 <= starti <= endi <= 10^4
 #
-#
-#
-
-# Keys:
-# sort by the start of interval
-# prevEnd needs to be smaller than the currStart (no overlap)
-# else merge by taking the max of the 2 ends
-
+# Time:
+# Space:
 
 # @lc code=start
 class Solution(object):
     def merge(self, intervals):
-        intervals.sort(key=lambda i: i[0])
-        res = [intervals[0]]
-
-        for start, end in intervals[1:]:
-            prevEnd = res[-1][1]
-            if prevEnd < start:
-                res.append([start, end])
-            else:
-                res[-1][1] = max(prevEnd, end)
-
-        return res
-
 
 # @lc code=end
 

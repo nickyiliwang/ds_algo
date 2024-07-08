@@ -58,7 +58,6 @@ from collections import *
 # Space:
 
 # Key:
-# for O(1) look up on minVal
 
 # @lc code=start
 class MinStack:

@@ -40,15 +40,9 @@ from collections import *
 # Time:
 # Space:
 
-# Key:
-# Sliding window
-# 1) establish a window and add one letter and remove one letter
-
-
 # @lc code=start
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-
 
 # @lc code=end
 print(Solution().checkInclusion("ab", "eidbaooo"))

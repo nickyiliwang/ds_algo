@@ -53,13 +53,9 @@
 #
 #
 #
-from typing import List, Optional
+from typing import *
+from collections import *
 
-# Key:
-# have a normal merge list method
-# merge in-place
-# loop until one list is left
-# l2 will either be i + 1 or None 
 
 # @lc code=start
 class ListNode:

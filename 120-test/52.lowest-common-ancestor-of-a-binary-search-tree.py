@@ -1,4 +1,3 @@
-
 #
 # @lc app=leetcode id=235 lang=python3
 #
@@ -49,33 +48,14 @@
 # p != q
 # p and q will exist in the BST.
 #
-#
-#
-
-# Key:
-# Binary Search Tree:
-#   left subtree contains smaller values
-#   right contains larger values
-# p and q are on a different subtree's node z
-# p and q has to be on left and right, and z is the LCA
-
-# we want to eventually get to where p > root > q
-# so keep searching left if root is bigger than both p and q, vice versa
-
+# Time:
+# Space:
 
 # @lc code=start
 class Solution:
     def lowestCommonAncestor(
         self, root: "TreeNode", p: "TreeNode", q: "TreeNode"
     ) -> "TreeNode":
-        while True:
-            if root.val > p.val and root.val > q.val:
-                root = root.left
-            elif root.val < p.val and root.val < q.val:
-                root = root.right
-            else:
-                return root
-
 
 # @lc code=end
 

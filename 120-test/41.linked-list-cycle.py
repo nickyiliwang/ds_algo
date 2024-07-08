@@ -9,11 +9,6 @@ from collections import *
 # Time:
 # Space:
 
-# Key:
-# Tortoise and Hare
-# while loop only tracks the hare
-
-
 # @lc code=start
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:

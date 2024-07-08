@@ -49,23 +49,9 @@
 #
 from typing import List
 
-
 # @lc code=start
 class Solution:
     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
-        intervals.sort(key=lambda i: (i[0]))
-        prevEnd = intervals[0][1]
-        resCount = 0
-
-        for start, end in intervals[1:]:
-            if prevEnd > start:
-                resCount += 1
-                prevEnd = min(prevEnd, end)
-                continue
-            else:
-                prevEnd = end
-        return resCount
-
 
 # @lc code=end
 print(

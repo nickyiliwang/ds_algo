@@ -44,13 +44,6 @@ from collections import *
 # Time:
 # Space:
 
-# Key:
-# while (r - l + 1) - max(counter.values()) > k:
-# k is the char limit, while we have replaced more char than this limit, we need to move the left pointer
-# (r - l + 1) == the len of the window, this minus the largest num in the counter gets how many char was replaced
-# interestingly, we don't need to know which numbers are replaced
-# sliding window
-
 # @lc code=start
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:

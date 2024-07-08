@@ -40,12 +40,9 @@ from collections import *
 # Time:
 # Space:
 
-# Key:
-
 # @lc code=start
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
 
-
 # @lc code=end
-Solution().longestConsecutive([0, 3, 7, 2, 5, 8, 4, 6, 0, 1])
+print(Solution().longestConsecutive([0, 3, 7, 2, 5, 8, 4, 6, 0, 1]))

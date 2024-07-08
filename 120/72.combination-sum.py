@@ -59,11 +59,16 @@ from typing import List
 
 # Key:
 # range from i to len of candidates
-# 
+#
 # dfs(j, subset + [candidates[j]], total + candidates[j])
-# in recursion can't use append, so we use subset + [candidates[j]]
-# 
-# two base cases: equal to target => copy the subset => break the loop, larger than target => break the loop
+# like doing this:
+# tmp = subset.copy()
+# tmp.append(candidates[j])
+#
+# two base cases:
+# equal to target => copy the subset => break the loop
+# larger than target => break the loop
+
 
 # @lc code=start
 class Solution:

@@ -38,29 +38,15 @@
 # 1 <= m + n <= 2000
 # -10^6 <= nums1[i], nums2[i] <= 10^6
 #
-#
-#
-
 from typing import *
 from collections import *
 
 # Time:
 # Space:
 
-# Key:
-# start with the shorter arr for optimization
-# find mid2 with: total // 2 - 2 - mid1
-# find the left and right partition in the arr
-#       n1Max = n1[mid1] if mid1 >= 0 else float("-inf")
-#       n1Min = n1[mid1 + 1] if mid1 < l1 - 1 else float("inf")
-# correct partition looks like:
-#       n1Max <= n2Min and n2Max <= n1Min
-# fix it by using n1Max > n2Min and adjusting the right pointer with mid1
-
 # @lc code=start
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
 
 # @lc code=end
-
 print(Solution().findMedianSortedArrays([1, 3], [2]))

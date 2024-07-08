@@ -1,37 +1,56 @@
-from typing import List
+def something(subset, new_number):
+    # Base case: stop recursion if some condition is met
+    if len(subset) >= 5:  # Example condition
+        return subset
+    
+    # Append the new number to the subset
+    subset.append(new_number)
+    
+    # Print the current state of the subset
+    print(subset)
+    
+    # Recursive call with an updated new number (or some other condition)
+    return something(subset, new_number + 1)
+
+# Example usage:
+initial_subset = []
+result = something(initial_subset, 1)
+print("Final subset:", result)
+
+# from typing import List
 
 
-class Solution:
-    def countComponents(self, n: int, edges: List[List[int]]) -> int:
-        par = [i for i in range(n)]
-        rank = [i for i in range(n)]
+# class Solution:
+#     def countComponents(self, n: int, edges: List[List[int]]) -> int:
+#         par = [i for i in range(n)]
+#         rank = [i for i in range(n)]
 
-        def find(i):
-            if par[i] == i:
-                return i
-            else:
-                return find(par[i])
+#         def find(i):
+#             if par[i] == i:
+#                 return i
+#             else:
+#                 return find(par[i])
 
-        def union(x, y):
-            px, py = find(x), find(y)
+#         def union(x, y):
+#             px, py = find(x), find(y)
 
-            if px == py:
-                return 0
+#             if px == py:
+#                 return 0
 
-            if rank[px] > rank[py]:
-                par[px] = par[py]
-            else:
-                par[px] = py
-                rank[py] += 1
+#             if rank[px] > rank[py]:
+#                 par[px] = par[py]
+#             else:
+#                 par[px] = py
+#                 rank[py] += 1
 
-            return 1
+#             return 1
 
-        res = n
+#         res = n
 
-        for x, y in edges:
-            res -= union(x, y)
+#         for x, y in edges:
+#             res -= union(x, y)
 
-        return res
+#         return res
 
 
 # from typing import List

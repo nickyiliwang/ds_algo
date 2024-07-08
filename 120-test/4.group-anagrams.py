@@ -37,15 +37,9 @@ from collections import *
 # Time:
 # Space:
 
-# Key
-# sorted will break the string into an array, so we need to join it or use a tuple when appending to res
-# can decode it into alpha and use ord
-
 # @lc code=start
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
 
-
 # @lc code=end
-
 print(Solution().groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))

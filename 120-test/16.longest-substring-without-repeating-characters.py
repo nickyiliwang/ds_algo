@@ -49,7 +49,6 @@ from collections import *
 # Space:
 
 # Key:
-# Sliding window
 
 # @lc code=start
 class Solution:

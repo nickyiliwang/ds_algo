@@ -26,57 +26,12 @@
 # 1 <= nums.length <= 10
 # -10 <= nums[i] <= 10
 #
-#
-#
-
 from typing import List
-
-# Key:
-# sort nums to avoid dup subsets
-#
-# while current number and the next number is the same, inc index till they are not.
-# ie. [1,2,2,3] , i will get to index 2 bc index 3 is 3
-
+# Time:
+# Space:
 
 # @lc code=start
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        res = []
-        nums.sort()
 
-        def backtrack(i, subset):
-            res.append(subset.copy())
-
-            for j in range(i, len(nums)):
-                if j > i and nums[j] == nums[j - 1]:
-                    continue
-
-                backtrack(j + 1, subset + [nums[j]])
-
-        backtrack(0, [])
-
-        return res
 # @lc code=end
-
-class Solution:
-    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        res = []
-        nums.sort()
-
-        def backtrack(i, subset):
-            if i == len(nums):
-                res.append(subset.copy())
-                return
-
-            # with nums[i]
-            subset.append(nums[i])
-            backtrack(i + 1, subset)
-            subset.pop()
-
-            # without nums[i]
-            while i + 1 < len(nums) and nums[i] == nums[i + 1]:
-                i += 1
-            backtrack(i + 1, subset)
-
-        backtrack(0, [])
-        return res
