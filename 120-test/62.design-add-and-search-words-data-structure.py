@@ -56,43 +56,11 @@
 
 
 # @lc code=start
-class TriNode:
-    def __init__(self):
-        self.children = {}
-        self.isEnd = False
-
-
 class WordDictionary:
     def __init__(self):
-        self.root = TriNode()
 
     def addWord(self, word: str) -> None:
-        curr = self.root
-        for c in word:
-            if c not in curr.children:
-                curr.children[c] = TriNode()
-
-            curr = curr.children[c]
-        curr.isEnd = True
 
     def search(self, word: str) -> bool:
-        def dfs(i, root):
-            # need to return isEnd instead of True
-            if i == len(word):
-                return root.isEnd
 
-            c = word[i]
-            # wildcard search
-            if c == ".":
-                for child in root.children.values():
-                    if dfs(i + 1, child):
-                        return True
-            # normal search
-            if c in root.children:
-                return dfs(i + 1, root.children[c])
-
-            return False
-
-        return dfs(0, self.root)
-
-    # @lc code=end
+# @lc code=end
