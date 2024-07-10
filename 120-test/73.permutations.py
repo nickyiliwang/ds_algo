@@ -32,31 +32,10 @@
 
 from typing import List
 
-# Key:
-# base case is when subset len is the same as the nums len
-# if a number is in the subset we skip the number with continue
-# base case is take the subset with .copy() when the length is matching
-
 
 # @lc code=start
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        res = []
-
-        def dfs(subset):
-            if len(subset) == len(nums):
-                res.append(subset.copy())
-                return
-
-            for n in nums:
-                if n in subset:
-                    continue
-                dfs(subset + [n])
-
-        dfs([])
-
-        return res
-
 
 # @lc code=end
 print(Solution().permute([1, 2, 3]))

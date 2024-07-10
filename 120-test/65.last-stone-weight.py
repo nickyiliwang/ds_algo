@@ -52,35 +52,10 @@
 #
 #
 from typing import List
-import heapq
-
-# Key:
-# using negative to make maxHeap
-# heappush negative numbers back
-# base case for the while loop is the return conditions
-# can subtract neg numbers to the diff: -6 - (-5) = 1
-
 
 # @lc code=start
 class Solution:
     def lastStoneWeight(self, stones: List[int]) -> int:
-        # turning negative here so we can have a max heap
-        # [1,2,3] => [-3, -2, -1]  <= stone[0] will always be largest
-        stones = [-abs(n) for n in stones]
-        heapq.heapify(stones)
-
-        while True:
-            if len(stones) == 1:
-                return abs(stones[0])
-            elif len(stones) == 0:
-                return 0
-            else:
-                x, y = heapq.heappop(stones), heapq.heappop(stones)
-                heapq.heappush(stones, x - y)
-
 
 # @lc code=end
-
-solution = Solution()
-
-print(solution.lastStoneWeight([2, 7, 4, 1, 8, 1]))
+print(Solution().lastStoneWeight([2, 7, 4, 1, 8, 1]))

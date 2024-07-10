@@ -32,32 +32,9 @@
 #
 
 from typing import List
-import heapq
-
-# min heap
-# add/pop logN
-# min val in O(1)
-
-# Add: m * logN
-
-
-# min heap of size k
-
-# k = 2
-# minHeap = [1,2,3,4,5,6]
-# keep popping the lowest val till len(minHeap) == k
-# minHeap = [5,6]
-# 5 is lowest currently
-
 
 # @lc code=start
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        minHeap = nums
-        heapq.heapify(minHeap)
-        while len(minHeap) > k:
-            heapq.heappop(minHeap)
-        return minHeap[0]
-
 
 # @lc code=end

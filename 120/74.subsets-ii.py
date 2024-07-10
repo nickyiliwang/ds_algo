@@ -32,7 +32,7 @@
 from typing import List
 
 # Key:
-# sort nums to avoid dup subsets
+# sort nums bc we are using nums[j] == nums[j-1] to do comparisons
 #
 # while current number and the next number is the same, inc index till they are not.
 # ie. [1,2,2,3] , i will get to index 2 bc index 3 is 3

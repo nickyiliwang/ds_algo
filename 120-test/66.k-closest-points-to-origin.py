@@ -46,29 +46,10 @@
 #
 
 from typing import List
-import heapq
-
-# instead of sorting O(n) we use a min Heap to loop the heap k times to get the result
-# minHeap for the distance between origin and the point
-# ** is the exponent operation
-
 
 # @lc code=start
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
-        minHeap = []
-        res = []
-
-        for x, y in points:
-            dist = (x**2) + (y**2)
-            heapq.heappush(minHeap, [dist, x, y])
-
-        for _ in range(k):
-            res.append(heapq.heappop(minHeap)[1:])
-
-        return res
-
 
 # @lc code=end
-
 print(Solution().kClosest([[1, 3], [-2, 2], [2, -2]], 2))

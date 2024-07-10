@@ -27,11 +27,15 @@
 # -10 <= nums[i] <= 10
 #
 from typing import List
+
 # Time:
 # Space:
+
 
 # @lc code=start
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
 
 # @lc code=end
+print(Solution().subsetsWithDup([1, 2, 2]))
+# Output: [[],[1],[1,2],[1,2,2],[2],[2,2]]

@@ -47,31 +47,11 @@
 #
 
 from typing import List
-import heapq
-
-# Key:
-# using a minHeap we can
-# heap[0] is always the smallest
-# heappop will always pop the smallest
-# so popping till k will give k largest in heap[0]
-
 
 # @lc code=start
 class KthLargest:
-
     def __init__(self, k: int, nums: List[int]):
-        self.minHeap = nums
-        self.k = k
-        # heapify transforms list in-place
-        heapq.heapify(self.minHeap)
-        while len(self.minHeap) > k:
-            heapq.heappop(self.minHeap)
 
     def add(self, val: int) -> int:
-        heapq.heappush(self.minHeap, val)
-        if len(self.minHeap) > self.k:
-            heapq.heappop(self.minHeap)
-        return self.minHeap[0]
-
 
 # @lc code=end

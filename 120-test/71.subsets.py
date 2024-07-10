@@ -38,51 +38,11 @@
 #
 from typing import List
 
-# Key:
-# base case is when the index is less than the len of nums
-# use nums[i] appending
-# shallow copy
-
-# O(n * 2 ^ n)
-# read: ds_algo\Fundamentals\subset-dryrun.py
-# for details
-
 
 # @lc code=start
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        res = []
-
-        def dfs(i, subset):
-            res.append(subset.copy())
-
-            for j in range(i, len(nums)):
-                dfs(j + 1, subset + [nums[j]])
-
-        dfs(0, [])
-
-        return res
-
 
 # @lc code=end
 
 print(Solution().subsets([1, 2, 3]))
-
-
-class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
-        res = []
-
-        def dfs(i, subset):
-            if i >= len(nums):
-                res.append(subset.copy())
-                return
-
-            subset.append(nums[i])
-            dfs(i + 1, subset)
-
-            subset.pop()
-            dfs(i + 1, subset)
-
-        dfs(0, [])
-        return res

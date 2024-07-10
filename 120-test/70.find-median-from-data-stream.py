@@ -70,51 +70,14 @@
 # If 99% of all integer numbers from the stream are in the range [0, 100], how
 # would you optimize your solution?
 #
-#
-#
-
-
-import heapq
-
 
 # @lc code=start
 class MedianFinder:
-
     def __init__(self):
-        self.maxHeap = []  # Left
-        self.minHeap = []  # Right
-        self.count = 0
-        heapq.heapify(self.maxHeap)
-        heapq.heapify(self.minHeap)
 
     def addNum(self, num: int) -> None:
-        heapq.heappush(self.maxHeap, -num)
-
-        # Left <= Right
-        if self.maxHeap and self.minHeap and (-self.maxHeap[0] > self.minHeap[0]):
-            largestLeft = -heapq.heappop(self.maxHeap)
-            heapq.heappush(self.minHeap, largestLeft)
-
-        # Balance
-        if len(self.maxHeap) - len(self.minHeap) > 1:
-            largestLeft = -heapq.heappop(self.maxHeap)
-            heapq.heappush(self.minHeap, largestLeft)
-
-        if len(self.minHeap) - len(self.maxHeap) > 1:
-            smallestRight = -heapq.heappop(self.minHeap)
-            heapq.heappush(self.maxHeap, smallestRight)
-
-        self.count += 1
 
     def findMedian(self) -> float:
-        if self.count % 2 == 1:
-            if len(self.maxHeap) > len(self.minHeap):
-                return -self.maxHeap[0]
-            else:
-                return self.minHeap[0]
-        else:
-            return (-self.maxHeap[0] + self.minHeap[0]) / 2
-
 
 # @lc code=end
 
@@ -128,17 +91,3 @@ medianFinder.addNum(1)
 medianFinder.addNum(2)
 medianFinder.addNum(3)
 print(medianFinder.findMedian())
-
-# Input
-# ["MedianFinder", "addNum", "addNum", "findMedian", "addNum", "findMedian"]
-# [[], [1], [2], [], [3], []]
-# Output
-# [null, null, null, 1.5, null, 2.0]
-#
-# Explanation
-# MedianFinder medianFinder = new MedianFinder();
-# medianFinder.addNum(1);    // arr = [1]
-# medianFinder.addNum(2);    // arr = [1, 2]
-# medianFinder.findMedian(); // return 1.5 (i.e., (1 + 2) / 2)
-# medianFinder.addNum(3);    // arr[1, 2, 3]
-# medianFinder.findMedian(); // return 2.0
