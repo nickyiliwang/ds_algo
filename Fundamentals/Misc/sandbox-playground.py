@@ -1,45 +1,55 @@
-from typing import List
-from collections import defaultdict
+db = [["MUC", "LHR"], ["JFK", "MUC"], ["SFO", "SJC"], ["LHR", "SFO"]]
+print(db)
+
+db = sorted(db)
+print(db)
+
+db = sorted(db, reverse=True)
+print(db)
 
 
-class Solution:
-    def findItinerary(self, tickets: List[List[str]]) -> List[str]:
-        adj = defaultdict(list)
-        stack = ["JFK"]
-        res = ["JFK"]
-
-        for src, dst in tickets:
-            adj[src].append(dst)
-            # adj[dst].append(src)
-
-        while stack:
-            start = stack.pop()
-            tmp = []
-            for d in adj[start]:
-                weight = 0
-                for s in d:
-                    weight += ord(s)
-
-                if tmp:
-                    if tmp[0] < weight:
-                        tmp = [weight, d]
-                else:
-                    tmp = [weight, d]
-
-            if tmp:
-                stack.append(tmp[1])
-                res.append(tmp[1])
-                adj[start].remove(tmp[1])
-
-        return res
+# from typing import List
+# from collections import defaultdict
 
 
-print(
-    Solution().findItinerary(
-        [["JFK", "SFO"], ["JFK", "ATL"], ["SFO", "ATL"], ["ATL", "JFK"], ["ATL", "SFO"]]
-        # [["MUC", "LHR"], ["JFK", "MUC"], ["SFO", "SJC"], ["LHR", "SFO"]]
-    )
-)
+# class Solution:
+#     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+#         adj = defaultdict(list)
+#         stack = ["JFK"]
+#         res = ["JFK"]
+
+#         for src, dst in tickets:
+#             adj[src].append(dst)
+#             # adj[dst].append(src)
+
+#         while stack:
+#             start = stack.pop()
+#             tmp = []
+#             for d in adj[start]:
+#                 weight = 0
+#                 for s in d:
+#                     weight += ord(s)
+
+#                 if tmp:
+#                     if tmp[0] < weight:
+#                         tmp = [weight, d]
+#                 else:
+#                     tmp = [weight, d]
+
+#             if tmp:
+#                 stack.append(tmp[1])
+#                 res.append(tmp[1])
+#                 adj[start].remove(tmp[1])
+
+#         return res
+
+
+# print(
+#     Solution().findItinerary(
+#         [["JFK", "SFO"], ["JFK", "ATL"], ["SFO", "ATL"], ["ATL", "JFK"], ["ATL", "SFO"]]
+#         # [["MUC", "LHR"], ["JFK", "MUC"], ["SFO", "SJC"], ["LHR", "SFO"]]
+#     )
+# )
 
 # from typing import List
 
