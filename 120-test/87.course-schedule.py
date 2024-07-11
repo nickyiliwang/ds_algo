@@ -57,38 +57,6 @@ from collections import defaultdict
 # @lc code=start
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        graph = defaultdict(list)
-        visited, cycle = set(), set()
-
-        # adjacency list to rep the directed graph
-        for crs, pre in prerequisites:
-            graph[crs].append(pre)
-
-        def dfs(crs):
-            if crs in cycle:
-                return False
-
-            if crs in visited:
-                return True
-
-            # check for cycle by checking each pre in a crs
-            # then backtrack for the next course
-            cycle.add(crs)
-            for pre in graph[crs]:
-                if not dfs(pre):
-                    return False
-            cycle.remove(crs)
-
-            visited.add(crs)
-            return True
-
-        # each crs can be rep by the index
-        for c in range(numCourses):
-            if not dfs(c):
-                return False
-
-        return True
-
 
 # @lc code=end
 

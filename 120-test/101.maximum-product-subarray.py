@@ -37,32 +37,12 @@
 # The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit
 # integer.
 #
-#
-
-# Key
-# keep a max and min
-# during the loop update the max/min/res
-# need a tmp to keep max in memory
 
 from typing import List
-
 
 # @lc code=start
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
-        res = max(nums)
-        currMax, currMin = 1, 1
-
-        for n in nums:
-            tmp = currMax
-
-            currMax = max(n, n * currMax, n * currMin)
-            currMin = min(n, n * tmp, n * currMin)
-            res = max(res, currMax, currMin)
-
-        return res
-
 
 # @lc code=end
-
 print(Solution().maxProduct([-2, 3, 4]))

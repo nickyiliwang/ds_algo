@@ -46,19 +46,9 @@
 #
 from typing import List
 
-
 # @lc code=start
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        oneBefore, twoBefore = 0, 0
-
-        for n in nums:
-            temp = max(twoBefore + n, oneBefore)
-            twoBefore = oneBefore
-            oneBefore = temp
-
-        return oneBefore
-
 
 # @lc code=end
 

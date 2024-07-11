@@ -50,42 +50,9 @@
 
 from typing import List
 
-# Union find
-# https://www.youtube.com/watch?v=ayW5B2W9hfo
-
-
 # @lc code=start
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
-        # Need length instead of index
-        par = [i for i in range(len(edges) + 1)]
-        rank = [i for i in range(len(edges) + 1)]
-
-        def find(i):
-            if par[i] == i:
-                return i
-            else:
-                return find(par[i])
-
-        def union(x, y):
-            px, py = find(x), find(y)
-
-            if px == py:
-                return False
-
-            if rank[px] > rank[py]:
-                par[px] = par[py]
-            else:
-                par[px] = py
-                rank[py] += 1
-            return True
-
-        for x, y in edges:
-            if not union(x, y):
-                return [x, y]
-
 
 # @lc code=end
-
-
 print(Solution().findRedundantConnection([[1, 2], [1, 3], [2, 3]]))

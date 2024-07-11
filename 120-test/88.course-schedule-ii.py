@@ -61,47 +61,12 @@
 #
 #
 
-from typing import List
-from collections import defaultdict
+from typing import *
+from collections import *
 
-# Key:
-# just need to append the crs to an list to keep order
-# @lc code=start
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        graph = defaultdict(list)
-        cycle, visited = set(), set()
-        res = []
-
-        for crs, pre in prerequisites:
-            graph[crs].append(pre)
-
-        def dfs(crs):
-            if crs in cycle:
-                return False
-
-            if crs in visited:
-                return True
-
-            cycle.add(crs)
-            for pre in graph[crs]:
-                if not dfs(pre):
-                    return False
-            cycle.remove(crs)
-
-            visited.add(crs)
-            res.append(crs)
-            return True
-
-        for crs in range(numCourses):
-            if not dfs(crs):
-                return []
-
-        return res
-
 
 # @lc code=end
-
 print(Solution().findOrder(4, [[1, 0], [2, 0], [3, 1], [3, 2]]))
-
 # [0,2,1,3]

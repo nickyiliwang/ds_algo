@@ -57,22 +57,6 @@ from typing import List
 # @lc code=start
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        if len(nums) == 1:
-            return nums[0]
-
-        def robHelper(nums):
-            oneAway, twoAway = 0, 0
-            for n in nums:
-                tmp = max(twoAway + n, oneAway)
-                twoAway = oneAway
-                oneAway = tmp
-
-            return oneAway
-
-        withoutFirst = robHelper(nums[1:])
-        withoutLast = robHelper(nums[:-1])
-        return max(withoutFirst, withoutLast)
-
 
 # @lc code=end
 

@@ -48,46 +48,11 @@
 
 from typing import List
 
-# Key
-# If nums[i] is bigger than any nums[j] (all previous numbers)
-# We need to update dp[i], while comparing to dp[j] + 1
-
-# Time: O(n ^ 2) Space: O(n)
 # @lc code=start
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        dp = [1] * len(nums)
-
-        for i in range(len(nums)):
-            for j in range(i):
-                if nums[i] > nums[j]:
-                    dp[i] = max(dp[i], dp[j] + 1)
-
-        return max(dp)
-
 
 # @lc code=end
 
 print(Solution().lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]))
 # Output: 4
-
-
-# Can detect continuous increasing sub-array
-class Solution:
-    def lengthOfLIS(self, nums: List[int]) -> int:
-        bound = range(len(nums))
-        i = 0
-        res = 0
-
-        while i in bound:
-            j = i + 1
-            temp = 1
-            tempMax = nums[i]
-            while j in bound and nums[j] > tempMax:
-                temp += 1
-                tempMax = nums[j]
-                j += 1
-            i = j
-            res = max(res, temp)
-
-        return res

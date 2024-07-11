@@ -24,44 +24,9 @@
 # 1 <= n <= 100
 # 0 <= edges.length <= n * (n - 1) / 2
 
-# union find
-
 
 class Solution:
     def validTree(self, n: int, edges) -> bool:
-        # edges will need to match num of nodes
-        if len(edges) < n - 1:
-            return False
 
-        parent = [i for i in range(n)]
-        rank = [i for i in range(n)]
-
-        def find(i):
-            if parent[i] == i:
-                return i
-            else:
-                # recur finding parent
-                return find(parent[i])
-
-        def union(x, y):
-            # find parent nodes
-            px, py = find(x), find(y)
-
-            if px == py:
-                return False
-
-            # the larger rank tree becomes the parent, and the ranks of x and y do not change
-            if rank[px] > rank[py]:
-                parent[px] = parent[py]
-            else:
-                # if y/x becomes root, increment their rank
-                parent[px] = py
-                rank[py] += 1
-
-            return True
-
-        for x, y in edges:
-            if not union(x, y):
-                return False
-
-        return True
+print(Solution().validTree(5, [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]]))
+# false

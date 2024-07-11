@@ -87,32 +87,8 @@ class Node:
         self.val = val
         self.neighbors = neighbors if neighbors is not None else []
 
-
-# Key:
-# use a db for cache
-# return the clone
-# loop and clone the nodes
-# use node.val in the clone
-# if the input node isn't null then we can dfs
-
 # @lc code=start
 class Solution:
     def cloneGraph(self, node: Optional["Node"]) -> Optional["Node"]:
-        db = {}
-
-        def dfs(node):
-            if node in db:
-                return db[node]
-
-            clone = Node(node.val)
-            db[node] = clone
-
-            for n in node.neighbors:
-                clone.neighbors.append(dfs(n))
-
-            return clone
-
-        return dfs(node) if node else None
-
 
 # @lc code=end

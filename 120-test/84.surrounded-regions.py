@@ -46,43 +46,9 @@
 
 from typing import List
 
-# Key here is: board[r][c] != "O"
-# We do not want to touch anything that's not "O", meaning "T" and "X"
-# Like Pacific Atlantic, we do the corners to change it to "T"
-
-
 # @lc code=start
 class Solution:
     def solve(self, board: List[List[str]]) -> None:
-        row, col = len(board), len(board[0])
-        rowB, colB = range(row), range(col)
-
-        def dfs(r, c):
-            if r not in rowB or c not in colB or board[r][c] != "O":
-                return
-
-            board[r][c] = "T"
-
-            dfs(r + 1, c)
-            dfs(r - 1, c)
-            dfs(r, c + 1)
-            dfs(r, c - 1)
-
-        for r in rowB:
-            dfs(r, 0)
-            dfs(r, col - 1)
-
-        for c in colB:
-            dfs(0, c)
-            dfs(row - 1, c)
-
-        for r in rowB:
-            for c in colB:
-                if board[r][c] == "O":
-                    board[r][c] = "X"
-                elif board[r][c] == "T":
-                    board[r][c] = "O"
-
 
 # @lc code=end
 

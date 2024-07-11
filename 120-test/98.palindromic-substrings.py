@@ -35,32 +35,11 @@
 # 1 <= s.length <= 1000
 # s consists of lowercase English letters.
 #
-#
-#
-
 
 # @lc code=start
 class Solution:
     def countSubstrings(self, s: str) -> int:
-        res = 0
-
-        def isPali(l, r):
-            nonlocal res
-            while l >= 0 and r < len(s) and s[l] == s[r]:
-                res += 1
-                l -= 1
-                r += 1
-
-        for i in range(len(s)):
-            l, r = i, i
-            isPali(l, r)
-
-            l, r = i, i + 1
-            isPali(l, r)
-
-        return res
-
-
+        
 # @lc code=end
 
 print(Solution().countSubstrings("aaa"))

@@ -55,63 +55,9 @@
 from typing import List
 
 
-# DP
-# O(n * m ^ 2)
-
-# Key:
-# len(s) + 1 because we want to get to the last empty letter without triggering False
-# ie. "abc" if we reach 4 we can return True
-
-# s[j:i]
-# leetcode
-#     ^ = i
-# ^ = j
-# s[j:i] = "leet"
-
-# dp[j] == True : checking the cache before validating and adding new
-
-# break here so we only search till find
-
-# we are only returning dp[count] and not the last element in the dp, the count + 1 is here so the s[j:i] make sense.
-
-
 # @lc code=start
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        n = len(s)
-        dp = [False] * (n + 1)
-        dp[0] = True
-
-        for i in range(n + 1):
-            for j in range(i):
-                if (dp[j] == True) and s[j:i] in wordDict:
-                    dp[i] = True
-                    break
-        return dp[n]
-
-
+ 
 # @lc code=end
 print(Solution().wordBreak("leetcode", ["leet", "code"]))
-
-
-# DFS
-class Solution:
-    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        def dfs(curr, wordDict, memo):
-            if curr in memo:
-                return memo[curr]
-
-            if not curr:
-                return True
-
-            for word in wordDict:
-                if curr.startswith(word):
-                    nextPart = curr[len(word) :]
-                    if dfs(nextPart, wordDict, memo):
-                        memo[curr] = True
-                        return True
-
-            memo[curr] = False
-            return False
-
-        return dfs(s, wordDict, {})

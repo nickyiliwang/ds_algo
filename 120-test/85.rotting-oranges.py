@@ -58,56 +58,12 @@
 #
 #
 
-from typing import List
-from collections import deque
-
-# Multi value BFS
-
-# Key:
-# append the rotted into the q during first loop
-# dfs base case grid[r][c] != 1 skips rotten fruit and empty spaces
-# keep looping till no more q or fresh
-
+from typing import *
+from collections import *
 
 # @lc code=start
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
-        row, col = len(grid), len(grid[0])
-        rowBound, colBound = range(row), range(col)
-        time, fresh = 0, 0
-        q = deque()
-
-        # Start with all fresh oranges count and location
-        for r in rowBound:
-            for c in colBound:
-                if grid[r][c] == 1:
-                    fresh += 1
-                if grid[r][c] == 2:
-                    q.append([r, c])
-
-        def rot(r, c):
-            nonlocal fresh
-            if r not in rowBound or c not in colBound or grid[r][c] != 1:
-                return
-
-            grid[r][c] = 2
-            fresh -= 1
-            q.append([r, c])
-
-        # need to process all items in queue
-        while q and fresh:
-            for _ in range(len(q)):
-                r, c = q.popleft()
-
-                rot(r + 1, c)
-                rot(r - 1, c)
-                rot(r, c + 1)
-                rot(r, c - 1)
-
-            time += 1
-
-        return time if not fresh else -1
-
 
 # @lc code=end
 

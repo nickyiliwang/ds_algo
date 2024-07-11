@@ -81,52 +81,10 @@ from typing import List
 #               I
 # A T L A N T I C
 
+
 # @lc code=start
-
-# Key:
-# 
-# heights[r][c] < prevHeight
-# pass in curr hight into next iteration in dfs
-# set the starting height, which is the starting (r,c)
-
 class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
-        row, col = len(heights), len(heights[0])
-        rowBound, colBound = range(row), range(col)
-        pacific, atlantic = set(), set()
-        res = []
-
-        # prevHeight is key
-        def dfs(r, c, visited, prevHeight):
-            if (
-                r not in rowBound
-                or c not in colBound
-                or (r, c) in visited
-                or heights[r][c] < prevHeight
-            ):
-                return
-
-            visited.add((r, c))
-            dfs(r + 1, c, visited, heights[r][c])
-            dfs(r - 1, c, visited, heights[r][c])
-            dfs(r, c + 1, visited, heights[r][c])
-            dfs(r, c - 1, visited, heights[r][c])
-
-        for r in rowBound:
-            dfs(r, 0, pacific, heights[r][0])  # left
-            dfs(r, col - 1, atlantic, heights[r][col - 1])  # right
-
-        for c in colBound:
-            dfs(0, c, pacific, heights[0][c])  # top
-            dfs(row - 1, c, atlantic, heights[row - 1][c])  # bottom
-
-        for r in rowBound:
-            for c in colBound:
-                if (r, c) in atlantic and (r, c) in pacific:
-                    res.append([r, c])
-
-        return res
-
 
 # @lc code=end
 
@@ -137,4 +95,5 @@ heights = [
     [6, 7, 1, 4, 5],
     [5, 1, 1, 2, 4],
 ]
+print(Solution().pacificAtlantic(heights))
 # Output: [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]
