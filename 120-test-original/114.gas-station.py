@@ -63,68 +63,16 @@
 #
 #
 #
-from re import A
 from typing import List
-
-# Key:
-# sum of gas has to be more than cost
-# total < 0 : only when total dips below 0 we move the index forward
-# reset the total for next iteration
-
 
 # @lc code=start
 class Solution:
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
-        if sum(gas) < sum(cost):
-            return -1
-
-        total = 0
-        res = 0
-        for i in range(len(gas)):
-            total += gas[i] - cost[i]
-
-            if total < 0:
-                res = i + 1
-                total = 0
-
-        return res
-
 
 # @lc code=end
-
 print(
     Solution().canCompleteCircuit(
         [1, 2, 3, 4, 5],
         [3, 4, 5, 1, 2],
     )
 )
-
-
-# 33/40 cases passed (N/A)
-class Solution:
-    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
-        diff = []
-
-        for i in range(len(gas)):
-            diff.append(gas[i] - cost[i])
-
-        if len(diff) == 1 and diff[0] >= 0:
-            return 0
-
-        for i, n in enumerate(diff):
-            if n > 0:
-                starting = 0
-                for travel in diff[i:]:
-                    starting += travel
-                    if starting < 0:
-                        break
-
-                for travel in diff[:i]:
-                    starting += travel
-                    if starting < 0:
-                        break
-
-                if starting >= 0:
-                    return i
-
-        return -1

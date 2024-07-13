@@ -47,24 +47,11 @@
 #
 #
 from typing import List
-
-# Key:
-# O(n)
-# because constrain says we have at least 1 value
-# we use the first value as base
  
 # @lc code=start
 
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        maxSum = currSum = nums[0]
-
-        for num in nums[1:]:
-            currSum = max(num, currSum + num)
-            maxSum = max(maxSum, currSum)
-
-        return maxSum
 
 # @lc code=end
-
 print(Solution().maxSubArray([5, 4, -1, 7, 8]))

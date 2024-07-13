@@ -81,53 +81,7 @@
 # @lc code=start
 class Solution:
     def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
-        iLen, jLen, kLen = len(s1), len(s2), len(s3)
-
-        if iLen + jLen != kLen:
-            return False
-
-        # like row and col, outside layer
-        dp = [[False] * (jLen + 1) for _ in range(iLen + 1)]
-        dp[iLen][jLen] = True  # this will point to outer because 0 base indexing
-
-        for i in range(iLen, -1, -1):
-            for j in range(jLen, -1, -1):
-                if i < iLen and s3[i + j] == s1[i] and dp[i + 1][j]:
-                    dp[i][j] = True
-                if j < jLen and s3[i + j] == s2[j] and dp[i][j + 1]:
-                    dp[i][j] = True
-
-        return dp[0][0]
 
 
 # @lc code=end
-
 print(Solution().isInterleave("abc", "acb", "aabccb"))
-
-
-# DFS with recursion:
-class Solution:
-    def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
-        dp = {}
-        iLen, jLen, kLen = len(s1), len(s2), len(s3)
-
-        if (iLen + jLen) != kLen:
-            return False
-
-        def dfs(i, j):
-            # notice out of bounds meaning we reached the end
-            if i == iLen and j == jLen:
-                return True
-            if (i, j) in dp:
-                return dp[(i, j)]
-
-            # i or j in bound, i + j = k to find the index we need for the letter, find the next sub problem with dfs
-            if i < iLen and s3[i + j] == s1[i] and dfs(i + 1, j):
-                return True
-            if j < jLen and s3[i + j] == s2[j] and dfs(i, j + 1):
-                return True
-
-            dp[(i, j)] = False
-            return False
-
-        return dfs(0, 0)

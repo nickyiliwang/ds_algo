@@ -43,5 +43,4 @@ class Solution(object):
     def merge(self, intervals):
 
 # @lc code=end
-
 print(Solution().merge([[1, 3], [2, 6], [8, 10], [15, 18]]))

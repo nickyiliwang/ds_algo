@@ -31,6 +31,7 @@ class Interval(object):
 
 from typing import List
 
+# https://neetcode.io/problems/meeting-schedule-ii
 
 class Solution:
     def minMeetingRooms(self, intervals: List[Interval]) -> int:

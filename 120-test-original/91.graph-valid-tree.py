@@ -24,9 +24,33 @@
 # 1 <= n <= 100
 # 0 <= edges.length <= n * (n - 1) / 2
 
+from collections import defaultdict
+
 
 class Solution:
     def validTree(self, n: int, edges) -> bool:
+        visited = set()
+        adj = defaultdict(list)
+
+        for src, dst in edges:
+            adj[src].append(dst)
+            adj[dst].append(src)
+
+        def dfs(node, prev):
+            if node in visited:
+                return False
+
+            visited.add(node)
+
+            for n in adj[node]:
+                if n == prev:
+                    continue
+                if not dfs(n, node):
+                    return False
+            return True
+
+        return dfs(0, -1) and len(visited) == n
+
 
 print(Solution().validTree(5, [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]]))
 # false

@@ -36,44 +36,13 @@
 #
 # 1 <= nums.length <= 10^4
 # 0 <= nums[i] <= 10^5
-#
-#
-#
-
-# Key:
-# Greedy and moving the goal post
-
-# @lc code=start
+# 
+# # @lc code=start
 from typing import List
 
 
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        goal = len(nums) - 1
-        for i in range(len(nums) - 1, -1, -1):
-            if i + nums[i] >= goal:
-                goal = i
-
-        return True if goal == 0 else False
-
 
 # @lc code=end
-
 print(Solution().canJump([2, 3, 1, 1, 4]))
-
-
-# DP Solution
-class Solution:
-    def canJump(self, nums: List[int]) -> bool:
-        dp = [False for _ in range(len(nums))]
-        dp[0] = True
-
-        for i in range(len(nums)):
-            if dp[i]:
-                for j in range(i + 1, i + nums[i] + 1):
-                    if j < len(nums):
-                        dp[j] = True
-                    if j == len(nums) - 1:
-                        return True
-
-        return dp[len(nums) - 1]
