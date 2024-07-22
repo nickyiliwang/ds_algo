@@ -81,14 +81,14 @@ from typing import List
 #               I
 # A T L A N T I C
 
-# @lc code=start
-
 # Key:
-# 
+#
 # heights[r][c] < prevHeight
 # pass in curr hight into next iteration in dfs
 # set the starting height, which is the starting (r,c)
 
+
+# @lc code=start
 class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
         row, col = len(heights), len(heights[0])

@@ -1,3 +1,4 @@
+# https://neetcode.io/problems/string-encode-and-decode
 # Key
 # Use a delimiter
 
@@ -34,3 +35,4 @@ strs = [
 str = encode(strs)
 print(str)
 print(decode(str))
+

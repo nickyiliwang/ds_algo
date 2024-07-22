@@ -1,0 +1,71 @@
+<h2>{{id}}. {{title}}</h2>
+<b>Difficulty:</b> {{difficulty}}<br />
+<b>Tag:</b> {{hint:topics}}<br />
+<b>URL:</b>
+<br />
+
+{{#slug}}
+<br />
+<a
+  onclick="this.style.display='none';document.getElementById('myHint').style.display='inline-block';return false;"
+  style="display: inline-block; cursor: pointer"
+>
+  <div position="bottom">Show Hint</div>
+</a>
+<div>{{slug}}</div>
+<a
+  id="myHint"
+  style="display: none"
+  href="https://leetcode.com/problems/{{slug}}/"
+>
+  https://leetcode.com/problems/{{slug}}/
+</a>
+{{/slug}}
+
+<b>Question:</b> {{qus}}
+
+
+<div id="textPart">
+  {{⭐Question}}
+  <hr>
+  <span class="rsCloze">[time complexity]</span>
+  <br><br><div class="extra">{{⭐Example Input/Output}}</div>
+  </div>
+  
+  
+  <script type="text/javascript" src="_jquery-1.11.2.min.js"></script>
+  <div id="categoryIdentifierFront">{{Tags}}</div>
+  <script type="text/javascript" src="_AnkiLibrary.js"></script>
+  <script type="text/javascript">if (typeof rsAnki !== 'undefined') rsAnki.defaultUnified();</script>
+  
+
+<div id="textPart">
+  {{⭐Question}}
+  <hr id=answer>
+  <ul>
+  <li>{{⭐Insight}}</li>
+  <li>{{#🔹Key Data Structure}}<b>{{🔹Key Data Structure}}</b></li>
+  <li>{{/🔹Key Data Structure}}<span class="rsAnswer">\({{⭐Time Complexity}}\) time</span> & \({{⭐Space Complexity}}\) space</li>
+  {{#Complexity specifications}}<ul style="list-style: none;"><li>{{Complexity specifications}}</li></ul>{{/Complexity specifications}}
+  </ul>
+  {{#Insight Explanation}}<br><br>{{Insight Explanation}}{{/Insight Explanation}}
+  {{#Solution Algorithm}}<div>{{Solution Algorithm}}</div>{{/Solution Algorithm}}</div>
+  <div id="imagePart">{{Insight Explanation Image 🖼️}}</div>
+  
+  
+  <script type="text/javascript" src="_jquery-1.11.2.min.js"></script>
+  <div id="categoryIdentifierBack">{{Tags}}</div>
+  <script type="text/javascript" src="_AnkiLibrary.js"></script>
+  <script type="text/javascript">if (typeof rsAnki !== 'undefined') rsAnki.defaultUnified();</script>
+  
+
+  <b>Discuss URL:</b>
+  <a href='https://leetcode.com/problems/{{slug}}/discuss/'>
+      https://leetcode.com/problems/{{slug}}/discuss/
+  </a>
+  <br/>
+  <b>Solution URL:</b>
+  <a href='https://leetcode.com/problems/{{slug}}/solution/'>
+      https://leetcode.com/problems/{{slug}}/solution/
+  </a>
+  <br/>

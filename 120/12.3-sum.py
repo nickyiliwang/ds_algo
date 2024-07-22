@@ -62,9 +62,8 @@ from typing import List
 
 # Time nested loop + sorting =  nest loop worst time
 # Time O(n ^ 2) + O(nlogn) =  O(n ^ 2)
-
-
 # Space: O(1), O(n) depends on sorting implementation
+
 # @lc code=start
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:

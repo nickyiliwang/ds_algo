@@ -5,6 +5,14 @@
 #
 # https://leetcode.com/problems/find-all-anagrams-in-a-string/description/
 #
+# algorithms
+# Medium (51.08%)
+# Likes:    12314
+# Dislikes: 340
+# Total Accepted:    892.9K
+# Total Submissions: 1.7M
+# Testcase Example:  '"cbaebabacd"\n"abc"'
+#
 # Given two strings s and p, return an array of all the start indices of p's
 # anagrams in s. You may return the answer in any order.
 #
@@ -46,7 +54,6 @@
 
 from typing import *
 from collections import *
-
 
 # @lc code=start
 class Solution:

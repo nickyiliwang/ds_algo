@@ -60,7 +60,7 @@ from typing import List
 
 # BigO n^2 * M
 
-# KEY:
+# Key:
 # word[:i] + "*" + word[i + 1:]
 # need an adjacency list for patterns
 # BFS with deq

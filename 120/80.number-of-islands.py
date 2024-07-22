@@ -51,7 +51,7 @@
 
 from typing import List
 
-
+# @lc code=start
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         row, col = len(grid), len(grid[0])
