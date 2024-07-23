@@ -53,7 +53,41 @@ from typing import List
 #       n1Max <= n2Min and n2Max <= n1Min
 # fix it by using n1Max > n2Min and adjusting the right pointer with mid1
 
+
 # @lc code=start
+class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        merged = []
+        i, j = 0, 0
+
+        while i < len(nums1) and j < len(nums2):
+            if nums1[i] < nums2[j]:
+                merged.append(nums1[i])
+                i += 1
+            else:
+                merged.append(nums2[j])
+                j += 1
+
+        while i < len(nums1):
+            merged.append(nums1[i])
+            i += 1
+
+        while j < len(nums2):
+            merged.append(nums2[j])
+            j += 1
+
+        mid = len(merged) // 2
+        if len(merged) % 2 == 0:
+            return (merged[mid - 1] + merged[mid]) / 2
+        else:
+            return merged[mid]
+
+
+# @lc code=end
+
+print(Solution().findMedianSortedArrays([1, 3], [2]))
+
+
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
         n1, n2 = nums1, nums2
@@ -86,8 +120,3 @@ class Solution:
                 r = mid1 - 1
             else:
                 l = mid1 + 1
-
-
-# @lc code=end
-
-print(Solution().findMedianSortedArrays([1, 3], [2]))

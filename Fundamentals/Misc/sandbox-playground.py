@@ -1,11 +1,27 @@
-db = [["MUC", "LHR"], ["JFK", "MUC"], ["SFO", "SJC"], ["LHR", "SFO"]]
-print(db)
+n = 1
 
-db = sorted(db)
-print(db)
 
-db = sorted(db, reverse=True)
-print(db)
+# n //= 2
+n = n % 2
+
+def decToBin(num):
+    if num >= 1:
+        decToBin(num // 2)
+
+print(
+    decToBin(7)
+)
+
+print(int("11", 2) )
+
+# db = [["MUC", "LHR"], ["JFK", "MUC"], ["SFO", "SJC"], ["LHR", "SFO"]]
+# print(db)
+
+# db = sorted(db)
+# print(db)
+
+# db = sorted(db, reverse=True)
+# print(db)
 
 
 # from typing import List
