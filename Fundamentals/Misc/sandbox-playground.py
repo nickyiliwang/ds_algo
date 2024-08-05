@@ -1,18 +1,22 @@
-n = 1
+
+# for i in range(30):
+#     print(i % 5)
+
+# n = 1
 
 
-# n //= 2
-n = n % 2
+# # n //= 2
+# n = n % 2
 
-def decToBin(num):
-    if num >= 1:
-        decToBin(num // 2)
+# def decToBin(num):
+#     if num >= 1:
+#         decToBin(num // 2)
 
-print(
-    decToBin(7)
-)
+# print(
+#     decToBin(7)
+# )
 
-print(int("11", 2) )
+# print(int("11", 2) )
 
 # db = [["MUC", "LHR"], ["JFK", "MUC"], ["SFO", "SJC"], ["LHR", "SFO"]]
 # print(db)

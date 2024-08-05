@@ -58,7 +58,6 @@ import heapq
 
 # @lc code=start
 class KthLargest:
-
     def __init__(self, k: int, nums: List[int]):
         self.minHeap = nums
         self.k = k
