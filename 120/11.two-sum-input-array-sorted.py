@@ -63,15 +63,16 @@ from typing import List
 
 # @lc code=start
 class Solution:
-    def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        l, r = 0, len(numbers) - 1
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+
+        l, r = 0, len(nums) - 1
 
         while l <= r:
-            currSum = numbers[l] + numbers[r]
+            currSum = nums[l] + nums[r]
             if currSum < target:
-                l = l + 1
+                l += 1
             elif currSum > target:
-                r = r - 1
+                r -= 1
             else:
                 return [l + 1, r + 1]
 

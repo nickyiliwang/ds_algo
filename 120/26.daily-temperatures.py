@@ -44,7 +44,6 @@ class Solution:
         stack = []
 
         for i, temp in enumerate(temperatures):
-            print(stack)
             while stack and temperatures[stack[-1]] < temp:
                 pos = stack.pop()
                 res[pos] = i - pos

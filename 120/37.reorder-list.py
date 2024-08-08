@@ -46,7 +46,7 @@ linked_list.append(3)
 linked_list.append(4)
 
 # Starting at 1 instead of 0 with list1.head.next
-reorderList(linked_list.head.next)
+Solution().reorderList(linked_list.head.next)
 
 
 current = linked_list.head
