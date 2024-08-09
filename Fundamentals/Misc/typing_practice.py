@@ -1,7 +1,7 @@
 from typing import *
 from collections import *
 from math import *
-
+import heapq
 
 class ListNode(object):
     def __init__(self, val=0, next=None):
@@ -14,6 +14,19 @@ class Node:
         self.val = int(x)
         self.next = next
         self.random = random
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.isEnd = False
 
 
 # 1
@@ -1060,20 +1073,21 @@ def levelOrder(root):
             res.append(tmp)
     return res
 
+
 # 54
 def rightSideView(root):
     if not root:
         return root
-    
+
     q = deque([root])
     rightSide = []
-    
+
     while q:
         tmp = []
-        
+
         for _ in range(len(q)):
             node = q.popleft()
-            
+
             if node:
                 tmp.append(node.val)
                 q.append(node.left)
@@ -1084,11 +1098,12 @@ def rightSideView(root):
 
     return rightSide
 
+
 # 55
 def goodNodes(root):
     q = deque([root, root.val])
     res = 0
-    
+
     while q:
         for _ in range(len(q)):
             node, maxVal = q.popleft()
@@ -1100,9 +1115,311 @@ def goodNodes(root):
                 q.append((node.right, maxVal))
     return res
 
+
 # 56
+def isValidBST(root):
+    def valid(node, low, high):
+        if not node:
+            return True
+
+        if not (low < node.val < high):
+            return False
+
+        return valid(node.left, low, node.val) and valid(node.right, node.val, high)
+
+    return valid(root, float("-inf"), float("inf"))
 
 
+def isValidBSTStack(root):
+    if root is None:
+        return True
 
-                    
+    q = deque([root, float("-inf"), float("inf")])
+    while q:
+        for _ in range(len(q)):
+            node, low, high = q.popleft()
+
+            if not low < node.val < high:
+                return False
+
+            if node.left:
+                q.append((node.left, low, node.val))
+
+            if node.right:
+                q.append((node.right, node.val, high))
+
+    return True
+
+
+# 57
+def kthSmallest(root, k):
+    res = []
+
+    def dfs(node):
+        if not node:
+            return
+
+        dfs(node.left)
+        if len(res) == k:
+            return
+
+        res.append(node.val)
+        dfs(node.right)
+
+    dfs(root)
+
+    return res[-1]
+
+
+# 58
+def buildTree(preorder, inorder):
+    inorderDict = {v: i for i, v in enumerate(inorder)}
+
+    def builder(l, r):
+        if l > r:
+            return None
+
+        root = TreeNode(preorder.pop(0))
+        i = inorderDict[root.val]
+
+        root.left = builder(l, i - 1)
+        root.right = builder(i + 1, r)
+
+        return root
+
+    return builder(0, len(inorder) - 1)
+
+
+# 59
+def maxPathSum(root):
+    maxPath = root.val
+
+    def dfs(node):
+        nonlocal maxPath
+        if not node:
+            return 0
+
+        leftMax, rightMax = dfs(node.left), dfs(node.right)
+
+        leftMax, rightMax = max(leftMax, 0), max(rightMax, 0)
+
+        maxPath = max(maxPath, node.val + leftMax + rightMax)
+
+        return node.val + max(leftMax, rightMax)
+
+    dfs(root)
+    return maxPath
+
+
+# 60
+class Codes:
+    def serialize(self, root):
+        serialize = []
+
+        def dfs(root):
+            nonlocal serialize
+            if not root:
+                serialize.append("None")
+                return
+            serialize.append(str(root.val))
+            dfs(root.left)
+            dfs(root.right)
+            return root
+
+        dfs(root)
+        return ",".join(serialize)
+
+    def deserialize(self, data):
+        serial = data.split(",")
+        index = 0
+
+        def dfs():
+            nonlocal index
+            if serial[index] == "None":
+                index += 1
+                return None
+
+            root = TreeNode(int(serial[index]))
+            index += 1
+            root.left = dfs()
+            root.right = dfs()
+
+            return root
+
+        return dfs()
+
+
+# 61
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word):
+        curr = self.root
+        for c in word:
+            if c not in curr.children:
+                curr.children[c] = TrieNode()
+            curr = curr.children[c]
+
+        curr.isEnd = True
+
+    def search(self, word):
+        curr = self.root
+        for c in word:
+            if c not in curr.children:
+                return False
+            curr = curr.children[c]
+        return curr.isEnd
+
+    def startsWith(self, prefix):
+        curr = self.root
+        for c in prefix:
+            if c not in curr.children:
+                return False
+            curr = curr.children[c]
+        return True
+
+
+# 62
+class WordDictionary:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def addWord(self, word):
+        curr = self.root
+        for c in word:
+            if c not in curr.children:
+                curr.children[c] = TrieNode()
+
+            curr = curr.children[c]
+        curr.isEnd = True
+
+    def search(self, word):
+        def dfs(i, root):
+            if i == len(word):
+                return root.isEnd
+
+            c = word[i]
+            if c == ".":
+                for child in root.children.values():
+                    if dfs(i + 1, child):
+                        return True
+            if c in root.children:
+                return dfs(i + 1, root.children[c])
+
+            return False
+
+        return dfs(0, self.root)
+
+
+# 63
+class Solution:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def addWords(self, word):
+        curr = self.root
+
+        for char in word:
+            if char not in curr.children:
+                curr.children[char] = TrieNode()
+            curr = curr.children[char]
+
+        curr.isEnd = True
+
+    def findWords(self, board, words):
+        row, col = len(board), len(board[0])
+        rowBound, colBound = range(row), range(col)
+        path = set()
+        result = set()
+
+        for word in words:
+            self.addWords(word)
+
+        def dfs(r, c, node, word):
+            if (
+                r not in rowBound
+                or c not in colBound
+                or (r, c) in path
+                or board[r][c] not in node.children
+            ):
+                return
+
+            path.add((r, c))
+            node = node.children[board[r][c]]
+            word += board[r][c]
+
+            if node.isEnd:
+                result.add(word)
+
+            dfs(r + 1, c, node, word)
+            dfs(r - 1, c, node, word)
+            dfs(r, c + 1, node, word)
+            dfs(r, c - 1, node, word)
+
+            path.remove((r, c))
+
+        for r in rowBound:
+            for c in colBound:
+                dfs(r, c, self.root, "")
+
+        return list(result)
+
+
+# 64
+def minPathSum(grid):
+    row, col = len(grid), len(grid[0])
+    rowBound, colBound = range(row), range(col)
+
+    for r in rowBound:
+        for c in colBound:
+            if r > 0 and c > 0:
+                grid[r][c] += min(grid[r - 1][c], grid[r][c - 1])
+            elif r > 0:
+                grid[r][0] += grid[r - 1][0]
+            elif c > 0:
+                grid[0][c] += grid[0][c - 1]
+    return grid[row - 1][col - 1]
+
+# 65
+def lastStoneWeight(stones):
+    stones = [-abs(n) for n in stones]
+    heapq.heapify(stones)
+
+    while True:
+        if len(stones) == 1:
+            return abs(stones[0])
+        elif len(stones) == 0:
+            return 0
+        else:
+            x, y = heapq.heappop(stones), heapq.heappop(stones)
+            heapq.heappush(stones, x - y)
+
+# 66
+def kClosest(points, k):
+    minHeap = []
+    res = []
+    
+    for x, y in points:
+        dist = (x**2) + (y**2)
+        heapq.heappush(minHeap, [dist, x, y])
+    
+    for _ in range(k):
+        res.append(heapq.heappop(minHeap)[1:])
+    
+    return res
+
+# 67
+def findKthLargest(nums, k):
+    minHeap = nums
+    heapq.heapify(minHeap)
+    while len(minHeap) > k:
+        heapq.heappop(minHeap)
+    return minHeap[0]
+
+# 68
+
+            
+        
+        
     

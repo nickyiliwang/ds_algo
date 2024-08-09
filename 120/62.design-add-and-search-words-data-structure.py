@@ -56,7 +56,7 @@
 
 
 # @lc code=start
-class TriNode:
+class TrieNode:
     def __init__(self):
         self.children = {}
         self.isEnd = False
@@ -64,13 +64,13 @@ class TriNode:
 
 class WordDictionary:
     def __init__(self):
-        self.root = TriNode()
+        self.root = TrieNode()
 
     def addWord(self, word: str) -> None:
         curr = self.root
         for c in word:
             if c not in curr.children:
-                curr.children[c] = TriNode()
+                curr.children[c] = TrieNode()
 
             curr = curr.children[c]
         curr.isEnd = True

@@ -19,8 +19,7 @@ class Solution:
             if not node:
                 return 0
 
-            leftMax = dfs(node.left)
-            rightMax = dfs(node.right)
+            leftMax, rightMax = dfs(node.left), dfs(node.right)
 
             # To clear negative numbers
             leftMax = max(leftMax, 0)

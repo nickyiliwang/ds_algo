@@ -58,7 +58,7 @@ from Leetcode.testCases import board, words
 
 
 # @lc code=start
-class TriNode:
+class TrieNode:
     def __init__(self):
         self.children = {}
         self.isEnd = False
@@ -66,14 +66,14 @@ class TriNode:
 
 class Solution:
     def __init__(self):
-        self.root = TriNode()
+        self.root = TrieNode()
 
     def addWords(self, word):
         curr = self.root
 
         for char in word:
             if char not in curr.children:
-                curr.children[char] = TriNode()
+                curr.children[char] = TrieNode()
             curr = curr.children[char]
         curr.isEnd = True
 
