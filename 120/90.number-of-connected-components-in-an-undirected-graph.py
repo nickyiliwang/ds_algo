@@ -34,14 +34,14 @@ from typing import List
 
 class Solution:
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
-        par = [i for i in range(n)]
+        parent = [i for i in range(n)]
         rank = [i for i in range(n)]
 
         def find(i):
-            if par[i] == i:
+            if parent[i] == i:
                 return i
             else:
-                return find(par[i])
+                return find(parent[i])
 
         def union(x, y):
             px, py = find(x), find(y)
@@ -50,9 +50,9 @@ class Solution:
                 return 0
 
             if rank[px] > rank[py]:
-                par[px] = par[py]
+                parent[px] = parent[py]
             else:
-                par[px] = py
+                parent[px] = py
                 rank[py] += 1
 
             return 1

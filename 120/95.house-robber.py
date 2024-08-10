@@ -53,9 +53,9 @@ class Solution:
         oneBefore, twoBefore = 0, 0
 
         for n in nums:
-            temp = max(twoBefore + n, oneBefore)
+            tmp = max(twoBefore + n, oneBefore)
             twoBefore = oneBefore
-            oneBefore = temp
+            oneBefore = tmp
 
         return oneBefore
 

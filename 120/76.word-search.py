@@ -67,7 +67,7 @@ class Solution:
         rowBound, colBound = range(row), range(col)
         path = set()
 
-        def dfs(i, r, c):
+        def dfs(r, c, i):
             if i == len(word):
                 return True
 
@@ -81,10 +81,10 @@ class Solution:
 
             path.add((r, c))
             res = (
-                dfs(i + 1, r + 1, c)
-                or dfs(i + 1, r - 1, c)
-                or dfs(i + 1, r, c + 1)
-                or dfs(i + 1, r, c - 1)
+                dfs(r - 1, c, i + 1)
+                or dfs(r + 1, c, i + 1)
+                or dfs(r, c - 1, i + 1)
+                or dfs(r, c + 1, i + 1)
             )
             path.remove((r, c))
 
@@ -92,11 +92,11 @@ class Solution:
 
         for r in rowBound:
             for c in colBound:
-                if dfs(0, r, c):
+                if dfs(r, c, 0):
                     return True
-
+        
         return False
-
+                
 
 # @lc code=end
 

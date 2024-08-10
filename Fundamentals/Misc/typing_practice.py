@@ -3,6 +3,7 @@ from collections import *
 from math import *
 import heapq
 
+
 class ListNode(object):
     def __init__(self, val=0, next=None):
         self.val = val
@@ -1381,6 +1382,7 @@ def minPathSum(grid):
                 grid[0][c] += grid[0][c - 1]
     return grid[row - 1][col - 1]
 
+
 # 65
 def lastStoneWeight(stones):
     stones = [-abs(n) for n in stones]
@@ -1395,19 +1397,21 @@ def lastStoneWeight(stones):
             x, y = heapq.heappop(stones), heapq.heappop(stones)
             heapq.heappush(stones, x - y)
 
+
 # 66
 def kClosest(points, k):
     minHeap = []
     res = []
-    
+
     for x, y in points:
         dist = (x**2) + (y**2)
         heapq.heappush(minHeap, [dist, x, y])
-    
+
     for _ in range(k):
         res.append(heapq.heappop(minHeap)[1:])
-    
+
     return res
+
 
 # 67
 def findKthLargest(nums, k):
@@ -1417,9 +1421,771 @@ def findKthLargest(nums, k):
         heapq.heappop(minHeap)
     return minHeap[0]
 
-# 68
 
-            
-        
-        
-    
+# 68
+def leastInterval(tasks, n):
+    maxHeap = [[-val, key] for key, val in Counter(tasks).items()]
+    heapq.heapify(maxHeap)
+    res = []
+
+    while maxHeap:
+        temp = []
+        for _ in range(n + 1):
+            if maxHeap:
+                task = heapq.heappop(maxHeap)
+                task[0] += 1
+                if task[0]:
+                    temp.append(task)
+                    res.append(task[1])
+                else:
+                    res.append("idle")
+        for task in temp:
+            heapq.heappush(maxHeap, task)
+
+    while res[-1] == "idle":
+        res.pop()
+
+    return len(res)
+
+
+# 69
+class Twitter:
+    def __init__(self):
+        self.followDB = defaultdict(set)
+        self.feed = deque([])
+
+    def postTweet(self, userId, tweetId):
+        self.feed.appendleft([userId, tweetId])
+
+    def getNewsFeed(self, userId):
+        res = []
+
+        self.followDB[userId].add(userId)
+        for tweet in self.feed:
+            if tweet[0] in self.followDB[userId] and len(res) < 10:
+                res.append(tweet[1])
+
+        return res
+
+    def follow(self, followerId, followeeId):
+        self.followDB[followerId].add(followeeId)
+
+    def unfollow(self, followerId, followeeId):
+        self.followDB[followerId].discard(followeeId)
+
+
+# 70
+class MedianFinder:
+    def __init__(self):
+        self.maxHeap = []
+        self.minHeap = []
+        self.count = 0
+        heapq.heapify(self.maxHeap)
+        heapq.heapify(self.minHeap)
+
+    def addNum(self, num):
+        heapq.heappush(self.maxHeap, -num)
+
+        if self.maxHeap and self.minHeap and (-self.maxHeap[0] > self.minHeap[0]):
+            largestLeft = -heapq.heappop(self.maxHeap)
+            heapq.heappush(self.minHeap, largestLeft)
+
+        if len(self.maxHeap) - len(self.minHeap) > 1:
+            largestLeft = -heapq.heappop(self.maxHeap)
+            heapq.heappush(self.minHeap, largestLeft)
+
+        if len(self.minHeap) - len(self.maxHeap) > 1:
+            smallestRight = -heapq.heappop(self.minHeap)
+            heapq.heappush(self.maxHeap, smallestRight)
+
+        self.count += 1
+
+    def findMedian(self):
+        if self.count % 2 == 1:
+            if len(self.maxHeap) > len(self.minHeap):
+                return -self.maxHeap[0]
+            else:
+                return self.minHeap[0]
+        else:
+            return (-self.maxHeap[0] + self.minHeap[0]) / 2
+
+
+# 71
+def subsets(nums):
+    res = []
+
+    def dfs(i, subset):
+        res.append(subset.copy())
+
+        for j in range(i, len(nums)):
+            dfs(j + 1, subset + [nums[j]])
+
+    dfs(0, [])
+
+    return res
+
+
+# 72
+def combinationSum(candidates, target):
+    res = []
+
+    def dfs(i, subset, total):
+        if total == target:
+            res.append(subset.copy())
+            return
+        elif total > target:
+            return
+
+        for j in range(i, len(candidates)):
+            dfs(j, subset + [candidates[j]], total + candidates[j])
+
+    dfs(0, [], 0)
+
+    return res
+
+
+# 73
+def permute(nums):
+    res = []
+
+    def dfs(subset):
+        if len(subset) == len(nums):
+            res.append(subset.copy())
+            return
+
+        for n in nums:
+            if n in subset:
+                continue
+            dfs(subset + [n])
+
+        dfs([])
+
+        return res
+
+
+# 74
+def subsetsWithDup(nums):
+    res = []
+    nums.sort()
+
+    def backtrack(i, subset):
+        res.append(subset.copy())
+
+        for j in range(i, len(nums)):
+            if j > i and nums[j] == nums[j - 1]:
+                continue
+
+            backtrack(j + 1, subset + [nums[j]])
+
+    backtrack(0, [])
+
+    return res
+
+
+# 75
+def combinationSum2(candidates, target):
+    candidates.sort()
+    res = []
+
+    def dfs(i, subset, total):
+        if total == target:
+            res.append(subset)
+            return
+        elif total > target:
+            return
+
+        for j in range(i, len(candidates)):
+            if j > i and candidates[j] == candidates[j - 1]:
+                continue
+
+            dfs(j + 1, subset + [candidates[j]], total + candidates[j])
+
+        dfs(0, [], 0)
+
+        return res
+
+
+# 76
+def exist(board, word):
+    row, col = len(board), len(board[0])
+    rowBound, colBound = range(row), range(col)
+    path = set()
+
+    def dfs(r, c, i):
+        if i == len(word):
+            return True
+
+        if (
+            r not in rowBound
+            or c not in colBound
+            or (r, c) in path
+            or word[i] != board[r][c]
+        ):
+            return False
+
+        path.add((r, c))
+        res = (
+            dfs(r - 1, c, i + 1)
+            or dfs(r + 1, c, i + 1)
+            or dfs(r, c - 1, i + 1)
+            or dfs(r, c + 1, i + 1)
+        )
+        path.remove((r, c))
+
+        return res
+
+    for r in rowBound:
+        for c in colBound:
+            if dfs(r, c, 0):
+                return True
+
+    return False
+
+
+# 77
+def isPali(a):
+    l, r = 0, len(a) - 1
+    while l < r:
+        if a[l] != a[r]:
+            return False
+        l += 1
+        r -= 1
+
+    return True
+
+
+def partition(s):
+    res = []
+
+    def dfs(i, subset):
+        if i >= len(s):
+            res.append(subset.copy())
+            return
+
+        for j in range(i, len(s)):
+            potential = s[i : j + 1]
+            if isPali(potential):
+                dfs(j + 1, subset + [potential])
+
+    dfs(0, [])
+
+    return res
+
+
+# 78
+def letterCombinations(digits):
+    digDict = {
+        "2": "abc",
+        "3": "def",
+        "4": "ghi",
+        "5": "jkl",
+        "6": "mno",
+        "7": "pqrs",
+        "8": "tuv",
+        "9": "wxyz",
+    }
+
+    res = []
+
+    def backtrack(i, str):
+        if i == len(digits):
+            res.append(str)
+            return
+
+        for char in digDict[digits[i]]:
+            backtrack(i + 1, str + char)
+
+    if digits:
+        backtrack(0, "")
+
+    return res
+
+
+# 79
+def solveNQueens(n):
+    board = [["." for _ in range(n)] for _ in range(n)]
+    res = []
+    colPath = set()
+    downRightDiagonal = set()
+    upRightDiagonal = set()
+
+    def backtrack(r):
+        if r == n:
+            formatted = ["".join(row) for row in board]
+            res.append(formatted)
+            return
+
+        for c in range(n):
+            if (
+                c in colPath
+                or (r + c) in upRightDiagonal
+                or (r - c) in downRightDiagonal
+            ):
+                continue
+
+            colPath.add(c)
+            downRightDiagonal.add((r - c))
+            upRightDiagonal.add((r + c))
+            board[r][c] = "Q"
+            backtrack(r + 1)
+            colPath.remove(c)
+            downRightDiagonal.remove((r - c))
+            upRightDiagonal.remove((r + c))
+            board[r][c] = "."
+
+        backtrack(0)
+        return res
+
+
+# 80
+def numIslands(grid):
+    row, col = len(grid), len(grid[0])
+    rowBound, colBound = range(row), range(col)
+    visited = set()
+    islands = 0
+
+    def dfs(r, c):
+        if (
+            r not in rowBound
+            or c not in colBound
+            or grid[r][c] == "0"
+            or (r, c) in visited
+        ):
+            return
+
+        visited.add((r, c))
+        dfs(r - 1, c)
+        dfs(r + 1, c)
+        dfs(r, c - 1)
+        dfs(r, c + 1)
+
+    for r in rowBound:
+        for c in colBound:
+            if grid[r][c] == "1" and (r, c) not in visited:
+                islands += 1
+                dfs(r, c)
+
+    return islands
+
+
+# 81
+def cloneGraph(node):
+    db = {}
+
+    def dfs(node):
+        if node in db:
+            return db[node]
+
+        clone = Node(node.val)
+        db[node] = clone
+
+        for n in node.neighbors:
+            clone.neighbors.append(dfs(n))
+
+        return clone
+
+    return dfs(node) if node else None
+
+
+# 82
+def maxAreaOfIsland(grid):
+    row, col = len(grid), len(grid[0])
+    rowBound, colBound = range(row), range(col)
+    visited = set()
+    maxArea = 0
+
+    def dfs(r, c):
+        if (
+            r not in rowBound
+            or c not in colBound
+            or (r, c) in visited
+            or grid[r][c] == 0
+        ):
+            return 0
+
+        visited.add((r, c))
+
+        return 1 + dfs(r - 1, c) + dfs(r + 1, c) + dfs(r, c - 1) + dfs(r, c + 1)
+
+    for r in rowBound:
+        for c in colBound:
+            maxArea = max(maxArea, dfs(r, c))
+
+    return maxArea
+
+
+# 83
+def pacificAtlantic(heights):
+    row, col = len(heights), len(heights[0])
+    rowBound, colBound = range(row), range(col)
+    pacific, atlantic = set(), set()
+    res = []
+
+    def dfs(r, c, visited, prevHeight):
+        if (
+            r not in rowBound
+            or c not in colBound
+            or (r, c) in visited
+            or heights[r][c] < prevHeight
+        ):
+            return
+
+        visited.add((r, c))
+        dfs(r - 1, c, visited, heights[r][c])
+        dfs(r + 1, c, visited, heights[r][c])
+        dfs(r, c - 1, visited, heights[r][c])
+        dfs(r, c + 1, visited, heights[r][c])
+
+    for r in rowBound:
+        dfs(r, 0, pacific, heights[r][0])
+        dfs(r, col - 1, atlantic, heights[r][col - 1])
+
+    for c in colBound:
+        dfs(0, c, pacific, heights[0][c])
+        dfs(row - 1, c, atlantic, heights[row - 1][c])
+
+    for r in rowBound:
+        for c in colBound:
+            if (r, c) in atlantic and (r, c) in pacific:
+                res.append([r, c])
+
+    return res
+
+
+# 84
+def solve(board):
+    row, col = len(board), len(board[0])
+    rowBound, colBound = range(row), range(col)
+
+    def dfs(r, c):
+        if r not in rowBound or c not in colBound or board[r][c] != "O":
+            return
+
+        board[r][c] = "T"
+
+        dfs(r + 1, c)
+        dfs(r - 1, c)
+        dfs(r, c - 1)
+        dfs(r, c + 1)
+
+    for r in rowBound:
+        dfs(r, 0)
+        dfs(r, col - 1)
+
+    for c in colBound:
+        dfs(0, c)
+        dfs(row - 1, c)
+
+    for r in rowBound:
+        for c in colBound:
+            if board[r][c] == "O":
+                board[r][c] = "X"
+            elif board[r][c] == "T":
+                board[r][c] = "O"
+
+
+# 85
+def orangesRotting(grid):
+    row, col = len(grid), len(grid[0])
+    rowBound, colBound = range(row), range(col)
+    time, fresh = 0, 0
+    q = deque()
+
+    for r in rowBound:
+        for c in colBound:
+            if grid[r][c] == 1:
+                fresh += 1
+                if grid[r][c] == 2:
+                    q.append([r, c])
+
+    def rot(r, c):
+        nonlocal fresh
+        if r not in rowBound or c not in colBound or grid[r][c] != 1:
+            return
+
+        grid[r][c] = 2
+        fresh -= 1
+        q.append([r, c])
+
+    while q and fresh:
+        for _ in range(len(q)):
+            r, c = q.popleft()
+
+            rot(r - 1, c)
+            rot(r + 1, c)
+            rot(r, c - 1)
+            rot(r, c + 1)
+
+        time += 1
+
+
+# 86
+def islandsAndTreasure(grid):
+    row, col = len(grid), len(grid[0])
+    rowBound, colBound = range(row), range(col)
+    q = deque()
+    visited = set()
+    dist = 0
+
+    for r in rowBound:
+        for c in colBound:
+            if grid[r][c] == 0:
+                q.append([r, c])
+                visited.add((r, c))
+
+    def mod(r, c):
+        if (
+            r not in rowBound
+            or c not in colBound
+            or (r, c) in visited
+            or grid[r][c] == -1
+        ):
+            return
+
+        visited.add((r, c))
+        q.append([r, c])
+
+    while q:
+        for _ in range(len(q)):
+            r, c = q.popleft()
+            grid[r][c] = dist
+            mod(r - 1, c)
+            mod(r + 1, c)
+            mod(r, c - 1)
+            mod(r, c + 1)
+
+        dist += 1
+
+
+# 87
+def canFinish(numCourses, prerequisites):
+    graph = defaultdict(list)
+    visited, cycle = set(), set()
+
+    for crs, pre in prerequisites:
+        graph[crs].append(pre)
+
+    def dfs(crs):
+        if crs in cycle:
+            return False
+
+        if crs in visited:
+            return True
+
+        cycle.add(crs)
+        for pre in graph[crs]:
+            if not dfs(pre):
+                return False
+        cycle.remove(crs)
+
+        visited.add(crs)
+        return True
+
+    for c in range(numCourses):
+        if not dfs(c):
+            return False
+
+    return True
+
+
+# 88
+def findOrder(numCourses, prerequisites):
+    graph = defaultdict(list)
+    cycle, visited = set(), set()
+    res = []
+
+    for crs, pre in prerequisites:
+        graph[crs].append(pre)
+
+    def dfs(crs):
+        if crs in cycle:
+            return False
+
+        if crs in visited:
+            return True
+
+        cycle.add(crs)
+        for pre in graph[crs]:
+            if not dfs(pre):
+                return False
+        cycle.remove(crs)
+
+        visited.add(crs)
+        res.append(crs)
+        return True
+
+    for crs in range(numCourses):
+        if not dfs(crs):
+            return []
+
+    return res
+
+
+# 89
+def findRedundantConnect(edges):
+    parent = [i for i in range(len(edges) + 1)]
+    rank = [i for i in range(len(edges) + 1)]
+
+    def find(i):
+        if parent[i] == i:
+            return i
+        else:
+            return find(parent[i])
+
+    def union(x, y):
+        px, py = find(x), find(y)
+
+        if px == py:
+            return False
+
+        if rank[px] > rank[py]:
+            parent[px] = parent[py]
+        else:
+            parent[px] = py
+            rank[py] += 1
+        return True
+
+    for x, y in edges:
+        if not union(x, y):
+            return [x, y]
+
+
+# 90
+def countComponents(n, edges):
+    parent = [i for i in range(n)]
+    rank = [i for i in range(n)]
+
+    def find(i):
+        if parent[i] == i:
+            return i
+        else:
+            return find(parent[i])
+
+    def union(x, y):
+        px, py = find(x), find(y)
+
+        if px == py:
+            return 0
+
+        if rank[px] > rank[py]:
+            parent[px] = parent[py]
+        else:
+            parent[px] = py
+            rank[py] += 1
+
+        return 1
+
+    res = n
+
+    for x, y in edges:
+        res -= union(x, y)
+
+    return res
+
+
+# 91
+def validTree(n, edges):
+    visited = set()
+    adj = defaultdict(list)
+
+    for src, dst in edges:
+        adj[src].append(dst)
+        adj[src].append(src)
+
+    def dfs(node, prev):
+        if node in visited:
+            return False
+
+        visited.add(node)
+
+        for n in adj[node]:
+            if n == prev:
+                continue
+            if not dfs(n, node):
+                return False
+        return True
+
+    return dfs(0, -1) and len(visited) == n
+
+
+# 92
+def ladderLength(beginWord, endWord, wordList):
+    graph = defaultdict(list)
+    wordList.append(beginWord)
+    q = deque([beginWord])
+    res = 1
+    visited = set()
+
+    for w in wordList:
+        for i in range(len(w)):
+            pattern = w[:i] + "*" + w[i + 1 :]
+            graph[pattern].append(w)
+
+    while q:
+        for _ in range(len(q)):
+            w = q.popleft()
+
+            if w == endWord:
+                return res
+
+            for i in range(len(w)):
+                pattern = w[:i] + "*" + w[i + 1 :]
+
+                for word in graph[pattern]:
+                    if word not in visited:
+                        visited.add(word)
+                        q.append(word)
+        res += 1
+    return 0
+
+
+# 93
+def climbStairs(n):
+    one, two = 1, 1
+
+    for _ in range(n - 1):
+        tmp = one + two
+        two = one
+        one = tmp
+
+    return one
+
+
+# 94
+def minCostClimbingStairs(cost):
+    for i in range(len(cost) - 3, -1, -1):
+        cost[i] += min(cost[i + 1], cost[i + 2])
+
+    return min(cost[0], cost[1])
+
+
+# 95
+def rob(nums):
+    oneBefore, twoBefore = 0, 0
+    for n in nums:
+        tmp = max(twoBefore + n, oneBefore)
+        twoBefore = oneBefore
+        oneBefore = tmp
+
+    return oneBefore
+
+
+# 96
+def rob(nums):
+    if len(nums) == 1:
+        return nums[0]
+
+    def robHelper(nums):
+        oneAway, twoAway = 0, 0
+        for n in nums:
+            tmp = max(twoAway + n, oneAway)
+            twoAway = oneAway
+            oneAway = tmp
+
+        return oneAway
+
+    withoutFirst = robHelper(nums[1:])
+    withFirst = robHelper(nums[:-1])
+    return max(withoutFirst, withFirst)
+
+# 97

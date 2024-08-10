@@ -55,10 +55,10 @@ from typing import List
 class Solution:
     def solve(self, board: List[List[str]]) -> None:
         row, col = len(board), len(board[0])
-        rowB, colB = range(row), range(col)
+        rowBound, colBound = range(row), range(col)
 
         def dfs(r, c):
-            if r not in rowB or c not in colB or board[r][c] != "O":
+            if r not in rowBound or c not in colBound or board[r][c] != "O":
                 return
 
             board[r][c] = "T"
@@ -68,16 +68,16 @@ class Solution:
             dfs(r, c + 1)
             dfs(r, c - 1)
 
-        for r in rowB:
+        for r in rowBound:
             dfs(r, 0)
             dfs(r, col - 1)
 
-        for c in colB:
+        for c in colBound:
             dfs(0, c)
             dfs(row - 1, c)
 
-        for r in rowB:
-            for c in colB:
+        for r in rowBound:
+            for c in colBound:
                 if board[r][c] == "O":
                     board[r][c] = "X"
                 elif board[r][c] == "T":

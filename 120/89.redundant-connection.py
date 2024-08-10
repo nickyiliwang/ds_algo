@@ -58,14 +58,14 @@ from typing import List
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
         # Need length instead of index
-        par = [i for i in range(len(edges) + 1)]
+        parent = [i for i in range(len(edges) + 1)]
         rank = [i for i in range(len(edges) + 1)]
 
         def find(i):
-            if par[i] == i:
+            if parent[i] == i:
                 return i
             else:
-                return find(par[i])
+                return find(parent[i])
 
         def union(x, y):
             px, py = find(x), find(y)
@@ -74,9 +74,9 @@ class Solution:
                 return False
 
             if rank[px] > rank[py]:
-                par[px] = par[py]
+                parent[px] = parent[py]
             else:
-                par[px] = py
+                parent[px] = py
                 rank[py] += 1
             return True
 
