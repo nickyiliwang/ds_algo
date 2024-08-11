@@ -2188,4 +2188,86 @@ def rob(nums):
     withFirst = robHelper(nums[:-1])
     return max(withoutFirst, withFirst)
 
+
 # 97
+def longestPalindrome(s):
+    res = ""
+    resLen = 0
+
+    def isPali(l, r):
+        nonlocal res
+        nonlocal resLen
+
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            if (l - r + 1) > resLen:
+                res = s[l : r + 1]
+                resLen = r - l + 1
+            l -= 1
+            r += 1
+
+    for i in range(len(s)):
+        l, r = i, i
+        isPali(l, r)
+
+        l, r = i, i + 1
+        isPali(l, r)
+
+    return res
+
+
+# 98
+def countSubstrings(s):
+    res = 0
+
+    def isPali(l, r):
+        nonlocal res
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            res += 1
+            l -= 1
+            r += 1
+
+    for i in range(len(s)):
+        l, r = i, i
+        isPali(l, r)
+
+        l, r = i, i + 1
+        isPali(l, r)
+
+    return res
+
+
+# 99
+def numDecodings(s):
+    cache = {len(s): 1}
+
+    def dfs(i):
+        if i in cache:
+            return cache[i]
+
+        if s[i] == "0":
+            return 0
+
+        res = dfs(i + 1)
+        if i + 1 < len(s) and 10 <= int(s[i : i + 2]) <= 26:
+            res += dfs(i + 2)
+
+        cache[i] = res
+
+        return res
+
+    return dfs(0)
+
+
+# 100
+def coinChange(coins, amount):
+    dp = [float("inf")] * (amount + 1)
+    dp[0] = 0
+
+    for a in range(1, amount + 1):
+        for c in coins:
+            if a - c >= 0:
+                dp[a] = min(dp[a], 1 + dp[a - c])
+
+    return dp[amount] if dp[amount] != float("inf") else -1
+
+
