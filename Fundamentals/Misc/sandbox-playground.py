@@ -1,8 +1,17 @@
+# what do you mean
 
+print(101001011010100110101234567890)
+
+print("hello world")
+
+
+def dfs(i):
+    print("hello world")
 
 
 # for i in range(30):
 #     print(i % 5)
+
 
 # n = 1
 

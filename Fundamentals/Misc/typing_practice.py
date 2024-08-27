@@ -2270,3 +2270,333 @@ def coinChange(coins, amount):
 
     return dp[amount] if dp[amount] != float("inf") else -1
 
+
+# 101
+def isSymmetric(root):
+    if not root:
+        return True
+
+    def dfs(p, q):
+        if not p and not q:
+            return True
+
+        if not p or not q:
+            return False
+
+        if p.val != q.val:
+            return False
+
+        return dfs(p.left, q.right) and dfs(p.right, q.left)
+
+    return dfs(root.left, root.right)
+
+
+# 102
+def wordBreak(s, wordDict):
+    n = len(s)
+    dp = [False] * (n + 1)
+    dp[0] = True
+
+    for i in range(n + 1):
+        for j in range(i):
+            if (dp[j] == True) and s[j:i] in wordDict:
+                dp[i] = True
+                break
+    return dp[n]
+
+
+# 103
+def lengthOfLIS(nums):
+    dp = [1] * len(nums)
+
+    for i in range(len(nums)):
+        for j in range(i):
+            if nums[i] > nums[j]:
+                dp[i] = max(dp[i], dp[j] + 1)
+
+    return max(dp)
+
+
+# 104
+def canPartition(nums):
+    total = sum(nums)
+    if total % 2 != 0:
+        return False
+
+    target = total // 2
+
+    dp = [False] * (target + 1)
+    dp[0] = True
+
+    for n in nums:
+        for j in range(target, n - 1, -1):
+            dp[j] = dp[j] or dp[j - n]
+    return dp[target]
+
+
+# 105
+def uniquePath(m, n):
+    oldRow = [1] * n
+
+    for _ in range(m - 1):
+        newRow = [1] * n
+        for j in range(n - 2, -1, -1):
+            newRow[j] = newRow[j + 1] + oldRow[j]
+        oldRow = newRow
+
+    return oldRow[0]
+
+
+# 106
+def longestCommonSubsequence(text1, text2):
+    row, col = len(text1), len(text2)
+    dp = [[0 for _ in range(col + 1)] for _ in range(row + 1)]
+
+    for r in range(row - 1, -1, -1):
+        for c in range(col - 1, -1, -1):
+            if text1[r] == text2[c]:
+                dp[r][c] = dp[r + 1][c + 1] + 1
+            else:
+                dp[r][c] = max(dp[r + 1][c], dp[r][c + 1])
+    return dp[0][0]
+
+
+# 107
+def maxProfit(prices):
+    dp = {}
+
+    def dfs(i, buying):
+        if i >= len(prices):
+            return 0
+        if (i, buying) in dp:
+            return dp[(i, buying)]
+
+        if buying:
+            buy = dfs(i + 1, not buying) - prices[i]
+            cooldown = dfs(i + 1, buying)
+            dp[(i, buying)] = max(buy, cooldown)
+        else:
+            selling = dfs(i + 2, not buying) + prices[i]
+            cooldown = dfs(i + 1, buying)
+            dp[(i, buying)] = max(selling, cooldown)
+
+        return dp[(i, buying)]
+
+    return dfs(0, True)
+
+
+# 108
+def change(amount, coins):
+    dp = {}
+
+    def dfs(i, a):
+        if a > amount:
+            return 0
+        if i == len(coins):
+            return 1 if a == amount else 0
+        if (i, a) in dp:
+            return dp[(i, a)]
+
+        dp[(i, a)] = dfs(i, a + coins[i]) + dfs(i + 1, a)
+        return dp[(i, a)]
+
+    return dfs(0, 0)
+
+
+# 109
+def findTargetSumWays(nums, target):
+    dp = {}
+
+    def dfs(i, t):
+        if i >= len(nums):
+            return 1 if t == target else 0
+        if (i, t) in p:
+            return dp[(i, t)]
+
+        dp[(i, t)] = dfs(i + 1, t + nums[i]) + dfs(i + 1, t - nums[i])
+        return dp[(i, t)]
+
+    return dfs(0, 0)
+
+
+# 110
+def isInterleave(self, s1, s2, s3):
+    iLen, jLen, kLen = len(s1), len(s2), len(s3)
+
+    if iLen + jLen != kLen:
+        return False
+
+    dp = [[False] * (jLen + 1) for _ in range(iLen + 1)]
+    dp[iLen][jLen] = True
+
+    for i in range(iLen, -1, -1):
+        for j in range(jLen, -1, -1):
+            if i < iLen and s3[i + j] == s1[i] and dp[i + 1][j]:
+                dp[i][j] = True
+            if j < jLen and s3[i + j] == s2[j] and dp[i][j + 1]:
+                dp[i][j] = True
+
+    return dp[0][0]
+
+
+# 111
+def maxSubArray(nums):
+    maxSum = currSum = nums[0]
+    for num in nums[1:]:
+        currSum = max(num, currSum + num)
+        maxSum = max(maxSum, currSum)
+
+    return maxSum
+
+
+# 112
+def hasPathSum(root, targetSum):
+    def dfs(node, path, paths):
+        if not node:
+            return
+
+        path.append(node.val)
+        if not node.left and not node.right:
+            paths.append(sum(path))
+        else:
+            dfs(node.left, path, paths)
+            dfs(node.right, path, paths)
+        path.pop()
+
+    paths = []
+    dfs(root, [], paths)
+
+    return targetSum in paths
+
+
+# 113
+def jump(nums):
+    n = len(nums)
+    res, far, end = 0, 0, 0
+
+    for i in range(n - 1):
+        far = max(far, i + nums[i])
+        if far >= n - 1:
+            res += 1
+            break
+        if i == end:
+            res += 1
+            end = far
+
+    return res
+
+
+# 114
+def canCompleteCircus(gas, cost):
+    if sum(gas) < sum(cost):
+        return -1
+
+    total = 0
+    res = 0
+
+    for i in range(len(gas)):
+        total += gas[i] - cost[i]
+
+        if total < 0:
+            res = i + 1
+            total = 0
+
+    return res
+
+
+# 115
+def insert(intervals, newInterval):
+    res = []
+    for i in range(len(intervals)):
+        if newInterval[1] < intervals[i][0]:
+            res.append(newInterval)
+            return res + intervals[i:]
+        elif newInterval[0] > intervals[i][1]:
+            res.append(intervals[i])
+        else:
+            newInterval = [
+                min(newInterval[0], intervals[i][0]),
+                max(newInterval[1], intervals[i][1]),
+            ]
+    res.append(newInterval)
+    return res
+
+
+# 116
+def merge(intervals):
+    intervals.sort(key=lambda i: i[0])
+    res = [intervals[0]]
+
+    for start, end in intervals[1:]:
+        prevEnd = res[-1][1]
+        if prevEnd < start:
+            res.append([start, end])
+        else:
+            res[-1][1] = max(prevEnd, end)
+
+    return res
+
+
+# 117
+def eraseOverlapIntervals(intervals):
+    intervals.sort(key=lambda i: (i[0]))
+    prevEnd = intervals[0][1]
+    resCount = 0
+
+    for start, end in intervals[1:]:
+        if prevEnd > start:
+            resCount += 1
+            prevEnd = min(prevEnd, end)
+            continue
+        else:
+            prevEnd = end
+    return resCount
+
+
+# 118
+def canAttendMeetings(intervals):
+    intervals.sort(key=lambda i: (i[0]))
+    prevEnd = intervals[0][1]
+    for start, end in intervals:
+        if prevEnd > start:
+            return False
+    return True
+
+
+# 119
+def minMeetingRooms(intervals):
+    times = []
+    currCount = 0
+    maxCount = 0
+    for start, end in intervals:
+        times.append([start, 1])
+        times.append([end, -1])
+
+    times.sort(key=lambda i: (i[0], i[1]))
+    for t, c in times:
+        currCount += c
+        maxCount = max(maxCount, currCount)
+
+    return maxCount
+
+
+# 120
+def rotate(matrix):
+    n = len(matrix)
+
+    def swap(m):
+        for r in range(n):
+            for c in range(r):
+                m[r][c], m[c][r] = m[c][r], m[r][c]
+
+    def reverse(m):
+        for row in range(n):
+            l, r = 0, n - 1
+
+            while l < r:
+                m[row][l], m[row][r] = m[row][r], m[row][l]
+                l += 1
+                r -= 1
+
+    swap(matrix)
+    reverse(matrix)
