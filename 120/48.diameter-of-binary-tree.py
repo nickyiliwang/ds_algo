@@ -19,23 +19,25 @@ from ds_types.tree import TreeNode
 # @lc code=start
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-        diameter = 0
+        dia = 0
 
-        def dfs(root):
-            nonlocal diameter
-            if root is None:
+        def dfs(node):
+            nonlocal dia
+            if node is None:
                 return 0
 
-            left, right = dfs(root.left), dfs(root.right)
+            left, right = dfs(node.left), dfs(node.right)
 
-            # only care about the max between the previous height
-            diameter = max(diameter, left + right)
+            # update diameter with max height of left + right
+            dia = max(dia, left + right)
 
             # returning the height/depth of the tree
             return 1 + max(left, right)
 
         dfs(root)
-        return diameter
+        return dia
 
 
 # @lc code=end
+
+# https://www.youtube.com/watch?v=K81C31ytOZE
