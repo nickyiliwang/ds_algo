@@ -91,7 +91,7 @@ from typing import List
 # @lc code=start
 class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
-        row, col = len(heights), len(heights[0])
+        row, col = len(heights) - 1, len(heights[0]) - 1
         rowBound, colBound = range(row), range(col)
         pacific, atlantic = set(), set()
         res = []

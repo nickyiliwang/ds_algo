@@ -6,11 +6,11 @@
 # https://leetcode.com/problems/find-k-pairs-with-smallest-sums/description/
 #
 # algorithms
-# Medium (40.03%)
-# Likes:    6216
-# Dislikes: 448
-# Total Accepted:    306.9K
-# Total Submissions: 766.7K
+# Medium (40.12%)
+# Likes:    6355
+# Dislikes: 456
+# Total Accepted:    326.5K
+# Total Submissions: 813K
 # Testcase Example:  '[1,7,11]\n[2,4,6]\n3'
 #
 # You are given two integer arrays nums1 and nums2 sorted in non-decreasing
