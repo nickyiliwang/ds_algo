@@ -248,7 +248,7 @@ def maxArea(height):
         if height <= height[r]:
             l += 1
         else:
-            r += 1
+            r -= 1
     return res
 
 
@@ -1023,7 +1023,7 @@ def sameTree(p, q):
     if not p and not q:
         return True
 
-    if not p or not q or p.val != q.vap:
+    if not p or not q or p.val != q.val:
         return False
     else:
         return sameTree(p.left, q.left) and sameTree(p.right, q.right)

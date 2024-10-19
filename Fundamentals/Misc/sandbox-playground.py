@@ -1,12 +1,208 @@
-# what do you mean
+from typing import *
+from collections import *
+from math import *
+import heapq
 
-print(101001011010100110101234567890)
 
-print("hello world")
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
 
-def dfs(i):
-    print("hello world")
+class Node:
+    def __init__(self, x: int, next: "Node" = None, random: "Node" = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
+def containsDuplicate(nums):
+    validator = set()
+    for n in nums:
+        if n in validator:
+            return True
+        else:
+            return False
+
+
+def isAnagram(s, t):
+    if len(s) != len(t):
+        return False
+
+    cS, cT = Counter(s), Counter(t)
+
+    for char in s:
+        if cS[char] != cT[char]:
+            return False
+
+    return True
+
+
+def twoSum(nums, target):
+    cache = {}
+    for i, n in enumerate(nums):
+        if n in cache:
+            return [cache[n], i]
+        else:
+            cache[target - n] = i
+
+
+def groupAnagrams(strs):
+    res = defaultdict(list)
+
+    for w in strs:
+        alpha = [0] * 26
+        for c in w:
+            alpha[ord(c) - ord("a")] += 1
+        res[tuple(alpha)].append(w)
+
+    return res.values()
+
+
+def topKFrequent(nums, k):
+    bucket = [[] for _ in range(len(nums))]
+    counters = Counter(nums)
+    res = []
+
+    for num, count in counters.items():
+        bucket[count - 1].append(num)
+
+    for i in range(len(bucket) - 1, -1, -1):
+        for n in bucket[i]:
+            res.append(n)
+            if len(res) == k:
+                return res
+
+
+def productExceptSelf(nums):
+    n = len(nums)
+    res = [0] * n
+    prefix = 1
+
+    for i in range(n):
+        res[i] = prefix
+        prefix *= nums[i]
+
+    postfix = 1
+
+    for i in range(n - 1, -1, -1):
+        res[i] *= postfix
+        postfix *= nums[i]
+
+    return res
+
+
+def isValidSudoku(board):
+    row, col, sqr = set(), set(), set()
+
+    def dfs(r, c):
+        curr = board[r][c]
+        if curr == ".":
+            return
+        if (r, curr) in row or (c, curr) in col or (r // 3, c // 3, curr) in sqr:
+            return False
+
+        row.add((r, curr))
+        col.add((c, curr))
+        sqr.add((r // 3, c // 3, curr))
+
+        return True
+
+    for r in range(len(board)):
+        for c in range(len(board[0])):
+            if not dfs(r, c):
+                return False
+
+    return True
+
+
+def encode(strs):
+    res = ""
+    for word in strs:
+        res += str(len(word)) + "#" + word
+
+    return res
+
+
+def decode(str):
+    res = []
+    i = 0
+
+    while i < len(str):
+        j = i
+        while str[j] != "#":
+            j += 1
+
+        charLen = int(str[i:j])
+        res.append(str[j + 1 : j + 1 + charLen])
+
+        i = j + 1 + charLen
+
+    return res
+
+
+def longestConsecutive(nums):
+    numSet = set(nums)
+    res = 0
+
+    for n in nums:
+        if (n - 1) not in numSet:
+            length = 0
+
+            while (n + length) in numSet:
+                length += 1
+
+            res = max(res, length)
+
+    return res
+
+
+def isPalindrome(s):
+    l, r = 0, len(s) - 1
+    while l < r:
+        while l < r and not s[l].isalnum():
+            l += 1
+        while l < r and not s[r].isalnum():
+            r -= 1
+        if s[l].lower() != s[r].lower():
+            return False
+
+        l += 1
+        r -= 1
+
+    return True
+
+
+def twoSumSorted(nums, target):
+    l, r = 0, len(nums) - 1
+
+    while l <= r:
+        currSum = nums[l] + nums[r]
+        if currSum < target:
+            l += 1
+        elif currSum > target:
+            r -= 1
+        else:
+            return [l + 1, r + 1]
+
+
+# # what do you mean
+
+# print(101001011010100110101234567890)
+
+# print("hello world")
+
+
+# def dfs(i):
+#     print("hello world")
 
 
 # for i in range(30):
