@@ -1600,9 +1600,9 @@ def combinationSum2(candidates, target):
 
             dfs(j + 1, subset + [candidates[j]], total + candidates[j])
 
-        dfs(0, [], 0)
+    dfs(0, [], 0)
 
-        return res
+    return res
 
 
 # 76
@@ -2410,7 +2410,7 @@ def findTargetSumWays(nums, target):
     def dfs(i, t):
         if i >= len(nums):
             return 1 if t == target else 0
-        if (i, t) in p:
+        if (i, t) in dp:
             return dp[(i, t)]
 
         dp[(i, t)] = dfs(i + 1, t + nums[i]) + dfs(i + 1, t - nums[i])
